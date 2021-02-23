@@ -1,0 +1,38 @@
+{
+  "name": "soju-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "''",
+  "scripts": {
+    "react:dev": "webpack -d --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamSoju/SojuStore.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamSoju/SojuStore/issues"
+  },
+  "homepage": "https://github.com/TeamSoju/SojuStore#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "chai": "^4.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mocha": "^8.3.0",
+    "mongoose": "^5.11.18",
+    "nodemon": "^2.0.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.23.0",
+    "webpack": "^2.2.1"
+  }
+}
