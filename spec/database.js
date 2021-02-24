@@ -1,7 +1,6 @@
 // Library dependencies
 const chai = require('chai');
 const expect = chai.expect;
-chai.use(require('chai-as-promised'));
 const mongoose = require('mongoose');
 
 // File dependencies
