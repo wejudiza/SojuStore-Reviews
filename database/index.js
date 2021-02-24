@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const dbName = 'FEC'
-mongoose.connect(`mongodb://localhost/${dbName}`, { useNewUrlParser: true, useUnifiedTopology: true} ).then(() => { console.log(`Connected to database ${dbName}`) });
-// const db = mongoose.connection
-// db.on(('err') => {'error'})
+
+mongoose.connect(`mongodb://localhost/${dbName}`, { useNewUrlParser: true, useUnifiedTopology: true} ).then(() => {
+    console.log(`Connected to database ${dbName}`);
+  })
 
 let products = new mongoose.Schema({
   id: Number,
@@ -10,9 +11,9 @@ let products = new mongoose.Schema({
 });
 
 let Product = mongoose.model('Product', products);
-// create mongoose table..
 
 // Product.create({
 //   id: 1,
 //   name: 'Sophia'
 // });
+
