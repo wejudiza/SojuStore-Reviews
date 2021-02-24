@@ -1,5 +1,9 @@
 // Library dependencies
+const chai = require('chai');
+const expect = chai.expect;
+chai.use(require('chai-as-promised'));
 const mongoose = require('mongoose');
+
 // File dependencies
 const db = require('../database/index.js');
 
@@ -11,11 +15,3 @@ describe('Mongo Database', () => {
     mongoose.connect(`mongodb://localhost/${db.dbName}`, done);
   });
 });
-
-// describe('Mongo Database', function() {
-//   before(function (done) {
-//     mongoose.connect('mongodb://localhost/FEC', done);
-//   });
-//   // write test here
-//   it('do we really need this')
-// })

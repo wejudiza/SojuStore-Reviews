@@ -4,7 +4,7 @@ const dbName = 'FEC'
 // Connect to user specified DB
 mongoose.connect(`mongodb://localhost/${dbName}`, { useNewUrlParser: true, useUnifiedTopology: true} )
   .then(() => console.log(`Connected to database ${dbName}`))
-  .catch(err => console.log(`Error when connecting to database ${dbName}. Error: ${err}`))
+  .catch(err => console.log(`Error when connecting to database`))
 
 // Schema for Product instances in Products collections
 let productSchema = new mongoose.Schema({
