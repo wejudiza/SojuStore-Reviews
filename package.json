@@ -4,7 +4,8 @@
   "description": "",
   "main": "''",
   "scripts": {
-    "react:dev": "webpack -d --watch"
+    "react:dev": "webpack -d --watch",
+    "start": "nodemon database/index.js"
   },
   "repository": {
     "type": "git",
