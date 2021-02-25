@@ -1,4 +1,5 @@
 //require models
+const getQnA = require('./QnAGet.js');
 const getProducts = require('./apiGET.js');
 
 const controller = {
@@ -24,6 +25,15 @@ const controller = {
     products.getProductStyles(req, (err, results) => {
       if (err) res.status(404).send(err)
       else res.status(200).send(results);
+    })
+  },
+  getQnA: (req, res) => {
+    getQnA.getQnA(req, (err, data) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(data);
+      }
     })
   },
   post: (req, res) => {

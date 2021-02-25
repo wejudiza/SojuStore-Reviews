@@ -2,6 +2,8 @@ const router = require('express').Router();
 const controller = require('./controller');
 // Ratings & Reviews Controllers
 const controllersRR = require('./controllers-rr.js');
+const controllerRelated = require('./controllerRelated.js')
+
 
 router
   .route('/')
@@ -14,14 +16,21 @@ router
   .patch(controller.update)
   .delete(controller.delete)
 
-/* --------------
-Ratings & Reviews
--------------- */
+/* ---------------------
+Ratings & Reviews - Liam
+--------------------- */
 router
   .route('/reviews/:product_id')
   .get(controllersRR.get)
 
-// Sophia
+//////////Realated Products///////////
+
+router
+  .route('/:product_id')
+  .get(controllerRelated.getRelatedProducts)
+
+
+
 router
   .route('/:id')
   // to retrieve all product level information for a SPECIFIC product ID
@@ -32,4 +41,9 @@ router
   // to retrieve all styles available for the given product
   .get(controller.getProductStyles)
 
-module.exports = router
+router
+  .route('/qa/questions/:product_id')
+  .get(controller.getQnA)
+
+
+module.exports = router;
