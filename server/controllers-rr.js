@@ -37,7 +37,7 @@ const controllersRR = {
 
   // Post a review to a product by product_id
   postReview: (req, res) => {
-    axios.post(`${config.url}`, req.body, config.headers)
+    axios.post(config.url, req.body, config.headers)
       .then(resp => res.status(200).send(`Posted review for ${req.body.name}`))
       .catch(err => res.status(400).send(`Failed to post review for ${req.body.name}. Error: ${err}`))
   }
