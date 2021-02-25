@@ -1,6 +1,5 @@
 const axios = require('axios');
 const config = require('./config.js')
-// const productId = require('./........')
 
 const controllerRelated = {
   getRelatedProducts: (req, res) => {
