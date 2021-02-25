@@ -33,6 +33,11 @@ router
   // to retrieve all styles available for the given product
     .get(controller.getProductStyles)
 
+router
+  .route('/qa/questions/:product_id')
+  .get(controller.getQnA)
+
+ module.exports = router;
 
 
 
