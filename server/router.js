@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const controller = require('./controller.js');
+const controller = require('./controller');
+const controllerRelated = require('./controllerRelated.js')
+
 
 router
   .route('/')
@@ -12,6 +14,15 @@ router
   .patch(controller.update)
   .delete(controller.delete)
 
+
+//////////Realated Products///////////
+
+router
+  .route('/:product_id')
+  .get(controllerRelated.getRelatedProducts)
+
+
+
 router
   .route('/:id')
     // to retrieve all product level information for a SPECIFIC product ID
@@ -22,4 +33,7 @@ router
   // to retrieve all styles available for the given product
     .get(controller.getProductStyles)
 
- module.exports = router;
+
+
+
+module.exports = router;
