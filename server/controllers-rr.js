@@ -8,7 +8,8 @@ const controllersRR = {
 
   // Gets reviews by product id
   get: (req, res) => {
-    axios.get(`${config.url}reviews/?product_id=${req.params.product_id}`, config.headers)
+    console.log(config)
+    axios.get(`${config.url}/reviews/?product_id=${req.params.product_id}`, config.headers)
       .then(resp => res.status(200).send(resp.data))
       .catch(err => res.status(400).send(err))
   }
