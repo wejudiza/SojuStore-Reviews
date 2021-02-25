@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const controller = require('./controller.js');
+const controller = require('./controller');
+const controllerRelated = require('./controllerRelated.js')
+
 
 router
   .route('/')
@@ -11,6 +13,15 @@ router
   .route('/')
   .patch(controller.update)
   .delete(controller.delete)
+
+
+//////////Realated Products///////////
+
+router
+  .route('/:product_id')
+  .get(controllerRelated.getRelatedProducts)
+
+
 
 router
   .route('/:id')
@@ -27,3 +38,7 @@ router
   .get(controller.getQnA)
 
  module.exports = router;
+
+
+
+module.exports = router;
