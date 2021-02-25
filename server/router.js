@@ -11,4 +11,12 @@ router
   .patch(controller.update)
   .delete(controller.delete)
 
-  module.exports = router;
+router
+  .route('/:id')
+    .get(controller.getProducts)
+
+router
+  .route('/styles/:id')
+    .get(controller.getProductStyles)
+
+ module.exports = router;
