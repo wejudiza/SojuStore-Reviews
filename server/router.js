@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const controller = require('./controller');
+// Ratings & Reviews Controllers
+const controllersRR = require('./controllers-rr.js');
 
 router
   .route('/')
@@ -11,4 +13,10 @@ router
   .patch(controller.update)
   .delete(controller.delete)
 
-  module.exports = router;
+// Routes for Ratings & Reviews
+router
+  .route('/')
+  .get(controllersRR.get(req))
+
+
+module.exports = router;
