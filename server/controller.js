@@ -1,16 +1,13 @@
 //require models
 const getQnA = require('./QnAGet.js');
-const getProducts = require('./apiGET.js');
+const getProd = require('./apiGET.js');
 
 const controller = {
   // to retrive a list of ALL products
   get: (req, res) => {
     products.getProducts((err, results) => {
-      if (err) {
-        res.status(404).send(err);
-      } else {
-        res.status(200).send(results);
-      }
+      if (err) res.status(404).send(err)
+      else res.status(200).send(results);
     })
   },
   // to retrieve all product level information for a SPECIFIC product ID
@@ -36,14 +33,26 @@ const controller = {
       }
     })
   },
-  post: (req, res) => {
-    res.send('post')
+  // retrieve all products in the cart
+  getAllCart: (req, res) => {
+    cart.getCart((err, results) => {
+      if (err) res.status(404).send(err)
+      else res.status(200).send(results);
+    })
   },
-  update: (req, res) => {
-    res.send('update')
+  // adds a product to the cart
+  addCart: (req, res) => {
+    cart.addToCart(req, (err, results) => {
+      if (err) res.status(404).send(err)
+      else res.status(201).send('Success!')
+    })
   },
-  delete: (req, res) => {
-    res.send('delete')
+  //post interactions
+  postInteraction: (req, res) => {
+    interaction.postInter(req, (err, results) => {
+      if (err) res.status(404).send(err)
+      else res.status(201).send(results)
+    })
   }
 }
 

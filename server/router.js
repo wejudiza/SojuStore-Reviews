@@ -7,12 +7,13 @@ router
   .route('/')
     // to retrieve the list of products
     .get(controller.get)
-    .post(controller.post)
+    //post interactions
+    .post(controller.postInteraction)
 
 router
-  .route('/')
-  .patch(controller.update)
-  .delete(controller.delete)
+  .route('/cart')
+    .get(controller.getAllCart)
+    .post(controller.addCart)
 
 
 //////////Realated Products///////////
@@ -21,10 +22,8 @@ router
   .route('/:product_id')
   .get(controllerRelated.getRelatedProducts)
 
-
-
 router
-  .route('/:id')
+  .route('/product_id/:id')
     // to retrieve all product level information for a SPECIFIC product ID
     .get(controller.getProducts)
 
@@ -36,9 +35,5 @@ router
 router
   .route('/qa/questions/:product_id')
   .get(controller.getQnA)
-
- module.exports = router;
-
-
 
 module.exports = router;

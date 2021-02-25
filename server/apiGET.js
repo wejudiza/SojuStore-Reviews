@@ -31,4 +31,41 @@ products = {
   }
 }
 
-module.exports = products;
+cart = {
+  getCart: (callback) => {
+    let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/cart'
+
+    axios.get(url, header)
+      .then((results) => { callback(null, results.data) })
+      .catch((err) => { callback(err) })
+  },
+  addToCart: (req, callback) => {
+    let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/cart'
+
+    axios.post(url, header)
+      .then((results) => { console.log('Succes!') })
+      .catch((err) => { callback(err) })
+  }
+}
+
+// not working, come back later and fix it
+interaction = {
+  postInter: (req, callback) => {
+    let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/interactions'
+    let data = {
+      element: `${req.body.element}`,
+      widget: `${req.body.widget}`,
+      time: `${req.body.time}`
+    }
+
+    axios.post(url, data, header)
+      .then((results) => { callback(null, results) })
+      .catch((err) => { console.log(err); callback(err) })
+  }
+}
+
+module.exports.getProd = {
+  products,
+  cart,
+  interaction
+}
