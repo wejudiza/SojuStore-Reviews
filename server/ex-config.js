@@ -1,6 +1,6 @@
 const token = 'YOUR PAT'
 
-module.exports.headers = {
+module.exports = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/',
   headers: {
     'User-Agent': 'request',
