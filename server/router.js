@@ -45,8 +45,6 @@ router
   .route('/:product_id')
   .get(controllerRelated.getRelatedProducts)
 
-
-
 router
   .route('/:id')
   // to retrieve all product level information for a SPECIFIC product ID
@@ -56,6 +54,8 @@ router
   .route('/styles/:id')
   // to retrieve all styles available for the given product
   .get(controller.getProductStyles)
+
+//////////Questions and Answers///////////
 
 router
   .route('/qa/questions/:product_id')

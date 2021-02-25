@@ -1,6 +1,6 @@
 //require models
-const getQnA = require('./QnAGet.js');
-const getProducts = require('./apiGET.js');
+const getQnA = require('./apiQnA.js');
+const products = require('./apiGET.js');
 
 const controller = {
   // to retrive a list of ALL products
@@ -11,21 +11,21 @@ const controller = {
       } else {
         res.status(200).send(results);
       }
-    })
+    });
   },
   // to retrieve all product level information for a SPECIFIC product ID
   getProducts: (req, res) => {
     products.getProductId(req, (err, results) => {
       if (err) res.status(404).send(err)
       else res.status(200).send(results);
-    })
+    });
   },
   // to retrieve all styles available for the given product
   getProductStyles: (req, res) => {
     products.getProductStyles(req, (err, results) => {
-      if (err) res.status(404).send(err)
+      if (err) res.status(404).send(err);
       else res.status(200).send(results);
-    })
+    });
   },
   getQnA: (req, res) => {
     getQnA.getQnA(req, (err, data) => {
@@ -34,17 +34,17 @@ const controller = {
       } else {
         res.status(200).send(data);
       }
-    })
+    });
   },
   post: (req, res) => {
-    res.send('post')
+    res.send('post');
   },
   update: (req, res) => {
-    res.send('update')
+    res.send('update');
   },
   delete: (req, res) => {
-    res.send('delete')
-  }
-}
+    res.send('delete');
+  },
+};
 
-module.exports = controller
+module.exports = controller;
