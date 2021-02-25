@@ -7,14 +7,12 @@ const config = require('./config.js');
 const controllersRR = {
 
   // Gets reviews by product id
-  get: (req) => {
-    let params = req.params;
-    console.log(req.params);
-    return axios.get(`${config.url}/reviews/${req.params.id}`, config.headers)
-      .then(resp => console.log(resp.data))
-      .catch(err => console.log(err))
+  get: (req, res) => {
+    axios.get(`${config.url}reviews/?product_id=${req.params.product_id}`, config.headers)
+      .then(resp => res.status(200).send(resp.data))
+      .catch(err => res.status(400).send(err))
   }
 
 };
 
-console.log(controllersRR.get());
+module.exports = controllersRR;
