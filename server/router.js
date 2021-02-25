@@ -16,12 +16,28 @@ router
   .patch(controller.update)
   .delete(controller.delete)
 
-/* ---------------------
-Ratings & Reviews - Liam
---------------------- */
+/* --------------------
+Ratings & Reviews: Liam
+-------------------- */
+// Post review by product_id
+router
+  .route('/reviews')
+  .post(controllersRR.postReview)
+
+// Gets product review by product_id
 router
   .route('/reviews/:product_id')
-  .get(controllersRR.get)
+  .get(controllersRR.getReview)
+
+// Gets product review meta data by product_id
+router
+  .route('/reviews/meta/:product_id')
+  .get(controllersRR.getReviewMeta)
+
+// Puts record in reivews that the review was helpful (by review_id)
+router
+  .route('/reviews/:review_id/helpful')
+  .put(controllersRR.putHelpful)
 
 //////////Realated Products///////////
 
