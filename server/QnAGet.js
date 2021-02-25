@@ -2,9 +2,9 @@ const axios = require('axios');
 const config = require('./config.js');
 //const productId = () require productId from productID get request
 
-let getQnA = (callback) => {
+let getQnA = (req, callback) => {
   let options = {
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?${productId}`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${req.params.product_id}`,
     headers: {
       headers: {
         'User-Agent': 'request',

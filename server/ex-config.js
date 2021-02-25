@@ -1,4 +1,4 @@
 module.exports = {
-  PAT: 'YOUR PAT';
+  TOKEN: 'YOUR PAT';
   // maybe app token
 }
