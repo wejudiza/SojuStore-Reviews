@@ -19,6 +19,11 @@ router
 /* ---------------------
 Ratings & Reviews - Liam
 --------------------- */
+// Post review by product_id
+router
+  .route('/reviews')
+  .post(controllersRR.postReview)
+
 // Gets product review by product_id
 router
   .route('/reviews/:product_id')
@@ -27,7 +32,7 @@ router
 // Gets product review meta data by product_id
 router
   .route('/reviews/meta/:product_id')
-  .get(controllersRR.getReviewMeta);
+  .get(controllersRR.getReviewMeta)
 
 
 //////////Realated Products///////////
