@@ -1,4 +1,9 @@
+const token = 'YOUR PAT'
+
 module.exports = {
-  PAT: 'YOUR PAT';
-  // maybe app token
+  url: 'FILL ME IN',
+  headers: {
+    'User-Agent': 'request',
+    'Authorization': `token ${token}`
+  }
 }
