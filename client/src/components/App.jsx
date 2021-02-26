@@ -29,6 +29,10 @@ export default class App extends Component {
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
 
 //
 >>>>>>> 5bbca3718024203253934abf1ccb68ad57a2d270
+=======
+//
+>>>>>>> 1f7968fefd6c93213442d82a00d2b520c266f22d
