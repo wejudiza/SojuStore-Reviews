@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import ProductInfo from './Overview/ProductInfo.jsx';
 
 export default class App extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class App extends Component {
     return (
       <div>
         Testing webpack link
+        <ProductInfo />
       </div>
     );
   }

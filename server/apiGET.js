@@ -1,71 +1,71 @@
 const axios = require('axios');
 const config = require('./config.js');
 
-let header = {
+const header = {
   headers: {
-    'Authorization': `${config.TOKEN}`
-  }
-}
+    Authorization: `${config.TOKEN}`,
+  },
+};
 
-products = {
+const products = {
   getProducts: (callback) => {
-    let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products'
+    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products';
 
     axios.get(url, header)
-      .then((results) => { callback(null, results.data) })
-      .catch((err) => { callback(err) })
+      .then((results) => { callback(null, results.data); })
+      .catch((err) => { callback(err); });
   },
   getProductId: (req, callback) => {
-    let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${req.params.id}`
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${req.params.id}`;
 
     axios.get(url, header)
-      .then((results) => { callback(null, results.data) })
-      .catch((err) => { callback(err) })
+      .then((results) => { callback(null, results.data); })
+      .catch((err) => { callback(err); });
   },
   getProductStyles: (req, callback) => {
-    let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${req.params.id}/styles`
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${req.params.id}/styles`;
 
     axios.get(url, header)
-      .then((results) => { callback(null, results.data) })
-      .catch((err) => { callback(err) })
-  }
-}
+      .then((results) => { callback(null, results.data); })
+      .catch((err) => { callback(err); });
+  },
+};
 
-cart = {
+const cart = {
   getCart: (callback) => {
-    let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/cart'
+    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/cart';
 
     axios.get(url, header)
-      .then((results) => { callback(null, results.data) })
-      .catch((err) => { callback(err) })
+      .then((results) => { callback(null, results.data); })
+      .catch((err) => { callback(err); });
   },
   addToCart: (req, callback) => {
-    let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/cart'
+    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/cart';
 
     axios.post(url, header)
-      .then((results) => { console.log('Succes!') })
-      .catch((err) => { callback(err) })
-  }
-}
+      .then((results) => { callback(null, results); })
+      .catch((err) => { callback(err); });
+  },
+};
 
 // not working, come back later and fix it
-interaction = {
+const interaction = {
   postInter: (req, callback) => {
-    let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/interactions'
-    let data = {
+    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/interactions';
+    const data = {
       element: `${req.body.element}`,
       widget: `${req.body.widget}`,
-      time: `${req.body.time}`
-    }
+      time: `${req.body.time}`,
+    };
 
     axios.post(url, data, header)
-      .then((results) => { callback(null, results) })
-      .catch((err) => { console.log(err); callback(err) })
-  }
-}
+      .then((results) => { callback(null, results); })
+      .catch((err) => { console.log(err); callback(err); });
+  },
+};
 
-module.exports.getProd = {
+module.exports = {
   products,
   cart,
-  interaction
-}
+  interaction,
+};
