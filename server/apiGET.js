@@ -3,15 +3,9 @@ const config = require('./config.js');
 
 const header = {
   headers: {
-<<<<<<< HEAD
-    Authorization: `${config.TOKEN}`,
+    Authorization: `${config.token}`,
   },
 };
-=======
-    'Authorization': `${config.token}`
-  }
-}
->>>>>>> 5bbca3718024203253934abf1ccb68ad57a2d270
 
 const products = {
   getProducts: (callback) => {

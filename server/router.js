@@ -55,7 +55,7 @@ router
   // returns all styles available for the given product
   .get(controller.getProductStyles);
 
-//////////Questions and Answers///////////
+/// ///////Questions and Answers///////////
 
 router
   .route('/qa/questions/:product_id')
