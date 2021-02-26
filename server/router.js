@@ -46,7 +46,7 @@ router
   .get(controllerRelated.getRelatedProducts)
 
 router
-  .route('/:id')
+  .route('/product_id/:id')
   // to retrieve all product level information for a SPECIFIC product ID
   .get(controller.getProducts)
 
