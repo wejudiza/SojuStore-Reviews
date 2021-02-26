@@ -3,18 +3,9 @@ const config = require('./config.js')
 
 const controllerRelated = {
   getRelatedProducts: (req, res) => {
-    let options = {
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${req.params.product_id}/related`,
-      headers: {
-        headers: {
-          'User-Agent': 'request',
-          'Authorization': `${config.TOKEN}`
-        }
-      }
-    }
+    let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${req.params.product_id}/related`;
 
-
-    axios.get(options.url, options.headers)
+    axios.get(url, config.headers)
       .then((results) => res.send(results.data))
       .catch((err) => res.send(err))
   }
@@ -23,6 +14,7 @@ const controllerRelated = {
 
 
 // https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/:product_id/related
+// test id: 16392
 
 module.exports = controllerRelated;
 

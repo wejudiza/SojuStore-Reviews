@@ -3,7 +3,7 @@ const config = require('./config.js');
 
 let header = {
   headers: {
-    'Authorization': `${config.TOKEN}`
+    'Authorization': `${config.token}`
   }
 }
 

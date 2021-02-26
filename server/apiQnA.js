@@ -14,7 +14,7 @@ const getQnA = (req, callback) => {
 
   axios.get(options.url, options.headers)
     .then((res) => {
-      callback(null, res.data)
+      callback(null, res.data);
     })
     .catch((err) => {
       callback(err);
