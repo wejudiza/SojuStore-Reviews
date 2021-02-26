@@ -3,8 +3,9 @@ import axios from 'axios';
 
 
 const RelatedItems = (props) => {
-  const [name, setName] = useState('');
   const [related, setRelated] = useState([]);
+  const [relatedImage, setRelatedImage] = useState('');
+  const [relatedName, setRelatedName] = useState('');
 
 
   const getRelated = () => {
@@ -13,26 +14,37 @@ const RelatedItems = (props) => {
       .catch((err) => console.log(err))
   }
 
+  const getRelatedImage = () => {
+    axios.get('api/styles/16821')
+      .then((results) => {
+        var thumbNail = results.data.results[0].photos[0].thumbnail_url;
+        setRelatedImage(thumbNail)
+      })
+  }
+
+  const getRelatedName = () => {
+    axios.get('api/product_id/16392')
+      .then((results) => {
+        console.log(results.data.name)
+      })
+  }
+
+
+  useState(getRelatedImage, [])
   useState(getRelated, [])
+  useState(getRelatedName, [])
 
 
   return (
-    <div> TESTING HOOKS:
-      <label className="header-name">
-        <input
-          value={name}
-          onChange={e => setName(e.target.value)}
-          onClick={e => e.target.setSelectionRange(0, e.target.value.length)}
-          placeholder="Untitled"
-        />
+    <div> TESTING HOOKS IN RELATED ITEMS:
         {related.map((id, index) => {
           return (
             <div key={index}>
               {id}
+              <img src={relatedImage}></img>
             </div>
           )
         })}
-      </label>
     </div>
 
   )
