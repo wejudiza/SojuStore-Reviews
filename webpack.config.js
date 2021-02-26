@@ -9,12 +9,13 @@ module.exports = {
     filename: 'bundle.js',
     path: DIST_DIR,
   },
+  mode: 'development',
   module: {
     loaders: [
-      { exclude: ['node_modules'], loader: 'babel-loader', test: /\.jsx?$/ },
-      { loader: 'style-loader!css-loader', test: /\.css$/ },
-      { loader: 'url-loader', test: /\.gif$/ },
-      { loader: 'file-loader', test: /\.(ttf|eot|svg)$/ },
+      // { exclude: ['node_modules'], loader: 'babel-loader', test: /\.jsx?$/ },
+      // { loader: 'style-loader!css-loader', test: /\.css$/ },
+      // { loader: 'url-loader', test: /\.gif$/ },
+      // { loader: 'file-loader', test: /\.(ttf|eot|svg)$/ },
       // in case it breaks, bottom is original
       {
         test: /\.jsx?/,
