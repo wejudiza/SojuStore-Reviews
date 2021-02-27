@@ -47,7 +47,7 @@ class RelatedProducts extends React.Component {
         ********TESTING HOOKS IN RELATED ITEMS*********
         {this.state.related.map((id, index) => (
           <div key={index} onClick={this.toggleModal}>
-            {this.getRelatedNames(id)}
+            {/* {this.getRelatedNames(id)} */}
             {id}
             <RelatedProductsModal show={this.state.show}/>
           </div>
