@@ -7,7 +7,7 @@ const getQnA = (req, callback) => {
     headers: {
       headers: {
         'User-Agent': 'request',
-        Authorization: `${config.TOKEN}`,
+        Authorization: `${config.token}`,
       },
     },
   };
