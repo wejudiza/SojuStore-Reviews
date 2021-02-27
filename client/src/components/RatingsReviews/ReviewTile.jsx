@@ -1,25 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import Thumbnails from './Thumbnails.jsx';
+import dt from 'moment';
 
 export default function ReviewTile(props) {
   const [review, setReview] = useState(props.review);
+
+  // Function to convert DT format to desired string format
+  const convertDate = (date) => {
+    const pattern = /\d{4}-\d{2}-\d{2}/;
+    const oldDate = date.match(pattern)[0];
+    const newDate = dt(oldDate, "YYYY-MM-DD").format("MMMM DD, YYYY");
+    return newDate;
+  }
 
   return (
     <div className="review-tile">
       { /* Username + date submitted */ }
       <div className="review-userinfo">
-
+        { convertDate(review.date) }
       </div>
       { /* Review Summary + Body */ }
       <div className="review-section">
         <h3 className="review-summary">{review.summary}</h3>
-        <p className="review-body">
-          {review.body}
-          <br></br>
-          <div className="review-thumbnails">
-            { review.photos.map((photo) => <img src={photo.url} alt={photo.id} key={photo.id} />)}
+        <div className="review-body">
+          <p className="review-body-text">{review.body}</p>
+          <br />
+          <div className="review-body-photos">
+            {
+            review.photos.map((photo) => (
+              <img
+                src={photo.url}
+                alt={photo.id}
+                key={photo.id}
+                width="75"
+                heigh="75"
+              />
+            ))
+            }
           </div>
-        </p>
+        </div>
       </div>
       { /* Recommended conditional render */ }
       <div className="user-recommended">
