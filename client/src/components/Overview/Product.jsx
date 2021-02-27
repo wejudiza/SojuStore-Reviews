@@ -22,7 +22,7 @@ function Product() {
         {data.slogan}
       </div>
       $ {data.default_price}
-      <ProductInfo prop={data.id} />
+      <ProductInfo data={data.id} />
       { console.log(data) }
     </div>
   )
