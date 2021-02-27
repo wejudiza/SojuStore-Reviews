@@ -4,8 +4,16 @@ export default function ReviewTile(props) {
   const [review, setReview] = useState(props.review);
 
   return (
-    <div>
-      <h3>{review.summary}</h3>
+    <div className="review-tile">
+      {/* Review Summary + Body */}
+      <div className="review-section">
+        <h3 className="review-summary">{review.summary}</h3>
+        <p className="review-body">{review.body}</p>
+      </div>
+      { /* Recommended conditional render */ }
+      <div className="user-recommended">
+        { review.recommend ? <div>√</div> : <div>HI</div> }
+      </div>
     </div>
   );
 }

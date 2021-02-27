@@ -24,6 +24,7 @@ export default function RatingsReviews() {
       <SortSelect />
       {/* Individual Review Tiles */}
       { allReviews.map((review) => <ReviewTile review={review} key={review.id} />) }
+      { allReviews.map((review) => console.log(review)) }
     </div>
   );
 }
