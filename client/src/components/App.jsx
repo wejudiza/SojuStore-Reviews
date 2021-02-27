@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import RelatedProducts from './RelatedProducts.jsx';
-import ProductInfo from './Overview/ProductInfo.jsx';
+import Product from './Overview/Product.jsx';
 
 // Import RatingsReviews Components
 import SortSelect from './RatingsReviews/SortSelect.jsx';
@@ -18,7 +17,7 @@ export default class App extends Component {
     return (
       <div>
         Testing webpack link
-        <ProductInfo />
+        <Product />
         <RelatedProducts />
 
       {/* --- Ratings & Reviews --- */}
