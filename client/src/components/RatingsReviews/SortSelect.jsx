@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 export default function SortSelect() {
 
   // Options + state handler for dropdown
-  const options = ['relevant', 'helpful', 'newest']
+  const options = ['relevant', 'helpful', 'newest'];
   const [sort, setSort] = useState('relevant');
   const handleSelect = (e) => setSort(e.target.value);
 
@@ -20,4 +20,4 @@ export default function SortSelect() {
     </div>
   );
 
-};
+}

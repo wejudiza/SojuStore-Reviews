@@ -5,6 +5,7 @@ import ProductInfo from './Overview/ProductInfo.jsx';
 
 // Import RatingsReviews Components
 import SortSelect from './RatingsReviews/SortSelect.jsx';
+import ReviewTile from './RatingsReviews/ReviewTile.jsx';
 
 
 export default class App extends Component {
@@ -24,6 +25,7 @@ export default class App extends Component {
       <div id="ratings-reviews">
         <h3>Ratings & Reviews</h3>
         <SortSelect />
+        <ReviewTile />
       </div>
 
       </div>
