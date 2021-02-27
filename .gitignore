@@ -3,3 +3,4 @@ server/config.js
 test.jsx
 coverage
 client/dist/bundle.js
+.eslintrc.js

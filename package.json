@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack -d --watch",
-    "test": "jest spec/ --watch"
+    "test": "jest spec/ --watch --coverage --verbose"
   },
   "repository": {
     "type": "git",
