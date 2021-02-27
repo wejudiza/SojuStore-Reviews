@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import RelatedProductsModal from './RelatedProductsModal.jsx'
+import RelatedProductsModal from './RelatedProductsModal.jsx';
+import OutfitList from './OutifitList.jsx'
 
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      related: [],
-      relatedObjects: {},
+      relatedIds: [],
+      relatedObjects: [],
       show: false,
     };
     this.getRelated = this.getRelated.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.getRelatedNames = this.getRelatedNames.bind(this);
   }
 
   componentDidMount() {
@@ -21,18 +23,18 @@ class RelatedProducts extends React.Component {
   getRelated() {
     axios.get('/api/16392')
       .then((results) => this.setState({
-        related: results.data,
-      }))
+        relatedIds: results.data,
+      }, () => this.getRelatedNames()))
       .catch((err) => console.log(err));
   }
 
-  getRelatedNames(id) {
-    axios.get(`api/product_id/${id}`)
-      .then((results) => {
-        this.setState({
-          relatedObjects: results
-        });
-      });
+  getRelatedNames() {
+    this.state.relatedIds.map((id, index) => {
+      axios.get(`api/product_id/${id}`)
+        .then((results) => this.setState({
+          relatedObjects: this.state.relatedObjects.concat(results.data)
+        }));
+    })
   };
 
   toggleModal() {
@@ -44,14 +46,23 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div>
-        ********TESTING HOOKS IN RELATED ITEMS*********
-        {this.state.related.map((id, index) => (
-          <div key={index} onClick={this.toggleModal}>
-            {/* {this.getRelatedNames(id)} */}
-            {id}
-            <RelatedProductsModal show={this.state.show}/>
+        ********TESTING RELATED ITEMS*********
+        {this.state.relatedObjects.map((product, index) => (
+          <div key={index} onClick={this.toggleModal} className="product-name">
+            <div className="product-category">
+              {product.category}
+            </div>
+            {product.name}
+            <div className="product-price">
+            {'$ ' + product.default_price}
+            <div>
+              STAR RATING HERE
+            </div>
+            </div>
           </div>
         ))}
+        <RelatedProductsModal show={this.state.show}/>
+        <OutfitList />
       </div>
     );
   }
