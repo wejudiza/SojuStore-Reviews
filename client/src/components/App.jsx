@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-import RelatedItems from './RelatedItems.jsx';
+import RelatedProducts from './RelatedProducts.jsx';
 import ProductInfo from './Overview/ProductInfo.jsx';
 
 // Import RatingsReviews Components
@@ -18,7 +18,7 @@ export default class App extends Component {
       <div>
         Testing webpack link
         <ProductInfo />
-        <RelatedItems />
+        <RelatedProducts />
 
       {/* --- Ratings & Reviews --- */}
       <RatingsReviews />
