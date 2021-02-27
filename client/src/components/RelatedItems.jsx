@@ -6,6 +6,7 @@ const RelatedItems = (props) => {
   const [related, setRelated] = useState([]);
   const [relatedImage, setRelatedImage] = useState('');
   const [relatedName, setRelatedName] = useState('');
+  const [currentItemId, setCurrentItemId] = useState('');
 
 
   const getRelated = () => {
@@ -14,25 +15,25 @@ const RelatedItems = (props) => {
       .catch((err) => console.log(err))
   }
 
-  const getRelatedImage = () => {
-    axios.get('api/styles/16821')
+  const getRelatedImage = (id) => {
+    axios.get(`api/styles/${id}`)
       .then((results) => {
         var thumbNail = results.data.results[0].photos[0].thumbnail_url;
         setRelatedImage(thumbNail)
       })
   }
 
-  const getRelatedName = () => {
-    axios.get('api/product_id/16392')
+  const getRelatedName = (id) => {
+    axios.get(`api/product_id/${id}`)
       .then((results) => {
         console.log(results.data.name)
       })
   }
 
 
-  useState(getRelatedImage, [])
   useState(getRelated, [])
-  useState(getRelatedName, [])
+  // useState(getRelatedImage, [])
+  // useState(getRelatedName, [])
 
 
   return (
@@ -40,6 +41,7 @@ const RelatedItems = (props) => {
         {related.map((id, index) => {
           return (
             <div key={index}>
+              {getRelatedName(id)}
               {id}
               <img src={relatedImage}></img>
             </div>
