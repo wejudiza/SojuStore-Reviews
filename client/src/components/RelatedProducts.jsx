@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import RelatedProductsModal from './RelatedProductsModal.jsx';
-import OutfitList from './OutifitList.jsx'
+import OutfitList from './OutifitList.jsx';
+import Modal from 'react-modal';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class RelatedProducts extends React.Component {
     this.state = {
       relatedIds: [],
       relatedObjects: [],
-      show: false,
+      modalIsOpen: false,
     };
     this.getRelated = this.getRelated.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
@@ -39,16 +40,24 @@ class RelatedProducts extends React.Component {
 
   toggleModal() {
     this.setState({
-      show: !this.state.show
+      modalIsOpen: !this.state.modalIsOpen
     });
   }
 
   render() {
     return (
-      <div>
-        ********TESTING RELATED ITEMS*********
+      <div className="related-proucts">
+        ********Related Products*********
+        <Modal isOpen={this.state.modalIsOpen}>
+          <h2>Modal Title</h2>
+          <p>Model Body</p>
+          <button onClick={this.toggleModal}>close</button>
+        </Modal>
         {this.state.relatedObjects.map((product, index) => (
           <div key={index} onClick={this.toggleModal} className="product-name">
+            <div>
+            <button onClick={this.toggleModal}>Open Modal</button>
+            </div>
             <div className="product-category">
               {product.category}
             </div>
@@ -61,7 +70,6 @@ class RelatedProducts extends React.Component {
             </div>
           </div>
         ))}
-        <RelatedProductsModal show={this.state.show}/>
         <OutfitList />
       </div>
     );
