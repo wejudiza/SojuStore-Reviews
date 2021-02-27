@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Dropdown select component that updates sort state on change
-export default function SortingSelect() {
+export default function SortSelect() {
 
   // Options + state handler for dropdown
   const options = ['relevant', 'helpful', 'newest']
