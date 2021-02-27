@@ -14,6 +14,10 @@ export default function ReviewTile(props) {
       <div className="user-recommended">
         { review.recommend ? <div>√  I recommend this product</div> : null }
       </div>
+      { /* Response conditional render to review */ }
+      <div className="review-response">
+        { review.response ? <div>{review.response}</div> : null }
+      </div>
     </div>
   );
 }
