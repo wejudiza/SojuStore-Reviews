@@ -3,7 +3,7 @@ import axios from 'axios';
 // import ReviewSummary from './ReviewSummary';
 
 export default function ReviewTile(props) {
-  const [review, setReview] = useState(props.review);
+  const [allReviews, setAllReviews] = useState([]);
 
   return (
     <div></div>
