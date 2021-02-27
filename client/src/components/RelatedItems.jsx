@@ -43,7 +43,7 @@ const RelatedItems = () => {
           {id}
           <img src={relatedImage} alt="" />
         </div>
-      );
+      )
       )}
     </div>
 

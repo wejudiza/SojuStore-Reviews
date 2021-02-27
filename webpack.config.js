@@ -9,7 +9,6 @@ module.exports = {
     filename: 'bundle.js',
     path: DIST_DIR,
   },
-  mode: 'development',
   module: {
     loaders: [
       // { exclude: ['node_modules'], loader: 'babel-loader', test: /\.jsx?$/ },
