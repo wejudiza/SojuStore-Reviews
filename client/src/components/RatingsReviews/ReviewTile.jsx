@@ -12,7 +12,7 @@ export default function ReviewTile(props) {
       </div>
       { /* Recommended conditional render */ }
       <div className="user-recommended">
-        { review.recommend ? <div>√</div> : <div>HI</div> }
+        { review.recommend ? <div>√  I recommend this product</div> : null }
       </div>
     </div>
   );
