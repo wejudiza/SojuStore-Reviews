@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import RelatedItems from './RelatedItems.jsx';
 import Product from './Overview/Product.jsx';
 
+// Import RatingsReviews Components
+import SortSelect from './RatingsReviews/SortSelect.jsx';
+import ReviewTile from './RatingsReviews/ReviewTile.jsx';
+
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +20,16 @@ export default class App extends Component {
         Testing webpack link
         <Product />
         <RelatedItems />
+
+      {/* --- Ratings & Reviews --- */}
+      <div id="ratings-reviews">
+        <h3>Ratings & Reviews</h3>
+        <SortSelect />
+        <ReviewTile />
       </div>
+
+      </div>
+
     );
   }
 }

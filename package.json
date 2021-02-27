@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack -d --watch",
-    "test": "jest spec/ --watch"
+    "test": "jest spec/ --watch --coverage --verbose"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,8 @@
   "dependencies": {
     "axios": "^0.21.1",
     "babel-core": "^7.0.0-0",
-    "babel-preset-env": "^7.0.0-0",
     "babel-preset-react": "^7.0.0-0",
+    "babel-preset-env": "^7.0.0-0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
