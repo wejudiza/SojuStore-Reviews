@@ -1,8 +1,5 @@
 node_modules
 server/config.js
 client/dist/bundle.js
-<<<<<<< HEAD
-=======
 .eslintrc.js
->>>>>>> b940b60aba1d62cb90ba078cb92dc168ff0c21f8
 coverage
