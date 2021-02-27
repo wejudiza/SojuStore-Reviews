@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import RelatedItems from '../client/src/components/RelatedItems';
+import RelatedProducts from '../client/src/components/RelatedProducts';
 import App from '../client/src/components/App';
 
 // describe('hello', () => {
@@ -18,12 +18,12 @@ describe('App component', () => {
 });
 
 // eslint-disable-next-line no-undef
-describe('RelatedItems', () => {
-  it('Releated Items renders', () => {
+describe('RelatedProducts', () => {
+  it('Releated Products renders', () => {
     const wrapper = shallow((
       <App>
-        <RelatedItems />
+        <RelatedProducts />
       </App>));
-    expect(wrapper.contains(<RelatedItems />)).toBe(true);
+    expect(wrapper.contains(<RelatedProducts />)).toBe(true);
   });
 });

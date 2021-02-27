@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import RelatedItems from './RelatedItems.jsx';
 import ProductInfo from './Overview/ProductInfo.jsx';
 import QnA from './QnA.jsx';
+import RelatedProducts from './RelatedProducts.jsx';
+import Product from './Overview/Product.jsx';
 
 // Import RatingsReviews Components
 import SortSelect from './RatingsReviews/SortSelect.jsx';
@@ -19,8 +21,8 @@ export default class App extends Component {
     return (
       <div>
         Testing webpack link
-        <ProductInfo />
-        <RelatedItems />
+        <Product />
+        <RelatedProducts />
 
       {/* --- Ratings & Reviews --- */}
       <div id="ratings-reviews">
