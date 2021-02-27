@@ -16,7 +16,7 @@ export default function ReviewTile(props) {
     <div className="review-tile">
       { /* Username + date submitted */ }
       <div className="review-userinfo">
-        { convertDate(review.date) }
+        { `${review.reviewer_name} ${convertDate(review.date)}` }
       </div>
       { /* Review Summary + Body */ }
       <div className="review-section">
@@ -47,6 +47,7 @@ export default function ReviewTile(props) {
       <div className="review-response">
         { review.response ? <div>{ review.response }</div> : null }
       </div>
+      <br />
     </div>
   );
 }
