@@ -37,6 +37,7 @@ const RelatedItems = (props) => {
 
   return (
     <div> TESTING HOOKS IN RELATED ITEMS:
+      {console.log(related)}
         {related.map((id, index) => {
           return (
             <div key={index}>

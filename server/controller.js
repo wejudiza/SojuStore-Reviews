@@ -1,11 +1,11 @@
 //require models
 const getQnA = require('./apiQnA.js');
-const products = require('./apiGET.js');
+const getProd = require('./apiGET.js');
 
 const controller = {
   // to retrive a list of ALL products
   get: (req, res) => {
-    products.getProducts((err, results) => {
+    getProd.products.getProducts((err, results) => {
       if (err) {
         res.status(404).send(err);
       } else {
@@ -15,14 +15,14 @@ const controller = {
   },
   // to retrieve all product level information for a SPECIFIC product ID
   getProducts: (req, res) => {
-    products.getProductId(req, (err, results) => {
-      if (err) res.status(404).send(err)
+    getProd.products.getProductId(req, (err, results) => {
+      if (err) res.status(404).send(err);
       else res.status(200).send(results);
     });
   },
   // to retrieve all styles available for the given product
   getProductStyles: (req, res) => {
-    products.getProductStyles(req, (err, results) => {
+    getProd.products.getProductStyles(req, (err, results) => {
       if (err) res.status(404).send(err);
       else res.status(200).send(results);
     });
@@ -36,14 +36,26 @@ const controller = {
       }
     });
   },
-  post: (req, res) => {
-    res.send('post');
+  // retrieve all products in the cart
+  getAllCart: (req, res) => {
+    getProd.cart.getCart((err, results) => {
+      if (err) res.status(404).send(err);
+      else res.status(200).send(results);
+    });
   },
-  update: (req, res) => {
-    res.send('update');
+  // adds a product to the cart
+  addCart: (req, res) => {
+    getProd.cart.addToCart(req, (err, results) => {
+      if (err) res.status(404).send(err);
+      else res.status(201).send(results);
+    });
   },
-  delete: (req, res) => {
-    res.send('delete');
+  // post interactions
+  postInteraction: (req, res) => {
+    getProd.interaction.postInter(req, (err, results) => {
+      if (err) res.status(404).send(err);
+      else res.status(201).send(results);
+    });
   },
 };
 
