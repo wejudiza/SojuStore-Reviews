@@ -4,8 +4,7 @@ import RelatedItems from './RelatedItems.jsx';
 import ProductInfo from './Overview/ProductInfo.jsx';
 
 // Import RatingsReviews Components
-import SortSelect from './RatingsReviews/SortSelect.jsx';
-import ReviewTile from './RatingsReviews/ReviewTile.jsx';
+import RatingsReviews from './RatingsReviews/Reviews.jsx';
 
 
 export default class App extends Component {
@@ -22,11 +21,7 @@ export default class App extends Component {
         <RelatedItems />
 
       {/* --- Ratings & Reviews --- */}
-      <div id="ratings-reviews">
-        <h3>Ratings & Reviews</h3>
-        <SortSelect />
-        <ReviewTile />
-      </div>
+      <RatingsReviews />
 
       </div>
 
