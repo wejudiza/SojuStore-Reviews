@@ -1,16 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Answer from './Answers.jsx';
+import Photo from './Photos.jsx';
 
 export default function Question({question, index}) {
   const array = Object.keys(question.answers).map(key => {
     return question.answers[key]
   });
-
-  const [answersToShow, setAnswerstoShow] = useState(2);
-
-  const showMoreAnswers = () => {
-    setAnswerstoShow(array.length)
-  }
 
   return(
     <div className="question">
@@ -23,9 +18,6 @@ export default function Question({question, index}) {
             <Answer answer={answer}/>
         </div>
         )}
-        <div>
-          <button onClick={showMoreAnswers}>Load More Answers</button>
-        </div>
         {console.log('answer:', array)}
       </div>
     </div>

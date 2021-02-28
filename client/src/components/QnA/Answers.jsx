@@ -1,4 +1,5 @@
 import React from 'react';
+import Photo from './Photos.jsx';
 
 export default function Answer({answer, index}) {
   var n = new Date(`${answer.date.slice(0,10)}`)
