@@ -1,42 +1,53 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
-import RelatedProductsModal from './RelatedProductsModal.jsx';
-import OutfitList from './OutifitList.jsx';
 import Modal from 'react-modal';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedIds: [],
-      relatedObjects: [],
       modalIsOpen: false,
+      id: '',
+      name: '',
+      category: '',
+      default_price: '',
+      original_price: '',
+      sale_price: '',
+      thumbnail_url: '',
+      features: [],
     };
-    this.getRelated = this.getRelated.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-    this.getRelatedNames = this.getRelatedNames.bind(this);
+    this.getInfo = this.getInfo.bind(this);
+    this.getStyles = this.getStyles.bind(this);
   }
 
   componentDidMount() {
-    this.getRelated();
+    this.getInfo(this.props.productId);
+    this.getStyles(this.props.productId);
   }
 
-  getRelated() {
-    axios.get('/api/16392')
-      .then((results) => this.setState({
-        relatedIds: results.data,
-      }, () => this.getRelatedNames()))
-      .catch((err) => console.log(err));
+  getInfo(id) {
+    axios.get(`api/product_id/${id}`)
+      .then((response) => {
+        this.setState({
+          id: response.data.id,
+          name: response.data.name,
+          category:response.data.category,
+          features: response.data.features
+        })
+      })
   }
 
-  getRelatedNames() {
-    this.state.relatedIds.map((id, index) => {
-      axios.get(`api/product_id/${id}`)
-        .then((results) => this.setState({
-          relatedObjects: this.state.relatedObjects.concat(results.data)
-        }));
-    })
-  };
+  getStyles(id) {
+    axios.get(`api/styles/${id}`)
+      .then((response) => {
+        console.log(response.data.results)
+        this.setState({
+        original_price: response.data.results[0].original_price,
+        sale_price: response.data.results[0].sale_price,
+        thumbnail_url: response.data.results[0].photos[0].thumbnail_url
+      })})
+  }
 
   toggleModal() {
     this.setState({
@@ -46,31 +57,27 @@ class RelatedProducts extends React.Component {
 
   render() {
     return (
-      <div className="related-proucts">
-        ********Related Products*********
-        <Modal isOpen={this.state.modalIsOpen}>
-          <h2>Modal Title</h2>
-          <p>Model Body</p>
-          <button onClick={this.toggleModal}>close</button>
-        </Modal>
-        {this.state.relatedObjects.map((product, index) => (
-          <div key={index} onClick={this.toggleModal} className="product-name">
-            <div>
-            <button onClick={this.toggleModal}>Open Modal</button>
-            </div>
-            <div className="product-category">
-              {product.category}
-            </div>
-            {product.name}
-            <div className="product-price">
-            {'$ ' + product.default_price}
-            <div>
-              STAR RATING HERE
-            </div>
-            </div>
-          </div>
-        ))}
-        <OutfitList />
+      <div className="related-products-container">
+        <button onClick={this.toggleModal}>open modal</button>
+        <div>
+          <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.toggleModal}>
+            <h2>Modal Title</h2>
+            <p>Model Body</p>
+            <button onClick={this.toggleModal}>close</button>
+          </Modal>
+        </div>
+        <div>
+          <img src={this.state.thumbnail_url}></img>
+        </div>
+        <div>
+          {this.state.category}
+        </div>
+        <div>
+          {this.state.name}
+        </div>
+        <div>
+          {this.state.original_price}
+        </div>
       </div>
     );
   }

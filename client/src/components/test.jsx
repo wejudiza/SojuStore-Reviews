@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const RelatedItems = () => {
+const RelatedProducts
+List = () => {
   const [related, setRelated] = useState([]);
   const [relatedImage, setRelatedImage] = useState('');
   const [relatedNames, setRelatedNames] = useState('');
@@ -15,26 +16,26 @@ const RelatedItems = () => {
 
   useState(getRelated, []);
 
-  const getRelatedImage = (id) => {
+  // const getRelatedImage = (id) => {
 
-    axios.get(`api/styles/${id}`)
-      .then((results) => {
-        const thumbNail = results.data.results[0].photos[0].thumbnail_url;
-        setRelatedImage(thumbNail);
-      });
-  };
-  const getRelatedNames = (id) => {
-    axios.get(`api/product_id/${id}`)
-      .then((results) => {
-        console.log(results.data.name);
-      });
-  };
+  //   axios.get(`api/styles/${id}`)
+  //     .then((results) => {
+  //       const thumbNail = results.data.results[0].photos[0].thumbnail_url;
+  //       setRelatedImage(thumbNail);
+  //     });
+  // };
+  // const getRelatedNames = (id) => {
+  //   axios.get(`api/product_id/${id}`)
+  //     .then((results) => {
+  //       console.log(results.data.name);
+  //     });
+  // };
 
   // useState(getRelatedNames, []);
 
   return (
-    <div id="related-items">
-      ********TESTING HOOKS IN RELATED ITEMS*********
+    <div id="related-products">
+      ********TESTING HOOKS IN RELATED PRODUCTS*********
       {related.map((id, index) => (
         <div key={index}>
           {id}
@@ -46,4 +47,4 @@ const RelatedItems = () => {
   );
 };
 
-export default RelatedItems;
+export default RelatedProductsList;

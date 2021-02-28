@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RelatedProducts from './RelatedProducts.jsx';
+import RelatedProductsList from './RelatedProductsList.jsx';
 import Product from './Overview/Product.jsx';
 
 // Import RatingsReviews Components
@@ -18,7 +18,7 @@ export default class App extends Component {
       <div>
         Testing webpack link
         <Product />
-        <RelatedProducts />
+        <RelatedProductsList />
 
       {/* --- Ratings & Reviews --- */}
       <div id="ratings-reviews">
