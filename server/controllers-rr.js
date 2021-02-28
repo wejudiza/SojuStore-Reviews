@@ -47,7 +47,7 @@ const controllersRR = {
     console.log(`${config.url}/?review_id=${req.params.review_id}/helpful`);
     axios.put(`${config.url}/?review_id=${req.params.review_id}/helpful`, { body: req.body, headers: config.headers.headers })
       .then(() => res.status(204).send('You marked this review as helpful'))
-      .catch((err) => res.status(418).send(`Could not mark this review as helpful. Error: ${err}`));
+      .catch((err) => res.status(400).send(`Could not mark this review as helpful. Error: ${err}`));
   }
 
 };
