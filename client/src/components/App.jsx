@@ -5,8 +5,6 @@ import Product from './Overview/Product.jsx';
 // Import RatingsReviews Components
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
 
-import QnA from './QnA/QnA.jsx';
-
 
 export default class App extends Component {
   constructor(props) {
@@ -23,7 +21,7 @@ export default class App extends Component {
 
       {/* --- Ratings & Reviews --- */}
       <RatingsReviews />
-      <QnA />
+
       </div>
 
     );
