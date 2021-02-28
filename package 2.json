@@ -1,0 +1,46 @@
+{
+  "name": "soju-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "''",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "build": "webpack -d --watch",
+    "test": "node spec/mongoDatabase.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamSoju/SojuStore.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamSoju/SojuStore/issues"
+  },
+  "homepage": "https://github.com/TeamSoju/SojuStore#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "chai": "^4.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mocha": "^8.3.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.23.0",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "webpack": "^2.2.1"
+  }
+}

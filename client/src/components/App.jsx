@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-import RelatedItems from './RelatedItems.jsx';
 import ProductInfo from './Overview/ProductInfo.jsx';
-import QnA from './QnA.jsx';
 import RelatedProducts from './RelatedProducts.jsx';
 import Product from './Overview/Product.jsx';
+
+//Import from QnA
+import QnA from './QnA/QnA.jsx';
 
 // Import RatingsReviews Components
 import SortSelect from './RatingsReviews/SortSelect.jsx';
@@ -21,14 +22,18 @@ export default class App extends Component {
     return (
       <div>
         Testing webpack link
-        <Product />
-        <RelatedProducts />
+        {/* <Product /> */}
+        {/* <RelatedProducts /> */}
 
       {/* --- Ratings & Reviews --- */}
       <div id="ratings-reviews">
         <h3>Ratings & Reviews</h3>
         <SortSelect />
         <ReviewTile />
+        <div id="questions">
+          <h3>Questions</h3>
+        <QnA />
+        </div>
       </div>
 
       </div>
