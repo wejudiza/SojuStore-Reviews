@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
-import RelatedItems from './RelatedItems.jsx';
-import ProductInfo from './Overview/ProductInfo.jsx';
+import RelatedProducts from './RelatedProducts.jsx';
+import Product from './Overview/Product.jsx';
+
+// Import RatingsReviews Components
+import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -13,9 +16,14 @@ export default class App extends Component {
     return (
       <div>
         Testing webpack link
-        <ProductInfo />
-        <RelatedItems />
+        <Product />
+        <RelatedProducts />
+
+      {/* --- Ratings & Reviews --- */}
+      <RatingsReviews />
+
       </div>
+
     );
   }
 }

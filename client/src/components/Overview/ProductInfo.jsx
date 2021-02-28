@@ -1,50 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default class ProductInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      image: [],
-    };
-    this.getAllProducts = this.getAllProducts.bind(this);
-  }
+function ProductInfo(props) {
+  const [size, setSize] = useState([]);
 
-  componentDidMount() {
-    this.getAllProducts();
-  }
+  useEffect(() => {
+    axios.get(`/api/styles/${props.prop}`)
+      .then((results) => { setSize(results.data) })
+      .catch((err) => { console.error(err) });
+  }, []);
 
-  getAllProducts() {
-    axios.get('/api')
-      .then((results) => {
-        this.setState({
-          data: results.data,
-        }, () => { console.log(this.state.data[0].id)});
-      })
-      .then(() => {
-        axios.get(`api/styles/${this.state.data[0].id}`)
-          .then((results) => {
-            this.setState({
-              image: results.data.results,
-            }, () => { console.log( this.state.image )})
-          });
-      })
-      .catch((err) => { console.error(err); });
-  }
-
-  render() {
-    return (
-      <div>
-        <img src={this.state.image.map((item) => (
-          item.photos[0].thumbnail_url
-        ))}></img>
-       {this.state.data.map((item, index) => (
-          <div key={index}>
-            {item.name}
-          </div>
-        ))}
-      </div>
-    );
-  }
+  return (
+    <div>
+      { console.log('size:  ', size) }
+      <select>
+        <option>Test</option>
+      </select>
+    </div>
+  )
 }
+
+export default ProductInfo
