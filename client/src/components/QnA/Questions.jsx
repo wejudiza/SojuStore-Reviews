@@ -17,9 +17,9 @@ export default function Question({question, index}) {
       <h4>
       Q: {question.question_body}
       </h4>
-       <div>
+       <div >
         {array.slice(0,answersToShow).map((answer, index) =>
-        <div key={index}>
+        <div key={index} >
             <Answer answer={answer}/>
         </div>
         )}

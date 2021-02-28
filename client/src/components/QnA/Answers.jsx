@@ -5,10 +5,10 @@ export default function Answer({answer, index}) {
   var newdate = n.toDateString()
 
  return (
- <div className="answer" id="answer">
+ <div className="answer" id="answer" >
      {answer.photos.map((photo, index) =>
         <div className="photo" key={index}>
-            <img src={photo} width='100px' height='100px'/>
+            <img src={photo} width='100px' height='100px' />
         </div>
         )}
     <span>

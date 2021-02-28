@@ -17,12 +17,12 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        Testing webpack link
+        {/* Testing webpack link
         <Product />
-        <RelatedProducts />
+        <RelatedProducts /> */}
 
       {/* --- Ratings & Reviews --- */}
-      <RatingsReviews />
+      {/* <RatingsReviews /> */}
       <QnA />
       </div>
 
