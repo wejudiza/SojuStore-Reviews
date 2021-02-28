@@ -8,8 +8,7 @@ import Product from './Overview/Product.jsx';
 import QnA from './QnA/QnA.jsx';
 
 // Import RatingsReviews Components
-import SortSelect from './RatingsReviews/SortSelect.jsx';
-import ReviewTile from './RatingsReviews/ReviewTile.jsx';
+import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
 
 
 export default class App extends Component {
