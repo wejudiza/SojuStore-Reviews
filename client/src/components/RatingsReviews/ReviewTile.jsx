@@ -19,6 +19,8 @@ export default function ReviewTile(props) {
 
   return (
     <div className="review-tile">
+      { /* Raiting Component */ }
+      <div className="star-rating">STAR COMPONENT GOES HERE *****</div>
       { /* Username + date submitted */ }
       <div className="review-userinfo">
         { `${review.reviewer_name} ${convertDate(review.date)}` }
@@ -56,6 +58,7 @@ export default function ReviewTile(props) {
       <br />
       { /* Helpful Subcomponent (ability to click yes/no + see count for vote) */ }
       <ReviewTileHelpful helpfullness={review.helpfulness} />
+      <br />
     </div>
   );
 }
