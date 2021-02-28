@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import RelatedProductsList from './RelatedProductsList.jsx';
+// import axios from 'axios';
+import ProductInfo from './Overview/ProductInfo.jsx';
 import Product from './Overview/Product.jsx';
+
+//Import from QnA
+import QnA from './QnA/QnA.jsx';
 
 // Import RatingsReviews Components
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
@@ -20,7 +25,15 @@ export default class App extends Component {
         <RelatedProductsList />
 
       {/* --- Ratings & Reviews --- */}
-      <RatingsReviews />
+      <div id="ratings-reviews">
+        <h3>Ratings & Reviews</h3>
+        <SortSelect />
+        <ReviewTile />
+        <div id="questions">
+          <h3>Questions</h3>
+        <QnA />
+        </div>
+      </div>
 
       </div>
 
