@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function ReviewTileHelpful(props) {
   const [voted, setVoted] = useState(false);
@@ -7,7 +8,7 @@ export default function ReviewTileHelpful(props) {
   const handleClick = (e) => {
     setVoted(true);
     if (e.target.getAttribute('id') === 'yes') {
-      console.log('YES VOTE');
+
     } else {
       console.log('NO VOTE');
     }
@@ -16,7 +17,7 @@ export default function ReviewTileHelpful(props) {
   return (
     <div className="review-helpful">
       { /* Helpful score always renders */}
-      { `Helpful? (${props.helpfullness}) `}
+      { `Helpful? (${props.helpfulness}) `}
       { /* Responses - conditionally render & disappear after vote */ }
       { voted ? null : (
         <div id="helpful-responses">

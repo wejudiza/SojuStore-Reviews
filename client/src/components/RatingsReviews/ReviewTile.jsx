@@ -57,7 +57,7 @@ export default function ReviewTile(props) {
       </div>
       <br />
       { /* Helpful Subcomponent (ability to click yes/no + see count for vote) */ }
-      <ReviewTileHelpful helpfullness={review.helpfulness} />
+      <ReviewTileHelpful helpfulness={review.helpfulness} />
       <br />
     </div>
   );

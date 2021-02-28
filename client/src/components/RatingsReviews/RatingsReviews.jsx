@@ -37,6 +37,8 @@ export default function RatingsReviews() {
       {/* Individual Review Tiles */}
       <div>
         { allReviews.slice(0, 2).map((review) => <ReviewTile review={review} key={review.id} />) }
+        { allReviews.slice(0, 2).map((review) => console.log(review)) }
+
       </div>
     </div>
   );
