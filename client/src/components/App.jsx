@@ -9,6 +9,8 @@ import QnA from './QnA/QnA.jsx';
 
 // Import RatingsReviews Components
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
+import SortSelect from './RatingsReviews/SortSelect.jsx';
+import ReviewTile from './RatingsReviews/ReviewTile.jsx'
 
 
 export default class App extends Component {
@@ -27,11 +29,11 @@ export default class App extends Component {
       {/* --- Ratings & Reviews --- */}
       <div id="ratings-reviews">
         <h3>Ratings & Reviews</h3>
-        <SortSelect />
-        <ReviewTile />
+        {/* <SortSelect /> */}
+        {/* <ReviewTile /> */}
         <div id="questions">
           <h3>Questions</h3>
-        <QnA />
+        {/* <QnA /> */}
         </div>
       </div>
 
