@@ -1,4 +1,26 @@
 .related-products-container {
-  border: 2px solid black;
-  width: 300px;
+  position: relative;
+  width: 40%;
+}
+
+.container img {
+  width: 100%;
+  height: auto;
+}
+
+.related-products-container .btn {
+  position: absolute;
+  top: 5%;
+  left: 93%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.related-products-container .btn:hover {
+  background-color: black;
 }
