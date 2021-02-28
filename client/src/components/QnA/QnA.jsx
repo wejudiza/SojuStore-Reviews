@@ -4,6 +4,7 @@ import Question from './Questions.jsx'
 
 export default function QnA(){
   const [questions, setQuestions] = useState([]);
+  const [questionsToShow, setQuestionsToShow] = useState(2);
   const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
@@ -12,17 +13,25 @@ export default function QnA(){
       .catch((err) => console.error(err));
   }, []);
 
+  const showMoreQuestions = () => {
+    setQuestionsToShow(questions.length)
+  }
+
   return (
     <div>
       <div>
-      {questions.map((question, index) =>
+        <input type="text" className="search-bar" placeholder="Have A QUESTION? SEARCH FOR ANSWERS..." />
+      </div>
+      <div>
+      {questions.slice(0, questionsToShow).map((question, index) =>
         <div key={index}>
           <Question question={question}/>
         </div>
         )}
+        <button onClick={showMoreQuestions}>Load More Questions</button>
       </div>
       {
-        console.log('data', questions)
+        console.log('questionsToShow:', questionsToShow)
       }
     </div>
   );
