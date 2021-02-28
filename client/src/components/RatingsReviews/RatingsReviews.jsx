@@ -35,7 +35,9 @@ export default function RatingsReviews() {
         <SortSelect handleSelect={handleSelect} />
       </div>
       {/* Individual Review Tiles */}
-      { allReviews.map((review) => <ReviewTile review={review} key={review.id} />) }
+      <div>
+        { allReviews.slice(0, 2).map((review) => <ReviewTile review={review} key={review.id} />) }
+      </div>
     </div>
   );
 }
