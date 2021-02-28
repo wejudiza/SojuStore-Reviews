@@ -12,8 +12,10 @@ class OutfitList extends React.Component {
   render() {
     return (
       <div>
-        hi from outfit
+        *********OUTFIT LIST HERE***********
       </div>
     );
   }
 }
+
+export default OutfitList;
