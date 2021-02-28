@@ -1,6 +1,5 @@
 import React from 'react';
 import Answer from './Answers.jsx';
-import Photo from './Photos.jsx';
 
 export default function Question({question, index}) {
   const array = Object.keys(question.answers).map(key => {
