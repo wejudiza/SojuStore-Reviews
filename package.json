@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack -d --watch",
-    "test": "jest spec/ --watch --coverage --verbose"
+    "test": "jest spec/ --coverage --verbose"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "nodemon": "^2.0.7",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
+
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
