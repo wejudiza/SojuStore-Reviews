@@ -22,22 +22,13 @@ function StyleSelect (props) {
   //     }
   //   }
   // }
-
-  const testing = (input) => {
-    var thumb = ''
-    for (var key in input) {
-      if (key === 'photos') {
-        thumb = (input[key][0]['thumbnail_url'])
-      }
-    }
-    return thumb
-  }
-
   return (
     <div>
-      {console.log('data: ', styles)}
-      {console.log('thumb: ', thumbnail)}
-      {styles.length > 0 ? setThumbnail(testing(styles[0])) : null}
+      {/* {styles.map(item => {
+        item.photos.map((item, index) => (
+
+        ))
+      })} */}
     </div>
   )
 }

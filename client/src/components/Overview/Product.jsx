@@ -15,7 +15,6 @@ function Product() {
 
   return (
     <div>
-      {console.log(data)}
       <h1>{data.name}</h1>
       <div className="product-detail">
         {data.description}
