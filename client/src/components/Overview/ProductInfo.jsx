@@ -5,7 +5,10 @@ function ProductInfo(props) {
   const [info, setInfo] = useState([]);
   const [size, setSize] = useState([]);
   const [quantityLimit] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
-  const [sizeSelect, setSizeSelect] = useState(0);
+  const [quantity, setQuantity] = useState([]);
+  const [outOfStock, setStock] = useState(true);
+  const [userSize, setUserSize] = useState();
+  const [userQuantity, setUserQuantity] = useState();
 
   useEffect(() => {
     if (props.data !== undefined) {
@@ -23,33 +26,60 @@ function ProductInfo(props) {
     })
   }, [info])
 
+  const handleChange = (e) => {
+    var newStorage = [];
+    var value = e.target.value.split(',')
+    if (Number(value[0]) === 0) {
+      newStorage.push(Number(value[0]))
+      setStock(true)
+      setQuantity(newStorage)
+      setUserSize(Number(value[1]))
+    } else {
+      for (var i = 1; i <= Number(value[0]); i++) {
+        newStorage.push(i)
+      }
+      setQuantity(newStorage);
+      setStock(false);
+      setUserSize(Number(value[1]))
+    }
+  }
+
   return (
     <div>
-      { console.log('info:  ', info) }
-      { console.log('size: ', size)}
       {/* main image here */}
       {/* <img src=""></img> */}
       <div>
-        <select onChange={(e) => { setSizeSelect(e.target.value); console.log(sizeSelect)}}>
+        <select onChange={handleChange.bind(this)}>
+          <option>Select Size</option>
           {/* drop down for sizes, hardcoded to first style  */}
           { size.length > 0 ? size[0].skus.map((itemA, index) => {
-            console.log('itemA: ', itemA)
+            var sku = Object.keys(itemA)
             var object = Object.values(itemA)
-            var keys = Object.keys(itemA)
-            console.log('keys: ', keys)
             return ( object.map((item, index) => {
               if (item.quantity > 0) {
-                return ( <option key={index} value={keys[index]}>{item.size}</option> )
+                return ( <option key={index} value={`${item.quantity},${sku[index]}`}>{item.size}</option> )
               }
             }))
-            // <option key={index}>{item.quantity}</option>
           }) : null}
         </select>
-        <select>
-          {quantityLimit.map(item => (
-            <option>{item}</option>
-          ))}
+        <select onChange={(e) => setUserQuantity(Number(e.target.value))}>
+          {quantity[quantity.length-1] > 15 ? quantityLimit.map((item, index) => {
+            if (index === 1) {
+              return ( <option key={index}>{item}</option> )
+            } else {
+              return ( <option key={index}>{item}</option> )
+            }
+          }) : quantity[quantity.length-1] > 0 && quantity[quantity.length-1] <= 15 ? quantity.map((item, index) => {
+            if (index === 1) {
+              return ( <option key={index}>{item}</option> )
+            } else {
+              return ( <option key={index}>{item}</option> )
+            }
+          }) : quantity[0] === 0 ? <option>OUT OF STOCK</option> : <option>-</option>}
         </select>
+      </div>
+      <div>
+        {outOfStock ? null : <button onClick={() => console.log(userSize, userQuantity) }>Add to Cart</button>}
       </div>
     </div>
   )
