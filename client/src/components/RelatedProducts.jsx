@@ -24,6 +24,7 @@ class RelatedProducts extends React.Component {
     this.getInfo(this.props.productId);
   }
 
+
   getInfo(id) {
     axios.get(`api/product_id/${id}`)
       .then((response) => {
@@ -53,7 +54,7 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div className="related-products-container">
-        <div id="test">
+        <div>
           <img src={this.state.thumbnail_url}></img>
           <button onClick={this.toggleModal} className='btn'>open modal</button>
           <div>
