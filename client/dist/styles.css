@@ -46,7 +46,8 @@
 
 .category-rating {
   text-transform: uppercase;
-  font-family: monospace
+  font-family: monospace;
+  letter-spacing: 1.5px;
 }
 
 .product-detail h2{

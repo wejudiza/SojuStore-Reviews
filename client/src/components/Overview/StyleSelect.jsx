@@ -45,9 +45,11 @@ function StyleSelect (props) {
         finalRes.push(result)
         result = [];
       } else if (i === array.length - 1) {
+        array[i].index = i
         result.push(array[i]);
         finalRes.push(result);
       } else {
+        array[i].index = i
         result.push(array[i]);
       }
     }
@@ -65,10 +67,13 @@ function StyleSelect (props) {
     <div>
         {console.log(defaultStyle)}
         {defaultPhoto !== undefined ? <img className="defaultStyle-img" src={defaultPhoto} ></img> : null}
+        <div className="category-rating">
+          <em>{defaultStyle.name}</em>
+        </div>
       {thumbnailModel(thumbnail).map((itemA, index) => (
         <div key={index}>
         {itemA.map((item, index) => (
-          <img src={item.thumbnail_url} key={index} className="thumbnail-img" onClick={() => clickThumbnail(index, item.url)}></img>
+          <img src={item.thumbnail_url} key={index} className="thumbnail-img" onClick={() => clickThumbnail(item.index, item.url)}></img>
         ))}
         </div>
       ))}
