@@ -14,7 +14,7 @@ const product_id = 16821;
 export default function RatingsReviews() {
   const [allReviews, setAllReviews] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const [reviewsCount, setReviewsCount] = useState(0);
+  const [numReviews, setNumReviews] = useState(0);
   const [percentage, setPercentage] = useState(100);
   const [sortBy, setSort] = useState('relevant');
 
@@ -23,15 +23,7 @@ export default function RatingsReviews() {
     axios.get(`/api/reviews/${product_id}`)
       .then((resp) => setAllReviews(resp.data.results))
       .then(() => setLoaded(true))
-      .then(() => {
-        setReviewsCount(allReviews.length);
-        let count = 0;
-        allReviews.map((review) => {
-          if (reivew.recommend) {
-            count += 1;
-          }
-        });
-      })
+      .then(() => setNumReviews(allReviews.length))
       .catch((err) => console.log(err));
   }, [product_id, loaded]);
 
@@ -42,10 +34,10 @@ export default function RatingsReviews() {
     <div className="ratings-reviews">
       <h3>Ratings & Reviews</h3>
       { /* Rating Breakdown */ }
-      <RatingBreakdown allReviews={allReviews} reviewsCount={reviewsCount} />
+      <RatingBreakdown allReviews={allReviews} numReviews={numReviews} />
       { /* Sorting dropdown */ }
       <div id="sortby">
-        { `${reviewsCount} reviews sorted by ` }
+        { `${numReviews} reviews sorted by ` }
         <SortSelect handleSelect={handleSelect} />
       </div>
       {/* Individual Review Tiles */}
