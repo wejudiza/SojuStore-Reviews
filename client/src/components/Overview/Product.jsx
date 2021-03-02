@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
+import StyleSelect from './StyleSelect.jsx';
 
 function Product() {
   const [data, setData] = useState([]);
@@ -21,9 +22,9 @@ function Product() {
       <div className="product-slogan">
         {data.slogan}
       </div>
+      <StyleSelect data={data.id} />
       $ {data.default_price}
-      <ProductInfo prop={data.id} />
-      {/* { console.log(data) } */}
+      <ProductInfo data={data.id} />
     </div>
   )
 };

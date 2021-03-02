@@ -23,7 +23,7 @@ const controllersRR = {
 
   // Get reviews by product id
   getReview: (req, res) => {
-    axios.get(`${config.url}/?product_id=${req.params.product_id}`, config.headers)
+    axios.get(`${config.url}?product_id=${req.params.product_id}`, config.headers)
       .then((resp) => res.status(200).send(resp.data))
       .catch((err) => res.status(400).send(err));
   },
@@ -47,7 +47,7 @@ const controllersRR = {
     console.log(`${config.url}/?review_id=${req.params.review_id}/helpful`);
     axios.put(`${config.url}/?review_id=${req.params.review_id}/helpful`, { body: req.body, headers: config.headers.headers })
       .then(() => res.status(204).send('You marked this review as helpful'))
-      .catch((err) => res.status(400).send(`Could not mark this review as helpful. Error: ${err}`));
+      .catch((err) => res.status(400).send( `Could not mark this review as helpful. Error: ${err}`));
   }
 
 };
