@@ -25,7 +25,7 @@ export default class App extends Component {
 
         {/* --- Ratings & Reviews --- */}
         <div id="ratings-reviews">
-          <RatingsReviews />
+          {/* <RatingsReviews /> */}
         </div>
 
         {/* <QnA /> */}

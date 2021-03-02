@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
+// import { Rating } from 'material-ui-star-rating';
 import RatingBreakdownBar from './RatingBreakdownBar.jsx';
+
+// Helper function that computes WA of ratings
+const getWA = (x, y) => {
+  if (x.length === y.length) {
+    return x.map((xVal, i) => xVal * y[i]).reduce((wa, val) => wa + val);
+  }
+}
 
 export default function RatingBreakdown({ allReviews, numReviews }) {
   const [percentage, setPercentage] = useState(null);
+  const [wa, setWA] = useState(null);
   const [reviewDist, setReviewDist] = useState({});
   const [reviewCount, setReviewCount] = useState({
     5: 0,
@@ -33,20 +42,27 @@ export default function RatingBreakdown({ allReviews, numReviews }) {
     });
 
     setReviewDist(reviewDist);
+    setWA(getWA(Object.keys(reviewCount), Object.values(reviewCount)) / numReviews);
   }, [numReviews]);
 
   return (
     <div id="RatingBreakdown">
       { numReviews === 0 ? null : (
         <div>
-          {percentage}
-          % of reviews recommend this product
-          {/* {JSON.stringify(reviewCount)} */}
+          <div id="avg-rating">
+            <h1>{ wa.toFixed(1) }</h1>
+            INSERT STAR COMPONENT ***
+          </div>
+          { /* Recommended % */ }
+          <div id="%-recommend">
+            {percentage}
+            % of reviews recommend this product
+          </div>
           <br />
-          {/* {JSON.stringify(reviewDist)} */}
+          { /* Rating breakdown bars */ }
           { Object.keys(reviewDist).map(key => <RatingBreakdownBar rating={key} dist={reviewDist[key]} />) }
         </div>
-      ) }
+        ) }
     </div>
   );
 }
