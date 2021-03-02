@@ -71,7 +71,6 @@ class RelatedProducts extends React.Component {
           <p>Model Body</p>
           <button onClick={this.toggleModal}>close</button>
         </Modal>
-        {console.log(this.state.relatedStyles[0])}
         {this.state.relatedObjects.map((product, index) => (
           <div key={index} className="product-name">
             {/* <img src={this.state.relatedStylesImg}></img> */}

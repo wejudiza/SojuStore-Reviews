@@ -37,7 +37,6 @@ class RelatedProducts extends React.Component {
       })
     axios.get(`api/styles/${id}`)
     .then((response) => {
-      console.log(response.data.results)
       this.setState({
         original_price: response.data.results[0].original_price,
         sale_price: response.data.results[0].sale_price,
