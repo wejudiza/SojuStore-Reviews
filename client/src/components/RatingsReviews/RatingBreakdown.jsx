@@ -29,7 +29,7 @@ export default function RatingBreakdown({ allReviews, numReviews }) {
 
     // Calc # of reviews per rating distribution
     Object.keys(reviewCount).map((key) => {
-      reviewDist[key] = reviewCount[key] / numReviews;
+      reviewDist[key] = (reviewCount[key] / numReviews) * 100;
     });
 
     setReviewDist(reviewDist);
@@ -44,8 +44,7 @@ export default function RatingBreakdown({ allReviews, numReviews }) {
           {/* {JSON.stringify(reviewCount)} */}
           <br />
           {/* {JSON.stringify(reviewDist)} */}
-          {/* { Object.values(reviewDist).map(dist => <RatingBreakdownBar ratingDist={dist} />) } */}
-          <RatingBreakdownBar />
+          { Object.keys(reviewDist).map(key => <RatingBreakdownBar rating={key} dist={reviewDist[key]} />) }
         </div>
       ) }
     </div>

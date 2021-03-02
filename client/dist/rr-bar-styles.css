@@ -1,11 +1,11 @@
-.bar {
+.bar-background {
   width: 100%;
   background: lightgrey;
   border-radius: 30px;
   height: 15px;
 }
 
-.progress {
+.bar-foreground {
   background: grey;
   border-radius: 30px;
   height: 15px;
