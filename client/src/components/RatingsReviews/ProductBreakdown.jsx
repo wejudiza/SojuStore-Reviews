@@ -1,0 +1,12 @@
+// size, width, comfort, quality, length, fit
+// ^^ how do i know what products have applicable characterstics?
+
+// fetch / pass as props characteristics ratings
+// create another dynamic bar component
+// it needs to have either 2 or 3 sections
+// for fit related characteristics
+//   [----] [----] [----] (3) min, mid, max labels
+// for quality related characteristics
+//   [--------] [-------] (2) min, max labels
+// also need to include some sort of visual indicator
+/// that represents the WA / mean score for that particular characterstic
