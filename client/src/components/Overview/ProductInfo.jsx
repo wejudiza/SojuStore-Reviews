@@ -38,6 +38,7 @@ function ProductInfo(props) {
       setStock(false);
       setUserSize(Number(value[1]))
     }
+    setUserQuantity(1)
   }
 
   return (
@@ -55,15 +56,16 @@ function ProductInfo(props) {
             }))
           }) : null}
         </select>
-        <select onChange={(e) => setUserQuantity(Number(e.target.value))}>
+        <select onChange={(e) => setUserQuantity(Number(e.target.value))} value={userQuantity}>
+          {console.log(userQuantity)}
           {quantity[quantity.length-1] > 15 ? quantityLimit.map((item, index) => {
-            if (index === 1) {
+            if (index === 0) {
               return ( <option key={index}>{item}</option> )
             } else {
               return ( <option key={index}>{item}</option> )
             }
           }) : quantity[quantity.length-1] > 0 && quantity[quantity.length-1] <= 15 ? quantity.map((item, index) => {
-            if (index === 1) {
+            if (index === 0) {
               return ( <option key={index}>{item}</option> )
             } else {
               return ( <option key={index}>{item}</option> )

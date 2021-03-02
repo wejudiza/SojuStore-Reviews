@@ -64,10 +64,11 @@ function StyleSelect (props) {
   }
 
   return (
-    <div>
+    <div id ="whole-Style">
         {defaultPhoto !== undefined ? <img className="defaultStyle-img" src={defaultPhoto} ></img> : null}
+      <div id="Style-Select">
         <div className="category-rating">
-          <em>{defaultStyle.name}</em>
+         Color:<em>{defaultStyle.name}</em>
         </div>
       {thumbnailModel(thumbnail).map((itemA, index) => (
         <div key={index}>
@@ -77,7 +78,9 @@ function StyleSelect (props) {
         </div>
       ))}
       {defaultStyle.sale_price === null ? <div> $ {defaultStyle.original_price} </div> : <div> <b style={{color:'red'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
+
       <ProductInfo default={defaultStyle} />
+    </div>
     </div>
   )
 }
