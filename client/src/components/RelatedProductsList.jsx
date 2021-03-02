@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import RelatedProducts from './RelatedProducts.jsx'
+import RelatedProducts from './RelatedProducts.jsx';
+import OutfitList from './OutfitList.jsx'
 
 class RelatedProductsList extends React.Component {
   constructor(props) {
@@ -26,11 +27,14 @@ class RelatedProductsList extends React.Component {
   render() {
     return (
       <div>
+        <h3>Related Products</h3>
         {this.state.products.map((id, index) => {
           return (
             <RelatedProducts productId={id} key={index}/>
           )
         })}
+        <h3>Outfit List</h3>
+        <OutfitList />
       </div>
     );
   }

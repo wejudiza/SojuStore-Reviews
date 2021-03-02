@@ -48,3 +48,27 @@ List = () => {
 };
 
 export default RelatedProductsList;
+
+
+
+
+
+
+
+
+
+{this.state.features.map((feature, index) => {
+  if (feature.value !== null) {
+    return (
+      <td>
+        {`${feature.value} ${feature.feature}`}
+        </td>
+    )
+  } else {
+    return (
+      <td>
+        {feature.feature}
+      </td>
+    )
+  }
+})}

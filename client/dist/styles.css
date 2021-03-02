@@ -1,24 +1,36 @@
-.related-products-container {
+.card {
   position: relative;
-  width: 25%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  margin-bottom: 10px;
+  border: 2px solid black;
 }
 
-.container img {
+.modal {
+  width: 50%;
+  height: 200px;
+}
+
+.price {
+  color: grey;
+  font-size: 15px;
+}
+
+.table {
   width: 100%;
-  height: auto;
 }
 
-.related-products-container .btn {
+.card .btn {
   position: absolute;
-  top: 5%;
-  left: 70%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color: #555;
-  color: white;
+  left: 90%;
+  margin-top: 2%;
+  background-color: inherit;
+  color: black;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
 }
 
 .related-products-container .btn:hover {

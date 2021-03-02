@@ -1,7 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
-import ReactStars from 'react-stars'
+import ReactStars from 'react-stars';
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 
 class RelatedProducts extends React.Component {
   constructor(props) {
@@ -52,28 +64,50 @@ class RelatedProducts extends React.Component {
 
   render() {
     return (
-      <div className="related-products-container">
-        <div>
+      <div className="card">
+        <i className="far fa-star btn" onClick={this.toggleModal}></i>
           <img src={this.state.thumbnail_url}></img>
-          <button onClick={this.toggleModal} className='btn'>open modal</button>
           <div>
-            <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.toggleModal}>
-              <h2>Modal Title</h2>
-              <p>Model Body</p>
-              <button onClick={this.toggleModal}>close</button>
+            <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.toggleModal} ariaHideApp={false} style={customStyles}>
+              <h5>Comparing</h5>
+              <table className="table">
+                <tr>
+                  <th>Current Product Name</th>
+                  <th></th>
+                  <th>{this.state.name}</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>characteristic</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>characteristic</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>characteristic</td>
+                  <td></td>
+                </tr>
+              </table>
+              {/* <button onClick={this.toggleModal}>close</button> */}
             </Modal>
           </div>
-          <div>
+          <div className="category">
             {this.state.category}
           </div>
-          <div>
+          <div className="name">
             {this.state.name}
           </div>
-          <div>
+          <div className="price">
             {'$ ' + this.state.original_price}
           </div>
+          <div>
+            Stars here
+          </div>
         </div>
-      </div>
     );
   }
 }
