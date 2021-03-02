@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import RatingBreakdownBar from './RatingBreakdownBar.jsx';
 
 export default function RatingBreakdown({ allReviews, numReviews }) {
   const [percentage, setPercentage] = useState(null);
@@ -24,7 +25,7 @@ export default function RatingBreakdown({ allReviews, numReviews }) {
     });
 
     setReviewCount(reviewCount);
-    setPercentage(Math.floor((count / numReviews) * 100));
+    setPercentage(Math.floor((count / numReviews) * 1000) / 10);
 
     // Calc # of reviews per rating distribution
     Object.keys(reviewCount).map((key) => {
@@ -43,6 +44,8 @@ export default function RatingBreakdown({ allReviews, numReviews }) {
           {/* {JSON.stringify(reviewCount)} */}
           <br />
           {/* {JSON.stringify(reviewDist)} */}
+          {/* { Object.values(reviewDist).map(dist => <RatingBreakdownBar ratingDist={dist} />) } */}
+          <RatingBreakdownBar />
         </div>
       ) }
     </div>

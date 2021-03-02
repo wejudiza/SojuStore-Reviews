@@ -7,7 +7,7 @@ import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 
 // Dummy product_id
-const product_id = 16821;
+const product_id = 16500;
 
 // Helper function to calculate
 
@@ -15,7 +15,6 @@ export default function RatingsReviews() {
   const [allReviews, setAllReviews] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [numReviews, setNumReviews] = useState(0);
-  const [percentage, setPercentage] = useState(100);
   const [sortBy, setSort] = useState('relevant');
 
   // Get all reviews from Atellier API for specific product + set to intial state on mount
