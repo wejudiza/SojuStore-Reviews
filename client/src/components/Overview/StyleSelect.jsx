@@ -55,19 +55,24 @@ function StyleSelect (props) {
     return finalRes;
   }
 
+  const clickThumbnail = (ind, newPhoto) => {
+    setDefaultPhoto(newPhoto)
+    var newStyle = styles[ind]
+    setDefaultStyle(newStyle);
+  }
+
   return (
     <div>
+        {console.log(defaultStyle)}
         {defaultPhoto !== undefined ? <img className="defaultStyle-img" src={defaultPhoto} ></img> : null}
       {thumbnailModel(thumbnail).map((itemA, index) => (
         <div key={index}>
         {itemA.map((item, index) => (
-          <img src={item.thumbnail_url} key={index} className="thumbnail-img" onClick={() => setDefaultPhoto(item.url)}></img>
+          <img src={item.thumbnail_url} key={index} className="thumbnail-img" onClick={() => clickThumbnail(index, item.url)}></img>
         ))}
         </div>
       ))}
-      <div>
-        $ {defaultStyle.original_price}
-      </div>
+      {defaultStyle.sale_price === null ? <div> $ {defaultStyle.original_price} </div> : <div> ${defaultStyle.sale_price} <strike> $ {defaultStyle.original_price} </strike> </div> }
       <ProductInfo default={defaultStyle} />
     </div>
   )
