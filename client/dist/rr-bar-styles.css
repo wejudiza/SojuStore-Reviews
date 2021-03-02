@@ -1,0 +1,12 @@
+.bar-background {
+  width: 100%;
+  background: lightgrey;
+  border-radius: 30px;
+  height: 15px;
+}
+
+.bar-foreground {
+  background: grey;
+  border-radius: 30px;
+  height: 15px;
+}
