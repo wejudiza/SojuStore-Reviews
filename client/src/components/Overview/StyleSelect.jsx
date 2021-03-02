@@ -65,7 +65,6 @@ function StyleSelect (props) {
 
   return (
     <div>
-        {console.log(defaultStyle)}
         {defaultPhoto !== undefined ? <img className="defaultStyle-img" src={defaultPhoto} ></img> : null}
         <div className="category-rating">
           <em>{defaultStyle.name}</em>
