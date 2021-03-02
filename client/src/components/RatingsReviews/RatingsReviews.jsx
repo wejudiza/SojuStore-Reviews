@@ -4,14 +4,18 @@ import axios from 'axios';
 // Import components
 import SortSelect from './SortSelect.jsx';
 import ReviewTile from './ReviewTile.jsx';
+import RatingBreakdown from './RatingBreakdown.jsx';
 
 // Dummy product_id
 const product_id = 16821;
 
+// Helper function to calculate
+
 export default function RatingsReviews() {
   const [allReviews, setAllReviews] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const [reviewsCount, setReviewsCount] = useState();
+  const [reviewsCount, setReviewsCount] = useState(0);
+  const [percentage, setPercentage] = useState(100);
   const [sortBy, setSort] = useState('relevant');
 
   // Get all reviews from Atellier API for specific product + set to intial state on mount
@@ -19,9 +23,17 @@ export default function RatingsReviews() {
     axios.get(`/api/reviews/${product_id}`)
       .then((resp) => setAllReviews(resp.data.results))
       .then(() => setLoaded(true))
-      .then(() => setReviewsCount(allReviews.length))
-      .catch((err) => alert(err));
-  }, [loaded]);
+      .then(() => {
+        setReviewsCount(allReviews.length);
+        let count = 0;
+        allReviews.map((review) => {
+          if (reivew.recommend) {
+            count += 1;
+          }
+        });
+      })
+      .catch((err) => console.log(err));
+  }, [product_id, loaded]);
 
   // On change event to set sortBy state
   const handleSelect = (e) => setSort(e.target.value);
@@ -29,6 +41,8 @@ export default function RatingsReviews() {
   return (
     <div className="ratings-reviews">
       <h3>Ratings & Reviews</h3>
+      { /* Rating Breakdown */ }
+      <RatingBreakdown allReviews={allReviews} reviewsCount={reviewsCount} />
       { /* Sorting dropdown */ }
       <div id="sortby">
         { `${reviewsCount} reviews sorted by ` }
@@ -36,9 +50,8 @@ export default function RatingsReviews() {
       </div>
       {/* Individual Review Tiles */}
       <div>
-        { allReviews.slice(0, 2).map((review) => <ReviewTile review={review} key={review.id} />) }
+        {/* { allReviews.slice(0, 2).map((review) => <ReviewTile review={review} key={review.id} />) } */}
         {/* { allReviews.slice(0, 2).map((review) => console.log(review)) } */}
-
       </div>
     </div>
   );
