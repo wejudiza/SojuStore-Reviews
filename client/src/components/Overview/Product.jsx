@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ProductInfo from './ProductInfo.jsx';
+// import ProductInfo from './ProductInfo.jsx';
 import StyleSelect from './StyleSelect.jsx';
 
 function Product() {
@@ -15,16 +15,19 @@ function Product() {
 
   return (
     <div>
-      <h1>{data.name}</h1>
-      <div className="product-detail">
+      <div id="defaultDescription">
+        <div className="category-rating">
+        ***** <u>(star rating)</u>
+        <br />
+        {data.category}
+        </div>
+        <div className="product-detail">
+        <h2>{data.name}</h2>
+        <h4> <em>{data.slogan}</em> </h4>
         {data.description}
-      </div>
-      <div className="product-slogan">
-        {data.slogan}
+        </div>
       </div>
       <StyleSelect data={data.id} />
-      $ {data.default_price}
-      <ProductInfo data={data.id} />
     </div>
   )
 };

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function ProductInfo(props) {
-  const [info, setInfo] = useState([]);
   const [size, setSize] = useState([]);
   const [quantityLimit] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
   const [quantity, setQuantity] = useState([]);
@@ -10,21 +9,18 @@ function ProductInfo(props) {
   const [userSize, setUserSize] = useState();
   const [userQuantity, setUserQuantity] = useState();
 
-  useEffect(() => {
-    if (props.data !== undefined) {
-    axios.get(`/api/styles/${props.data}`)
-      .then((results) => { setInfo(results.data.results) })
-      .catch((err) => { console.error(err) });
+  const setMain = () => {
+    if (Object.keys(props.default).length > 0) {
+      var storage = [];
+      storage.push(props.default.style_id);
+      storage.push([props.default.skus])
+      setSize(storage);
     }
-  }, [props.data]);
+  }
 
   useEffect(() =>{
-    var storage = []
-    info.map(item => {
-      storage.push({ style_id: item.style_id, skus: [item.skus]})
-      setSize(storage)
-    })
-  }, [info])
+    setMain();
+  }, [props.default])
 
   const handleChange = (e) => {
     var newStorage = [];
@@ -46,13 +42,10 @@ function ProductInfo(props) {
 
   return (
     <div>
-      {/* main image here */}
-      {/* <img src=""></img> */}
       <div>
         <select onChange={handleChange.bind(this)}>
           <option>Select Size</option>
-          {/* drop down for sizes, hardcoded to first style  */}
-          { size.length > 0 ? size[0].skus.map((itemA, index) => {
+          { size.length > 0 ? size[1].map(itemA => {
             var sku = Object.keys(itemA)
             var object = Object.values(itemA)
             return ( object.map((item, index) => {
@@ -75,7 +68,7 @@ function ProductInfo(props) {
             } else {
               return ( <option key={index}>{item}</option> )
             }
-          }) : quantity[0] === 0 ? <option>OUT OF STOCK</option> : <option>-</option>}
+          }) : quantity[0] === 0 ? <option disabled>OUT OF STOCK</option> : <option>-</option>}
         </select>
       </div>
       <div>

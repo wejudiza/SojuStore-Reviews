@@ -24,3 +24,36 @@
 .related-products-container .btn:hover {
   background-color: black;
 }
+
+.defaultStyle-img {
+  width: 550px;
+  height: 400px;
+  display: block;
+  margin-right: 0px;
+}
+
+.thumbnail-img {
+  border-radius: 50%;
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+}
+
+#defaultDescription {
+  float: right;
+  font-family: "Times New Roman", Georgia, 'Times New Roman', Times, serif
+}
+
+.category-rating {
+  text-transform: uppercase;
+  font-family: monospace
+}
+
+.product-detail h2{
+  margin-bottom: 10px;
+}
+
+.product-detail h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
