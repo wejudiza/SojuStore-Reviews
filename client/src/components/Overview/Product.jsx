@@ -27,6 +27,12 @@ function Product() {
         </div>
       </div>
       <StyleSelect data={data.id} />
+      <div id="social-media">
+        <em> Social Media </em> &#10140;
+        <img className="social" src="https://help.twitter.com/content/dam/help-twitter/brand/logo.png"></img>
+        <img className="social" src="https://cdn4.iconfinder.com/data/icons/bettericons/354/facebook-circle-512.png"></img>
+        <img className="social" src="https://cdn.icon-icons.com/icons2/2119/PNG/512/social_pinterest_icon_131227.png"></img>
+      </div>
     </div>
   )
 };

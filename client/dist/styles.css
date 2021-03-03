@@ -59,6 +59,20 @@
   margin-bottom: 5px;
 }
 
+#social-media {
+  width: 500px;
+  height: 51px;
+  flex-direction: row;
+  font-family: cursive;
+}
+
+.social {
+  width: 30px;
+  height: 30px;
+  border-radius: 5%;
+  vertical-align: middle;
+}
+
 .product-detail h2{
   margin-bottom: 10px;
 }

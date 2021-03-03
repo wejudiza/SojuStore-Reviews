@@ -8,7 +8,6 @@ function ProductInfo(props) {
   const [outOfStock, setStock] = useState(true);
   const [userSize, setUserSize] = useState();
   const [userQuantity, setUserQuantity] = useState();
-  const [defaultSet, setDefaultSet] = useState(true);
 
   const setMain = () => {
     if (Object.keys(props.default).length > 0) {
@@ -40,11 +39,10 @@ function ProductInfo(props) {
       setUserSize(Number(value[1]))
     }
     setUserQuantity(1);
-    setDefaultSet(true);
   }
 
   const handleClickCartButton = () => {
-    if (!defaultSet) {
+    if (!isNaN(userSize)) {
       const size_id = {
         sku_id: userSize
       }
@@ -54,15 +52,17 @@ function ProductInfo(props) {
         .catch((err) => console.error(err))
 
       setUserQuantity(1)
-      setDefaultSet(true);
     } else {
       alert('Please select size')
+      // set function to open drop down select size list
+      document.getElementById('test').click();
     }
   }
 
   return (
     <div>
       <div>
+        {console.log(userSize)}
         <select onChange={handleChange.bind(this)}>
           <option>Select Size</option>
           { size.length > 0 ? size[1].map(itemA => {
@@ -75,7 +75,7 @@ function ProductInfo(props) {
             }))
           }) : null}
         </select>
-        <select onChange={(e) => { setUserQuantity(Number(e.target.value)); setDefaultSet(false) }} value={userQuantity}>
+        <select id="test" onChange={(e) => setUserQuantity(Number(e.target.value)) } value={userQuantity}>
           {quantity[quantity.length-1] > 15 ? quantityLimit.map((item, index) => {
             return ( <option key={index}>{item}</option> )
           }) : quantity[quantity.length-1] > 0 && quantity[quantity.length-1] <= 15 ? quantity.map((item, index) => {
