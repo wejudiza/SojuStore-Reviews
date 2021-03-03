@@ -43,15 +43,14 @@ export default class App extends Component {
 
           {/* --- Ratings & Reviews --- */}
           <div id="ratings-reviews">
-            <h3>Ratings & Reviews</h3>
-            {/* <SortSelect /> */}
-            {/* <ReviewTile /> */}
-            <div id="questions">
-              <h3>Questions</h3>
-            {/* <QnA /> */}
-            </div>
+            <RatingsReviews />
           </div>
-      </UserContext.Provider>
+
+          {/* <div id="questions">
+            <h3>Questions</h3>
+            <QnA />
+          </div> */}
+        </UserContext.Provider>
       </div>
 
     );
