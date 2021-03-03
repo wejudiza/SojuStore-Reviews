@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RelatedProductsList from './RelatedProducts/RelatedProductsList.jsx';
 import axios from 'axios';
 import ProductInfo from './Overview/ProductInfo.jsx';
+import OufitList from './RelatedProducts/OutfitList.jsx';
 import Product from './Overview/Product.jsx';
 import { UserContext } from './UserContext.jsx';
 
@@ -35,7 +36,10 @@ export default class App extends Component {
       <div>
         <UserContext.Provider value={this.state.data}>
           {/* <Product /> */}
-          <RelatedProductsList mainId={this.state.data.id}/>
+          <h3>Related Products</h3>
+          <RelatedProductsList mainProduct={this.state.data}/>
+          <h3>Your Outfit</h3>
+          <OufitList mainProduct={this.state.data}/>
 
           {/* --- Ratings & Reviews --- */}
           <div id="ratings-reviews">

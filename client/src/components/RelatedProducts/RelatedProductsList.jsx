@@ -13,8 +13,8 @@ class RelatedProductsList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.mainId !== this.props.mainId) {
-      this.getRelated(this.props.mainId)
+    if (prevProps.mainProduct.id !== this.props.mainProduct.id) {
+      this.getRelated(this.props.mainProduct.id)
     }
   }
 
@@ -31,7 +31,7 @@ class RelatedProductsList extends React.Component {
       <div style={{display: 'flex', flexDirection: 'row'}}>
         {this.state.products.map((id, index) => {
           return (
-            <RelatedProducts productId={id} key={index} mainId={this.props.mainId}/>
+            <RelatedProducts productId={id} key={index} mainProduct={this.props.mainProduct}/>
           )
         })}
       </div>

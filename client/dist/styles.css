@@ -1,11 +1,12 @@
-.card {
+.related-card,
+.add-card,
+.outfit-card {
   position: relative;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 250px;
-  max-height: 250px;
+  max-height: 300px;
   min-width: 250px;
-  min-height: 250px;
-  margin: auto;
+  min-height: 300px;
   text-align: left;
   font-family: arial;
   margin-bottom: 10px;
@@ -30,18 +31,18 @@
 .price,
 .stars {
   margin-left: 5px;
-  margin-bottom: 2px;
+  margin-bottom: 15px;
 }
 
 .table {
   width: 100%;
 }
 
-.card img {
+.related-card img {
   width: 100%;
 }
 
-.card .btn {
+.related-card .btn {
   position: absolute;
   left: 90%;
   margin-top: 2%;
@@ -51,8 +52,20 @@
   cursor: pointer;
 }
 
-.related-products-container .btn:hover {
-  background-color: black;
+.related-card .btn:hover {
+  color: yellow;
+}
+
+.add-card .btn {
+  position: absolute;
+  left: 40%;
+  margin-top: 52%;
+  cursor: pointer;
+}
+
+.add-card .add {
+  position: absolute;
+  left: 5%;
 }
 
 #defaultDescription {
