@@ -11,19 +11,26 @@
 // also need to include some sort of visual indicator
 /// that represents the WA / mean score for that particular characterstic
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
-export default function ProductBreakdown({ product_id }) {
-  const [metadata, setMetadata] = useState(null);
+const product_id = 16500;
+
+export default function ProductBreakdown() {
+  const [characteristics, setCharacteristics] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
-  // Fetch meta data for product from API
   useEffect(() => {
-
+    axios.get(`/api/reviews/meta/${product_id}`)
+      .then((resp) => setCharacteristics(resp.data.characteristics))
+      .then(() => setLoaded(true))
+      .catch((err) => console.log(err));
   }, [loaded]);
 
+  // Quality, Comfort 2 bars
+  // Rest 3 bars
+
   return (
-    <div id="product-breakdown">TEST</div>
+    <div id="product-breakdown">{JSON.stringify(characteristics)}</div>
   );
 }

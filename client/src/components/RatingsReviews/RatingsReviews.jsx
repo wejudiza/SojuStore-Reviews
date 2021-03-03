@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Import components
-import SortSelect from './SortSelect.jsx';
-import ReviewTile from './ReviewTile.jsx';
-import RatingBreakdown from './RatingBreakdown.jsx';
+// import SortSelect from './SortSelect.jsx';
+// import ReviewTile from './ReviewTile.jsx';
+// import RatingBreakdown from './RatingBreakdown.jsx';
+import ProductBreakdown from './ProductBreakdown.jsx';
 
 // Dummy product_id
 const product_id = 16500;
@@ -31,19 +32,22 @@ export default function RatingsReviews() {
     <div className="ratings-reviews">
       { /* Rating Breakdown */ }
       <h3>Ratings & Reviews</h3>
-      <RatingBreakdown allReviews={allReviews} numReviews={numReviews} />
+      {/* <RatingBreakdown allReviews={allReviews} numReviews={numReviews} /> */}
+
+      { /* Proudct Breakdown */ }
+      <ProductBreakdown />
 
       { /* Sorting dropdown */ }
-      <div id="sortby">
+      {/* <div id="sortby">
         { `${numReviews} reviews sorted by ` }
         <SortSelect handleSelect={handleSelect} />
-      </div>
+      </div> */}
 
       {/* Individual Review Tiles */}
-      <div>
+      {/* <div>
         { allReviews.slice(0, 2).map((review) => <ReviewTile review={review} key={review.id} />) }
         { allReviews.slice(0, 2).map((review) => console.log(review)) }
-      </div>
+      </div> */}
     </div>
   );
 }
