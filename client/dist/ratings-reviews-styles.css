@@ -1,3 +1,6 @@
+/* --------------------
+Rating Breakdown Styles
+-------------------- */
 .bar-background {
   width: 100%;
   background: lightgrey;
@@ -9,4 +12,31 @@
   background: grey;
   border-radius: 30px;
   height: 15px;
+}
+
+/* ---------------------
+Product Breakdown Styles
+--------------------- */
+.product-breakdown {
+  display: grid;
+  grid-template-columns: (3, 1fr);
+}
+
+.product-bar-container {
+  display: flex;
+}
+
+.product-bar-background {
+  width: 100%;
+  background: lightgrey;
+  height: 15px;
+  border-color: black;
+  border-radius: 30px;
+}
+
+.triangle {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid grey;
+  position: absolute;
 }

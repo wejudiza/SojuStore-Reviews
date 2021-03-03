@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Import components
-// import SortSelect from './SortSelect.jsx';
-// import ReviewTile from './ReviewTile.jsx';
-// import RatingBreakdown from './RatingBreakdown.jsx';
+import SortSelect from './SortSelect.jsx';
+import ReviewTile from './ReviewTile.jsx';
+import RatingBreakdown from './RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 
 // Dummy product_id
@@ -32,7 +32,7 @@ export default function RatingsReviews() {
     <div className="ratings-reviews">
       { /* Rating Breakdown */ }
       <h3>Ratings & Reviews</h3>
-      {/* <RatingBreakdown allReviews={allReviews} numReviews={numReviews} /> */}
+      <RatingBreakdown allReviews={allReviews} numReviews={numReviews} />
 
       { /* Proudct Breakdown */ }
       <ProductBreakdown />
