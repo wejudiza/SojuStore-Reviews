@@ -40,7 +40,7 @@ class OutfitList extends React.Component {
             this.state.outfitList.map((outfit, index) => {
               return (
                 <div className="outfit-card" key={index}>
-                  <OutfitCard outfitList={this.state.outfitList}/>
+                  <OutfitCard outfit={outfit} mainProduct={this.props.mainProduct}/>
                 </div>
               )
             }): null

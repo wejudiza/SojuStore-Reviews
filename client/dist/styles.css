@@ -15,6 +15,10 @@
   overflow: auto;
 }
 
+.add-card {
+  background: linear-gradient(to bottom right, #ffffff 23%, #d6d6d6 100%);
+}
+
 .price {
   color: grey;
   font-size: 15px;
@@ -55,6 +59,21 @@
 .related-card .btn:hover {
   color: yellow;
 }
+
+.outfit-card .btn {
+  position: absolute;
+  left: 80%;
+  margin-top: 5%;
+  background-color: inherit;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.outfit-card .btn:hover {
+  color: white;
+}
+
 
 .add-card .btn {
   position: absolute;
