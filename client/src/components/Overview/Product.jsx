@@ -14,8 +14,6 @@ function Product() {
 
   return (
     <div>
-      {console.log('message: ', msg)}
-      {console.log('data: ', data)}
       <div id="defaultDescription">
         <div className="category-rating">
         ***** <u>(star rating)</u>
