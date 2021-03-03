@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../UserContext.jsx';
 import axios from 'axios';
-// import ProductInfo from './ProductInfo.jsx';
+
 import StyleSelect from './StyleSelect.jsx';
 
 function Product() {
+  const msg = useContext(UserContext)
   const [data, setData] = useState([]);
-  // const [photo, setPhoto] = useState([]);
 
   useEffect(() => {
-    axios.get('/api')
-      .then((results) => setData(results.data[0]))
-      .catch((err) => console.error(err));
-  }, []);
+    setData(msg)
+  }, [msg])
 
   return (
     <div>
+      {console.log('message: ', msg)}
+      {console.log('data: ', data)}
       <div id="defaultDescription">
         <div className="category-rating">
         ***** <u>(star rating)</u>

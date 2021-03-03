@@ -8,6 +8,7 @@ function ProductInfo(props) {
   const [outOfStock, setStock] = useState(true);
   const [userSize, setUserSize] = useState();
   const [userQuantity, setUserQuantity] = useState();
+  const [defaultSet, setDefaultSet] = useState(true);
 
   const setMain = () => {
     if (Object.keys(props.default).length > 0) {
@@ -38,7 +39,25 @@ function ProductInfo(props) {
       setStock(false);
       setUserSize(Number(value[1]))
     }
-    setUserQuantity(1)
+    setUserQuantity(1);
+    setDefaultSet(true);
+  }
+
+  const handleClickCartButton = () => {
+    if (!defaultSet) {
+      const size_id = {
+        sku_id: userSize
+      }
+
+      axios.post('/api/cart', size_id)
+        .then((results) => alert('Added!'))
+        .catch((err) => console.error(err))
+
+      setUserQuantity(1)
+      setDefaultSet(true);
+    } else {
+      alert('Please select size')
+    }
   }
 
   return (
@@ -56,25 +75,16 @@ function ProductInfo(props) {
             }))
           }) : null}
         </select>
-        <select onChange={(e) => setUserQuantity(Number(e.target.value))} value={userQuantity}>
-          {console.log(userQuantity)}
+        <select onChange={(e) => { setUserQuantity(Number(e.target.value)); setDefaultSet(false) }} value={userQuantity}>
           {quantity[quantity.length-1] > 15 ? quantityLimit.map((item, index) => {
-            if (index === 0) {
-              return ( <option key={index}>{item}</option> )
-            } else {
-              return ( <option key={index}>{item}</option> )
-            }
+            return ( <option key={index}>{item}</option> )
           }) : quantity[quantity.length-1] > 0 && quantity[quantity.length-1] <= 15 ? quantity.map((item, index) => {
-            if (index === 0) {
-              return ( <option key={index}>{item}</option> )
-            } else {
-              return ( <option key={index}>{item}</option> )
-            }
+            return ( <option key={index}>{item}</option> )
           }) : quantity[0] === 0 ? <option disabled>OUT OF STOCK</option> : <option>-</option>}
         </select>
       </div>
       <div>
-        {outOfStock ? null : <button onClick={() => console.log(userSize, userQuantity) }>Add to Cart</button>}
+        {outOfStock ? null : <button onClick={handleClickCartButton.bind(this)}>Add to Cart</button>}
       </div>
     </div>
   )
