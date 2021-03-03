@@ -42,8 +42,8 @@ const cart = {
   addToCart: (req, callback) => {
     const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/cart';
 
-    axios.post(url, header)
-      .then((results) => { callback(null, results); })
+    axios.post(url, req.body, header)
+      .then((results) => { callback(null, results.data); })
       .catch((err) => { callback(err); });
   },
 };
