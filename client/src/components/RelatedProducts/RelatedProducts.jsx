@@ -39,6 +39,7 @@ class RelatedProducts extends React.Component {
 
 
   getInfo(id) {
+    console.log(this.props)
     axios.get(`api/product_id/${id}`)
       .then((response) => {
         this.setState({
@@ -55,6 +56,12 @@ class RelatedProducts extends React.Component {
         sale_price: response.data.results[0].sale_price,
         thumbnail_url: response.data.results[0].photos[0].thumbnail_url
     })})
+    // axios.get(`api/product_id/${this.props.mainId}`)
+    //   .then((response) => {
+    //     this.setState({
+    //       features: this.state.features.concat(response.data.features)
+    //     })
+    //   })
   }
 
   toggleModal() {
@@ -64,6 +71,7 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
+    // console.log('features', this.state.features)
     return (
       <div className="card" >
         <i className="far fa-star btn" onClick={this.toggleModal}></i>
@@ -89,10 +97,10 @@ class RelatedProducts extends React.Component {
                           )
                         } else {
                           return (
-                            <td>
+                            <div>
                               {feature.feature}
                               <br/>
-                            </td>
+                            </div>
                           )
                         }
                       })}</td>

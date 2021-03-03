@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RelatedProductsList from './RelatedProductsList.jsx';
+import RelatedProductsList from './RelatedProducts/RelatedProductsList.jsx';
 import axios from 'axios';
 import ProductInfo from './Overview/ProductInfo.jsx';
 import Product from './Overview/Product.jsx';
@@ -34,8 +34,8 @@ export default class App extends Component {
     return (
       <div>
         <UserContext.Provider value={this.state.data}>
-          <Product />
-          <RelatedProductsList />
+          {/* <Product /> */}
+          <RelatedProductsList mainId={this.state.data.id}/>
 
           {/* --- Ratings & Reviews --- */}
           <div id="ratings-reviews">

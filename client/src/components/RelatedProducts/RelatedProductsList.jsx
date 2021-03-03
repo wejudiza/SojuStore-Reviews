@@ -12,12 +12,14 @@ class RelatedProductsList extends React.Component {
     this.getRelated = this.getRelated.bind(this);
   }
 
-  componentDidMount() {
-    this.getRelated()
+  componentDidUpdate(prevProps) {
+    if (prevProps.mainId !== this.props.mainId) {
+      this.getRelated(this.props.mainId)
+    }
   }
 
-  getRelated() {
-    axios.get('/api/16392')
+  getRelated(id) {
+    axios.get(`/api/${id}`)
       .then((results) => this.setState({
         products: results.data
       }))
@@ -29,7 +31,7 @@ class RelatedProductsList extends React.Component {
       <div style={{display: 'flex', flexDirection: 'row'}}>
         {this.state.products.map((id, index) => {
           return (
-            <RelatedProducts productId={id} key={index}/>
+            <RelatedProducts productId={id} key={index} mainId={this.props.mainId}/>
           )
         })}
       </div>
