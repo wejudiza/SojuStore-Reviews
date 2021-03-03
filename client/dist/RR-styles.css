@@ -17,26 +17,36 @@ Rating Breakdown Styles
 /* ---------------------
 Product Breakdown Styles
 --------------------- */
-.product-breakdown {
+/* .product-breakdown {
   display: grid;
-  grid-template-columns: (3, 1fr);
-}
+} */
 
+/* Product Bar */
 .product-bar-container {
   display: flex;
 }
 
 .product-bar-background {
   width: 100%;
+  height: 20px;
   background: lightgrey;
-  height: 15px;
   border-color: black;
   border-radius: 30px;
 }
 
 .triangle {
+  margin-left: -10px;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-bottom: 20px solid grey;
   position: absolute;
+}
+
+/* Product Bar Labels */
+.product-bar-labels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: .25%;
 }
