@@ -1,30 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../UserContext.jsx';
 import axios from 'axios';
-import ProductInfo from './ProductInfo.jsx';
+
 import StyleSelect from './StyleSelect.jsx';
 
 function Product() {
+  const msg = useContext(UserContext)
   const [data, setData] = useState([]);
-  // const [photo, setPhoto] = useState([]);
 
   useEffect(() => {
-    axios.get('/api')
-      .then((results) => setData(results.data[0]))
-      .catch((err) => console.error(err));
-  }, []);
+    setData(msg)
+  }, [msg])
 
   return (
     <div>
-      <h1>{data.name}</h1>
-      <div className="product-detail">
+      <div id="defaultDescription">
+        <div className="category-rating">
+        ***** <u>(star rating)</u>
+        <br />
+        {data.category}
+        </div>
+        <div className="product-detail">
+        <h2>{data.name}</h2>
+        <h4> <em>{data.slogan}</em> </h4>
         {data.description}
-      </div>
-      <div className="product-slogan">
-        {data.slogan}
+        </div>
       </div>
       <StyleSelect data={data.id} />
-      $ {data.default_price}
-      <ProductInfo data={data.id} />
     </div>
   )
 };

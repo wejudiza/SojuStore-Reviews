@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import RelatedProductsList from './RelatedProductsList.jsx';
+import axios from 'axios';
 import ProductInfo from './Overview/ProductInfo.jsx';
 import Product from './Overview/Product.jsx';
+import { UserContext } from './UserContext.jsx';
 
 //Import from QnA
 import QnA from './QnA/QnA.jsx';
@@ -13,26 +15,39 @@ import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      data: []
+    };
+  }
+
+  componentDidMount() {
+    axios.get('/api')
+      .then((results) => {
+        this.setState({
+          data: results.data[0]
+        })
+      })
+      .catch((err) => console.error(err))
   }
 
   render() {
     return (
       <div>
-        Testing webpack link
-        <Product />
-        <RelatedProductsList />
+        <UserContext.Provider value={this.state.data}>
+          <Product />
+          <RelatedProductsList />
 
-        {/* --- Ratings & Reviews --- */}
-        <div id="ratings-reviews">
-          {/* <RatingsReviews /> */}
-        </div>
-
-        {/* <QnA /> */}
-        <div id="questions">
-          <h3>Questions</h3>
-        </div>
-
+          {/* --- Ratings & Reviews --- */}
+          <div id="ratings-reviews">
+            <h3>Ratings & Reviews</h3>
+            {/* <SortSelect /> */}
+            {/* <ReviewTile /> */}
+            <div id="questions">
+              <h3>Questions</h3>
+            {/* <QnA /> */}
+            </div>
+          </div>
+      </UserContext.Provider>
       </div>
 
     );
