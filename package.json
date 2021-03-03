@@ -33,6 +33,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-modal": "^3.12.1",
+    "react-select": "^4.1.0",
     "react-stars": "^2.2.5"
   },
   "devDependencies": {

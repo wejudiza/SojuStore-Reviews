@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Select from 'react-select';
+
+//finish up react-select size button
 
 function ProductInfo(props) {
   const [size, setSize] = useState([]);
@@ -8,6 +11,7 @@ function ProductInfo(props) {
   const [outOfStock, setStock] = useState(true);
   const [userSize, setUserSize] = useState();
   const [userQuantity, setUserQuantity] = useState();
+  const [menu, setMenu] = useState(false)
 
   const setMain = () => {
     if (Object.keys(props.default).length > 0) {
@@ -22,9 +26,9 @@ function ProductInfo(props) {
     setMain();
   }, [props.default])
 
-  const handleChange = (e) => {
+  const handleChange = (inputVal) => {
     var newStorage = [];
-    var value = e.target.value.split(',')
+    var value = inputVal.value.split(',')
     if (Number(value[0]) === 0) {
       newStorage.push(Number(value[0]))
       setStock(true)
@@ -39,6 +43,7 @@ function ProductInfo(props) {
       setUserSize(Number(value[1]))
     }
     setUserQuantity(1);
+    setMenu(!menu)
   }
 
   const handleClickCartButton = () => {
@@ -54,16 +59,31 @@ function ProductInfo(props) {
       setUserQuantity(1)
     } else {
       alert('Please select size')
-      // set function to open drop down select size list
-      document.getElementById('test').click();
+      setMenu(true);
     }
+  }
+
+  const sizeOptions = () => {
+    const options = [
+      {value: 'Select Size', label: 'Select Size'}
+    ]
+    size[1].map(itemA => {
+      var sku = Object.keys(itemA)
+      var object = Object.values(itemA)
+      object.map((item, index) => {
+        if (item.quantity > 0) {
+          options.push({value: `${item.quantity},${sku[index]}`, label: item.size})
+        }
+      })
+    })
+    return options
   }
 
   return (
     <div>
       <div>
-        {console.log(userSize)}
-        <select onChange={handleChange.bind(this)}>
+        { size.length > 0 ? <Select options={sizeOptions()} onChange={handleChange.bind(this)} blurInputOnSelect menuIsOpen={menu} onFocus={() => setMenu(!menu)}/> : null}
+        {/* <select onChange={handleChange.bind(this)}>
           <option>Select Size</option>
           { size.length > 0 ? size[1].map(itemA => {
             var sku = Object.keys(itemA)
@@ -74,8 +94,8 @@ function ProductInfo(props) {
               }
             }))
           }) : null}
-        </select>
-        <select id="test" onChange={(e) => setUserQuantity(Number(e.target.value)) } value={userQuantity}>
+        </select> */}
+        <select onChange={(e) => setUserQuantity(Number(e.target.value)) } value={userQuantity} >
           {quantity[quantity.length-1] > 15 ? quantityLimit.map((item, index) => {
             return ( <option key={index}>{item}</option> )
           }) : quantity[quantity.length-1] > 0 && quantity[quantity.length-1] <= 15 ? quantity.map((item, index) => {
