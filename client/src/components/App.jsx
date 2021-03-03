@@ -10,9 +10,8 @@ import QnA from './QnA/QnA.jsx';
 
 // Import RatingsReviews Components
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
-import SortSelect from './RatingsReviews/SortSelect.jsx';
-import ReviewTile from './RatingsReviews/ReviewTile.jsx'
 
+// App component
 export default class App extends Component {
   constructor(props) {
     super(props);
