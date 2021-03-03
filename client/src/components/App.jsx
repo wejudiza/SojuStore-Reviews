@@ -19,19 +19,19 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        Testing webpack link
+        {/* Testing webpack link
         <Product />
-        <RelatedProductsList />
+        <RelatedProductsList /> */}
 
         {/* --- Ratings & Reviews --- */}
         <div id="ratings-reviews">
-          {/* <RatingsReviews /> */}
+          <RatingsReviews />
         </div>
 
         {/* <QnA /> */}
-        <div id="questions">
+        {/* <div id="questions">
           <h3>Questions</h3>
-        </div>
+        </div> */}
 
       </div>
 

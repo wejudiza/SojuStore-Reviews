@@ -10,3 +10,20 @@
 //   [--------] [-------] (2) min, max labels
 // also need to include some sort of visual indicator
 /// that represents the WA / mean score for that particular characterstic
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+export default function ProductBreakdown({ product_id }) {
+  const [metadata, setMetadata] = useState(null);
+  const [loaded, setLoaded] = useState(false);
+
+  // Fetch meta data for product from API
+  useEffect(() => {
+
+  }, [loaded]);
+
+  return (
+    <div id="product-breakdown">TEST</div>
+  );
+}

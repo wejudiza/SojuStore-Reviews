@@ -9,8 +9,6 @@ import RatingBreakdown from './RatingBreakdown.jsx';
 // Dummy product_id
 const product_id = 16500;
 
-// Helper function to calculate
-
 export default function RatingsReviews() {
   const [allReviews, setAllReviews] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -24,25 +22,27 @@ export default function RatingsReviews() {
       .then(() => setLoaded(true))
       .then(() => setNumReviews(allReviews.length))
       .catch((err) => console.log(err));
-  }, [product_id, loaded]);
+  }, [loaded]);
 
   // On change event to set sortBy state
   const handleSelect = (e) => setSort(e.target.value);
 
   return (
     <div className="ratings-reviews">
-      <h3>Ratings & Reviews</h3>
       { /* Rating Breakdown */ }
+      <h3>Ratings & Reviews</h3>
       <RatingBreakdown allReviews={allReviews} numReviews={numReviews} />
+
       { /* Sorting dropdown */ }
       <div id="sortby">
         { `${numReviews} reviews sorted by ` }
         <SortSelect handleSelect={handleSelect} />
       </div>
+
       {/* Individual Review Tiles */}
       <div>
-        {/* { allReviews.slice(0, 2).map((review) => <ReviewTile review={review} key={review.id} />) } */}
-        {/* { allReviews.slice(0, 2).map((review) => console.log(review)) } */}
+        { allReviews.slice(0, 2).map((review) => <ReviewTile review={review} key={review.id} />) }
+        { allReviews.slice(0, 2).map((review) => console.log(review)) }
       </div>
     </div>
   );
