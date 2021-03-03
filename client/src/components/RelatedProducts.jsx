@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import ReactStars from 'react-stars';
+import { render } from 'react-dom'
 
 const customStyles = {
   content : {
@@ -64,7 +65,7 @@ class RelatedProducts extends React.Component {
 
   render() {
     return (
-      <div className="card">
+      <div className="card" >
         <i className="far fa-star btn" onClick={this.toggleModal}></i>
           <img src={this.state.thumbnail_url}></img>
           <div>
@@ -72,27 +73,32 @@ class RelatedProducts extends React.Component {
               <h5>Comparing</h5>
               <table className="table">
                 <tr>
-                  <th>Current Product Name</th>
+                  <th>Current Product</th>
                   <th></th>
                   <th>{this.state.name}</th>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>characteristic</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>characteristic</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>characteristic</td>
+                  <td>{this.state.features.map((feature, index) => {
+                        if (feature.value !== null) {
+                          return (
+                            <div key={index}>
+                            {`${feature.value} ${feature.feature}`}
+                            <br/>
+                            </div>
+                          )
+                        } else {
+                          return (
+                            <td>
+                              {feature.feature}
+                              <br/>
+                            </td>
+                          )
+                        }
+                      })}</td>
                   <td></td>
                 </tr>
               </table>
-              {/* <button onClick={this.toggleModal}>close</button> */}
             </Modal>
           </div>
           <div className="category">
@@ -104,7 +110,7 @@ class RelatedProducts extends React.Component {
           <div className="price">
             {'$ ' + this.state.original_price}
           </div>
-          <div>
+          <div className="stars">
             Stars here
           </div>
         </div>

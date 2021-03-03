@@ -22,8 +22,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        Testing webpack link
-        <Product />
+        {/* <Product /> */}
+        <h3>Related Products</h3>
         <RelatedProductsList />
 
       {/* --- Ratings & Reviews --- */}
