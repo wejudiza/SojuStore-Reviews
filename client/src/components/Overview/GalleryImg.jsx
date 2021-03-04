@@ -51,6 +51,10 @@ function GalleryImg(props) {
     }
   }
 
+  const slideThumbnailClick = () => {
+    let child =
+  }
+
   return (
     <div id="default-thumbnails">
       <i className='leftArrow' onClick={() => changeBackwardLeft()}> </i>
