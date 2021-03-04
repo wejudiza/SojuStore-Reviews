@@ -7,7 +7,7 @@ export default function AddReviewRadio({ name, options }) {
       <form className="add-review-radio">
         { options.map((val) => (
           <>
-            <input type="radio" id={val} name={name} value={val} />
+            <input type="radio" name={name} value={val} />
             <label htmlFor={val}>{val}</label>
           </>
         )) }
