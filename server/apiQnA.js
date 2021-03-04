@@ -41,3 +41,4 @@ const postQuestion = (req, callback) => {
     })
 }
 module.exports.getQnA = getQnA;
+module.exports.postQuestion = postQuestion;
