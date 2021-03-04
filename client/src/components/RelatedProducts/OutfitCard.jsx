@@ -24,7 +24,6 @@ class OutfitCard extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('previous', prevProps, 'current', this.props)
     if (prevProps.outfitItem.id !== this.props.outfitItem.id) {
       this.getInfo();
     }
