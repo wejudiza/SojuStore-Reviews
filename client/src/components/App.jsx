@@ -38,7 +38,7 @@ export default class App extends Component {
       <div>
         <UserContext.Provider value={this.state.data}>
           <Product />
-          <RelatedProductsList />
+          {/* <RelatedProductsList /> */}
 
           {/* --- Ratings & Reviews --- */}
           <div id="ratings-reviews">

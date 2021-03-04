@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import GalleryImg from './GalleryImg.jsx';
+
+Modal.setAppElement('#app')
 
 function StyleSelect (props) {
   const [styles, setStyles] = useState([])
@@ -9,6 +12,7 @@ function StyleSelect (props) {
   const [defaultStyle, setDefaultStyle] = useState({})
   const [thumbClick, setThumbClick] = useState(false)
   const [defaultPhoto, setDefaultPhoto] = useState('')
+  const [modalIsOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     if (props.data !== undefined) {
@@ -20,7 +24,7 @@ function StyleSelect (props) {
 
   useEffect(() => {
     var res = [];
-    {styles.map(item => {
+    {styles.map((item, index) => {
       if (item['default?']) {
         setDefaultStyle(item)
       }
@@ -47,6 +51,7 @@ function StyleSelect (props) {
       if (result.length === 4) {
         finalRes.push(result)
         result = [];
+        result.push(array[i])
       } else if (i === array.length - 1) {
         array[i].index = i
         result.push(array[i]);
@@ -68,7 +73,13 @@ function StyleSelect (props) {
 
   return (
     <div id ="whole-Style">
-        {defaultPhoto !== undefined ? <img className="defaultStyle-img" src={defaultPhoto} ></img> : null}
+          {defaultPhoto !== undefined ? <img className="defaultStyle-img" src={defaultPhoto} onClick={() => setIsOpen(!modalIsOpen)}></img> : null}
+
+        <Modal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)}>
+          <img src={defaultPhoto}></img>
+          Hi?
+        </Modal>
+
       <div id="Style-Select">
         <div className="category-rating">
          Color:<em>{defaultStyle.name}</em>
@@ -89,9 +100,3 @@ function StyleSelect (props) {
 }
 
 export default StyleSelect
-
- // const makeButtonCSS = (thumbnail) => {
-  //   return {
-  //     backgroundImage: `url(${thumbnail})`,
-  //   }
-  // };

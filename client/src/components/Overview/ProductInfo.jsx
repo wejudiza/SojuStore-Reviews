@@ -52,7 +52,6 @@ function ProductInfo(props) {
   }
 
   const handleClickCartButton = () => {
-    console.log(userSize)
     if (!isNaN(userSize[1])) {
       const size_id = {
         sku_id: userSize[1]
