@@ -7,6 +7,7 @@ import { UserContext } from '../UserContext.jsx';
 // Components
 import AddReviewText from './AddReviewText.jsx';
 import AddReviewRadio from './AddReviewRadio.jsx';
+import AddReviewImgUpload from './AddReviewImgUpload.jsx';
 
 export default function AddReview() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,11 +18,13 @@ export default function AddReview() {
       <button id="add-review-btn" type="button" onClick={() => setIsOpen(true)}>Add A Review +</button>
       <Modal id="add-review-modal" isOpen={isOpen}>
 
-        { /* Dynamic review header / title */ }
+        { /* Dynamic add review title */ }
         <div id="add-review-header">
-          Write Your Review For
-          <br />
-          { product.name }
+          <h2>
+            Write Your Review For
+            <br />
+            { product.name }
+          </h2>
         </div>
 
         {/* Text Input: Review Summary */ }
@@ -105,6 +108,9 @@ export default function AddReview() {
             'Perfect',
           ]}
         />
+
+        { /* User Image Upload */ }
+        <AddReviewImgUpload />
 
         <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>Close</button>
       </Modal>
