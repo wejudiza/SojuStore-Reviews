@@ -21,8 +21,15 @@ class OutfitCard extends React.Component {
 
   componentDidMount() {
     this.getInfo();
-    this.getStyles()
   }
+
+  componentDidUpdate(prevProps) {
+    console.log('previous', prevProps, 'current', this.props)
+    if (prevProps.outfitItem.id !== this.props.outfitItem.id) {
+      this.getInfo();
+    }
+  }
+
 
   getInfo() {
     this.setState({
@@ -31,9 +38,6 @@ class OutfitCard extends React.Component {
       name: this.props.outfitItem.name,
       product: this.props.outfitItem
     })
-  }
-
-  getStyles() {
     axios.get(`/api/styles/${this.props.outfitItem.id}`)
       .then((response) => {
         this.setState({
@@ -46,7 +50,6 @@ class OutfitCard extends React.Component {
 
   handleClick() {
     this.props.removeProduct(this.props.outfitItem)
-    this.getInfo()
   }
 
 
