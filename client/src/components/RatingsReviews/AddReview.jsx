@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import { UserContext } from '../UserContext.jsx';
 
 // Components
+import RatingStars from './RatingStars.jsx';
 import AddReviewText from './AddReviewText.jsx';
 import AddReviewRadio from './AddReviewRadio.jsx';
 import AddReviewImgUpload from './AddReviewImgUpload.jsx';
@@ -15,6 +16,12 @@ export default function AddReview() {
 
   return (
     <div id="add-review">
+
+      { /* Rating Stars Demo */ }
+      <RatingStars rating="3.14" color="red" size="50px" />
+      <br />
+      <br />
+
       <button id="add-review-btn" type="button" onClick={() => setIsOpen(true)}>Add A Review +</button>
       <Modal id="add-review-modal" isOpen={isOpen}>
 
