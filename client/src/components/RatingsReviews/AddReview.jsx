@@ -14,7 +14,6 @@ export default function AddReview() {
   return (
     <div id="add-review">
       <button id="add-review-btn" type="button" onClick={() => setIsOpen(true)}>Add A Review +</button>
-
       <Modal id="add-review-modal" isOpen={isOpen}>
 
         { /* Dynamic review header / title */ }
@@ -24,14 +23,17 @@ export default function AddReview() {
           { product.name }
         </div>
 
+        {/* Review Summary text input */ }
         <AddReviewText
-          name="summary"
+          name="Review Summary"
           placeholder="Example: Best purchase ever!"
           min="0"
           max="60"
         />
+
+        { /* Full Review text input */ }
         <AddReviewText
-          name="review"
+          name="Full Review"
           placeholder="Why did you like the product or not?"
           min="60"
           max="1000"
