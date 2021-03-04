@@ -76,8 +76,10 @@ function StyleSelect (props) {
           {defaultPhoto !== undefined ? <img className="defaultStyle-img" src={defaultPhoto} onClick={() => setIsOpen(!modalIsOpen)}></img> : null}
 
         <Modal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)}>
-          <img src={defaultPhoto}></img>
-          Hi?
+          <i className="leftArrow"></i>
+
+          <i className="rightArrow"></i>
+          <img className="expanded-img" src={defaultPhoto}></img>
         </Modal>
 
       <div id="Style-Select">

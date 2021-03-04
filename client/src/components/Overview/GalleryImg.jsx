@@ -52,9 +52,9 @@ function GalleryImg(props) {
   }
 
   return (
-    <div>
-      <button onClick={() => changeBackwardLeft()}> Left </button>
-      <button onClick={changeForwardRight.bind(this)}> Right </button>
+    <div id="default-thumbnails">
+      <i className='leftArrow' onClick={() => changeBackwardLeft()}> </i>
+      <i className='rightArrow' onClick={changeForwardRight.bind(this)}> </i>
       {Object.keys(props.default).length > 0 ? defaultThumbModel(props.default.photos).map((item, index) => (
         <div key={index}>
         {item.map((defItem, index) => (
