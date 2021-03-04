@@ -30,7 +30,7 @@ const controllersRR = {
 
   // Get review meta data by product id
   getReviewMeta: (req, res) => {
-    axios.get(`${config.url}/?product_id=${req.params.product_id}`, config.headers)
+    axios.get(`${config.url}/meta/?product_id=${req.params.product_id}`, config.headers)
       .then((resp) => res.status(200).send(resp.data))
       .catch((err) => res.status(400).send(err));
   },
