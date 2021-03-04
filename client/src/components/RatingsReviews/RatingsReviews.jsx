@@ -39,10 +39,10 @@ export default function RatingsReviews() {
     <div className="ratings-reviews">
       {/* <h3>Ratings & Reviews</h3>
       { /* Rating Breakdown */ }
-      <RatingBreakdown allReviews={allReviews} numReviews={numReviews} />
+      {/* <RatingBreakdown allReviews={allReviews} numReviews={numReviews} /> */}
 
       { /* Proudct Breakdown */ }
-      {/* <ProductBreakdown /> */}
+      <ProductBreakdown />
 
       { /* Sorting dropdown */ }
       {/* <div id="sortby">

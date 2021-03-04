@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
 import Modal from 'react-modal';
 
-// Components
-import AddReviewText from './AddReviewText.jsx';
-
 // Contexts
 import { UserContext } from '../UserContext.jsx';
+
+// Components
+import AddReviewText from './AddReviewText.jsx';
+import AddReviewRadio from './AddReviewRadio.jsx';
 
 export default function AddReview() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,6 +39,9 @@ export default function AddReview() {
           min="60"
           max="1000"
         />
+
+        { /* Radio Buttons */ }
+        <AddReviewRadio name="hello" options={['yo', 'hi']} />
 
         <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>Close</button>
       </Modal>
