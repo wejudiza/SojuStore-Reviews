@@ -9,6 +9,7 @@ export default function QnA(){
   const [loaded, setLoaded] = useState(false);
   const [modalState, setModal] = useState(false);
   const [newQuestion, setNewQuestion] = useState('');
+  const [search, setSearch] = useState('');
   questions.sort((a, b) => a.helpfulness > b.helpfulness ? -1 : 1)
 
   useEffect(() => {
@@ -16,6 +17,10 @@ export default function QnA(){
       .then((results) => setQuestions(results.data.results))
       .catch((err) => console.error(err));
   }, []);
+
+  useEffect(() => {
+    console.log(search)
+  }, [search]);
 
   const showMoreQuestions = () => {
     setQuestionsToShow(questions.length)
@@ -31,14 +36,24 @@ export default function QnA(){
     setNewQuestion(e.target.value)
   }
 
+  const updateSearch = (e) => {
+    setSearch(e.target.value)
+  }
+
+  let filteredQuestion = questions.filter(
+    (question) => {
+      return question.question_body.toLowerCase().indexOf(search) !== -1;
+    }
+  )
+
   if (loaded === false) {
     return (
       <div>
         <div>
-          <input type="text" className="search-bar" placeholder="Search Questions" />
+          <input type="text" className="search-bar" placeholder="Search Questions" value={search} onChange={updateSearch}/>
         </div>
         <div>
-        {questions.slice(0, questionsToShow).map((question, index) => {
+        {filteredQuestion.slice(0, questionsToShow).map((question, index) => {
           return (
           <div key={index}>
             <Question question={question}/>
@@ -51,6 +66,10 @@ export default function QnA(){
             <h2>
               Question
             </h2>
+              <input placeholder="Username"></input>
+              <br></br>
+              <input placeholder="Email"></input>
+              <br></br>
             <p>
               <textarea placeholder="Your Question" onChange={captureText}>
               </textarea>
@@ -65,10 +84,10 @@ export default function QnA(){
     return (
       <div>
         <div>
-          <input type="text" className="search-bar" placeholder="Search Questions" />
+        <input type="text" className="search-bar" placeholder="Search Questions" value={search} onChange={updateSearch}/>
         </div>
         <div>
-        {questions.slice(0, questionsToShow).map((question, index) => {
+        {filteredQuestion.slice(0, questionsToShow).map((question, index) => {
           return (
           <div key={index}>
             <Question question={question}/>
@@ -81,6 +100,10 @@ export default function QnA(){
             <h2>
               Question
             </h2>
+              <input placeholder="Username"></input>
+              <br></br>
+              <input placeholder="Email"></input>
+              <br></br>
             <p>
               <textarea placeholder="Your Question" onChange={captureText}>
               </textarea>

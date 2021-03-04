@@ -8,7 +8,6 @@ export default function Question({question, index}) {
   });
 
   array.sort((a, b) => a.helpfulness > b.helpfulness ? -1 : 1 )
-  {console.log(array)}
 
   const [answersToShow, setAnswersToShow] = useState(2);
   const [loaded, setLoaded] = useState(false);
@@ -16,6 +15,7 @@ export default function Question({question, index}) {
   const [answer, setAnswer] = useState('');
   const [helpfulness, setHelpfulness] = useState(question.question_helpfulness)
   const [clicked, setClicked] = useState(false);
+  const [search, setSearch] = useState('');
 
   const showMoreAnswers = () => {
     setAnswersToShow(question.answers.length)
@@ -34,14 +34,21 @@ export default function Question({question, index}) {
     setLoaded(false)
   }
 
-  const filterAnswer = () => {
-
-  }
-
   const captureText = (e) => {
     setAnswer(e.target.value)
-    console.log(answer)
   }
+
+  const updateSearch = (e) => {
+    setSearch(e.target.value)
+  }
+
+  let filteredAnswer = array.filter(
+    (answer) => {
+      return answer.body.toLowerCase().indexOf(search) !== -1;
+    }
+  )
+
+  {console.log(array)}
 
   if (loaded === false) {
     return (
@@ -49,6 +56,7 @@ export default function Question({question, index}) {
         <h4>
         Q: {question.question_body}
         </h4>
+        <input type="text" className="search-bar" placeholder="Search Answers" value={search} onChange={updateSearch}></input>
           <div>
             <div className="question-helpfulness">
             Helpful? <u onClick={helpful}>Yes</u> ({helpfulness}) | <u onClick={()=>{setModal(true)}}>
@@ -56,8 +64,12 @@ export default function Question({question, index}) {
             </div>
             <Modal isOpen={modalState} onRequestClose={()=>{setModal(false)}} appElement={document.getElementById('app')}>
               <h3>
-                Answer
+                Add Answer
               </h3>
+              <input placeholder="Username"></input>
+              <br></br>
+              <input placeholder="Email"></input>
+              <br></br>
               <p>
                 <textarea placeholder="Your Answer Here" onChange={captureText}>
                 </textarea>
@@ -65,7 +77,7 @@ export default function Question({question, index}) {
               <button>Submit</button>
             <button onClick={()=>setModal(false)}>Close</button>
           </Modal>
-          {array.slice(0,answersToShow).map((answer, index) =>
+          {filteredAnswer.slice(0,answersToShow).map((answer, index) =>
           <div key={index} >
               <Answer answer={answer}/>
           </div>
@@ -80,6 +92,7 @@ export default function Question({question, index}) {
         <h4>
         Q: {question.question_body}
         </h4>
+        <input type="text" className="search-bar" placeholder="Search Answers" value={search} onChange={updateSearch}></input>
          <div>
            <div className="question-helpfulness">
            Helpful? <u onClick={helpful}>Yes</u> ({helpfulness}) | <u onClick={()=>{setModal(true)}}>
@@ -87,8 +100,12 @@ export default function Question({question, index}) {
             </div>
             <Modal isOpen={modalState} onRequestClose={()=>{setModal(false)}} appElement={document.getElementById('app')}>
               <h3>
-                Answer
+                Add Answer
               </h3>
+              <input placeholder="Username"></input>
+              <br></br>
+              <input placeholder="Email"></input>
+              <br></br>
               <p>
                 <textarea placeholder="Your Answer Here" onChange={captureText}>
                 </textarea>
@@ -96,7 +113,7 @@ export default function Question({question, index}) {
               <button>Submit</button>
             <button onClick={()=>setModal(false)}>Close</button>
           </Modal>
-          {array.slice(0,answersToShow).map((answer, index) =>
+          {filteredAnswer.slice(0,answersToShow).map((answer, index) =>
           <div key={index} >
               <Answer answer={answer}/>
           </div>

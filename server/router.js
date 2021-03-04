@@ -59,6 +59,7 @@ router
 
 router
   .route('/qa/questions/:product_id')
-  .get(controller.getQnA);
+  .get(controller.getQnA)
+  .post(controller.postQuestion);
 
 module.exports = router;

@@ -27,6 +27,8 @@ const controller = {
       else res.status(200).send(results);
     });
   },
+
+  //retrieve questions from productId
   getQnA: (req, res) => {
     getQnA.getQnA(req, (err, data) => {
       if (err) {
@@ -35,6 +37,17 @@ const controller = {
         res.status(200).send(data);
       }
     });
+  },
+
+  //post new question
+  postQuestion: (req, res) => {
+    getQnA.postQuestion(req, (err, data) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(data);
+      }
+    })
   },
   // retrieve all products in the cart
   getAllCart: (req, res) => {
