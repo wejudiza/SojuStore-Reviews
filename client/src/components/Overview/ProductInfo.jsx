@@ -102,6 +102,7 @@ function ProductInfo(props) {
     } else {
       option.push({ value: '-', label: '-' })
     }
+
     return option
   }
 
@@ -113,7 +114,7 @@ function ProductInfo(props) {
     <div>
       <div>
         { size.length > 0 ? <Select value={[{ value: userSize[0], label: userSize[0] }]} options={sizeOptions()} onChange={handleChangeSize.bind(this)} blurInputOnSelect menuIsOpen={menu} onFocus={() => { if (!menu) setMenu(!menu)}}/> : null}
-        <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} />
+        <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} isDisabled={userQuantity[0] === 'OUT OF STOCK' || userQuantity[0] === '-' ? true : false } />
       </div>
       <div>
         {outOfStock ? null : <button onClick={handleClickCartButton.bind(this)}>Add to Cart</button>}

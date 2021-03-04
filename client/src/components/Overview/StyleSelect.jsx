@@ -82,7 +82,7 @@ function StyleSelect (props) {
       ))}
       {defaultStyle.sale_price === null ? <div> $ {defaultStyle.original_price} </div> : <div> <b style={{color:'red'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
       <ProductInfo default={defaultStyle} />
-      <GalleryImg default={defaultStyle} defaultPhoto={defaultPhoto} setDefaultPhoto={setDefaultPhoto} />
+      <GalleryImg default={defaultStyle} setDefaultPhoto={setDefaultPhoto} />
     </div>
     </div>
   )
