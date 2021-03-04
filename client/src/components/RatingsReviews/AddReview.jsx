@@ -24,7 +24,18 @@ export default function AddReview() {
           { product.name }
         </div>
 
-        <AddReviewText />
+        <AddReviewText
+          name="summary"
+          placeholder="Example: Best purchase ever!"
+          min="0"
+          max="60"
+        />
+        <AddReviewText
+          name="review"
+          placeholder="Why did you like the product or not?"
+          min="60"
+          max="1000"
+        />
 
         <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>Close</button>
       </Modal>
