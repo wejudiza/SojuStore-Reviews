@@ -9,6 +9,7 @@ class OutfitList extends React.Component {
       outfitList: []
     };
     this.addToOutfit = this.addToOutfit.bind(this);
+    this.removeProduct = this.removeProduct.bind(this);
   }
 
 
@@ -28,6 +29,14 @@ class OutfitList extends React.Component {
     }
   }
 
+  removeProduct(product) {
+    this.setState({
+      outfitList: this.state.outfitList.filter((item) => {
+        item.id !== product.id
+      })
+    })
+  }
+
 
   render() {
     return (
@@ -40,7 +49,7 @@ class OutfitList extends React.Component {
             this.state.outfitList.map((outfit, index) => {
               return (
                 <div className="outfit-card" key={index}>
-                  <OutfitCard outfit={outfit} mainProduct={this.props.mainProduct}/>
+                  <OutfitCard outfit={outfit} mainProduct={this.props.mainProduct} removeProduct={this.removeProduct}/>
                 </div>
               )
             }): null

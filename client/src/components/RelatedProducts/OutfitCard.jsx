@@ -15,7 +15,6 @@ class OutfitCard extends React.Component {
       thumbnail_url: '',
     }
     this.getInfo = this.getInfo.bind(this);
-    this.removeProduct = this.removeProduct.bind(this);
   }
 
   componentDidMount() {
@@ -39,15 +38,12 @@ class OutfitCard extends React.Component {
       })
   }
 
-  removeProduct(e) {
-    console.log(e.target.value)
-  }
 
   render() {
     return (
       <div>
-        <i className="far fa-times-circle fa-2x btn" onClick={this.removeProduct} value="test"></i>
-        <img src={this.state.thumbnail_url}></img>
+        <i className="far fa-times-circle fa-2x btn" onClick={this.props.removeProduct}></i>
+        <img src={this.state.thumbnail_url} name="test"></img>
         <div className="category">
             {this.state.category}
           </div>

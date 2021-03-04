@@ -1,3 +1,5 @@
+
+/**** RLEATED PRODUCTS SECTION ****/
 .related-card,
 .add-card,
 .outfit-card {
@@ -82,10 +84,16 @@
   cursor: pointer;
 }
 
+.add-card .btn:hover {
+  color: grey;
+}
+
 .add-card .add {
   position: absolute;
   left: 5%;
 }
+
+/* ********************** */
 
 #defaultDescription {
   display: flex;
