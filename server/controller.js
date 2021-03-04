@@ -49,6 +49,16 @@ const controller = {
       }
     })
   },
+  //post new answer
+  postAnswer: (req, res) => {
+    getQnA.postAnswer(req, (err, data) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(data);
+      }
+    })
+  },
   // retrieve all products in the cart
   getAllCart: (req, res) => {
     getProd.cart.getCart((err, results) => {

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Answer from './Answers.jsx';
 import Modal from 'react-modal';
+import axios from 'axios';
 
 export default function Question({question, index}) {
   var array = Object.keys(question.answers).map(key => {
@@ -16,6 +17,9 @@ export default function Question({question, index}) {
   const [helpfulness, setHelpfulness] = useState(question.question_helpfulness)
   const [clicked, setClicked] = useState(false);
   const [search, setSearch] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [photos, setPhotos] = useState([]);
 
   const showMoreAnswers = () => {
     setAnswersToShow(question.answers.length)
@@ -36,6 +40,8 @@ export default function Question({question, index}) {
 
   const captureText = (e) => {
     setAnswer(e.target.value)
+    setEmail(e.target.value)
+    setUsername(e.target.value)
   }
 
   const updateSearch = (e) => {
@@ -48,7 +54,19 @@ export default function Question({question, index}) {
     }
   )
 
-  {console.log(array)}
+  const submitAnswer = () => {
+    axios.post(`/api/qa/questions/94996/answers`)
+    .then((results) => {
+      console.log('clicked')
+    })
+    .catch((err) => {
+      res.send(err).console.error(err)
+    })
+  }
+
+  {console.log(answer)}
+  {console.log(email)}
+  {console.log(username)}
 
   if (loaded === false) {
     return (
@@ -66,15 +84,15 @@ export default function Question({question, index}) {
               <h3>
                 Add Answer
               </h3>
-              <input placeholder="Username"></input>
+              <input placeholder="Username" onChange={captureText}></input>
               <br></br>
-              <input placeholder="Email"></input>
+              <input placeholder="Email" onChange={captureText}></input>
               <br></br>
               <p>
                 <textarea placeholder="Your Answer Here" onChange={captureText}>
                 </textarea>
               </p>
-              <button>Submit</button>
+              <button onSubmit={submitAnswer}>Submit</button>
             <button onClick={()=>setModal(false)}>Close</button>
           </Modal>
           {filteredAnswer.slice(0,answersToShow).map((answer, index) =>
@@ -102,9 +120,9 @@ export default function Question({question, index}) {
               <h3>
                 Add Answer
               </h3>
-              <input placeholder="Username"></input>
+              <input placeholder="Username" onChange={captureText}></input>
               <br></br>
-              <input placeholder="Email"></input>
+              <input placeholder="Email" onChange={captureText}></input>
               <br></br>
               <p>
                 <textarea placeholder="Your Answer Here" onChange={captureText}>

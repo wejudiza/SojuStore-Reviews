@@ -62,4 +62,8 @@ router
   .get(controller.getQnA)
   .post(controller.postQuestion);
 
+router
+  .route('/qa/questions/:question_id/answers')
+  .post(controller.postAnswer);
+
 module.exports = router;
