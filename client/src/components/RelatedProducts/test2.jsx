@@ -96,3 +96,7 @@ class RelatedProducts extends React.Component {
     );
   }
 }
+
+
+
+<i class="far fa-times-circle btn"></i>
