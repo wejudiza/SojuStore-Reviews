@@ -1,6 +1,9 @@
 import React, { useState, useContext } from 'react';
 import Modal from 'react-modal';
 
+// Components
+import AddReviewText from './AddReviewText.jsx';
+
 // Contexts
 import { UserContext } from '../UserContext.jsx';
 
@@ -21,7 +24,7 @@ export default function AddReview() {
           { product.name }
         </div>
 
-
+        <AddReviewText />
 
         <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>Close</button>
       </Modal>
