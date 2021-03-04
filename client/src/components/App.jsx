@@ -33,9 +33,9 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <UserContext.Provider value={this.state.data}>
-          <Product />
-          <RelatedProductsList />
+        {/* <UserContext.Provider value={this.state.data}> */}
+          {/* <Product /> */}
+          {/* <RelatedProductsList /> */}
 
           {/* --- Ratings & Reviews --- */}
           <div id="ratings-reviews">
@@ -44,10 +44,10 @@ export default class App extends Component {
             {/* <ReviewTile /> */}
             <div id="questions">
               <h3>Questions</h3>
-            {/* <QnA /> */}
+            <QnA />
             </div>
           </div>
-      </UserContext.Provider>
+      {/* </UserContext.Provider> */}
       </div>
 
     );
