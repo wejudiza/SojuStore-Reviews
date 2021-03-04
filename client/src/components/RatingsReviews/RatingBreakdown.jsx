@@ -49,20 +49,28 @@ export default function RatingBreakdown({ allReviews, numReviews }) {
     <div id="RatingBreakdown">
       { numReviews === 0 ? null : (
         <div>
+
+          { /* Combined rating score + star component */ }
           <div id="avg-rating">
             <h1>{ wa.toFixed(1) }</h1>
             INSERT STAR COMPONENT ***
           </div>
+          <br />
+
           { /* Recommended % */ }
           <div id="%-recommend">
             {percentage}
             % of reviews recommend this product
           </div>
           <br />
+
           { /* Rating breakdown bars */ }
-          { Object.keys(reviewDist).map(key => <RatingBreakdownBar rating={key} dist={reviewDist[key]} />) }
+          { Object.keys(reviewDist).map((key) => (
+            <RatingBreakdownBar key={key} rating={key} dist={reviewDist[key]} />
+          )) }
+
         </div>
-        ) }
+      ) }
     </div>
   );
 }
