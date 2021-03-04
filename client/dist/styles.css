@@ -1,29 +1,102 @@
-.related-products-container {
+
+/**** RLEATED PRODUCTS SECTION ****/
+.related-card,
+.add-card,
+.outfit-card {
   position: relative;
-  width: 19%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 250px;
+  max-height: 300px;
+  min-width: 250px;
+  min-height: 300px;
+  text-align: left;
+  font-family: arial;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  margin-right: 10px;
+  overflow: auto;
 }
 
-.container img {
+.add-card {
+  background: linear-gradient(to bottom right, #ffffff 23%, #d6d6d6 100%);
+}
+
+.price {
+  color: grey;
+  font-size: 15px;
+}
+
+.category {
+  margin-bottom: 8px;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.category,
+.name,
+.price,
+.stars {
+  margin-left: 5px;
+  margin-bottom: 15px;
+}
+
+.table {
   width: 100%;
-  height: auto;
 }
 
-.related-products-container .btn {
+.related-card img {
+  width: 100%;
+}
+.related-card img:hover {
+  cursor: pointer;
+}
+
+.related-card .btn {
   position: absolute;
-  top: 5%;
-  left: 93%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color: #555;
-  color: white;
+  left: 90%;
+  margin-top: 2%;
+  background-color: inherit;
+  color: black;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
 }
 
-.related-products-container .btn:hover {
-  background-color: black;
+.related-card .btn:hover {
+  color: yellow;
 }
+
+.outfit-card .btn {
+  position: absolute;
+  left: 80%;
+  margin-top: 5%;
+  background-color: inherit;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.outfit-card .btn:hover {
+  color: white;
+}
+
+
+.add-card .btn {
+  position: absolute;
+  left: 40%;
+  margin-top: 52%;
+  cursor: pointer;
+}
+
+.add-card .btn:hover {
+  color: grey;
+}
+
+.add-card .add {
+  position: absolute;
+  left: 5%;
+}
+
+/* ********************** */
 
 #defaultDescription {
   display: flex;
