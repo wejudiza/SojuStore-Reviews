@@ -24,15 +24,14 @@ export default function AddReview() {
           { product.name }
         </div>
 
-        {/* Review Summary text input */ }
+        {/* Text Input: Review Summary */ }
         <AddReviewText
           name="Review Summary"
           placeholder="Example: Best purchase ever!"
           min="0"
           max="60"
         />
-
-        { /* Full Review text input */ }
+        { /* Text Input: Full Review */ }
         <AddReviewText
           name="Full Review"
           placeholder="Why did you like the product or not?"
@@ -40,8 +39,72 @@ export default function AddReview() {
           max="1000"
         />
 
-        { /* Radio Buttons */ }
-        <AddReviewRadio name="hello" options={['yo', 'hi']} />
+        { /* Radio Buttons: Size */ }
+        <AddReviewRadio
+          name="Size"
+          options={[
+            'A Size Too Small',
+            '1/2 A Size Too Small',
+            'Perfect',
+            '1/2 A Size Too Big',
+            'A Szie Too Big'
+          ]}
+        />
+        { /* Radio Buttons: Width */ }
+        <AddReviewRadio
+          name="Width"
+          options={[
+            'Too Narrow',
+            'Slightly Narrow',
+            'Perfect',
+            'Too Wide',
+            'Slightly Wide',
+          ]}
+        />
+        { /* Radio Buttons: Length */ }
+        <AddReviewRadio
+          name="Length"
+          options={[
+            'Runs Short',
+            'Runs Slightly Short',
+            'Perfect',
+            'Runs Slightly Long',
+            'Runs Long',
+          ]}
+        />
+        { /* Radio Buttons: Fit */ }
+        <AddReviewRadio
+          name="Fit"
+          options={[
+            'Runs Tight',
+            'Runs Slightly Tight',
+            'Perfect',
+            'Runs Slightly Long',
+            'Runs Long',
+          ]}
+        />
+        { /* Radio Buttons: Comfort */ }
+        <AddReviewRadio
+          name="Comfort"
+          options={[
+            'Uncomfortable',
+            'Slightly Uncomfortable',
+            'Ok',
+            'Comfortable',
+            'Perfect',
+          ]}
+        />
+        { /* Radio Buttons: Quality */ }
+        <AddReviewRadio
+          name="Quality"
+          options={[
+            'Poor',
+            'Below Average',
+            'What I Expected',
+            'Pretty Great',
+            'Perfect',
+          ]}
+        />
 
         <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>Close</button>
       </Modal>
