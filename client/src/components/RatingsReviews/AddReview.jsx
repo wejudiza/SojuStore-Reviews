@@ -18,7 +18,7 @@ export default function AddReview() {
     <div id="add-review">
 
       { /* Rating Stars Demo */ }
-      <RatingStars rating="3.14" color="red" size="50px" />
+      <RatingStars rating="3.46" color="#f8ce0b" size="50px" />
       <br />
       <br />
 
