@@ -13,22 +13,28 @@ class OutfitCard extends React.Component {
       original_price: '',
       sale_price: '',
       thumbnail_url: '',
+      product: {}
     }
     this.getInfo = this.getInfo.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.getInfo();
+    this.getStyles()
   }
 
   getInfo() {
-    console.log(this.props)
     this.setState({
-      id: this.props.outfit.id,
-      category: this.props.outfit.category,
-      name: this.props.outfit.name
+      id: this.props.outfitItem.id,
+      category: this.props.outfitItem.category,
+      name: this.props.outfitItem.name,
+      product: this.props.outfitItem
     })
-    axios.get(`/api/styles/${this.props.mainProduct.id}`)
+  }
+
+  getStyles() {
+    axios.get(`/api/styles/${this.props.outfitItem.id}`)
       .then((response) => {
         this.setState({
           thumbnail_url: response.data.results[0].photos[0].thumbnail_url,
@@ -38,11 +44,16 @@ class OutfitCard extends React.Component {
       })
   }
 
+  handleClick() {
+    this.props.removeProduct(this.props.outfitItem)
+    this.getInfo()
+  }
+
 
   render() {
     return (
       <div>
-        <i className="far fa-times-circle fa-2x btn" onClick={this.props.removeProduct}></i>
+        <i className="far fa-times-circle fa-2x btn" onClick={this.handleClick}></i>
         <img src={this.state.thumbnail_url} name="test"></img>
         <div className="category">
             {this.state.category}

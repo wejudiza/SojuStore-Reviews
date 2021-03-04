@@ -47,6 +47,9 @@
 .related-card img {
   width: 100%;
 }
+.related-card img:hover {
+  cursor: pointer;
+}
 
 .related-card .btn {
   position: absolute;

@@ -14,27 +14,22 @@ class OutfitList extends React.Component {
 
 
   addToOutfit() {
-    if (this.state.outfitList.length === 0) {
+    const isFound = this.state.outfitList.find((outfit) => (
+      outfit.id === this.props.mainProduct.id
+    ))
+    if (isFound === undefined) {
       this.setState({
         outfitList: this.state.outfitList.concat(this.props.mainProduct)
-      })
-    } else {
-      this.state.outfitList.forEach((outfit) => {
-        if (outfit.id !== this.props.mainProduct.id) {
-          this.setState({
-            outfitList: this.state.outfitList.concat(this.props.mainProduct)
-          })
-        }
       })
     }
   }
 
   removeProduct(product) {
     this.setState({
-      outfitList: this.state.outfitList.filter((item) => {
-        item.id !== product.id
-      })
-    })
+      outfitList: this.state.outfitList.filter((outfitItem) => (
+        product.id !== outfitItem.id
+      ))
+    }, () => console.log(this.state.outfitList))
   }
 
 
@@ -42,14 +37,14 @@ class OutfitList extends React.Component {
     return (
       <div style={{display: 'flex', flexDirection: 'row'}}>
         <div className="add-card">
-          <h3 className="add">Add to Outfit</h3>
+          <h4 className="add">Add to Outfit</h4>
           <i className="fas fa-plus fa-3x btn" onClick={this.addToOutfit}></i>
           </div>
           {this.state.outfitList.length > 0 ?
-            this.state.outfitList.map((outfit, index) => {
+            this.state.outfitList.map((outfitItem, index) => {
               return (
                 <div className="outfit-card" key={index}>
-                  <OutfitCard outfit={outfit} mainProduct={this.props.mainProduct} removeProduct={this.removeProduct}/>
+                  <OutfitCard outfitItem={outfitItem} mainProduct={this.props.mainProduct} removeProduct={this.removeProduct}/>
                 </div>
               )
             }): null

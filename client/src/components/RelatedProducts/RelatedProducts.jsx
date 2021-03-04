@@ -31,6 +31,7 @@ class RelatedProducts extends React.Component {
       thumbnail_url: '',
       features: [],
       mainFeatures: [],
+      product: {}
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.getInfo = this.getInfo.bind(this);
@@ -41,15 +42,15 @@ class RelatedProducts extends React.Component {
   }
 
 
-  getInfo(id) {
-    // console.log(this.props.mainProduct)
+  getInfo() {
     axios.get(`api/product_id/${this.props.productId}`)
       .then((response) => {
         this.setState({
           id: response.data.id,
           name: response.data.name,
           category:response.data.category,
-          features: response.data.features
+          features: response.data.features,
+          product: response.data
         })
       })
     axios.get(`api/styles/${this.props.productId}`)
@@ -77,7 +78,7 @@ class RelatedProducts extends React.Component {
     return (
       <div className="related-card" >
         <i className="far fa-star btn" onClick={this.toggleModal}></i>
-          <img src={this.state.thumbnail_url}></img>
+          <img src={this.state.thumbnail_url} onClick={() => this.props.updateCurrentProduct(this.state.product)}></img>
           <div>
             {/* MODAL WITH TABLE */}
             <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.toggleModal} ariaHideApp={false} style={customStyles}>
@@ -124,7 +125,7 @@ class RelatedProducts extends React.Component {
                     )
                   } else {
                     return (
-                      <tr>
+                      <tr key={index}>
                         <td><Checkmark size="small"/></td>
                         <td>{feature.feature}</td>
                         <td></td>
