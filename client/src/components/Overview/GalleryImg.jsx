@@ -37,10 +37,6 @@ function GalleryImg(props) {
         ))}
         </div>
       )) : null }
-{/*
-      props.default.photos.map((item, index) => (
-        <img className="default-thumbnail" key={index} src={item.thumbnail_url} onClick={() => handleClickImg(item.url)}></img>
-      )) : null } */}
     </div>
   )
 }
