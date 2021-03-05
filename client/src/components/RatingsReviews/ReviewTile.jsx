@@ -1,25 +1,14 @@
 import React, { useState } from 'react';
-import dt from 'moment';
 
-// Import Helper Functions
-import convertDate from './convertDate.js';
-
-// Import components
+// Subcomponents
 import RatingStars from './RatingStars.jsx';
 import ReviewTileHelpful from './ReviewTileHelpful.jsx';
 
+// Helper Functions
+import convertDate from './convertDate.js';
+
 // Renders a single review tile that contains all necessary info + interactions
-export default function ReviewTile(props) {
-  const { review, helpful } = props;
-
-  // Function to convert DT format to desired string format
-  const convertDate = (date) => {
-    const pattern = /\d{4}-\d{2}-\d{2}/;
-    const oldDate = date.match(pattern)[0];
-    const newDate = dt(oldDate, "YYYY-MM-DD").format("MMMM DD, YYYY");
-    return newDate;
-  };
-
+export default function ReviewTile({ review, helpful }) {
   return (
     <div className="review-tile">
       <div className="review-tile-header">
