@@ -1,6 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import OutfitCard from './OutfitCard.jsx';
+import Carousel from "react-elastic-carousel";
+
+
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2 },
+  { width: 768, itemsToShow: 3 },
+  { width: 1200, itemsToShow: 4 },
+];
 
 class OutfitList extends React.Component {
   constructor(props) {
@@ -36,6 +45,7 @@ class OutfitList extends React.Component {
   render() {
     return (
       <div style={{display: 'flex', flexDirection: 'row'}}>
+        <Carousel breakPoints={breakPoints}>
         <div className="add-card">
           <h4 className="add">Add to Outfit</h4>
           <i className="fas fa-plus fa-3x btn" onClick={this.addToOutfit}></i>
@@ -49,6 +59,7 @@ class OutfitList extends React.Component {
               )
             }): null
           }
+          </Carousel>
       </div>
     );
   }

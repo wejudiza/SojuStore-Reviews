@@ -1,7 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import RelatedProducts from './RelatedProducts.jsx';
-import OutfitList from './OutfitList.jsx'
+import OutfitList from './OutfitList.jsx';
+import Carousel from "react-elastic-carousel";
+
+
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2 },
+  { width: 768, itemsToShow: 3 },
+  { width: 1200, itemsToShow: 4 },
+];
 
 class RelatedProductsList extends React.Component {
   constructor(props) {
@@ -28,14 +37,17 @@ class RelatedProductsList extends React.Component {
       .catch((err) => console.log(err));
   };
 
+
   render() {
     return (
       <div style={{display: 'flex', flexDirection: 'row'}}>
+        <Carousel breakPoints={breakPoints}>
         {this.state.products.map((id, index) => {
           return (
             <RelatedProducts productId={id} key={index} mainProduct={this.props.mainProduct} updateCurrentProduct={this.props.updateCurrentProduct}/>
           )
         })}
+        </Carousel>
       </div>
     );
   }

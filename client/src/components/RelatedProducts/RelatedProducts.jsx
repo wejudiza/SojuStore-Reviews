@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import ReactStars from 'react-stars';
-import { Checkmark } from 'react-checkmark'
+import { Checkmark } from 'react-checkmark';
 
 
 // Styles for Modal
@@ -16,6 +16,13 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 };
+
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2 },
+  { width: 768, itemsToShow: 3 },
+  { width: 1200, itemsToShow: 4 },
+];
 
 
 class RelatedProducts extends React.Component {
@@ -77,10 +84,31 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div className="related-card" >
-        <i className="far fa-star btn" onClick={this.toggleModal}></i>
-          <img src={this.state.thumbnail_url} onClick={() => this.props.updateCurrentProduct(this.state.product)}></img>
+          {/* *********RELATED PRODUCTS CARD********** */}
           <div>
-            {/* MODAL WITH TABLE */}
+            <i className="far fa-star btn" onClick={this.toggleModal}></i>
+            <img src={this.state.thumbnail_url} onClick={() => this.props.updateCurrentProduct(this.state.product)}></img>
+          </div>
+
+          <div className="category">
+            {this.state.category}
+          </div>
+
+          <div className="name">
+            {this.state.name}
+          </div>
+
+          <div className="price">
+            {'$ ' + this.state.original_price}
+          </div>
+
+          <div className="stars">
+          <ReactStars
+            count={5}
+            size={20}
+            color2={'#ffd700'} />
+          </div>
+            {/* **********MODAL WITH TABLE********** */}
             <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.toggleModal} ariaHideApp={false} style={customStyles}>
               <h5>Comparing</h5>
               <table className="table">
@@ -137,23 +165,6 @@ class RelatedProducts extends React.Component {
                 </tbody>
             </table>
           </Modal>
-          {/* RELATED PRODUCTS CARD */}
-          </div>
-          <div className="category">
-            {this.state.category}
-          </div>
-          <div className="name">
-            {this.state.name}
-          </div>
-          <div className="price">
-            {'$ ' + this.state.original_price}
-          </div>
-          <div className="stars">
-          <ReactStars
-            count={5}
-            size={20}
-            color2={'#ffd700'} />
-          </div>
         </div>
     );
   }
