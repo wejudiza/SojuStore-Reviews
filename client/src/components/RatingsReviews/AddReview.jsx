@@ -14,6 +14,7 @@ import AddReviewImgUpload from './AddReviewImgUpload.jsx';
 import useText from './useText.js';
 import useCount from './useCount.js';
 import useOption from './useOption.js';
+import useUpload from './useUpload.js';
 
 export default function AddReview() {
   let product = useContext(UserContext);
@@ -42,6 +43,8 @@ export default function AddReview() {
     recommend: 0, // recommended
   });
 
+  const [uploads, setUploads] = useUpload([]);
+
   return (
     <div id="add-review">
       <button id="add-review-btn" type="button" onClick={() => setIsOpen(true)}>Add A Review +</button>
@@ -55,7 +58,15 @@ export default function AddReview() {
             { product.name }
           </h2>
         </div>
+
         {JSON.stringify(option)}
+        <br />
+        {JSON.stringify(count)}
+        <br />
+        {JSON.stringify(text)}
+        <br />
+        {JSON.stringify(uploads)}
+
         { /* -------------------
           User Input Text Fields
           ------------------- */ }
@@ -193,7 +204,7 @@ export default function AddReview() {
         />
 
         { /* User Image Upload */ }
-        <AddReviewImgUpload />
+        <AddReviewImgUpload uploads={uploads} setUploads={setUploads} />
 
         <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>Close</button>
         <button id="submit-review-btn" type="button" onClick={() => setIsOpen(false)}>Submit</button>
