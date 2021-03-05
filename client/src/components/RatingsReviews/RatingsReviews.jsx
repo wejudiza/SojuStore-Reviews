@@ -1,8 +1,11 @@
-/* ---------------------------------
-Library Dependencies + Subcomponents
---------------------------------- */
-import React, { useState, useEffect } from 'react';
+/* -------------------------------
+Libraries, Contexts, Subcomponents
+------------------------------- */
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+
+// Product Context
+import { UserContext } from '../UserContext.jsx';
 
 // Subcomponents
 import AddReview from './AddReview.jsx';
@@ -11,28 +14,27 @@ import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 
-// Dummy product_id
-const product_id = 16500;
-
 /* ------------------------
 Ratings & Reviews Component
 ------------------------ */
 export default function RatingsReviews() {
-  const [allReviews, setAllReviews] = useState([]);
+  const productID = useContext(UserContext).id;
   const [loaded, setLoaded] = useState(false);
-  const [numReviews, setNumReviews] = useState(0);
-  const [sortBy, setSort] = useState('relevant');
   const [showCount, setShowCount] = useState(2);
-
+  const [sortBy, setSort] = useState('relevant');
+  const [numReviews, setNumReviews] = useState(0);
+  const [allReviews, setAllReviews] = useState([]);
 
   // Get all reviews from Atellier API for specific product + assign to state once loaded
   useEffect(() => {
-    axios.get(`/api/reviews/${product_id}`)
-      .then((resp) => setAllReviews(resp.data.results))
-      .then(() => setLoaded(true))
-      .then(() => setNumReviews(allReviews.length))
-      .catch((err) => console.log(err));
-  }, [loaded]);
+    if (productID) {
+      axios.get(`/api/reviews/${productID}`)
+        .then((resp) => setAllReviews(resp.data.results))
+        .then(() => setLoaded(true))
+        .then(() => setNumReviews(allReviews.length))
+        .catch((err) => console.log(err));
+    }
+  }, [productID]);
 
   // On change event handler to set sortBy state (<SortSelect />)
   const handleSelect = (e) => setSort(e.target.value);
@@ -63,6 +65,7 @@ export default function RatingsReviews() {
       </div>
 
       { /* Add A Review + Modal */ }
+      { /* <AddReview /> */ }
     </div>
   );
 }
