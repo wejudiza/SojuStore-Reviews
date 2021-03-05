@@ -56,7 +56,6 @@ Rating Stars Styles
 ---------------- */
 .rating-stars-outer {
   position: relative;
-  font-size: 100px;
   display: inline-flex;
 }
 
@@ -72,12 +71,12 @@ Rating Stars Styles
 .rating-stars-outer::before {
   content: "\f005 \f005 \f005 \f005 \f005";
   font-family: "Font Awesome 5 Free";
-  font-weight: 1000;
+  font-weight: 800;
   color: lightgrey
 }
 
 .rating-stars-inner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
   font-family: "Font Awesome 5 Free";
-  font-weight: 1000;
+  font-weight: 800;
 }
