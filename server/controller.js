@@ -27,9 +27,31 @@ const controller = {
       else res.status(200).send(results);
     });
   },
+  // retrieve all products in the cart
+  getAllCart: (req, res) => {
+    getProd.cart.getCart((err, results) => {
+      if (err) res.status(404).send(err);
+      else res.status(200).send(results);
+    });
+  },
+  // adds a product to the cart
+  addCart: (req, res) => {
+    getProd.cart.addToCart(req, (err, results) => {
+      if (err) res.status(404).send(err);
+      else res.status(201).send(results);
+    });
+  },
+  // post interactions
+  postInteraction: (req, res) => {
+    getProd.interaction.postInter(req, (err, results) => {
+      if (err) res.status(404).send(err);
+      else res.status(201).send(results);
+    });
+  },
+/****************QnA methods ***************************/
 
-  //retrieve questions from productId
-  getQnA: (req, res) => {
+   //retrieve questions from productId
+   getQnA: (req, res) => {
     getQnA.getQnA(req, (err, data) => {
       if (err) {
         res.status(400).send(err);
@@ -52,6 +74,7 @@ const controller = {
   //post new answer
   postAnswer: (req, res) => {
     getQnA.postAnswer(req, (err, data) => {
+      console.log(req.body)
       if (err) {
         res.status(400).send(err);
       } else {
@@ -59,25 +82,54 @@ const controller = {
       }
     })
   },
-  // retrieve all products in the cart
-  getAllCart: (req, res) => {
-    getProd.cart.getCart((err, results) => {
-      if (err) res.status(404).send(err);
-      else res.status(200).send(results);
+  //get new Answer
+  getAnswers: (req, res) => {
+    getQnA.getAnswers(req, (err, data) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(data);
+      }
     });
   },
-  // adds a product to the cart
-  addCart: (req, res) => {
-    getProd.cart.addToCart(req, (err, results) => {
-      if (err) res.status(404).send(err);
-      else res.status(201).send(results);
+  reportAnswer: (req, res) => {
+    getQnA.reportAnswer(req, (err, data) => {
+      console.log(req.body)
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(204).send('NO CONTENT');
+      }
     });
   },
-  // post interactions
-  postInteraction: (req, res) => {
-    getProd.interaction.postInter(req, (err, results) => {
-      if (err) res.status(404).send(err);
-      else res.status(201).send(results);
+  reportQuestion: (req, res) => {
+    getQnA.reportQuestion(req, (err, data) => {
+      console.log(req.body)
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(204).send('NO CONTENT');
+      }
+    });
+  },
+  voteHelpful: (req, res) => {
+    getQnA.voteHelpful(req, (err, data) => {
+      console.log(req.body)
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(204).send('NO CONTENT');
+      }
+    });
+  },
+  voteQuestionHelpful: (req, res) => {
+    getQnA.voteQuestionHelpful(req, (err, data) => {
+      console.log(req.body)
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(204).send('NO CONTENT');
+      }
     });
   },
 };

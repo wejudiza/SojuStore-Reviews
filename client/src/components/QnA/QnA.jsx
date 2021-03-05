@@ -18,10 +18,6 @@ export default function QnA(){
       .catch((err) => console.error(err));
   }, []);
 
-  useEffect(() => {
-    console.log(search)
-  }, [search]);
-
   const showMoreQuestions = () => {
     setQuestionsToShow(questions.length)
     setLoaded(true)
@@ -90,11 +86,11 @@ export default function QnA(){
         {filteredQuestion.slice(0, questionsToShow).map((question, index) => {
           return (
           <div key={index}>
-            <Question question={question}/>
+            <Question question={question} render={useEffect}/>
           </div>
           )}
         )}
-          <button onClick={showLess}>Load Less Questions</button>
+          <button onClick={showLess}>Collapse Questions</button>
           <button onClick={()=>{setModal(true)}}>Add A Question +</button>
           <Modal isOpen={modalState} onRequestClose={()=>{setModal(false)}} appElement={document.getElementById('app')}>
             <h2>
