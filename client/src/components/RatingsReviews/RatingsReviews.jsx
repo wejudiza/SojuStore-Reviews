@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 /* -------------------------------
 Libraries, Contexts, Subcomponents
 ------------------------------- */
@@ -29,7 +30,7 @@ const sortReviews = (reviews, method) => {
       const bScore = Math.exp(b.helpfulness / 10) * (Math.exp(dt().diff(dt(b.date), 'days') * (1 / 1000)));
       return (aScore < bScore ? 1 : -1);
     },
-  }
+  };
 
   return reviews.sort(methods[method]);
 };
@@ -49,7 +50,7 @@ export default function RatingsReviews() {
   useEffect(() => {
     if (productID) {
       axios.get(`/api/reviews/${productID}`)
-        .then((resp) => setAllReviews(resp.data.results))
+        .then((resp) => setAllReviews(sortReviews(resp.data.results, 'relevant')))
         .then(() => setLoaded(true))
         .then(() => setNumReviews(allReviews.length))
         .catch((err) => console.log(err));
@@ -73,18 +74,19 @@ export default function RatingsReviews() {
 
       { /* Sorting dropdown */ }
       <div id="sortby">
-        { `${numReviews} reviews sorted by ` }
+        { `${numReviews} reviews sorted by` }
         <SortSelect handleSelect={handleSelect} />
       </div>
+      <br />
 
       {/* Individual Review Tiles */}
       <div>
         { allReviews.slice(0, showCount).map((review) => (
         <ReviewTile review={review} key={review.id} />
         )) }
-        {/* { allReviews.slice(0, showCount).map((review) => (
+        { allReviews.slice(0, showCount).map((review) => (
         console.log(review)
-        )) } */}
+        )) }
         <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>
           { showCount === numReviews || showCount === numReviews + 1 ? null : 'Show More' }
         </button>

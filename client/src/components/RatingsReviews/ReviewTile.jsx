@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 // Subcomponents
 import RatingStars from './RatingStars.jsx';
+import ReviewTilePhoto from './ReviewTilePhoto.jsx';
 import ReviewTileHelpful from './ReviewTileHelpful.jsx';
 
 // Helper Functions
@@ -24,18 +25,11 @@ export default function ReviewTile({ review, helpful }) {
       <div className="review-section">
         <h3 className="review-summary">{review.summary}</h3>
         <div className="review-body">
-          <p className="review-body-text">{review.body}</p>
+          <p className="review-body">{review.body}</p>
           <br />
-          <div className="review-body-photos">
-            { review.photos.map((photo) => (
-              <img
-                className="photo-thumbnail"
-                src={photo.url}
-                alt={photo.id}
-                key={photo.id}
-              />
-            )) }
-          </div>
+          { review.photos.map((photo) => (
+            <ReviewTilePhoto photo={photo} />
+          )) }
         </div>
       </div>
       <br />

@@ -1,3 +1,10 @@
+/* --------------------
+Rating & Reviews Styles
+-------------------- */
+#sortby {
+  display: flex;
+}
+
 /* ----------
 Shared Styles
 ---------- */
