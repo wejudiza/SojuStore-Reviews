@@ -33,12 +33,12 @@ const initialText = {
 };
 
 const initialOptions = {
-  14: 0, // Size
-  15: 0, // Width
-  16: 0, // Comfort
-  17: 0, // Quality
-  18: 0, // Length
-  19: 0, // Fit
+  53841: 0, // Fit
+  53842: 0, // Length
+  53843: 0, // Comfort
+  53844: 0, // Quality
+  53845: 0, // Size
+  53846: 0, // Width
   recommend: 0, // recommended
 };
 
@@ -127,7 +127,7 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Size */ }
         <AddReviewRadio
-          id="14"
+          id="53845"
           header="Size"
           setOption={setOption}
           options={[
@@ -141,7 +141,7 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Width */ }
         <AddReviewRadio
-          id="15"
+          id="53846"
           header="Width"
           setOption={setOption}
           options={[
@@ -154,7 +154,7 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Length */ }
         <AddReviewRadio
-          id="18"
+          id="53842"
           header="Length"
           setOption={setOption}
           options={[
@@ -167,7 +167,7 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Fit */ }
         <AddReviewRadio
-          id="19"
+          id="53841"
           header="Fit"
           setOption={setOption}
           options={[
@@ -180,7 +180,7 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Comfort */ }
         <AddReviewRadio
-          id="16"
+          id="53843"
           header="Comfort"
           setOption={setOption}
           options={[
@@ -193,7 +193,7 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Quality */ }
         <AddReviewRadio
-          id="17"
+          id="53844"
           header="Quality"
           setOption={setOption}
           options={[

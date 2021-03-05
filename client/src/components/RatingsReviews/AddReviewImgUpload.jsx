@@ -7,7 +7,6 @@ export default function ImgUpload({ urls, setUrls }) {
       { urls.map((url, i) => <img className="upload-thumbnail" src={url} alt={i} />) }
       <br />
       <input type="file" accept="image/*" multiple="true" onChange={setUrls} />
-
     </>
   );
 }

@@ -7,7 +7,7 @@ export default function useOption(initialValues) {
     values,
     (e) => setValues({
       ...values,
-      [e.target.name]: e.target.value
+      [e.target.name]: Number(e.target.value)
     })
   ]
 }
