@@ -13,6 +13,7 @@ import AddReviewImgUpload from './AddReviewImgUpload.jsx';
 // Custom Hooks
 import useText from './useText.js';
 import useCount from './useCount.js';
+import useOption from './useOption.js';
 
 export default function AddReview() {
   let product = useContext(UserContext);
@@ -31,6 +32,16 @@ export default function AddReview() {
     "Full Review": '',
   });
 
+  const [option, setOption] = useOption({
+    14: 0, // Size
+    15: 0, // Width
+    16: 0, // Comfort
+    17: 0, // Quality
+    18: 0, // Length
+    19: 0, // Fit
+    recommend: 0, // recommended
+  });
+
   return (
     <div id="add-review">
       <button id="add-review-btn" type="button" onClick={() => setIsOpen(true)}>Add A Review +</button>
@@ -44,8 +55,7 @@ export default function AddReview() {
             { product.name }
           </h2>
         </div>
-        {JSON.stringify(count)}
-        {JSON.stringify(text)}
+        {JSON.stringify(option)}
         { /* -------------------
           User Input Text Fields
           ------------------- */ }
@@ -97,12 +107,16 @@ export default function AddReview() {
           ------------------- */ }
         { /* Radio Buttons: Product Recommendation */ }
         <AddReviewRadio
-          name="Do You Recommend This Product?"
+          id="recommend"
+          header="Do You Recommend This Product?"
+          setOption={setOption}
           options={['Yes', 'No']}
         />
         { /* Radio Buttons: Size */ }
         <AddReviewRadio
-          name="Size"
+          id="14"
+          header="Size"
+          setOption={setOption}
           options={[
             'A Size Too Small',
             '1/2 A Size Too Small',
@@ -110,10 +124,13 @@ export default function AddReview() {
             '1/2 A Size Too Big',
             'A Szie Too Big'
           ]}
+
         />
         { /* Radio Buttons: Width */ }
         <AddReviewRadio
-          name="Width"
+          id="15"
+          header="Width"
+          setOption={setOption}
           options={[
             'Too Narrow',
             'Slightly Narrow',
@@ -124,7 +141,9 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Length */ }
         <AddReviewRadio
-          name="Length"
+          id="18"
+          header="Length"
+          setOption={setOption}
           options={[
             'Runs Short',
             'Runs Slightly Short',
@@ -135,7 +154,9 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Fit */ }
         <AddReviewRadio
-          name="Fit"
+          id="19"
+          header="Fit"
+          setOption={setOption}
           options={[
             'Runs Tight',
             'Runs Slightly Tight',
@@ -146,7 +167,9 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Comfort */ }
         <AddReviewRadio
-          name="Comfort"
+          id="16"
+          header="Comfort"
+          setOption={setOption}
           options={[
             'Uncomfortable',
             'Slightly Uncomfortable',
@@ -157,7 +180,9 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Quality */ }
         <AddReviewRadio
-          name="Quality"
+          id="17"
+          header="Quality"
+          setOption={setOption}
           options={[
             'Poor',
             'Below Average',
