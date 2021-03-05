@@ -9,6 +9,11 @@ function Default_Expanded (props) {
   const [currExpInd, setCurrExpInd] = useState(0)
   const [height, setHeight] = useState()
   const [weight, setWeight] = useState()
+  const [initialSize, setInitialSize] = useState(React.createRef())
+
+  useEffect(() => {
+    setHeight(initialSize.current.height)
+  }, [])
 
   useEffect(() => {
     setCurrExpInd(props.index)
@@ -80,7 +85,7 @@ function Default_Expanded (props) {
   }
 
   return (
-    <div>
+    <div> {console.log(height)}
       {props.default !== undefined ? <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img> : null }
 
       {expandThumb.length > 0 ? <Modal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)}>
