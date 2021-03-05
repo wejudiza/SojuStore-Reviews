@@ -10,6 +10,7 @@ const getTrianglePosition = (rating) => (((rating - 1) * 25));
 const getLabels = (characteristic) => {
   const labels = {
     Fit: ['Runs tight', 'Perfect', 'Runs long'],
+    Size: ['Too small', 'Perfect', 'Too big'],
     Width: ['Too narrow', 'Perfect', 'Too wide'],
     Length: ['Runs short', 'Perfect', 'Runs long'],
     Comfort: ['Unfortable', null, 'Perfect'],
