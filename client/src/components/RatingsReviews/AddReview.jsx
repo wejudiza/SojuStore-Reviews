@@ -16,16 +16,8 @@ export default function AddReview() {
 
   return (
     <div id="add-review">
-
-      { /* Rating Stars Demo */ }
-      <h1>ex rating: 3.46</h1>
-      <br />
-      <RatingStars rating="3.46" color="#f8ce0b" size="50px" />
-      <br />
-      <br />
-
       <button id="add-review-btn" type="button" onClick={() => setIsOpen(true)}>Add A Review +</button>
-      <Modal id="add-review-modal" isOpen={isOpen}>
+      <Modal id="add-review-modal" isOpen={isOpen} onRequestClose={() => setIsOpen(false)}>
 
         { /* Dynamic add review title */ }
         <div id="add-review-header">
@@ -36,6 +28,25 @@ export default function AddReview() {
           </h2>
         </div>
 
+        { /* -------------------
+          User Input Text Fields
+          ------------------- */ }
+        {/* Text Input: Username */ }
+        <AddReviewText
+          name="Username"
+          placeholder="Example: jackson11!"
+          min="0"
+          max="60"
+        />
+        <div className="add-review-privacy">For privacy reasons, do not use your full name or email address</div>
+        {/* Text Input: Email */ }
+        <AddReviewText
+          name="Email"
+          placeholder="Example: jackson11@email.com!"
+          min="0"
+          max="60"
+        />
+        <div className="add-review-privacy">For authentication reasons, you will not be emailed</div>
         {/* Text Input: Review Summary */ }
         <AddReviewText
           name="Review Summary"
@@ -51,6 +62,14 @@ export default function AddReview() {
           max="1000"
         />
 
+        { /* -------------------
+          User Input Radio Forms
+          ------------------- */ }
+        { /* Radio Buttons: Product Recommendation */ }
+        <AddReviewRadio
+          name="Do You Recommend This Product?"
+          options={['Yes', 'No']}
+        />
         { /* Radio Buttons: Size */ }
         <AddReviewRadio
           name="Size"
@@ -122,6 +141,7 @@ export default function AddReview() {
         <AddReviewImgUpload />
 
         <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>Close</button>
+        <button id="submit-review-btn" type="button" onClick={() => setIsOpen(false)}>Submit</button>
       </Modal>
 
     </div>

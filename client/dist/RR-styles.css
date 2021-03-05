@@ -17,10 +17,6 @@ Rating Breakdown Styles
 /* ---------------------
 Product Breakdown Styles
 --------------------- */
-/* .product-breakdown {
-  display: grid;
-} */
-
 /* Product Bar */
 .product-bar-container {
   display: flex;
