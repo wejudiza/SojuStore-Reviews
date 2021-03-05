@@ -50,3 +50,33 @@ Product Breakdown Styles
   padding-right: 1%;
   padding-top: .25%;
 }
+
+/* ----------------
+Rating Stars Styles
+---------------- */
+.rating-stars-outer {
+  position: relative;
+  display: inline-flex;
+}
+
+.rating-stars-inner {
+  white-space: nowrap;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 0;
+}
+
+.rating-stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 800;
+  color: lightgrey
+}
+
+.rating-stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 800;
+}
