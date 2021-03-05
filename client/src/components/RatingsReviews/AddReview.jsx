@@ -11,17 +11,24 @@ import AddReviewRadio from './AddReviewRadio.jsx';
 import AddReviewImgUpload from './AddReviewImgUpload.jsx';
 
 // Custom Hooks
+import useText from './useText.js';
 import useCount from './useCount.js';
-import useTextInput from './useTextInput.jsx';
 
 export default function AddReview() {
   let product = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [formText, handleTextChange] = useCount({
+  const [count, setCount] = useCount({
     "Username": 0,
     "Email": 0,
     "Review Summary": 0,
     "Full Review": 0,
+  });
+
+  const [text, setText] = useText({
+    "Username": '',
+    "Email": '',
+    "Review Summary": '',
+    "Full Review": '',
   });
 
   return (
@@ -37,7 +44,8 @@ export default function AddReview() {
             { product.name }
           </h2>
         </div>
-
+        {JSON.stringify(count)}
+        {JSON.stringify(text)}
         { /* -------------------
           User Input Text Fields
           ------------------- */ }
@@ -47,8 +55,9 @@ export default function AddReview() {
           placeholder="Example: jackson11!"
           min="0"
           max="60"
-          charCount={formText.Username}
-          handleTextChange={handleTextChange}
+          setText={setText}
+          setCount={setCount}
+          charCount={count.Username}
         />
         <div className="add-review-privacy">For privacy reasons, do not use your full name or email address</div>
         {/* Text Input: Email */ }
@@ -57,8 +66,9 @@ export default function AddReview() {
           placeholder="Example: jackson11@email.com!"
           min="0"
           max="60"
-          charCount={formText.Email}
-          handleTextChange={handleTextChange}
+          setText={setText}
+          setCount={setCount}
+          charCount={count.Email}
         />
         <div className="add-review-privacy">For authentication reasons, you will not be emailed</div>
         {/* Text Input: Review Summary */ }
@@ -67,8 +77,9 @@ export default function AddReview() {
           placeholder="Example: Best purchase ever!"
           min="0"
           max="60"
-          charCount={formText['Review Summary']}
-          handleTextChange={handleTextChange}
+          setText={setText}
+          setCount={setCount}
+          charCount={count['Review Summary']}
         />
         { /* Text Input: Full Review */ }
         <AddReviewText
@@ -76,8 +87,9 @@ export default function AddReview() {
           placeholder="Why did you like the product or not?"
           min="60"
           max="1000"
-          charCount={formText['Full Review']}
-          handleTextChange={handleTextChange}
+          setText={setText}
+          setCount={setCount}
+          charCount={count['Full Review']}
         />
 
         { /* -------------------

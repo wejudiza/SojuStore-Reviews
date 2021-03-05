@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default function AddReviewText(props) {
-  const { name, placeholder, min, max, charCount, handleTextChange } = props;
+  const { name, placeholder, min, max, setText, setCount, charCount } = props;
   // const [charCount, setCharCount] = useState(0);
   // const countChars = (e) => setCharCount(e.target.value.length);
 
@@ -16,7 +16,10 @@ export default function AddReviewText(props) {
         name={name}
         type="text"
         placeholder={placeholder}
-        onChange={handleTextChange}
+        onChange={(e) => {
+          setText(e);
+          setCount(e);
+        }}
       />
     </div>
   );
