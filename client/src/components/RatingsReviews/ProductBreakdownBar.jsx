@@ -25,8 +25,8 @@ ProductBreakdownBar Component
 -------------------------- */
 // Dyanmic breakdown bar subcomponent that given a characteristic & value
 export default function ProductBreakdownBar({ characteristic, value }) {
-  let markerPosition = `${getTrianglePosition(value)}%`;
-  let labels = getLabels(characteristic);
+  const markerPosition = `${getTrianglePosition(value)}%`;
+  const labels = getLabels(characteristic);
 
   return (
     <div className="product-breakdown">
@@ -46,8 +46,7 @@ export default function ProductBreakdownBar({ characteristic, value }) {
         <div className="product-bar-label1" style={{ textAlign: 'center', textJustify: 'center' }}>{ labels[1] }</div>
         <div className="product-bar-label2" style={{ textAlign: 'right' }}>{ labels[2] }</div>
       </div>
-
-    <br />
+      <br />
     </div>
   );
 }
