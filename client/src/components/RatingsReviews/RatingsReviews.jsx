@@ -14,11 +14,13 @@ import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 
+const productID = '16500';
+
 /* ------------------------
 Ratings & Reviews Component
 ------------------------ */
 export default function RatingsReviews() {
-  const productID = useContext(UserContext).id;
+  // const productID = useContext(UserContext).id;
   const [loaded, setLoaded] = useState(false);
   const [showCount, setShowCount] = useState(2);
   const [sortBy, setSort] = useState('relevant');

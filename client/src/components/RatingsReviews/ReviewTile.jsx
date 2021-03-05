@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import dt from 'moment';
 
 // Import components
+import RatingStars from './RatingStars.jsx';
 import ReviewTileHelpful from './ReviewTileHelpful.jsx';
 
 // Renders a single review tile that contains all necessary info + interactions
 export default function ReviewTile(props) {
-  const [review, setReview] = useState(props.review);
-  const [helpfullness, setHelpfullness] = useState(props.review.helpfullness);
+  const { review, helpful } = props;
+  // const [review, setReview] = useState(props.review);
+  // const [helpfullness, setHelpfullness] = useState(props.review.helpfullness);
 
   // Function to convert DT format to desired string format
   const convertDate = (date) => {
@@ -19,12 +21,15 @@ export default function ReviewTile(props) {
 
   return (
     <div className="review-tile">
-      { /* Raiting Component */ }
-      <div className="star-rating">STAR COMPONENT GOES HERE *****</div>
-      { /* Username + date submitted */ }
-      <div className="review-userinfo">
-        { `${review.reviewer_name} ${convertDate(review.date)}` }
+      <div className="review-tile-header">
+        { /* Raiting Component */ }
+        <RatingStars rating={review.rating} size="25px" color="#f8ce0b" />
+        { /* Username + date submitted */ }
+        <div className="review-userinfo">
+          { `${review.reviewer_name} ${convertDate(review.date)}` }
+        </div>
       </div>
+
       { /* Review Summary + Body + Thumbnails */ }
       <div className="review-section">
         <h3 className="review-summary">{review.summary}</h3>

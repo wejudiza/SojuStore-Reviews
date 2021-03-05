@@ -7,6 +7,18 @@ Shared Styles
   border-radius: 75px;
 }
 
+/* ---------------
+Rating Tile Styles
+--------------- */
+.review-tile-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.review-tile-header .review-userinfo {
+  text-align: right;
+}
+
 
 /* --------------------
 Rating Breakdown Styles
