@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 export default function AddReviewText(props) {
-  const { name, placeholder, min, max } = props;
-  const [charCount, setCharCount] = useState(0);
-  const countChars = (e) => setCharCount(e.target.value.length);
+  const { name, placeholder, min, max, charCount, handleTextChange } = props;
+  // const [charCount, setCharCount] = useState(0);
+  // const countChars = (e) => setCharCount(e.target.value.length);
 
   return (
     <div className="review-text">
@@ -13,9 +13,10 @@ export default function AddReviewText(props) {
 
       <textarea
         className={name}
+        name={name}
         type="text"
         placeholder={placeholder}
-        onChange={countChars}
+        onChange={handleTextChange}
       />
     </div>
   );
