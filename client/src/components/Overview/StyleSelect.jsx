@@ -3,8 +3,7 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import GalleryImg from './GalleryImg.jsx';
-
-Modal.setAppElement('#app')
+import Default_Expanded from './Def-Expanded.jsx';
 
 function StyleSelect (props) {
   const [styles, setStyles] = useState([])
@@ -12,7 +11,8 @@ function StyleSelect (props) {
   const [defaultStyle, setDefaultStyle] = useState({})
   const [thumbClick, setThumbClick] = useState(false)
   const [defaultPhoto, setDefaultPhoto] = useState('')
-  const [modalIsOpen, setIsOpen] = useState(false)
+  // index is for photo index
+  const [indexPhoto, setIndexPhoto] = useState(0);
 
   useEffect(() => {
     if (props.data !== undefined) {
@@ -69,19 +69,12 @@ function StyleSelect (props) {
     setDefaultPhoto(newPhoto)
     var newStyle = styles[ind]
     setDefaultStyle(newStyle);
+    setIndexPhoto(0)
   }
 
   return (
     <div id ="whole-Style">
-          {defaultPhoto !== undefined ? <img className="defaultStyle-img" src={defaultPhoto} onClick={() => setIsOpen(!modalIsOpen)}></img> : null}
-
-        <Modal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)}>
-          <i className="leftArrow"></i>
-
-          <i className="rightArrow"></i>
-          <img className="expanded-img" src={defaultPhoto}></img>
-        </Modal>
-
+      <Default_Expanded default={defaultPhoto} setDefault={setDefaultPhoto} style={defaultStyle} index={indexPhoto} setIndex={setIndexPhoto} />
       <div id="Style-Select">
         <div className="category-rating">
          Color:<em>{defaultStyle.name}</em>
@@ -95,7 +88,7 @@ function StyleSelect (props) {
       ))}
       {defaultStyle.sale_price === null ? <div> $ {defaultStyle.original_price} </div> : <div> <b style={{color:'red'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
       <ProductInfo default={defaultStyle} />
-      <GalleryImg default={defaultStyle} setDefaultPhoto={setDefaultPhoto} />
+      <GalleryImg default={defaultStyle} setDefaultPhoto={setDefaultPhoto} setIndex={setIndexPhoto} index={indexPhoto} />
     </div>
     </div>
   )

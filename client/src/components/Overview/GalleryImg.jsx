@@ -1,74 +1,128 @@
 import React, { useState, useEffect } from 'react';
-import ScrollMenu from 'react-horizontal-scrolling-menu';
 import axios from 'axios';
 
 function GalleryImg(props) {
-  const [indexPhoto, setIndexPhoto] = useState(0);
+  const [maxThumbIndex, setMaxThumbIndex] = useState([]);
+  const [thumbIndex, setThumbIndex] = useState(0);
+
+  useEffect(() => {
+    if (Object.keys(props.default).length > 0) {
+      setMaxThumbIndex(props.default.photos.length)
+    }
+  }, [props.default])
 
   const handleClickImg = (url, ind) => {
     props.setDefaultPhoto(url)
-    setIndexPhoto(ind)
-  }
-
-  const defaultThumbModel = (array) => {
-    var result = [];
-    var finalRes = [];
-
-    for (var i = 0; i < array.length; i++) {
-      if (result.length === 7) {
-        finalRes.push(result)
-        result = [];
-        result.push(array[i])
-      } else if (i === array.length - 1) {
-        array[i].index = i
-        result.push(array[i]);
-        finalRes.push(result);
-      } else {
-        array[i].index = i
-        result.push(array[i])
-      }
-    }
-
-    return finalRes
+    props.setIndex(ind)
   }
 
   const changeForwardRight = () => {
-    if (indexPhoto === props.default.photos.length - 1) {
-      setIndexPhoto(0);
-      props.setDefaultPhoto(props.default.photos[indexPhoto].url)
+    if (props.index === props.default.photos.length - 1) {
+      props.setIndex(0);
+      props.setDefaultPhoto(props.default.photos[props.index].url)
     } else {
-      setIndexPhoto(indexPhoto + 1)
-      props.setDefaultPhoto(props.default.photos[indexPhoto].url)
+      props.setIndex(props.index + 1)
+      props.setDefaultPhoto(props.default.photos[props.index].url)
     }
   }
 
   const changeBackwardLeft = () => {
-    if (indexPhoto === 0) {
-      setIndexPhoto(props.default.photos.length-1)
-      props.setDefaultPhoto(props.default.photos[indexPhoto].url)
+    if (props.index === 0) {
+      return
     } else {
-      setIndexPhoto(indexPhoto - 1)
-      props.setDefaultPhoto(props.default.photos[indexPhoto].url)
+      let newInd = props.index - 1
+      props.setIndex(newInd)
+      props.setDefaultPhoto(props.default.photos[props.index].url)
     }
   }
 
-  const slideThumbnailClick = () => {
-    let child =
+  const changeLeftThumb = () => {
+    if (thumbIndex === 0 ) {
+      return
+    } else {
+      let newInd = thumbIndex - 1
+      setThumbIndex(newInd)
+    }
+  }
+
+  const changeRightThumb = () => {
+    if (thumbIndex === props.default.photos.length - 1 ) {
+      return
+    } else {
+      let newInd = thumbIndex + 1
+      setThumbIndex(newInd)
+    }
+  }
+
+  const between = (target, min, max) => {
+    return target >= min && target <= max;
+  }
+
+  const checkThumbnailImg = (ind) => {
+    if (thumbIndex + 6 < props.default.photos.length) {
+      return (between(ind, thumbIndex, thumbIndex + 6))
+    } else {
+      var diff = Math.abs(thumbIndex + 7 - props.default.photos.length)
+      if (between(ind, thumbIndex - diff, props.default.photos.length)) {
+        return true
+      } else {
+        return (between(ind, thumbIndex, props.default.photos.length))
+      }
+    }
   }
 
   return (
     <div id="default-thumbnails">
-      <i className='leftArrow' onClick={() => changeBackwardLeft()}> </i>
-      <i className='rightArrow' onClick={changeForwardRight.bind(this)}> </i>
-      {Object.keys(props.default).length > 0 ? defaultThumbModel(props.default.photos).map((item, index) => (
-        <div key={index}>
-        {item.map((defItem, index) => (
-          <img className="default-thumbnail" key={index} src={defItem.thumbnail_url} onClick={() => handleClickImg(defItem.url, defItem.index)}></img>
-        ))}
-        </div>
-      )) : null }
+      <i className={props.index > 0 ? 'leftArrow' : 'leftArrow-hidden'} onClick={() => changeBackwardLeft()}> </i>
+      <i className={props.index === maxThumbIndex - 1 ? 'rightArrow-hidden' : 'rightArrow' } onClick={() => changeForwardRight()}> </i>
+      <div>
+      {Object.keys(props.default).length > 0 ?
+          props.default.photos.map((item, index) => (
+              <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} ></img>
+        ))
+      : null}
+      </div>
+      <i className={thumbIndex > 0 ? 'leftArrow' : 'leftArrow-hidden'} onClick={() => changeLeftThumb()}>  </i>
+      <i className={thumbIndex === maxThumbIndex ? 'rightArrow-hidden' : 'rightArrow'} onClick={() => changeRightThumb()}> </i>
     </div>
   )
 }
 
 export default GalleryImg
+
+
+// {Object.keys(props.default).length > 0 ? defaultThumbModel(props.default.photos).map((item, index) => (
+//   <div key={index}>
+//   {item.map((defItem, index) => (
+//     <img className="default-thumbnail" key={index} src={defItem.thumbnail_url} onClick={() => handleClickImg(defItem.url, defItem.index)}></img>
+//   ))}
+//   </div>
+// )) : null }
+
+
+// <ScrollMenu arrowLeft={<div style={{ fontSize: "30px" }}>{" < "}</div>} arrowRight={<div style={{ fontSize: "30px" }}>{" > "}</div>} data={props.default.photos.map((item, index) => (
+//   <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, item.index)} ></img>
+// ))} />
+
+// const defaultThumbModel = (array) => {
+//   var result = [];
+//   var finalRes = [];
+
+//   for (var i = 0; i < array.length; i++) {
+//     if (result.length === 7) {
+//       finalRes.push(result)
+//       result = [];
+//       array[i].index = i
+//       result.push(array[i])
+//     } else if (i === array.length - 1) {
+//       array[i].index = i
+//       result.push(array[i]);
+//       finalRes.push(result);
+//     } else {
+//       array[i].index = i
+//       result.push(array[i])
+//     }
+//   }
+
+//   return finalRes
+// }

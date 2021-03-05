@@ -103,17 +103,28 @@
   height: 60px;
 }
 
+.thumbnail-img-main {
+  border-radius: 50%;
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  border: 3px solid red;
+}
+
+.thumbnail-img-main-hidden {
+  width: 0px;
+  height: 0px;
+}
+
 .default-thumbnail {
   width: 70px;
   height: 70px;
-  flex-direction: row;
 }
 
-.default-thumbnail:nth-child(-n+7) {
-  display: table-row;
-  /* flex-direction: row; */
+.default-thumbnail-hidden {
+  width: 0px;
+  height: 0px;
 }
-
 
 .rightArrow {
   border: solid black;
