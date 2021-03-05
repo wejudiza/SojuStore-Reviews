@@ -19,7 +19,6 @@ export default function ReviewTileHelpful(props) {
 
   return (
     <div className="review-helpful">
-      { /* Helpful score always renders */}
       { `Helpful? (${props.helpfulness}) `}
       { /* Responses - conditionally render & disappear after vote */ }
       { voted ? null : (

@@ -22,6 +22,8 @@ export default function RatingsReviews() {
   const [loaded, setLoaded] = useState(false);
   const [numReviews, setNumReviews] = useState(0);
   const [sortBy, setSort] = useState('relevant');
+  const [showCount, setShowCount] = useState(2);
+
 
   // Get all reviews from Atellier API for specific product + assign to state once loaded
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function RatingsReviews() {
       {/* <RatingBreakdown allReviews={allReviews} numReviews={numReviews} /> */}
 
       { /* Proudct Breakdown */ }
-      <ProductBreakdown />
+      {/* <ProductBreakdown /> */}
 
       { /* Sorting dropdown */ }
       {/* <div id="sortby">
@@ -51,13 +53,16 @@ export default function RatingsReviews() {
       </div> */}
 
       {/* Individual Review Tiles */}
-      {/* <div>
-        { allReviews.slice(0, 2).map((review) => <ReviewTile review={review} key={review.id} />) }
-        { allReviews.slice(0, 2).map((review) => console.log(review)) }
-      </div> */}
+      <div>
+        { allReviews.slice(0, showCount).map((review) => (
+        <ReviewTile review={review} key={review.id} />
+        )) }
+        <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>
+          { showCount === numReviews || showCount === numReviews + 1 ? null : 'Show More' }
+        </button>
+      </div>
 
       { /* Add A Review + Modal */ }
-      <AddReview />
     </div>
   );
 }

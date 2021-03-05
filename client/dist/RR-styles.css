@@ -1,11 +1,12 @@
-/* --------------------
-Add Review Modal Styles
--------------------- */
-.upload-thumbnail {
+/* ----------
+Shared Styles
+---------- */
+.photo-thumbnail {
   width: 75px;
   height: 75px;
   border-radius: 75px;
 }
+
 
 /* --------------------
 Rating Breakdown Styles

@@ -32,17 +32,14 @@ export default function ReviewTile(props) {
           <p className="review-body-text">{review.body}</p>
           <br />
           <div className="review-body-photos">
-            {
-            review.photos.map((photo) => (
+            { review.photos.map((photo) => (
               <img
+                className="photo-thumbnail"
                 src={photo.url}
                 alt={photo.id}
                 key={photo.id}
-                width="75"
-                heigh="75"
               />
-            ))
-            }
+            )) }
           </div>
         </div>
       </div>
