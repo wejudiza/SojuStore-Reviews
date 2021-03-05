@@ -16,6 +16,14 @@ import ProductBreakdown from './ProductBreakdown.jsx';
 
 const productID = '16500';
 
+// const sortReviews = (reviews, method) => {
+//   methods = {
+//     'relevant': (a, b) => ,
+//     'newest': (a, b) => ,
+//     'helpful': (a, b) =>
+//   }
+// }
+
 /* ------------------------
 Ratings & Reviews Component
 ------------------------ */
@@ -51,10 +59,10 @@ export default function RatingsReviews() {
       {/* <ProductBreakdown /> */}
 
       { /* Sorting dropdown */ }
-      {/* <div id="sortby">
+      <div id="sortby">
         { `${numReviews} reviews sorted by ` }
         <SortSelect handleSelect={handleSelect} />
-      </div> */}
+      </div>
 
       {/* Individual Review Tiles */}
       <div>

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import dt from 'moment';
 
+// Import Helper Functions
+import convertDate from './convertDate.js';
+
 // Import components
 import RatingStars from './RatingStars.jsx';
 import ReviewTileHelpful from './ReviewTileHelpful.jsx';
@@ -8,8 +11,6 @@ import ReviewTileHelpful from './ReviewTileHelpful.jsx';
 // Renders a single review tile that contains all necessary info + interactions
 export default function ReviewTile(props) {
   const { review, helpful } = props;
-  // const [review, setReview] = useState(props.review);
-  // const [helpfullness, setHelpfullness] = useState(props.review.helpfullness);
 
   // Function to convert DT format to desired string format
   const convertDate = (date) => {
