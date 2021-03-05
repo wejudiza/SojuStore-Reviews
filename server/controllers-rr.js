@@ -1,18 +1,9 @@
 // Import github config
 const axios = require('axios');
+
 // Import github headers config
 const config = require('./config.js');
-
 config.url = `${config.url}/reviews`;
-
-// Helper function that dynamically stringifies params
-// getParamsQuery = params => {
-//   let queryArr = [];
-//   for (param in params) {
-//     queryArr.push(`${param}=${params[param]}`);
-//   }
-//   return `?${queryArr.join('&')}`
-// }
 
 // Controllers for Ratings & Reviews
 const controllersRR = {

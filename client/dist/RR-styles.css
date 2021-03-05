@@ -1,4 +1,13 @@
 /* --------------------
+Add Review Modal Styles
+-------------------- */
+.upload-thumbnail {
+  width: 75px;
+  height: 75px;
+  border-radius: 75px;
+}
+
+/* --------------------
 Rating Breakdown Styles
 -------------------- */
 .bar-background {

@@ -9,6 +9,7 @@ import RatingStars from './RatingStars.jsx';
 import AddReviewText from './AddReviewText.jsx';
 import AddReviewRadio from './AddReviewRadio.jsx';
 import AddReviewImgUpload from './AddReviewImgUpload.jsx';
+import AddReviewSubmit from './AddReviewSubmit.jsx';
 
 // Custom Hooks
 import useText from './useText.js';
@@ -16,34 +17,39 @@ import useCount from './useCount.js';
 import useOption from './useOption.js';
 import useUpload from './useUpload.js';
 
+// Custom Hook initial states
+const initialCount = {
+  "name": 0,
+  "email": 0,
+  "summary": 0,
+  "body": 0,
+};
+
+const initialText = {
+  "name": '',
+  "email": '',
+  "summary": '',
+  "body": '',
+};
+
+const initialOptions = {
+  14: 0, // Size
+  15: 0, // Width
+  16: 0, // Comfort
+  17: 0, // Quality
+  18: 0, // Length
+  19: 0, // Fit
+  recommend: 0, // recommended
+};
+
 export default function AddReview() {
-  let product = useContext(UserContext);
+  // Get product context + set inital state
+  const product = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [count, setCount] = useCount({
-    "Username": 0,
-    "Email": 0,
-    "Review Summary": 0,
-    "Full Review": 0,
-  });
-
-  const [text, setText] = useText({
-    "Username": '',
-    "Email": '',
-    "Review Summary": '',
-    "Full Review": '',
-  });
-
-  const [option, setOption] = useOption({
-    14: 0, // Size
-    15: 0, // Width
-    16: 0, // Comfort
-    17: 0, // Quality
-    18: 0, // Length
-    19: 0, // Fit
-    recommend: 0, // recommended
-  });
-
-  const [uploads, setUploads] = useUpload([]);
+  const [texts, setText] = useText(initialText);
+  const [counts, setCount] = useCount(initialCount);
+  const [options, setOption] = useOption(initialOptions);
+  const [urls, setUrls] = useUpload([]);
 
   return (
     <div id="add-review">
@@ -59,58 +65,54 @@ export default function AddReview() {
           </h2>
         </div>
 
-        {JSON.stringify(option)}
-        <br />
-        {JSON.stringify(count)}
-        <br />
-        {JSON.stringify(text)}
-        <br />
-        {JSON.stringify(uploads)}
-
         { /* -------------------
           User Input Text Fields
           ------------------- */ }
         {/* Text Input: Username */ }
         <AddReviewText
-          name="Username"
+          name="name"
+          header="Username"
           placeholder="Example: jackson11!"
           min="0"
           max="60"
           setText={setText}
           setCount={setCount}
-          charCount={count.Username}
+          charCount={counts.name}
         />
         <div className="add-review-privacy">For privacy reasons, do not use your full name or email address</div>
         {/* Text Input: Email */ }
         <AddReviewText
-          name="Email"
+          name="email"
+          header="Email"
           placeholder="Example: jackson11@email.com!"
           min="0"
           max="60"
           setText={setText}
           setCount={setCount}
-          charCount={count.Email}
+          charCount={counts.email}
         />
         <div className="add-review-privacy">For authentication reasons, you will not be emailed</div>
         {/* Text Input: Review Summary */ }
         <AddReviewText
-          name="Review Summary"
+          name="summary"
+          header="Review Summary"
           placeholder="Example: Best purchase ever!"
           min="0"
           max="60"
           setText={setText}
           setCount={setCount}
-          charCount={count['Review Summary']}
+          charCount={counts.summary}
         />
         { /* Text Input: Full Review */ }
         <AddReviewText
-          name="Full Review"
+          name="body"
+          header="Full Review"
           placeholder="Why did you like the product or not?"
-          min="60"
+          min="50"
           max="1000"
           setText={setText}
           setCount={setCount}
-          charCount={count['Full Review']}
+          charCount={counts.body}
         />
 
         { /* -------------------
@@ -202,12 +204,14 @@ export default function AddReview() {
             'Perfect',
           ]}
         />
+        <br />
 
-        { /* User Image Upload */ }
-        <AddReviewImgUpload uploads={uploads} setUploads={setUploads} />
-
+        { /* User Image Upload, Close Button, Submit Button */ }
+        <AddReviewImgUpload urls={urls} setUrls={setUrls} />
+        <br />
+        <AddReviewSubmit texts={texts} counts={counts} options={options} urls={urls} />
         <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>Close</button>
-        <button id="submit-review-btn" type="button" onClick={() => setIsOpen(false)}>Submit</button>
+
       </Modal>
 
     </div>
