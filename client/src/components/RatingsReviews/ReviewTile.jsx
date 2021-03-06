@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // Subcomponents
 import RatingStars from './RatingStars.jsx';
@@ -9,13 +9,13 @@ import ReviewTileHelpful from './ReviewTileHelpful.jsx';
 import convertDate from './convertDate.js';
 
 // Renders a single review tile that contains all necessary info + interactions
-export default function ReviewTile({ review, helpful }) {
+export default function ReviewTile(props) {
+  const { review, sort, setAllReviews } = props;
   return (
     <div className="review-tile">
+      { /* Star Raiting, username, date */ }
       <div className="review-tile-header">
-        { /* Raiting Component */ }
         <RatingStars rating={review.rating} size="15px" color="#f8ce0b" />
-        { /* Username + date submitted */ }
         <div className="review-userinfo">
           { `${review.reviewer_name} ${convertDate(review.date)}` }
         </div>
@@ -43,7 +43,12 @@ export default function ReviewTile({ review, helpful }) {
       </div>
       <br />
       { /* Helpful Subcomponent (ability to click yes/no + see count for vote) */ }
-      <ReviewTileHelpful id={review.id} helpfulness={review.helpfulness} />
+      <ReviewTileHelpful
+        id={review.review_id}
+        sort={sort}
+        helpfulness={review.helpfulness}
+        setAllReviews={setAllReviews}
+      />
       <br />
     </div>
   );

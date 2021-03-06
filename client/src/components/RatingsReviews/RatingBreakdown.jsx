@@ -18,31 +18,28 @@ const getRecommneded = (metadata) => {
   const { recommended } = metadata;
   const yes = Number(recommended.true);
   const no = Number(recommended.false);
-  return yes / (yes + no);
+  return yes / (yes + no) * 100;
 };
 
 export default function RatingBreakdown({ reviewMetadata }) {
   const [wa, setWA] = useState(0);
-  const [recommended, setRecommended] = useState();
+  const [recommended, setRecommended] = useState(0);
 
   useEffect(() => {
     if (reviewMetadata) {
       setWA(getWA(reviewMetadata));
       setRecommended(getRecommneded(reviewMetadata));
     }
-
-    console.log(recommended);
   }, [reviewMetadata]);
 
   return (
     <div id="rating-reakdown">
-      { JSON.stringify(reviewMetadata) }
       <div id="avg-rating">
         <h1>{ wa.toFixed(1) }</h1>
         <RatingStars rating={wa} size="25px" color="#f8ce0b" />
       </div>
       <div id="percent-recommend">
-        {/* {`${recommended.toFixed(0)} % of reviews recommend this product` */}
+        {`${recommended.toFixed(0)} % of reviews recommend this product` }
       </div>
     </div>
   );

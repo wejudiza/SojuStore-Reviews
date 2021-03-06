@@ -14,7 +14,7 @@ const controllersRR = {
 
   // Get reviews by product id
   getReview: (req, res) => {
-    axios.get(`${config.url}?product_id=${req.params.product_id}`, config.headers)
+    axios.get(`${config.url}?product_id=${req.params.product_id}&count=100`, config.headers)
       .then((resp) => res.status(200).send(resp.data))
       .catch((err) => res.status(400).send(err));
   },
