@@ -9,23 +9,52 @@ import RatingStars from './RatingStars.jsx';
 import AddReviewText from './AddReviewText.jsx';
 import AddReviewRadio from './AddReviewRadio.jsx';
 import AddReviewImgUpload from './AddReviewImgUpload.jsx';
+import AddReviewSubmit from './AddReviewSubmit.jsx';
+
+// Custom Hooks
+import useText from './useText.js';
+import useCount from './useCount.js';
+import useOption from './useOption.js';
+import useUpload from './useUpload.js';
+
+// Custom Hook initial states
+const initialCount = {
+  "name": 0,
+  "email": 0,
+  "summary": 0,
+  "body": 0,
+};
+
+const initialText = {
+  "name": '',
+  "email": '',
+  "summary": '',
+  "body": '',
+};
+
+const initialOptions = {
+  53841: 0, // Fit
+  53842: 0, // Length
+  53843: 0, // Comfort
+  53844: 0, // Quality
+  53845: 0, // Size
+  53846: 0, // Width
+  recommend: 0, // recommended
+};
 
 export default function AddReview() {
+  // Get product context + set inital state
+  const product = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
-  let product = useContext(UserContext);
+  const [texts, setText] = useText(initialText);
+  const [counts, setCount] = useCount(initialCount);
+  const [options, setOption] = useOption(initialOptions);
+  const [urls, setUrls] = useUpload([]);
 
   return (
     <div id="add-review">
-
-      { /* Rating Stars Demo */ }
-      <h1>ex rating: 3.46</h1>
-      <br />
-      <RatingStars rating="3.46" color="#f8ce0b" size="50px" />
-      <br />
-      <br />
-
       <button id="add-review-btn" type="button" onClick={() => setIsOpen(true)}>Add A Review +</button>
-      <Modal id="add-review-modal" isOpen={isOpen}>
+      <Modal id="add-review-modal" isOpen={isOpen} onRequestClose={() => setIsOpen(false)} ariaHideApp={false}>
 
         { /* Dynamic add review title */ }
         <div id="add-review-header">
@@ -36,24 +65,71 @@ export default function AddReview() {
           </h2>
         </div>
 
+        { /* -------------------
+          User Input Text Fields
+          ------------------- */ }
+        {/* Text Input: Username */ }
+        <AddReviewText
+          name="name"
+          header="Username"
+          placeholder="Example: jackson11!"
+          min="0"
+          max="60"
+          setText={setText}
+          setCount={setCount}
+          charCount={counts.name}
+        />
+        <div className="add-review-privacy">For privacy reasons, do not use your full name or email address</div>
+        {/* Text Input: Email */ }
+        <AddReviewText
+          name="email"
+          header="Email"
+          placeholder="Example: jackson11@email.com!"
+          min="0"
+          max="60"
+          setText={setText}
+          setCount={setCount}
+          charCount={counts.email}
+        />
+        <div className="add-review-privacy">For authentication reasons, you will not be emailed</div>
         {/* Text Input: Review Summary */ }
         <AddReviewText
-          name="Review Summary"
+          name="summary"
+          header="Review Summary"
           placeholder="Example: Best purchase ever!"
           min="0"
           max="60"
+          setText={setText}
+          setCount={setCount}
+          charCount={counts.summary}
         />
         { /* Text Input: Full Review */ }
         <AddReviewText
-          name="Full Review"
+          name="body"
+          header="Full Review"
           placeholder="Why did you like the product or not?"
-          min="60"
+          min="50"
           max="1000"
+          setText={setText}
+          setCount={setCount}
+          charCount={counts.body}
         />
 
+        { /* -------------------
+          User Input Radio Forms
+          ------------------- */ }
+        { /* Radio Buttons: Product Recommendation */ }
+        <AddReviewRadio
+          id="recommend"
+          header="Do You Recommend This Product?"
+          setOption={setOption}
+          options={['Yes', 'No']}
+        />
         { /* Radio Buttons: Size */ }
         <AddReviewRadio
-          name="Size"
+          id="53845"
+          header="Size"
+          setOption={setOption}
           options={[
             'A Size Too Small',
             '1/2 A Size Too Small',
@@ -61,10 +137,13 @@ export default function AddReview() {
             '1/2 A Size Too Big',
             'A Szie Too Big'
           ]}
+
         />
         { /* Radio Buttons: Width */ }
         <AddReviewRadio
-          name="Width"
+          id="53846"
+          header="Width"
+          setOption={setOption}
           options={[
             'Too Narrow',
             'Slightly Narrow',
@@ -75,7 +154,9 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Length */ }
         <AddReviewRadio
-          name="Length"
+          id="53842"
+          header="Length"
+          setOption={setOption}
           options={[
             'Runs Short',
             'Runs Slightly Short',
@@ -86,7 +167,9 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Fit */ }
         <AddReviewRadio
-          name="Fit"
+          id="53841"
+          header="Fit"
+          setOption={setOption}
           options={[
             'Runs Tight',
             'Runs Slightly Tight',
@@ -97,7 +180,9 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Comfort */ }
         <AddReviewRadio
-          name="Comfort"
+          id="53843"
+          header="Comfort"
+          setOption={setOption}
           options={[
             'Uncomfortable',
             'Slightly Uncomfortable',
@@ -108,7 +193,9 @@ export default function AddReview() {
         />
         { /* Radio Buttons: Quality */ }
         <AddReviewRadio
-          name="Quality"
+          id="53844"
+          header="Quality"
+          setOption={setOption}
           options={[
             'Poor',
             'Below Average',
@@ -117,11 +204,14 @@ export default function AddReview() {
             'Perfect',
           ]}
         />
+        <br />
 
-        { /* User Image Upload */ }
-        <AddReviewImgUpload />
-
+        { /* User Image Upload, Close Button, Submit Button */ }
+        <AddReviewImgUpload urls={urls} setUrls={setUrls} />
+        <br />
+        <AddReviewSubmit texts={texts} counts={counts} options={options} urls={urls} />
         <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>Close</button>
+
       </Modal>
 
     </div>

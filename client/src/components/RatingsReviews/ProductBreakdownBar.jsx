@@ -31,7 +31,6 @@ export default function ProductBreakdownBar({ characteristic, value }) {
   return (
     <div className="product-breakdown">
       <br />
-      score: { markerPosition }
       { /* Breakdown bar + traingle */ }
       <div className="product-bar-container">
         <div className="product-bar-background" />
@@ -39,7 +38,6 @@ export default function ProductBreakdownBar({ characteristic, value }) {
         <div className="product-bar-background" />
         <div className="triangle" style={{ left: markerPosition }} />
       </div>
-
       { /* Breakdown bar lalels */ }
       <div className="product-bar-labels">
         <div className="product-bar-label0" style={{ textAlign: 'left' }}>{ labels[0] }</div>
