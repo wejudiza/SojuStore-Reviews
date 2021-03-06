@@ -81,8 +81,8 @@ export default function RatingsReviews() {
 
       {/* Individual Review Tiles */}
       <div>
-        { allReviews.slice(0, showCount).map((review) => (
-        <ReviewTile review={review} sort={sort} setAllReviews={setAllReviews} />
+        { allReviews.slice(0, showCount).map((review, key) => (
+        <ReviewTile review={review} sort={sort} setAllReviews={setAllReviews} key={review.review_id} />
         )) }
         <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>
           { showCount === numReviews || showCount === numReviews + 1 ? null : 'Show More' }
@@ -90,7 +90,7 @@ export default function RatingsReviews() {
       </div>
 
       { /* Add A Review + Modal */ }
-      <AddReview />
+      <AddReview reviewMetadata={reviewMetadata} />
     </div>
   );
 }

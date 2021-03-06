@@ -53,7 +53,13 @@ export default function RatingBreakdown(props) {
         {`${recommended.toFixed(0)}% of reviews recommend this product` }
       </div>
       { Object.keys(ratingDist).reverse().map((key) => (
-        <RatingBreakdownBar key={key} rating={key} dist={ratingDist[key]} handleFilter={handleFilter} />
+        <RatingBreakdownBar
+          key={key}
+          rating={key}
+          dist={ratingDist[key]}
+          count={reviewMetadata.ratings[key]}
+          handleFilter={handleFilter}
+        />
       )) }
     </div>
   );

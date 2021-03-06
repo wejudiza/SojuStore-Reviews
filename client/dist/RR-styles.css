@@ -41,9 +41,10 @@ Rating Breakdown Styles
 }
 
 /* Rating Breakdown Bar */
-.breakdown-bar {
+.bar-container {
   display: flex;
 }
+
 .bar-background {
   width: 100%;
   background: lightgrey;
