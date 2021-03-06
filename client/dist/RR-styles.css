@@ -14,6 +14,17 @@ Shared Styles
   border-radius: 75px;
 }
 
+/* -----------------------
+Review Tile Helpful Styles
+----------------------- */
+.review-helpful {
+  display: flex;
+}
+
+#helpful-responses {
+  display: flex;
+}
+
 /* ---------------
 Rating Tile Styles
 --------------- */

@@ -1,20 +1,25 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
+import { UserContext } from '../UserContext.jsx';
+
 // Import components
 import ProductBreakdownBar from './ProductBreakdownBar.jsx';
 
 export default function ProductBreakdown() {
+  const productID = useContext(UserContext).id;
   const [characteristics, setCharacteristics] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
   // Get characteristics metadata
   useEffect(() => {
-    axios.get(`/api/reviews/meta/${product_id}`)
-      .then((resp) => setCharacteristics(resp.data.characteristics))
-      .then(() => setLoaded(true))
-      .catch((err) => console.log(err));
-  }, [loaded]);
+    if (productID) {
+      axios.get(`/api/reviews/meta/${productID}`)
+        .then((resp) => setCharacteristics(resp.data.characteristics))
+        .then(() => setLoaded(true))
+        .catch((err) => console.log(err));
+    }
+  }, [productID, loaded]);
 
   return (
     <div id="product-breakdown">

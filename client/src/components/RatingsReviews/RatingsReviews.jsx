@@ -50,11 +50,11 @@ export default function RatingsReviews() {
 
   return (
     <div className="ratings-reviews">
-      {/* <h3>Ratings & Reviews</h3>
+      <h3>Ratings & Reviews</h3>
       { /* Rating Breakdown */ }
       <RatingBreakdown reviewMetadata={reviewMetadata} />
       { /* Proudct Breakdown */ }
-      {/* <ProductBreakdown /> */}
+      <ProductBreakdown />
 
       { /* Sorting dropdown */ }
       <div id="sortby">

@@ -14,6 +14,14 @@ const getWA = (metadata) => {
   return wa;
 };
 
+const getDistribution = (metadata) => {
+  const dist = {};
+  const { ratings } = metadata;
+  const total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
+  Object.keys(ratings).map((key) => dist[key] = Number(ratings[key]) / total * 100);
+  return dist;
+};
+
 const getRecommneded = (metadata) => {
   const { recommended } = metadata;
   const yes = Number(recommended.true);
@@ -23,11 +31,13 @@ const getRecommneded = (metadata) => {
 
 export default function RatingBreakdown({ reviewMetadata }) {
   const [wa, setWA] = useState(0);
+  const [ratingDist, setRatingDist] = useState({});
   const [recommended, setRecommended] = useState(0);
 
   useEffect(() => {
     if (reviewMetadata) {
       setWA(getWA(reviewMetadata));
+      setRatingDist(getDistribution(reviewMetadata));
       setRecommended(getRecommneded(reviewMetadata));
     }
   }, [reviewMetadata]);
@@ -41,21 +51,9 @@ export default function RatingBreakdown({ reviewMetadata }) {
       <div id="percent-recommend">
         {`${recommended.toFixed(0)} % of reviews recommend this product` }
       </div>
+      { Object.keys(ratingDist).reverse().map((key) => (
+        <RatingBreakdownBar key={key} rating={key} dist={ratingDist[key]} />
+      )) }
     </div>
   );
 }
-
-// <div id="RatingBreakdown">
-// { numReviews === 0 ? null : (
-//   <div>
-//     { /* Combined rating score + star component */ }
-//     { /* Recommended % */ }
-//
-//     <br />
-//     { /* Rating breakdown bars */ }
-//     { Object.keys(reviewDist).map((key) => (
-//       <RatingBreakdownBar key={key} rating={key} dist={reviewDist[key]} />
-//     )) }
-//   </div>
-// ) }
-// </div>
