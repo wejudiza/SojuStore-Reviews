@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import { Magnifier } from 'react-image-magnifiers';
 
 Modal.setAppElement('#app')
 
@@ -9,11 +10,7 @@ function Default_Expanded (props) {
   const [currExpInd, setCurrExpInd] = useState(0)
   const [height, setHeight] = useState()
   const [weight, setWeight] = useState()
-  const [initialSize, setInitialSize] = useState(React.createRef())
-
-  useEffect(() => {
-    setHeight(initialSize.current.height)
-  }, [])
+  const [zoom, setZoom] = useState(false)
 
   useEffect(() => {
     setCurrExpInd(props.index)
@@ -58,8 +55,8 @@ function Default_Expanded (props) {
     if (currExpInd + 6 < props.style.photos.length) {
       return (between(ind, currExpInd, currExpInd + 6))
     } else {
-      var diff = Math.abs(currExpInd + 7 - props.style.photos.length)
-      if (between(ind, currExpInd - diff, props.style.photos.length)) {
+      var differenceMin = Math.abs(currExpInd + 7 - props.style.photos.length)
+      if (between(ind, currExpInd - differenceMin, props.style.photos.length)) {
         return true
       } else {
         return (between(ind, currExpInd, props.style.photos.length))
@@ -79,27 +76,34 @@ function Default_Expanded (props) {
     }
   }
 
-  const zoomIn = () => {
-    setHeight(photoHeight * 2.5)
-    setWidth(photoWidth * 2.5)
+  const clickThumbnail = (ind, newPhoto) => {
+    props.setIndex(ind)
+    props.setDefault(newPhoto)
   }
 
   return (
-    <div> {console.log(height)}
+    <div>
       {props.default !== undefined ? <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img> : null }
 
       {expandThumb.length > 0 ? <Modal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)}>
-        <div>
+        {zoom ? null : <div>
           <i className="leftArrow" onClick={() => clickBackward()}></i>
           {expandThumb.map((item, index) => (
-            <img key={index} className={arrangeThumb(index)} src={item.thumbnail_url} ></img>
+            <img key={index} className={arrangeThumb(index)} src={item.thumbnail_url} onClick={() => clickThumbnail(index, item.url)}></img>
           ))}
           <i className="rightArrow" onClick={() => clickForward()}></i>
-        </div>
-        <img className="expanded-img" src={expandThumb[props.index].url}></img>
+        </div> }
+
+        <Magnifier className="expanded-img" imageSrc={expandThumb[props.index].url} dragToMove={false} cursorStyleActive="crosshair" cursorStyle="crosshair" onZoomStart={() => setZoom(!zoom)} onZoomEnd={() => setZoom(!zoom)} />
+
       </Modal> : null }
     </div>
   )
 }
 
 export default Default_Expanded
+
+
+{/* <Magnifier className="expanded-img" imageSrc={expandThumb[props.index].url} dragToMove={false} cursorStyleActive="crosshair" cursorStyle="crosshair" onZoomStart={() => setZoom(!zoom)} onZoomEnd={() => setZoom(!zoom)}  /> */}
+
+{/* <img className={zoom ? "expanded-img-zoom" : "expanded-img"} src={expandThumb[props.index].url} onClick={() => setZoom(!zoom)}></img> */}
