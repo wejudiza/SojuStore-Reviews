@@ -147,7 +147,7 @@ export default function Question({question}) {
               <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
               <br></br>
               <h5>Email</h5>
-              <input id="email-input" placeholder="Email" name="email" onChange={captureText}></input>
+              <input id="email-input" placeholder="Example: jack@email.com" name="email" onChange={captureText}></input>
               <br></br>
               <h5>Your Answer</h5>
               <p>
@@ -182,10 +182,13 @@ export default function Question({question}) {
               <h3>
                 Add Answer
               </h3>
-              <input id="name-input" placeholder="Username" name="name" onChange={captureText}></input>
+              <h5>Username</h5>
+              <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
               <br></br>
-              <input id="email-input" placeholder="Email" name="email" onChange={captureText}></input>
+              <h5>Email</h5>
+              <input id="email-input" placeholder="Example: jack@email.com" name="email" onChange={captureText}></input>
               <br></br>
+              <h5>Your Answer</h5>
               <p>
                 <textarea id="body-input" placeholder="Your Answer Here" name="body" onChange={captureText}>
                 </textarea>

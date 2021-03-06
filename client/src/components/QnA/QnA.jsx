@@ -8,13 +8,24 @@ export default function QnA(){
   const [questionsToShow, setQuestionsToShow] = useState(2);
   const [loaded, setLoaded] = useState(false);
   const [modalState, setModal] = useState(false);
-  const [newQuestion, setNewQuestion] = useState('');
+  const [newQuestion, setNewQuestion] = useState({
+    body: '',
+    name: '',
+    email: '',
+    product_id: 0
+  });
   const [search, setSearch] = useState('');
   questions.sort((a, b) => a.helpfulness > b.helpfulness ? -1 : 1)
 
   useEffect(() => {
     axios.get(`/api/qa/questions/16392`)
-      .then((results) => setQuestions(results.data.results))
+      .then((results) => {
+        setQuestions(results.data.results)})
+      .then((axios.get(`/api/qa/questions/16392`)
+        .then((results) => setNewQuestion({
+          product_id: results.data.product_id
+        }))
+        ))
       .catch((err) => console.error(err));
   }, []);
 
@@ -29,11 +40,59 @@ export default function QnA(){
   }
 
   const captureText = (e) => {
-    setNewQuestion(e.target.value)
+    setNewQuestion({
+      ...newQuestion,
+      [e.target.name]: e.target.value
+    })
   }
 
   const updateSearch = (e) => {
     setSearch(e.target.value)
+  }
+
+  {console.log(newQuestion)}
+  const submitQuestion = () => {
+    if (newQuestion.email.indexOf('@') === -1 || newQuestion.email.indexOf('.') === -1) {
+      alert('Invalid Email')
+    } else if (newQuestion.body === '' || newQuestion.name === '') {
+      alert('Invalid Entry')
+    } else {
+
+      axios.post(`/api/qa/questions/${newQuestion.product_id}`, {
+        "body" : newQuestion.body,
+        "name" : newQuestion.name,
+        "email" : newQuestion.email,
+        "product_id" : Number(newQuestion.product_id)
+      })
+      .then((results) => {
+        alert('Question Submitted!')
+      })
+      .then(() => {
+        axios.get(`/api/qa/questions/${newQuestion.product_id}`)
+        .then((results) => {
+          setQuestions(results.data.results)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+      })
+      .then(() => {
+        setNewQuestion({
+        "body" : '',
+        "name" : '',
+        "email" : '',
+        "product_id" : 0
+        })
+      })
+      .then(() => {
+        document.getElementById('name-input').value = ''
+        document.getElementById('email-input').value = ''
+        document.getElementById('body-input').value = ''
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+    }
   }
 
   let filteredQuestion = questions.filter(
@@ -62,15 +121,18 @@ export default function QnA(){
             <h2>
               Question
             </h2>
-              <input placeholder="Username"></input>
+            <h5>Username</h5>
+              <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
               <br></br>
-              <input placeholder="Email"></input>
+              <h5>Email</h5>
+              <input id="email-input" placeholder="Email" name="email" onChange={captureText}></input>
               <br></br>
-            <p>
-              <textarea placeholder="Your Question" onChange={captureText}>
-              </textarea>
-            </p>
-            <button>Submit</button>
+              <h5>Your Question</h5>
+              <p>
+                <textarea id="body-input" placeholder="Your Question Here" name="body" onChange={captureText}>
+                </textarea>
+              </p>
+            <button onClick={submitQuestion}>Submit</button>
             <button onClick={()=>setModal(false)}>Close</button>
           </Modal>
         </div>
@@ -96,15 +158,18 @@ export default function QnA(){
             <h2>
               Question
             </h2>
-              <input placeholder="Username"></input>
+            <h5>Username</h5>
+              <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
               <br></br>
-              <input placeholder="Email"></input>
+              <h5>Email</h5>
+              <input id="email-input" placeholder="Email" name="email" onChange={captureText}></input>
               <br></br>
-            <p>
-              <textarea placeholder="Your Question" onChange={captureText}>
-              </textarea>
-            </p>
-            <button>Submit</button>
+              <h5>Your Question</h5>
+              <p>
+                <textarea id="body-input" placeholder="Your Question Here" name="body" onChange={captureText}>
+                </textarea>
+              </p>
+            <button onClick={submitQuestion}>Submit</button>
             <button onClick={()=>setModal(false)}>Close</button>
           </Modal>
         </div>

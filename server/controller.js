@@ -63,6 +63,7 @@ const controller = {
 
   //post new question
   postQuestion: (req, res) => {
+    console.log(req.body)
     getQnA.postQuestion(req, (err, data) => {
       if (err) {
         res.status(400).send(err);
