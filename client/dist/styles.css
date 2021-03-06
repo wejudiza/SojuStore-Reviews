@@ -109,36 +109,6 @@
   padding: 5px;
 }
 
-/* CAROUSEL
-button.rec-dot_active{
-  background-color: #a1a1a1;
-  box-shadow: 0 0 1px 3px #c9c9c9;
-}
-
-button.rec-dot_active:focus {
-  background-color: #a1a1a1;
-  box-shadow: 0 0 1px 3px #c9c9c9;
-}
-
-button.rec-dot:hover {
-  background-color: #a1a1a1;
-  box-shadow: 0 0 1px 3px #c9c9c9;
-}
-
-button.rec-arrow {
-  background-color: #d9d9d9;
-}
-
-button.rec.rec-arrow:hover {
-  background-color: #999999;
-}
-
-button.rec.rec-arrow:focus {
-  background-color: #a1a1a1;
-  box-shadow: 0 0 1px 3px #c9c9c9;
-} */
-
-/* ********************** */
 
 #defaultDescription {
   display: flex;
