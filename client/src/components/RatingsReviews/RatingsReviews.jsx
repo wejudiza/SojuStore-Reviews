@@ -48,6 +48,10 @@ export default function RatingsReviews() {
     }
   }, [productID, loaded]);
 
+  useEffect(() => {
+    setNumReviews(allReviews.length);
+  }, [allReviews]);
+
   // On change event handler to set sortBy state (<SortSelect />)
   const handleSelect = (e) => {
     setSort(e.target.value);
@@ -71,7 +75,7 @@ export default function RatingsReviews() {
       { /* Sorting dropdown */ }
       <div id="sortby">
         { `${numReviews} reviews sorted by` }
-        <SortSelect handleSelect={handleSelect} />
+        <SortSelect numReviews={numReviews} handleSelect={handleSelect} />
       </div>
       <br />
 
