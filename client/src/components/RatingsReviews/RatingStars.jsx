@@ -12,7 +12,8 @@ const roundToFourth = (rating) => (Math.round(rating * 4) / 4).toFixed(2);
 /* -------------------
 Rating Stars Component
 ------------------- */
-export default function RatingStars({ rating, size, color }) {
+export default function RatingStars({ rating, size, color, interative }) {
+  // const { rating, size, color, interative }
   rating = `${roundToFourth(getPercentage(rating))}%`;
 
   return (
