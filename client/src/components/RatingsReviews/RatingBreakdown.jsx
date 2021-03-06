@@ -1,76 +1,64 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useEffect } from 'react';
-// import { Rating } from 'material-ui-star-rating';
+
+// Subcomponents
+import RatingStars from './RatingStars.jsx';
 import RatingBreakdownBar from './RatingBreakdownBar.jsx';
 
 // Helper function that computes WA of ratings
-const getWA = (x, y) => {
-  if (x.length === y.length) {
-    return x.map((xVal, i) => xVal * y[i]).reduce((wa, val) => wa + val);
-  }
-}
+const getWA = (metadata) => {
+  const { ratings } = metadata;
+  const waArray = Object.keys(ratings).map((key) => Number(key) * Number(ratings[key]));
+  const total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
+  const wa = waArray.reduce((sum, val) => sum + val) / total;
+  return wa;
+};
 
-export default function RatingBreakdown({ allReviews, numReviews }) {
-  const [percentage, setPercentage] = useState(null);
-  const [wa, setWA] = useState(null);
-  const [reviewDist, setReviewDist] = useState({});
-  const [reviewCount, setReviewCount] = useState({
-    5: 0,
-    4: 0,
-    3: 0,
-    2: 0,
-    1: 0,
-  });
+const getRecommneded = (metadata) => {
+  const { recommended } = metadata;
+  const yes = Number(recommended.true);
+  const no = Number(recommended.false);
+  return yes / (yes + no);
+};
 
-  // On render + change in # of reviews calculate % of people who recommend
+export default function RatingBreakdown({ reviewMetadata }) {
+  const [wa, setWA] = useState(0);
+  const [recommended, setRecommended] = useState();
+
   useEffect(() => {
-    let count = 0;
+    if (reviewMetadata) {
+      setWA(getWA(reviewMetadata));
+      setRecommended(getRecommneded(reviewMetadata));
+    }
 
-    // Tally tot # of recommendations & # of reviews per rating
-    allReviews.map((review) => {
-      reviewCount[review.rating] += 1;
-      if (review.recommend) {
-        count += 1;
-      }
-    });
-
-    setReviewCount(reviewCount);
-    setPercentage(Math.floor((count / numReviews) * 1000) / 10);
-
-    // Calc # of reviews per rating distribution
-    Object.keys(reviewCount).map((key) => {
-      reviewDist[key] = (reviewCount[key] / numReviews) * 100;
-    });
-
-    setReviewDist(reviewDist);
-    setWA(getWA(Object.keys(reviewCount), Object.values(reviewCount)) / numReviews);
-  }, [numReviews]);
+    console.log(recommended);
+  }, [reviewMetadata]);
 
   return (
-    <div id="RatingBreakdown">
-      { numReviews === 0 ? null : (
-        <div>
-
-          { /* Combined rating score + star component */ }
-          <div id="avg-rating">
-            <h1>{ wa.toFixed(1) }</h1>
-            INSERT STAR COMPONENT ***
-          </div>
-          <br />
-
-          { /* Recommended % */ }
-          <div id="%-recommend">
-            {percentage}
-            % of reviews recommend this product
-          </div>
-          <br />
-
-          { /* Rating breakdown bars */ }
-          { Object.keys(reviewDist).map((key) => (
-            <RatingBreakdownBar key={key} rating={key} dist={reviewDist[key]} />
-          )) }
-
-        </div>
-      ) }
+    <div id="rating-reakdown">
+      { JSON.stringify(reviewMetadata) }
+      <div id="avg-rating">
+        <h1>{ wa.toFixed(1) }</h1>
+        <RatingStars rating={wa} size="25px" color="#f8ce0b" />
+      </div>
+      <div id="percent-recommend">
+        {/* {`${recommended.toFixed(0)} % of reviews recommend this product` */}
+      </div>
     </div>
   );
 }
+
+// <div id="RatingBreakdown">
+// { numReviews === 0 ? null : (
+//   <div>
+//     { /* Combined rating score + star component */ }
+//     { /* Recommended % */ }
+//
+//     <br />
+//     { /* Rating breakdown bars */ }
+//     { Object.keys(reviewDist).map((key) => (
+//       <RatingBreakdownBar key={key} rating={key} dist={reviewDist[key]} />
+//     )) }
+//   </div>
+// ) }
+// </div>

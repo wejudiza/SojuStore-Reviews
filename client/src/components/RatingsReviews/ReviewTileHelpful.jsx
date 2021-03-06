@@ -8,9 +8,9 @@ export default function ReviewTileHelpful(props) {
   const handleClick = (e) => {
     setVoted(true);
     if (e.target.getAttribute('id') === 'yes') {
-      // axios.put(`/api/reviews/${props.id}/helpful`)
-      //   .then((resp) => console.log(resp))
-      //   .catch((err) => alert(err))
+      axios.put(`/api/reviews/177811/helpful`, null)
+        .then((resp) => console.log(resp))
+        .catch((err) => alert(err))
       console.log('YES VOTE');
     } else {
       console.log('NO VOTE');

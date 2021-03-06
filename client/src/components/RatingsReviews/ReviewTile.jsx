@@ -14,7 +14,7 @@ export default function ReviewTile({ review, helpful }) {
     <div className="review-tile">
       <div className="review-tile-header">
         { /* Raiting Component */ }
-        <RatingStars rating={review.rating} size="25px" color="#f8ce0b" />
+        <RatingStars rating={review.rating} size="15px" color="#f8ce0b" />
         { /* Username + date submitted */ }
         <div className="review-userinfo">
           { `${review.reviewer_name} ${convertDate(review.date)}` }

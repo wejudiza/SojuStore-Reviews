@@ -4,8 +4,6 @@ import axios from 'axios';
 // Import components
 import ProductBreakdownBar from './ProductBreakdownBar.jsx';
 
-const product_id = 16500;
-
 export default function ProductBreakdown() {
   const [characteristics, setCharacteristics] = useState(null);
   const [loaded, setLoaded] = useState(false);
