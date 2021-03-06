@@ -41,9 +41,16 @@ class OutfitList extends React.Component {
 
   render() {
     return (
-      <div style={{display: 'flex', flexDirection: 'row'}}>
-        <i class="fas fa-arrow-circle-left fa-2x prev" onClick={prev}></i>
-        <Whirligig ref={(_whirligigInstance) => { whirligig = _whirligigInstance}}>
+      <div style={{display: 'flex', flexDirection: 'row'}} className="outfit-container">
+        <i className={this.state.outfitList.length > 3 ?
+        "fas fa-arrow-circle-left fa-2x prev" : "fas fa-arrow-circle-left fa-2x prev hidden"
+        } onClick={prev}></i>
+        <Whirligig
+        ref={(_whirligigInstance) => { whirligig = _whirligigInstance}}
+        slideClass={"slide"}
+        slideBy={1 || 0}
+        gutter="6.4em"
+        preventScroll={true}>
         <div className="add-card">
           <h4 className="add">Add to Outfit</h4>
           <i className="fas fa-plus fa-3x btn" onClick={this.addToOutfit}></i>
@@ -58,7 +65,9 @@ class OutfitList extends React.Component {
             }): null
           }
           </Whirligig>
-          <i class="fas fa-arrow-circle-right fa-2x next" onClick={next}></i>
+          <i className={this.state.outfitList.length > 3 ?
+            "fas fa-arrow-circle-right fa-2x next" : "fas fa-arrow-circle-right fa-2x next hidden"
+            } onClick={next}></i>
       </div>
     );
   }

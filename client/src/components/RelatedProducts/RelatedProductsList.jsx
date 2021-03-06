@@ -37,16 +37,26 @@ class RelatedProductsList extends React.Component {
 
   render() {
     return (
-      <div style={{display: 'flex', flexDirection: 'row'}}>
-        <i class="fas fa-arrow-circle-left fa-2x prev" onClick={prev}></i>
-        <Whirligig ref={(_whirligigInstance) => { whirligig = _whirligigInstance}}>
+      <div style={{display: 'flex', flexDirection: 'row'}} className="related-container">
+        <i className={this.state.products.length > 4 ?
+        "fas fa-arrow-circle-left fa-2x prev" : " fas fa-arrow-circle-left fa-2x prev hidden"
+        } onClick={prev}></i>
+        <Whirligig
+        ref={(_whirligigInstance) => { whirligig = _whirligigInstance}}
+        snapToSlide={false}
+        visibleSlides={4}
+        slideBy={1}
+        gutter="6.4em"
+        preventScroll={true}>
         {this.state.products.map((id, index) => {
           return (
             <RelatedProducts productId={id} key={index} mainProduct={this.props.mainProduct} updateCurrentProduct={this.props.updateCurrentProduct}/>
           )
         })}
         </Whirligig>
-        <i class="fas fa-arrow-circle-right fa-2x next" onClick={next}></i>
+        <i className={this.state.products.length > 4 ?
+        "fas fa-arrow-circle-right fa-2x next" : "fas fa-arrow-circle-right fa-2x next hidden"
+        } onClick={next}></i>
       </div>
     );
   }

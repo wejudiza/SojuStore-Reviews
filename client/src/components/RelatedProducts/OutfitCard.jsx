@@ -73,7 +73,7 @@ class OutfitCard extends React.Component {
   render() {
     return (
       <div>
-        <i className="far fa-times-circle btn" onClick={this.handleClick}></i>
+        <i className="far fa-times-circle btn" onClick={this.handleClick} snapToSlide={false} visibleSlides={4}></i>
         <img src={this.state.thumbnail_url} name="test"></img>
         <div className="category">
             {this.state.category}
