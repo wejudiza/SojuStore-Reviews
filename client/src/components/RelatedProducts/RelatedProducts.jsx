@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
-import ReactStars from 'react-stars';
 import { Checkmark } from 'react-checkmark';
+import RatingStars from '../RatingsReviews/RatingStars.jsx';
 
 
 // Styles for Modal
@@ -17,12 +17,8 @@ const customStyles = {
   }
 };
 
-const breakPoints = [
-  { width: 1, itemsToShow: 1 },
-  { width: 550, itemsToShow: 2 },
-  { width: 768, itemsToShow: 3 },
-  { width: 1200, itemsToShow: 4 },
-];
+//****Ratings helper function*****//
+const roundToFourth = (rating) => (Math.round(rating * 4) / 4).toFixed(2);
 
 
 class RelatedProducts extends React.Component {
@@ -38,7 +34,8 @@ class RelatedProducts extends React.Component {
       thumbnail_url: '',
       features: [],
       mainFeatures: [],
-      product: {}
+      product: {},
+      rating: 0
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.getInfo = this.getInfo.bind(this);
@@ -46,6 +43,12 @@ class RelatedProducts extends React.Component {
 
   componentDidMount() {
     this.getInfo();
+  }
+
+  componentWillUnmount() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   }
 
 
@@ -71,6 +74,20 @@ class RelatedProducts extends React.Component {
       .then((response) => {
         this.setState({
           mainFeatures: response.data.features
+        })
+      })
+    axios.get(`api/reviews/meta/${this.props.productId}`)
+      .then((response) => {
+        var ratings = Object.values(response.data.ratings);
+        const ratingsArr = ratings.map((i) => Number(i));
+        var total = 0;
+        for (var i = 0; i < ratingsArr.length; i++) {
+          total += ratingsArr[i];
+          var avg = (total / ratingsArr.length) / 2;
+        }
+        var rounded = roundToFourth(avg)
+        this.setState({
+          rating: this.state.rating += rounded
         })
       })
   }
@@ -99,14 +116,18 @@ class RelatedProducts extends React.Component {
           </div>
 
           <div className="price">
-            {'$ ' + this.state.original_price}
+            {this.state.sale_price === null ?
+            '$ ' + this.state.original_price
+            :
+            <>
+            <div className="strike">{'$ ' + this.state.original_price}</div>
+            {'$ ' + this.state.sale_price}
+            </>
+          }
           </div>
 
           <div className="stars">
-          <ReactStars
-            count={5}
-            size={20}
-            color2={'#ffd700'} />
+            <RatingStars rating={this.state.rating} color="#f8ce0b" size="12px"/>
           </div>
             {/* **********MODAL WITH TABLE********** */}
             <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.toggleModal} ariaHideApp={false} style={customStyles}>

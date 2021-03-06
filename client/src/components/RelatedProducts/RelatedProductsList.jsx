@@ -2,15 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import RelatedProducts from './RelatedProducts.jsx';
 import OutfitList from './OutfitList.jsx';
-import Carousel from "react-elastic-carousel";
+import Whirligig from 'react-whirligig';
 
+/// Carousel buttons///
+let whirligig
+  const next = () => whirligig.next()
+  const prev = () => whirligig.prev()
 
-const breakPoints = [
-  { width: 1, itemsToShow: 1 },
-  { width: 550, itemsToShow: 2 },
-  { width: 768, itemsToShow: 3 },
-  { width: 1200, itemsToShow: 4 },
-];
 
 class RelatedProductsList extends React.Component {
   constructor(props) {
@@ -28,7 +26,6 @@ class RelatedProductsList extends React.Component {
   }
 
   getRelated() {
-    // console.log(this.props.mainProduct.id)
     axios.get(`/api/${this.props.mainProduct.id}`)
       .then((results) => {
         this.setState({
@@ -41,13 +38,15 @@ class RelatedProductsList extends React.Component {
   render() {
     return (
       <div style={{display: 'flex', flexDirection: 'row'}}>
-        <Carousel breakPoints={breakPoints}>
+        <i class="fas fa-arrow-circle-left fa-2x prev" onClick={prev}></i>
+        <Whirligig ref={(_whirligigInstance) => { whirligig = _whirligigInstance}}>
         {this.state.products.map((id, index) => {
           return (
             <RelatedProducts productId={id} key={index} mainProduct={this.props.mainProduct} updateCurrentProduct={this.props.updateCurrentProduct}/>
           )
         })}
-        </Carousel>
+        </Whirligig>
+        <i class="fas fa-arrow-circle-right fa-2x next" onClick={next}></i>
       </div>
     );
   }

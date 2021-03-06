@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/TeamSoju/SojuStore#readme",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "axios": "^0.21.1",
     "babel-core": "^7.0.0-0",
     "babel-preset-env": "^7.0.0-0",
@@ -27,16 +29,15 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "material-ui-star-rating": "^1.0.0",
+    "mdbreact": "^5.0.1",
     "moment": "^2.29.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
     "react": "^16.13.0",
     "react-checkmark": "^1.4.0",
     "react-dom": "^16.13.0",
-    "react-elastic-carousel": "^0.11.1",
     "react-modal": "^3.12.1",
-    "react-stars": "^2.2.5",
-    "styled-components": "^5.2.1"
+    "react-whirligig": "^6.6.15"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
