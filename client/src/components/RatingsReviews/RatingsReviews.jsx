@@ -87,9 +87,6 @@ export default function RatingsReviews() {
             key={review.review_id}
           />
         )) }
-        {/* <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>
-          { showCount === numReviews || showCount === numReviews + 1 ? null : 'Show More' }
-        </button> */}
       </div>
 
       <div id="footer-buttons">
