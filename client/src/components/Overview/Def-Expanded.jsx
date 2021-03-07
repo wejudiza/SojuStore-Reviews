@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import ZoomedImg from './ZoomedImg.jsx';
 import { Magnifier } from 'react-image-magnifiers';
+import ReactImageZoom from 'react-image-zoom';
+
+import InnerImageZoom from 'react-inner-image-zoom';
 
 Modal.setAppElement('#app')
 
@@ -8,9 +12,15 @@ function Default_Expanded (props) {
   const [modalIsOpen, setIsOpen] = useState(false)
   const [expandThumb, setExpandThumb] = useState([])
   const [currExpInd, setCurrExpInd] = useState(0)
-  const [height, setHeight] = useState()
-  const [weight, setWeight] = useState()
+  // const [height, setHeight] = useState()
+  // const [weight, setWeight] = useState()
   const [zoom, setZoom] = useState(false)
+  const [bgPosition, setBgPosition] = useState('0% 0%')
+
+  var img = document.getElementsByClassName('test3');
+  var width = img.clientWidth;
+  var height = img.clientHeight;
+  console.log(img.clientWidth)
 
   useEffect(() => {
     setCurrExpInd(props.index)
@@ -81,21 +91,34 @@ function Default_Expanded (props) {
     props.setDefault(newPhoto)
   }
 
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.target.getBoundingClientRect()
+    const x = (e.pageX - left) / width
+    const y = (e.pageY - top) / height
+    setBgPosition(`${offsetX}% ${offsetY}%`)
+    console.log( e.clientX, e.pageX)
+  }
+
   return (
     <div>
-      {props.default !== undefined ? <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img> : null }
+      {props.default !== undefined ?
+      <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img>
+      : null }
 
-      {expandThumb.length > 0 ? <Modal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)}>
-        {zoom ? null : <div>
+      {expandThumb.length > 0 ? <Modal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)} preventScroll={true} >
+        {zoom ? null : <div className="test1">
           <i className="leftArrow" onClick={() => clickBackward()}></i>
           {expandThumb.map((item, index) => (
             <img key={index} className={arrangeThumb(index)} src={item.thumbnail_url} onClick={() => clickThumbnail(index, item.url)}></img>
           ))}
           <i className="rightArrow" onClick={() => clickForward()}></i>
-        </div> }
-
-        <Magnifier className="expanded-img" imageSrc={expandThumb[props.index].url} dragToMove={false} cursorStyleActive="crosshair" cursorStyle="crosshair" onZoomStart={() => setZoom(!zoom)} onZoomEnd={() => setZoom(!zoom)} />
-
+          </div>}
+        <div className="test" >
+            <img src={expandThumb[props.index].url} onClick={() => setZoom(!zoom)} onLoad={(e) => console.log(e.clientX)}></img>
+        </div>
+        {/* {const props = {width: 400, height: 250, scale: {100%}, }} */}
+          {/* <ReactImageZoom {... {img: expandThumb[props.index].url, zoomPosition: 'original'}} /> */}
+        {/* <Magnifier className="expanded-img" imageSrc={expandThumb[props.index].url} dragToMove={false} cursorStyleActive="crosshair" cursorStyle="crosshair" onZoomStart={() => setZoom(!zoom)} onZoomEnd={() => setZoom(!zoom)} /> */}
       </Modal> : null }
     </div>
   )
