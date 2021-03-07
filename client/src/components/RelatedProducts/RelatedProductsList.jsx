@@ -43,8 +43,9 @@ class RelatedProductsList extends React.Component {
         } onClick={prev}></i>
         <Whirligig
         ref={(_whirligigInstance) => { whirligig = _whirligigInstance}}
-        snapToSlide={false}
-        visibleSlides={4}
+        visibleSlides={this.state.products.length < 4 ?
+          this.state.products.length : 4
+        }
         slideBy={1}
         gutter="6.4em"
         preventScroll={true}>

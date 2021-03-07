@@ -125,7 +125,6 @@ class RelatedProducts extends React.Component {
             </>
           }
           </div>
-
           <div className="stars">
             <RatingStars rating={this.state.rating} color="#f8ce0b" size="12px"/>
           </div>
@@ -142,52 +141,53 @@ class RelatedProducts extends React.Component {
                 </thead>
                 <tbody>
                 {this.state.features.map((feature, index) => {
-                      if (feature.value !== null) {
-                        return (
-                          <tr key={index}>
-                            <td></td>
-                            <td>{`${feature.value} ${feature.feature}`}</td>
-                            <td><Checkmark size="small"/></td>
-                          <br/>
-                          </tr>
-                        )
-                      } else {
-                        return (
-                          <tr key={index}>
-                            <td></td>
-                            <td>{feature.feature}</td>
-                            <td><Checkmark size="small"/></td>
-                            <br/>
-                          </tr>
-                        )
-                      }
-                    })}
-                {this.state.mainFeatures.map((feature, index) => {
-                  if (feature.value !== null) {
-                    return (
-                      <tr key={index}>
-                        <td><Checkmark size="small"/></td>
-                        <td>{`${feature.value} ${feature.feature}`}</td>
-                        <td></td>
-                      <br/>
-                      </tr>
-                    )
-                  } else {
-                    return (
-                      <tr key={index}>
-                        <td><Checkmark size="small"/></td>
-                        <td>{feature.feature}</td>
-                        <td></td>
+
+                    if (feature.value !== null) {
+                      return (
+                        <tr key={index}>
+                          <td></td>
+                          <td>{`${feature.value} ${feature.feature}`}</td>
+                          <td><Checkmark size="small"/></td>
                         <br/>
-                      </tr>
-                    )
-                  }
-                })}
-                </tbody>
-            </table>
-          </Modal>
-        </div>
-    );
+                        </tr>
+                      )
+                    } else {
+                      return (
+                        <tr key={index}>
+                          <td></td>
+                          <td>{feature.feature}</td>
+                          <td><Checkmark size="small"/></td>
+                          <br/>
+                        </tr>
+                      )
+                    }
+                  })}
+              {this.state.mainFeatures.map((feature, index) => {
+                if (feature.value !== null) {
+                  return (
+                    <tr key={index}>
+                      <td><Checkmark size="small"/></td>
+                      <td>{`${feature.value} ${feature.feature}`}</td>
+                      <td></td>
+                    <br/>
+                    </tr>
+                  )
+                } else {
+                  return (
+                    <tr key={index}>
+                      <td><Checkmark size="small"/></td>
+                      <td>{feature.feature}</td>
+                      <td></td>
+                      <br/>
+                    </tr>
+                  )
+                }
+              })}
+              </tbody>
+          </table>
+        </Modal>
+      </div>
+      );
   }
 }
 

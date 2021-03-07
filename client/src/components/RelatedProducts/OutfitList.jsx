@@ -12,7 +12,8 @@ class OutfitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      outfitList: []
+      outfitList: [],
+      outfitStorage: []
     };
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
@@ -27,6 +28,9 @@ class OutfitList extends React.Component {
       this.setState({
         outfitList: this.state.outfitList.concat(this.props.mainProduct)
       })
+      var existing = localStorage.getItem('outfitList' || []);
+      localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList.concat(this.props.mainProduct)))
+      var outfitStorage = JSON.parse(localStorage.outfitList);
     }
   }
 
@@ -36,13 +40,14 @@ class OutfitList extends React.Component {
         product.id !== outfitItem.id
       ))
     })
+    localStorage.removeItem(product)
   }
 
 
   render() {
     return (
       <div style={{display: 'flex', flexDirection: 'row'}} className="outfit-container">
-        <i className={this.state.outfitList.length > 3 ?
+        <i className={localStorage.outfitList !== undefined && JSON.parse(localStorage.outfitList).length > 3 ?
         "fas fa-arrow-circle-left fa-2x prev" : "fas fa-arrow-circle-left fa-2x prev hidden"
         } onClick={prev}></i>
         <Whirligig
@@ -55,8 +60,8 @@ class OutfitList extends React.Component {
           <h4 className="add">Add to Outfit</h4>
           <i className="fas fa-plus fa-3x btn" onClick={this.addToOutfit}></i>
           </div>
-          {this.state.outfitList.length > 0 ?
-            this.state.outfitList.map((outfitItem, index) => {
+          {localStorage.outfitList !== undefined ?
+            JSON.parse(localStorage.outfitList).map((outfitItem, index) => {
               return (
                 <div className="outfit-card" key={index}>
                   <OutfitCard outfitItem={outfitItem} mainProduct={this.props.mainProduct} removeProduct={this.removeProduct}/>
@@ -65,7 +70,7 @@ class OutfitList extends React.Component {
             }): null
           }
           </Whirligig>
-          <i className={this.state.outfitList.length > 3 ?
+          <i className={localStorage.outfitList !== undefined && JSON.parse(localStorage.outfitList).length > 3 ?
             "fas fa-arrow-circle-right fa-2x next" : "fas fa-arrow-circle-right fa-2x next hidden"
             } onClick={next}></i>
       </div>
