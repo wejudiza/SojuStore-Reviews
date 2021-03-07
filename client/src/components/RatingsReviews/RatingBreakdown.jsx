@@ -44,7 +44,7 @@ export default function RatingBreakdown(props) {
   }, [reviewMetadata]);
 
   return (
-    <div id="rating-reakdown">
+    <div id="rating-breakdown">
       <div id="rating-header">
         <h1>{ wa.toFixed(1) }</h1>
         <RatingStars rating={wa} size="25px" color="#f8ce0b" />
@@ -52,6 +52,7 @@ export default function RatingBreakdown(props) {
       <div id="percent-recommend">
         {`${recommended.toFixed(0)}% of reviews recommend this product` }
       </div>
+      <br />
       { Object.keys(ratingDist).reverse().map((key) => (
         <RatingBreakdownBar
           key={key}

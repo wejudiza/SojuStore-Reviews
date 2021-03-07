@@ -65,11 +65,9 @@ export default function RatingsReviews() {
   };
 
   return (
-    <div className="ratings-reviews">
-      <h3>Ratings & Reviews</h3>
-      { /* Rating Breakdown */ }
+    <div id="ratings-reviews">
+      <h3 id="title">Ratings & Reviews</h3>
       <RatingBreakdown reviewMetadata={reviewMetadata} handleFilter={handleFilter} />
-      { /* Proudct Breakdown */ }
       <ProductBreakdown />
 
       { /* Sorting dropdown */ }
@@ -80,7 +78,7 @@ export default function RatingsReviews() {
       <br />
 
       {/* Individual Review Tiles */}
-      <div>
+      <div id="review-list">
         { allReviews.slice(0, showCount).map((review) => (
           <ReviewTile
             review={review}
@@ -89,13 +87,17 @@ export default function RatingsReviews() {
             key={review.review_id}
           />
         )) }
-        <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>
+        {/* <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>
           { showCount === numReviews || showCount === numReviews + 1 ? null : 'Show More' }
-        </button>
+        </button> */}
       </div>
 
-      { /* Add A Review + Modal */ }
-      <AddReview metadata={reviewMetadata} />
+      <div id="footer-buttons">
+        { showCount === numReviews || showCount === numReviews + 1 ? null : (
+          <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>Show More</button>
+        ) }
+        <AddReview metadata={reviewMetadata} />
+      </div>
     </div>
   );
 }

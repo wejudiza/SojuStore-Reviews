@@ -30,8 +30,8 @@ export default function ProductBreakdownBar({ characteristic, value }) {
 
   return (
     <div className="product-breakdown">
-      <br />
       { /* Breakdown bar + traingle */ }
+      <div className="product-bar-title">{characteristic}</div>
       <div className="product-bar-container">
         <div className="product-bar-background" />
         <div className="product-bar-background" />
@@ -44,7 +44,6 @@ export default function ProductBreakdownBar({ characteristic, value }) {
         <div className="product-bar-label1" style={{ textAlign: 'center', textJustify: 'center' }}>{ labels[1] }</div>
         <div className="product-bar-label2" style={{ textAlign: 'right' }}>{ labels[2] }</div>
       </div>
-      <br />
     </div>
   );
 }

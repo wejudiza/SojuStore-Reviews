@@ -1,26 +1,51 @@
 /* --------------------
 Rating & Reviews Styles
 -------------------- */
+#ratings-reviews {
+  display: grid;
+  grid-template-rows: 2.5% 5% 5% 45% auto 2.5%;
+  grid-template-columns: 35%  5% auto;
+  padding: 2%;
+  width: 95vw;
+  height: 90vh;
+}
+#title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: 1 / 1 / 2 / 2;
+}
 #sortby {
   display: flex;
+  grid-area: 3 / 3 / 4 / 4;
+}
+#review-list {
+  overflow: hidden;
+  overflow-y: scroll;
+  grid-area: 4 / 3 / 6 / 4;
+}
+#footer-buttons {
+  display: flex;
+  grid-area: 6 / 3 / 7 / 4;
 }
 
 /* ----------
 Shared Styles
 ---------- */
 .photo-thumbnail {
-  width: 75px;
-  height: 75px;
-  border-radius: 75px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
 }
+
+/* ---------------
+Rating List Styles
+--------------- */
+
 
 /* ---------------
 Rating Tile Styles
 --------------- */
-/* .review-tile-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-} */
 .review-tile-header .review-userinfo {
   text-align: right;
 }
@@ -36,6 +61,9 @@ Rating Tile Styles
 /* --------------------
 Rating Breakdown Styles
 -------------------- */
+#rating-breakdown {
+  grid-area: 3 / 1 / 5 / 2;
+}
 #rating-header {
   display: flex;
 }
@@ -44,43 +72,60 @@ Rating Breakdown Styles
 .bar-container {
   display: flex;
 }
-
 .bar-background {
   width: 100%;
   background: lightgrey;
   border-radius: 30px;
-  height: 15px;
+  height: 10px;
 }
 .bar-foreground {
   background: grey;
   border-radius: 30px;
-  height: 15px;
+  height: 10px;
 }
 
 /* ---------------------
 Product Breakdown Styles
 --------------------- */
+#product-breakdown {
+  display: flex;
+  flex-direction: column;
+  grid-area: 5 / 1 / 6 / 2;
+}
+
 /* Product Bar */
 .product-bar-container {
   display: flex;
+  position: relative;
+}
+.product-bar-title {
+  font-size: .8rem;
 }
 .product-bar-background {
   width: 100%;
-  height: 20px;
+  height: 10px;
   background: lightgrey;
   border-color: black;
-  border-radius: 30px;
+  border-radius: 10px;
+}
+.product-bar-background {
+  width: 100%;
+  height: 10px;
+  background: lightgrey;
+  border-color: black;
+  border-radius: 10px;
 }
 .triangle {
-  margin-left: -10px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 20px solid grey;
+  margin-left: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 12px solid grey;
   position: absolute;
 }
 .product-bar-labels {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  font-size: .75em;
   padding-left: 1%;
   padding-right: 1%;
   padding-top: .25%;
@@ -107,7 +152,6 @@ Rating Stars Styles
   font-weight: 900;
   color: lightgrey
 }
-
 .rating-stars-inner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
   font-family: "Font Awesome 5 Free";

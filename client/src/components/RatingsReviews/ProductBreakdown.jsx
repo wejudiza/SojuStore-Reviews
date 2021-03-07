@@ -21,8 +21,6 @@ export default function ProductBreakdown() {
 
   return (
     <div id="product-breakdown">
-      <h3>Product Breakdown</h3>
-
       { /* Renders all product metadata characteristics */ }
       { !characteristics ? null : (
         Object.keys(characteristics).map((key) => (

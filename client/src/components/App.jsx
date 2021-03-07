@@ -52,7 +52,7 @@ export default class App extends Component {
           <OufitList mainProduct={this.state.data}/> */}
 
           {/* --- Ratings & Reviews --- */}
-          <div id="ratings-reviews">
+          <div id="ratings-reviews-continer">
             <RatingsReviews />
           </div>
 

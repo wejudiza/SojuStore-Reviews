@@ -5,7 +5,6 @@ import Modal from 'react-modal';
 import { UserContext } from '../UserContext.jsx';
 
 // Components
-import RatingStars from './RatingStars.jsx';
 import AddReviewText from './AddReviewText.jsx';
 import AddReviewRadio from './AddReviewRadio.jsx';
 import AddReviewImgUpload from './AddReviewImgUpload.jsx';
@@ -16,16 +15,6 @@ import useText from './useText.js';
 import useCount from './useCount.js';
 import useOption from './useOption.js';
 import useUpload from './useUpload.js';
-
-// const initialOptions = {
-//   53841: 0, // Fit
-//   53842: 0, // Length
-//   53843: 0, // Comfort
-//   53844: 0, // Quality
-//   53845: 0, // Size
-//   53846: 0, // Width
-//   recommend: 0, // recommended
-// };
 
 // Custom Hook initial states
 const initialCount = {
