@@ -7,13 +7,13 @@ Rating & Reviews Styles
   align-items: center;
   min-width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(to top right, #c588f7, #992cf2);
+  background: linear-gradient(to top right, #d129ff, #992cf2);
 }
+/* #c588f7, */
 #ratings-reviews {
   display: grid;
-  grid-template-rows: 2.5% 5% 5% 50% auto 5%;
+  grid-template-rows: 2.5% 2.5% 5% 50% auto 5%;
   grid-template-columns: 30% 5% auto;
-  padding: 2%;
   width: 70vw;
   height: 80vh;
   background-color: white;
@@ -39,6 +39,11 @@ Rating & Reviews Styles
   display: flex;
   grid-area: 6 / 3 / 7 / 4;
 }
+#sidebar {
+  grid-area: 1 / 1 / 6 / 2;
+  background-color: whitesmoke;
+  border-radius: 20px;
+}
 
 /* ----------
 Shared Styles
@@ -61,11 +66,9 @@ Rating Tile Styles
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-
 .review-userinfo {
   text-align: right;
 }
-
 
 /* Review Tile Helpful */
 .review-helpful {
@@ -79,6 +82,7 @@ Rating Tile Styles
 Rating Breakdown Styles
 -------------------- */
 #rating-breakdown {
+  padding: 2%;
   grid-area: 3 / 1 / 5 / 2;
 }
 #rating-header {
@@ -109,6 +113,7 @@ Product Breakdown Styles
 #product-breakdown {
   display: flex;
   flex-direction: column;
+  padding: 3%;
   grid-area: 5 / 1 / 6 / 2;
 }
 

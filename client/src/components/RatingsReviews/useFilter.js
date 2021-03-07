@@ -4,9 +4,20 @@ export default function useFilter(initialValues) {
   const [values, setValues] = useState(initialValues);
   return [
     values,
-    (e) => setValues(() => {
-      // if values.has(e)
-      return (values.size === 5 ? new Set(e) : new Set(values.add(e)))
-    })
+    (e) => {
+      values[e] = !values[e];
+      // const check = Object.values(values).every((val) => val === false);
+      // if (check) {
+      //   setValues({
+      //     5: true,
+      //     4: true,
+      //     3: true,
+      //     2: true,
+      //     1: true,
+      //   });
+      // } else {
+      setValues({ ...values });
+      // }
+    }
   ];
 }

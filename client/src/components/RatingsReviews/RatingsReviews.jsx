@@ -20,6 +20,14 @@ import sortReviews from './sortReviews.js';
 
 const productID = "16500";
 
+const initialFilters = {
+  5: true,
+  4: true,
+  3: true,
+  2: true,
+  1: true,
+};
+
 /* ------------------------
 Ratings & Reviews Component
 ------------------------ */
@@ -32,13 +40,13 @@ export default function RatingsReviews() {
   const [allReviews, setAllReviews] = useState([]);
   const [numReviews, setNumReviews] = useState(0);
   const [reviewMetadata, setReviewMetadata] = useState(null);
-  const [filters, setFilters] = useFilter(new Set(['5', '4', '3', '2', '1']));
+  const [filters, setFilters] = useFilter(initialFilters);
 
   // Get all reviews from Atellier API for specific product + assign to state once loaded
   useEffect(() => {
     if (productID) {
       axios.get(`/api/reviews/${productID}`)
-        .then((resp) => setAllReviews(sortReviews(resp.data.results, 'relevant')))
+        .then((resp) => setAllReviews(sortReviews(resp.data.results, sort)))
         .then(() => setReviews(allReviews))
         .then(() => axios.get(`/api/reviews/meta/${productID}`)
           .then((resp) => setReviewMetadata(resp.data)))
@@ -47,6 +55,10 @@ export default function RatingsReviews() {
         .catch((err) => console.log(err));
     }
   }, [productID, loaded]);
+
+  useEffect(() => {
+    setReviews(sortReviews(reviews, sort));
+  }, [sort]);
 
   useEffect(() => {
     setNumReviews(allReviews.length);
@@ -60,15 +72,22 @@ export default function RatingsReviews() {
 
   const handleFilter = (rating) => {
     setFilters(rating);
-    const filteredReviews = reviews.filter((review) => filters.has(review.rating.toString()));
-    setAllReviews(filteredReviews);
+    let appliedFilters = Object.keys(filters).filter((key) => filters[key]);
+    if (appliedFilters.length === 0) {
+      setAllReviews(reviews);
+    } else {
+      const filteredReviews = reviews.filter((review) => appliedFilters.includes(review.rating.toString()));
+      setAllReviews(filteredReviews);
+    }
   };
 
   return (
     <div id="ratings-reviews">
-      <h3 id="title">Ratings & Reviews</h3>
-      <RatingBreakdown reviewMetadata={reviewMetadata} handleFilter={handleFilter} />
-      <ProductBreakdown />
+      <div id="sidebar">
+        <h3 id="title">Ratings & Reviews</h3>
+        <RatingBreakdown reviewMetadata={reviewMetadata} handleFilter={handleFilter} />
+        <ProductBreakdown />
+      </div>
 
       { /* Sorting dropdown */ }
       <div id="sortby">
