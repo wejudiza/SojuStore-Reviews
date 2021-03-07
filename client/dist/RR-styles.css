@@ -8,7 +8,7 @@ Rating & Reviews Styles
   min-width: 100vw;
   min-height: 100vh;
   background: linear-gradient(to top right, #c588f7, #992cf2);
-}
+}
 #ratings-reviews {
   display: grid;
   grid-template-rows: 2.5% 5% 5% 50% auto 5%;
@@ -18,7 +18,7 @@ Rating & Reviews Styles
   height: 80vh;
   background-color: white;
   background: linear-gradient(to top right, rgba(255, 255, 255, .7), rgba(255, 255, 255, .3));
-  border-radius: 10%;
+  border-radius: 20px;
 }
 #title {
   display: flex;
@@ -57,9 +57,15 @@ Rating List Styles
 /* ---------------
 Rating Tile Styles
 --------------- */
-.review-tile-header .review-userinfo {
+.review-tile-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.review-userinfo {
   text-align: right;
 }
+
 
 /* Review Tile Helpful */
 .review-helpful {
@@ -77,6 +83,8 @@ Rating Breakdown Styles
 }
 #rating-header {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 /* Rating Breakdown Bar */
