@@ -28,9 +28,12 @@ class OutfitList extends React.Component {
       this.setState({
         outfitList: this.state.outfitList.concat(this.props.mainProduct)
       })
-      var existing = localStorage.getItem('outfitList' || []);
-      localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList.concat(this.props.mainProduct)))
-      var outfitStorage = JSON.parse(localStorage.outfitList);
+      if (localStorage.outfitList === undefined) {
+        localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList.concat(this.props.mainProduct)))
+      } else {
+        const outfits = JSON.parse(localStorage.outfitList)
+        localStorage.setItem('outfitList', JSON.stringify(outfits.concat(this.props.mainProduct)))
+      }
     }
   }
 
@@ -40,7 +43,11 @@ class OutfitList extends React.Component {
         product.id !== outfitItem.id
       ))
     })
-    localStorage.removeItem(product)
+    const outfits = JSON.parse(localStorage.outfitList)
+    var filtered = outfits.filter((outfitItem) => (
+      product.id !== outfitItem.id
+    ))
+    localStorage.setItem('outfitList', JSON.stringify(filtered))
   }
 
 
