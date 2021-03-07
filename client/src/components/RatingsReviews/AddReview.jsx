@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Modal from 'react-modal';
 
 // Contexts
@@ -11,11 +11,21 @@ import AddReviewRadio from './AddReviewRadio.jsx';
 import AddReviewImgUpload from './AddReviewImgUpload.jsx';
 import AddReviewSubmit from './AddReviewSubmit.jsx';
 
-// Custom Hooks
+// Custom Hooks + helper functions
 import useText from './useText.js';
 import useCount from './useCount.js';
 import useOption from './useOption.js';
 import useUpload from './useUpload.js';
+
+// const initialOptions = {
+//   53841: 0, // Fit
+//   53842: 0, // Length
+//   53843: 0, // Comfort
+//   53844: 0, // Quality
+//   53845: 0, // Size
+//   53846: 0, // Width
+//   recommend: 0, // recommended
+// };
 
 // Custom Hook initial states
 const initialCount = {
@@ -32,24 +42,21 @@ const initialText = {
   "body": '',
 };
 
-const initialOptions = {
-  53841: 0, // Fit
-  53842: 0, // Length
-  53843: 0, // Comfort
-  53844: 0, // Quality
-  53845: 0, // Size
-  53846: 0, // Width
-  recommend: 0, // recommended
-};
-
-export default function AddReview() {
+export default function AddReview({ metadata }) {
   // Get product context + set inital state
   const product = useContext(UserContext);
+  const [urls, setUrls] = useUpload([]);
   const [isOpen, setIsOpen] = useState(false);
   const [texts, setText] = useText(initialText);
   const [counts, setCount] = useCount(initialCount);
-  const [options, setOption] = useOption(initialOptions);
-  const [urls, setUrls] = useUpload([]);
+  const [options, setOption] = useOption({recommend: 0 });
+  const [characteristics, setCharacteristics] = useState({});
+
+  useEffect(() => {
+    if (metadata) {
+      setCharacteristics({ ...metadata.characteristics });
+    }
+  }, [metadata]);
 
   return (
     <div id="add-review">
@@ -119,92 +126,15 @@ export default function AddReview() {
           User Input Radio Forms
           ------------------- */ }
         { /* Radio Buttons: Product Recommendation */ }
-        <AddReviewRadio
-          id="recommend"
-          header="Do You Recommend This Product?"
-          setOption={setOption}
-          options={['Yes', 'No']}
-        />
-        { /* Radio Buttons: Size */ }
-        <AddReviewRadio
-          id="53845"
-          header="Size"
-          setOption={setOption}
-          options={[
-            'A Size Too Small',
-            '1/2 A Size Too Small',
-            'Perfect',
-            '1/2 A Size Too Big',
-            'A Szie Too Big'
-          ]}
-
-        />
-        { /* Radio Buttons: Width */ }
-        <AddReviewRadio
-          id="53846"
-          header="Width"
-          setOption={setOption}
-          options={[
-            'Too Narrow',
-            'Slightly Narrow',
-            'Perfect',
-            'Too Wide',
-            'Slightly Wide',
-          ]}
-        />
-        { /* Radio Buttons: Length */ }
-        <AddReviewRadio
-          id="53842"
-          header="Length"
-          setOption={setOption}
-          options={[
-            'Runs Short',
-            'Runs Slightly Short',
-            'Perfect',
-            'Runs Slightly Long',
-            'Runs Long',
-          ]}
-        />
-        { /* Radio Buttons: Fit */ }
-        <AddReviewRadio
-          id="53841"
-          header="Fit"
-          setOption={setOption}
-          options={[
-            'Runs Tight',
-            'Runs Slightly Tight',
-            'Perfect',
-            'Runs Slightly Long',
-            'Runs Long',
-          ]}
-        />
-        { /* Radio Buttons: Comfort */ }
-        <AddReviewRadio
-          id="53843"
-          header="Comfort"
-          setOption={setOption}
-          options={[
-            'Uncomfortable',
-            'Slightly Uncomfortable',
-            'Ok',
-            'Comfortable',
-            'Perfect',
-          ]}
-        />
-        { /* Radio Buttons: Quality */ }
-        <AddReviewRadio
-          id="53844"
-          header="Quality"
-          setOption={setOption}
-          options={[
-            'Poor',
-            'Below Average',
-            'What I Expected',
-            'Pretty Great',
-            'Perfect',
-          ]}
-        />
-        <br />
+        <AddReviewRadio header="Recommend" name="recommend" setOption={setOption} />
+        { Object.keys(characteristics).map((char) => (
+          <AddReviewRadio
+            setOption={setOption}
+            header={char}
+            name={characteristics[char].id}
+            key={characteristics[char].id}
+          />
+        )) }
 
         { /* User Image Upload, Close Button, Submit Button */ }
         <AddReviewImgUpload urls={urls} setUrls={setUrls} />

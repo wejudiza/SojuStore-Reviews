@@ -31,7 +31,7 @@ export default function ReviewTile(props) {
       <div className="review-section">
         <h3 className="review-summary">{review.summary}</h3>
         <div className="review-body">
-          <p className="review-body">{review.body}</p>
+          <p>{review.body}</p>
           <br />
           { review.photos.map((photo, key) => (
             <ReviewTilePhoto photo={photo} key={key} />
