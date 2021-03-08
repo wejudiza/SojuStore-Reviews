@@ -77,14 +77,13 @@ export default class App extends Component {
           {/* --- Ratings & Reviews --- */}
           <div id="ratings-reviews-container">
             <RatingsReviews />
-
+          </div>
           <div id="questions">
             <h3>Questions</h3>
             <QnA />
           </div>
         </UserContext.Provider>
       </div>
-
     );
   }
 }
