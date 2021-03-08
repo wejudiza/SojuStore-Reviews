@@ -22,8 +22,6 @@ export default class App extends Component {
       data: []
     };
     this.updateCurrentProduct = this.updateCurrentProduct.bind(this);
-    this.signOutClick = this.signOutClick.bind(this);
-    this.signInClick = this.signInClick.bind(this);
   }
 
   // results.data[0] - replace 16059
@@ -46,42 +44,28 @@ export default class App extends Component {
     })
   }
 
-  signInClick() {
-    if (localStorage.userName === undefined) {
-      const enteredName = prompt('Welcome to Soju Store! Please enter your name to get started.')
-      localStorage.setItem('userName', enteredName)
-    } else {
-      alert('Already Signed In!')
-    }
-    console.log(localStorage)
-  }
-
-  signOutClick() {
-    localStorage.clear();
-    window.location.reload(false);
-  }
 
   render() {
     return (
       <div>
-        <button onClick={this.signInClick}>Sign In</button>
-        <button onClick={this.signOutClick}>Sign Out</button>
         <UserContext.Provider value={this.state.data}>
+          {/* <Product /> */}
           <Product />
           <h3>Related Products</h3>
           <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
           <h3>Your Outfit</h3>
           <OufitList mainProduct={this.state.data}/>
 
-          {/* --- Ratings & Reviews --- */}
-          <div id="ratings-reviews">
-             <RatingsReviews />
-          </div>
-
           <div id="questions">
             <h3>Questions</h3>
             <QnA />
           </div>
+
+          {/* --- Ratings & Reviews --- */}
+          <div id="ratings-reviews-container">
+            <RatingsReviews />
+          </div>
+
         </UserContext.Provider>
       </div>
 

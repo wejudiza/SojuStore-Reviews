@@ -9,16 +9,23 @@ import RatingBreakdownBar from './RatingBreakdownBar.jsx';
 const getWA = (metadata) => {
   const { ratings } = metadata;
   const waArray = Object.keys(ratings).map((key) => Number(key) * Number(ratings[key]));
-  const total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
-  const wa = waArray.reduce((sum, val) => sum + val) / total;
-  return wa;
+  if (Object.values(ratings).length > 1) {
+    let total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
+    total = total === 0 ? 1 : total;
+    let wa = waArray.reduce((sum, val) => sum + val) / total;
+    wa = wa ?? 0;
+    return wa;
+  }
 };
 
 const getDistribution = (metadata) => {
   const dist = {};
   const { ratings } = metadata;
-  const total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
-  Object.keys(ratings).map((key) => dist[key] = Number(ratings[key]) / total * 100);
+  if (Object.values(ratings).length > 1) {
+    let total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
+    total = total === 0 ? 1 : total;
+    Object.keys(ratings).map((key) => dist[key] = Number(ratings[key] ?? 0) / total * 100);
+  }
   return dist;
 };
 
@@ -26,10 +33,13 @@ const getRecommneded = (metadata) => {
   const { recommended } = metadata;
   const yes = Number(recommended.true);
   const no = Number(recommended.false);
-  return yes / (yes + no) * 100;
+  let percent = yes / (yes + no) * 100;
+  percent = !percent || percent == null ? 0 : percent;
+  return percent;
 };
 
-export default function RatingBreakdown({ reviewMetadata }) {
+export default function RatingBreakdown(props) {
+  const { reviewMetadata, handleFilter } = props;
   const [wa, setWA] = useState(0);
   const [ratingDist, setRatingDist] = useState({});
   const [recommended, setRecommended] = useState(0);
@@ -43,16 +53,23 @@ export default function RatingBreakdown({ reviewMetadata }) {
   }, [reviewMetadata]);
 
   return (
-    <div id="rating-reakdown">
-      <div id="avg-rating">
-        <h1>{ wa.toFixed(1) }</h1>
-        <RatingStars rating={wa} size="25px" color="#f8ce0b" />
+    <div id="rating-breakdown">
+      <div id="rating-header">
+        <h1 id="rating-header-text">{ !wa ? 0.00 : wa.toFixed(2) }</h1>
+        <RatingStars rating={wa} size="1.75rem" color="#f8ce0b" />
       </div>
       <div id="percent-recommend">
-        {`${recommended.toFixed(0)} % of reviews recommend this product` }
+        {`${recommended.toFixed(0)}% of reviews recommend this product` }
       </div>
+      <br />
       { Object.keys(ratingDist).reverse().map((key) => (
-        <RatingBreakdownBar key={key} rating={key} dist={ratingDist[key]} />
+        <RatingBreakdownBar
+          key={key}
+          rating={key}
+          dist={ratingDist[key]}
+          count={reviewMetadata.ratings[key]}
+          handleFilter={handleFilter}
+        />
       )) }
     </div>
   );

@@ -23,6 +23,7 @@ class RelatedProductsList extends React.Component {
     if (prevProps.mainProduct.id !== this.props.mainProduct.id) {
       this.getRelated()
     }
+    // console.log('PRODUCTS', this.state.products)
   }
 
   getRelated() {
@@ -36,6 +37,7 @@ class RelatedProductsList extends React.Component {
 
 
   render() {
+    console.log('INNER', this.state.products)
     return (
       <div style={{display: 'flex', flexDirection: 'row'}} className="related-container">
         <i className={this.state.products.length > 4 ?
@@ -50,6 +52,7 @@ class RelatedProductsList extends React.Component {
         gutter="6.4em"
         preventScroll={true}>
         {this.state.products.map((id, index) => {
+          console.log("ID", id)
           return (
             <RelatedProducts productId={id} key={index} mainProduct={this.props.mainProduct} updateCurrentProduct={this.props.updateCurrentProduct}/>
           )

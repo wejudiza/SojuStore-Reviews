@@ -25,7 +25,6 @@ export default function AddReviewSubmit(props) {
   return (
     <>
       <br />
-      {JSON.stringify(body)}
       <button id="submit-review-btn" type="button" onClick={() => axios.post('/api/reviews', body)}>Submit</button>
     </>
   );

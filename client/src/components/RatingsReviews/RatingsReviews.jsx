@@ -8,14 +8,25 @@ import axios from 'axios';
 import { UserContext } from '../UserContext.jsx';
 
 // Subcomponents
+import Search from './Search.jsx';
 import AddReview from './AddReview.jsx';
 import SortSelect from './SortSelect.jsx';
 import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 
-// Helper functions
+// Custom hooks + helper functions
+import useFilter from './useFilter.js';
+import useSearch from './useSearch.js';
 import sortReviews from './sortReviews.js';
+
+const initialFilters = {
+  5: true,
+  4: true,
+  3: true,
+  2: true,
+  1: true,
+};
 
 /* ------------------------
 Ratings & Reviews Component
@@ -25,15 +36,19 @@ export default function RatingsReviews() {
   const [loaded, setLoaded] = useState(false);
   const [showCount, setShowCount] = useState(2);
   const [sort, setSort] = useState('relevant');
-  const [numReviews, setNumReviews] = useState(0);
+  const [reviews, setReviews] = useState([]);
   const [allReviews, setAllReviews] = useState([]);
+  const [numReviews, setNumReviews] = useState(0);
   const [reviewMetadata, setReviewMetadata] = useState(null);
+  const [filters, setFilters] = useFilter(initialFilters);
+  const [search, setSearch] = useSearch({ text: '', count: 0 });
 
-  // Get all reviews from Atellier API for specific product + assign to state once loaded
+  // Gets all reviews + metadata from API for specific product, sets relevant intial states
   useEffect(() => {
     if (productID) {
       axios.get(`/api/reviews/${productID}`)
-        .then((resp) => setAllReviews(sortReviews(resp.data.results, 'relevant')))
+        .then((resp) => setAllReviews(sortReviews(resp.data.results, sort)))
+        .then(() => setReviews(allReviews))
         .then(() => axios.get(`/api/reviews/meta/${productID}`)
           .then((resp) => setReviewMetadata(resp.data)))
         .then(() => setLoaded(true))
@@ -42,42 +57,74 @@ export default function RatingsReviews() {
     }
   }, [productID, loaded]);
 
-  // On change event handler to set sortBy state (<SortSelect />)
+  // Copy of all reviews w/ current sort state that can be reloaded if filters are cleared
+  useEffect(() => setReviews(sortReviews(reviews, sort)), [sort]);
+  // Keeps track of rendered reviews count
+  useEffect(() => setNumReviews(allReviews.length), [allReviews]);
+
+  // Filters renders reviews based on user search
+  useEffect(() => {
+    if (search.count > 3) {
+      const searchResults = allReviews.filter((review) => review.body.match(`${search.text}`));
+      setAllReviews(searchResults);
+    } else {
+      setAllReviews(sortReviews(reviews, sort));
+    }
+  }, [search]);
+
+  // Keeps tracks of current sort option
   const handleSelect = (e) => {
     setSort(e.target.value);
     setAllReviews(sortReviews(allReviews, e.target.value));
   };
 
+  // Filters rendered reviews based on rating breakdown click events
+  const handleFilter = (rating) => {
+    setFilters(rating);
+    let appliedFilters = Object.keys(filters).filter((key) => filters[key]);
+    if (appliedFilters.length === 0) {
+      setAllReviews(reviews);
+    } else {
+      const filteredReviews = reviews.filter((review) => appliedFilters.includes(review.rating.toString()));
+      setAllReviews(filteredReviews);
+    }
+  };
+
   return (
-    <div className="ratings-reviews">
-      <h3>Ratings & Reviews</h3>
-      { /* Rating Breakdown */ }
-      <RatingBreakdown reviewMetadata={reviewMetadata} />
-      { /* Proudct Breakdown */ }
-      <ProductBreakdown />
-
-      { /* Sorting dropdown */ }
-      <div id="sortby">
-        { `${numReviews} reviews sorted by` }
-        <SortSelect handleSelect={handleSelect} />
+    <div id="ratings-reviews">
+      <div id="sidebar">
+        <div id="title">Ratings & Reviews</div>
+        <RatingBreakdown reviewMetadata={reviewMetadata} handleFilter={handleFilter} />
+        <ProductBreakdown />
       </div>
-      <br />
+      <div className="reviews-main">
+        { /* Sorting dropdown + Search bar */ }
+        <div id="sortby">
+          { `${numReviews} reviews sorted by` }
+          <SortSelect numReviews={numReviews} handleSelect={handleSelect} />
+        </div>
+        <Search setSearch={setSearch} />
 
-      {/* Individual Review Tiles */}
-      <div>
-        { allReviews.slice(0, showCount).map((review) => (
-        <ReviewTile review={review} sort={sort}setAllReviews={setAllReviews} />
-        )) }
-        {/* { allReviews.slice(0, showCount).map((review) => (
-        console.log(review)
-        )) } */}
-        <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>
-          { showCount === numReviews || showCount === numReviews + 1 ? null : 'Show More' }
-        </button>
+        {/* Review List - dynmically renders out individual tiles */}
+        <div id="review-list">
+          { allReviews.slice(0, showCount).map((review) => (
+            <ReviewTile
+              review={review}
+              sort={sort}
+              setAllReviews={setAllReviews}
+              key={review.review_id}
+            />
+          )) }
+        </div>
+
+        { /* Footer Buttons - Add Review + Show More */ }
+        <div id="footer-buttons">
+          { showCount === numReviews || showCount === numReviews + 1 ? null : (
+            <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>Show More</button>
+          ) }
+          <AddReview metadata={reviewMetadata} />
+        </div>
       </div>
-
-      { /* Add A Review + Modal */ }
-      <AddReview />
     </div>
   );
 }

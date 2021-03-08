@@ -46,11 +46,6 @@ class RelatedProducts extends React.Component {
     this.getInfo();
   }
 
-  componentWillUnmount() {
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-    }
-  }
 
   getWA(metadata) {
     const { ratings } = metadata;
@@ -87,18 +82,14 @@ class RelatedProducts extends React.Component {
       })
     axios.get(`api/reviews/meta/${this.props.productId}`)
       .then((response) => {
-        // var ratings = Object.values(response.data.ratings);
-        // const ratingsArr = ratings.map((i) => Number(i));
-        // var total = 0;
-        // for (var i = 0; i < ratingsArr.length; i++) {
-        //   total += ratingsArr[i];
-        //   var avg = (total / ratingsArr.length) / 2;
-        // }
-        // var rounded = roundToFourth(avg)
-        // this.setState({
-        //   rating: this.state.rating += rounded
-        // })
-        console.log(response)
+        var ratings = response.data;
+        if (ratings) {
+          let rating = this.getWA(ratings);
+          let rounded = roundToFourth(rating);
+          this.setState({
+              rating: this.state.rating += rounded
+            })
+        }
       })
   }
 
