@@ -4,6 +4,7 @@ import Select from 'react-select';
 
 // need to test out OUT OF STOCK
 // small bug: when user clicks a new DEFAULT THUMBNAIL, drop down list needs to go back to DEFAULT
+// edit react-select drop down list!!
 
 function ProductInfo(props) {
   const [size, setSize] = useState([]);
