@@ -45,16 +45,16 @@ export default class App extends Component {
     return (
       <div>
         <UserContext.Provider value={this.state.data}>
-          {/* <Product /> */}
-          {/* <h3>Related Products</h3>
+          <Product />
+          <h3>Related Products</h3>
           <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
           <h3>Your Outfit</h3>
-          <OufitList mainProduct={this.state.data}/> */}
+          <OufitList mainProduct={this.state.data}/>
 
-          {/* --- Ratings & Reviews ---
+          --- Ratings & Reviews ---
           <div id="ratings-reviews">
             <RatingsReviews />
-          </div> */}
+          </div>
 
           <div id="questions">
             <h3>Questions</h3>
