@@ -35,7 +35,6 @@ const controllersRR = {
 
   // Adds a record to a specific review_id that indicates if the review was helpful
   putHelpful: (req, res) => {
-    console.log(req.params.review_id);
     axios.put(`${config.url}/${req.params.review_id}/helpful`, null, config.headers)
       .then(() => res.status(204).send('You marked this review as helpful'))
       .catch((err) => res.status(400).send(`Could not mark this review as helpful. Error: ${err}`));
