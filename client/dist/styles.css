@@ -219,6 +219,9 @@
 
 .test1 {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 15%;
   width: 100%;
 }
@@ -227,15 +230,10 @@
   position: relative;
 }
 
-figure:hover img {
-  opacity: 0;
-}
-
 .test {
   position: relative;
   height: 84%;
   width: 100%;
-  /* overflow: hidden; */
   display: inline-block;
 }
 
@@ -249,31 +247,23 @@ figure:hover img {
   text-align: center;
   vertical-align: middle;
   width: 100%;
-  border: 3px solid red;
   transition: .3s ease-in-out;
 }
 
-.test:hover img {
-  transform: scale(2.5);
+figure {
+  width: 100vw;
+  height: 100vw;
+  background-repeat: no-repeat;
+  background-size: 250%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  display: block;
+  margin: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
-/* .test-img {
-  width: 50%;
-  position: relative;
-  height: 50%;
-  left: 50%;
-  top: 50%;
-  margin-top: -25%;
-  margin-left: -25%;
-  border: 3px solid red
-} */
-
-/* .expanded-img {
-  background-size: contain;
-  margin: auto;
-  display: block;
-  justify-content: center;
-  object-fit: contain;
-  object-position: 50% 50%;
-  overflow-y: hidden;
-} */
