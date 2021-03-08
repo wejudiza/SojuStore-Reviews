@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../UserContext.jsx';
 import axios from 'axios';
+import { SocialIcon } from 'react-social-icons';
 
 import StyleSelect from './StyleSelect.jsx';
 
@@ -26,12 +27,13 @@ function Product() {
         {data.description}
         </div>
       </div>
-      <StyleSelect data={data.id} />
+        <StyleSelect data={data.id} />
+
       <div id="social-media">
-        <em> Social Media &#10140;</em>
-        <img className="social" src="https://help.twitter.com/content/dam/help-twitter/brand/logo.png"></img>
-        <img className="social" src="https://cdn4.iconfinder.com/data/icons/bettericons/354/facebook-circle-512.png"></img>
-        <img className="social" src="https://cdn.icon-icons.com/icons2/2119/PNG/512/social_pinterest_icon_131227.png"></img>
+        <center> Social Media </center>
+        <SocialIcon url='https://twitter.com/cheongsophia' />
+        <SocialIcon url='https://www.facebook.com/cheongsophia' />
+        <SocialIcon url='https://www.pinterest.com/sophiacheong/_saved/' />
       </div>
     </div>
   )
