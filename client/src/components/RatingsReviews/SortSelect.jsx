@@ -1,11 +1,10 @@
 import React from 'react';
 
-// Dropdown select component that updates sort state on change
+// Dropdown select component that updates review tiles order
 export default function SortSelect({ handleSelect }) {
-  // Options + state handler for dropdown
   const options = ['relevant', 'helpful', 'newest'];
 
-  return(
+  return (
     <div className="sort-option">
       <select id="sort-select" onChange={handleSelect}>
         { options.map((option) => <option key={option} value={option}>{option}</option>) }

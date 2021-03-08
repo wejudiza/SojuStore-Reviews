@@ -1,18 +1,9 @@
 // Import github config
 const axios = require('axios');
+
 // Import github headers config
 const config = require('./config.js');
-
 config.url = `${config.url}/reviews`;
-
-// Helper function that dynamically stringifies params
-// getParamsQuery = params => {
-//   let queryArr = [];
-//   for (param in params) {
-//     queryArr.push(`${param}=${params[param]}`);
-//   }
-//   return `?${queryArr.join('&')}`
-// }
 
 // Controllers for Ratings & Reviews
 const controllersRR = {
@@ -23,7 +14,7 @@ const controllersRR = {
 
   // Get reviews by product id
   getReview: (req, res) => {
-    axios.get(`${config.url}?product_id=${req.params.product_id}`, config.headers)
+    axios.get(`${config.url}?product_id=${req.params.product_id}&count=100`, config.headers)
       .then((resp) => res.status(200).send(resp.data))
       .catch((err) => res.status(400).send(err));
   },
@@ -44,10 +35,10 @@ const controllersRR = {
 
   // Adds a record to a specific review_id that indicates if the review was helpful
   putHelpful: (req, res) => {
-    console.log(`${config.url}/?review_id=${req.params.review_id}/helpful`);
-    axios.put(`${config.url}/?review_id=${req.params.review_id}/helpful`, { body: req.body, headers: config.headers.headers })
+    console.log(req.params.review_id);
+    axios.put(`${config.url}/${req.params.review_id}/helpful`, null, config.headers)
       .then(() => res.status(204).send('You marked this review as helpful'))
-      .catch((err) => res.status(400).send( `Could not mark this review as helpful. Error: ${err}`));
+      .catch((err) => res.status(400).send(`Could not mark this review as helpful. Error: ${err}`));
   }
 
 };

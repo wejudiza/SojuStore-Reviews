@@ -37,7 +37,9 @@
     "react-checkmark": "^1.4.0",
     "react-dom": "^16.13.0",
     "react-modal": "^3.12.1",
-    "react-whirligig": "^6.6.15"
+    "react-whirligig": "^6.6.15",
+    "react-select": "^4.1.0",
+    "react-stars": "^2.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
@@ -57,6 +59,7 @@
     "jest": "^26.6.3",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
+    "react-social-icons": "^4.1.0",
     "webpack": "^2.2.1"
   },
   "jest": {

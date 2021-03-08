@@ -26,11 +26,14 @@ export default class App extends Component {
     this.signInClick = this.signInClick.bind(this);
   }
 
+  // results.data[0] - replace 16059
+  // need to test - OutOfStock -> change data
+
   componentDidMount() {
     axios.get('/api')
       .then((results) => {
         this.setState({
-          data: results.data[0]
+          data: results.data[9]
         })
       })
       .catch((err) => console.error(err))
@@ -72,7 +75,7 @@ export default class App extends Component {
 
           {/* --- Ratings & Reviews --- */}
           <div id="ratings-reviews">
-            <RatingsReviews />
+            {/* <RatingsReviews /> */}
           </div>
 
           {/* <div id="questions">
