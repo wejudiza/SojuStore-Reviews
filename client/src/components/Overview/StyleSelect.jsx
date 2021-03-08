@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
+import GalleryImg from './GalleryImg.jsx';
+import Default_Expanded from './Def-Expanded.jsx';
+import { Checkmark } from 'react-checkmark';
+
+//test the bold for SALES PRICE
+// change the icon for selective icon - need to research more
 
 function StyleSelect (props) {
   const [styles, setStyles] = useState([])
@@ -8,6 +15,8 @@ function StyleSelect (props) {
   const [defaultStyle, setDefaultStyle] = useState({})
   const [thumbClick, setThumbClick] = useState(false)
   const [defaultPhoto, setDefaultPhoto] = useState('')
+  // index is for photo index
+  const [indexPhoto, setIndexPhoto] = useState(0);
 
   useEffect(() => {
     if (props.data !== undefined) {
@@ -19,15 +28,17 @@ function StyleSelect (props) {
 
   useEffect(() => {
     var res = [];
-    {styles.map(item => {
+    {styles.map((item, index) => {
       if (item['default?']) {
         setDefaultStyle(item)
       }
       item.photos.map((item, index) => {
-        res.push(item)
-        setThumbnail(res)
-        })
-      })}
+        if (index === 0) {
+          res.push(item)
+          setThumbnail(res)
+        }
+      })
+    })}
   }, [styles])
 
   useEffect(() => {
@@ -44,6 +55,7 @@ function StyleSelect (props) {
       if (result.length === 4) {
         finalRes.push(result)
         result = [];
+        result.push(array[i])
       } else if (i === array.length - 1) {
         array[i].index = i
         result.push(array[i]);
@@ -61,24 +73,25 @@ function StyleSelect (props) {
     setDefaultPhoto(newPhoto)
     var newStyle = styles[ind]
     setDefaultStyle(newStyle);
+    setIndexPhoto(0)
   }
 
   return (
     <div id ="whole-Style">
-        {defaultPhoto !== undefined ? <img className="defaultStyle-img" src={defaultPhoto} ></img> : null}
+      <Default_Expanded default={defaultPhoto} setDefault={setDefaultPhoto} style={defaultStyle} index={indexPhoto} setIndex={setIndexPhoto} />
       <div id="Style-Select">
-        <div className="category-rating">
-         Color:<em>{defaultStyle.name}</em>
+        <div className="category-rating" style={{margin: '1.5%', justifyContent: 'center', display: 'flex'}}>
+         Color:&nbsp;<b>{defaultStyle.name}</b>
         </div>
       {thumbnailModel(thumbnail).map((itemA, index) => (
-        <div key={index}>
+        <div key={index} style={{justifyContent: 'center', display: 'flex'}}>
         {itemA.map((item, index) => (
-          <img src={item.thumbnail_url} key={index} className="thumbnail-img" onClick={() => clickThumbnail(item.index, item.url)}></img>
+          <img src={item.thumbnail_url} key={index} className="thumbnail-img" style={defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? {border: '3px solid red'} : null} onClick={() => clickThumbnail(item.index, item.url)}></img>
         ))}
         </div>
       ))}
-      {defaultStyle.sale_price === null ? <div> $ {defaultStyle.original_price} </div> : <div> <b style={{color:'red'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
-
+      {defaultStyle.sale_price === null ? <div style={{margin: '1.5%', fontSize: '19px', justifyContent: 'center', display: 'flex'}}> $ {defaultStyle.original_price} </div> : <div style={{margin: '1.5%', fontSize:'19px', justifyContent: 'center', display: 'flex'}}> <b style={{color:'red', weight: '600'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
+      <GalleryImg default={defaultStyle} setDefaultPhoto={setDefaultPhoto} setIndex={setIndexPhoto} index={indexPhoto} />
       <ProductInfo default={defaultStyle} />
     </div>
     </div>
@@ -87,8 +100,5 @@ function StyleSelect (props) {
 
 export default StyleSelect
 
- // const makeButtonCSS = (thumbnail) => {
-  //   return {
-  //     backgroundImage: `url(${thumbnail})`,
-  //   }
-  // };
+// checkmark icon -- learn css to place onto selected image
+{/* <i class="fa fa-check text-white"></i> */}
