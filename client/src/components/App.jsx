@@ -53,7 +53,6 @@ export default class App extends Component {
     } else {
       alert('Already Signed In!')
     }
-    console.log(localStorage)
   }
 
   signOutClick() {

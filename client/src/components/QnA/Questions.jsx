@@ -29,7 +29,7 @@ export default function Question({question}) {
     }
   )
 
-  console.log({question})
+  // console.log({question})
 
   useEffect(() => {
     axios.get(`/api/qa/questions/${question.question_id}/answers`)
@@ -155,7 +155,7 @@ export default function Question({question}) {
               ...answer,
               photos: answer.photos.concat(url)
             })
-          }, () => console.log("temp:", tempArray))
+          })
       }
     )
   }

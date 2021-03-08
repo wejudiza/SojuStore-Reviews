@@ -78,7 +78,7 @@ function StyleSelect (props) {
 
   return (
     <div id ="whole-Style">
-      <Default_Expanded default={defaultPhoto} setDefault={setDefaultPhoto} style={defaultStyle} index={indexPhoto} setIndex={setIndexPhoto} />
+      <Default_Expanded default={defaultPhoto} setDefault={setDefaultPhoto} style={defaultStyle} index={indexPhoto} setIndex={setIndexPhoto} allStyle={thumbnail} />
       <div id="Style-Select">
         <div className="category-rating" style={{margin: '1.5%', justifyContent: 'center', display: 'flex'}}>
          Color:&nbsp;<b>{defaultStyle.name}</b>
