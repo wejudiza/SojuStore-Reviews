@@ -5,7 +5,6 @@ export default function Search({ setSearch }) {
     <div>
       <form id="search-bar" onChange={setSearch}>
         <input type="text" />
-        {/* <label htmlFor="search">Search</label> */}
       </form>
     </div>
   );

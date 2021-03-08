@@ -32,7 +32,7 @@ const initialFilters = {
 Ratings & Reviews Component
 ------------------------ */
 export default function RatingsReviews() {
-  const productID = useContext(UserContext).id;
+  // const productID = useContext(UserContext).id;
   const [loaded, setLoaded] = useState(false);
   const [showCount, setShowCount] = useState(2);
   const [sort, setSort] = useState('relevant');
