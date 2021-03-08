@@ -46,8 +46,8 @@ export default function RatingBreakdown(props) {
   return (
     <div id="rating-breakdown">
       <div id="rating-header">
-        <h1>{ wa.toFixed(2) }</h1>
-        <RatingStars rating={wa} size="2rem" color="#f8ce0b" />
+        <h1 id="rating-header-text">{ wa.toFixed(2) }</h1>
+        <RatingStars rating={wa} size="1.75rem" color="#f8ce0b" />
       </div>
       <div id="percent-recommend">
         {`${recommended.toFixed(0)}% of reviews recommend this product` }

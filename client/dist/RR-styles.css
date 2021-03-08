@@ -25,7 +25,7 @@ Rating & Reviews Styles
   align-content: flex-start;
   padding: 0 2.5% 0 2.5%;
   background-color: white;
-  background: linear-gradient(to bottom right, rgba(255, 255, 255, .8), rgba(255, 255, 255, .4));
+  background: linear-gradient(to top right, rgba(255, 255, 255, .8), rgba(255, 255, 255, .2));
   min-width: 25%;
   border-radius: 20px;
 }
@@ -34,6 +34,7 @@ Rating & Reviews Styles
   align-items: flex-start;
   justify-content: center;
   font-size: 1.5em;
+  padding-top: 1%;
 }
 #sortby {
   display: flex;
@@ -59,7 +60,6 @@ Rating List Styles
   align-items: center;
   justify-content: space-evenly;
   overflow: hidden;
-  overflow-y: scroll;
 }
 
 /* ---------------
@@ -68,12 +68,14 @@ Rating Tile Styles
 .review-tile {
   background-color: whitesmoke;
   background-color: white;
-  background: linear-gradient(to bottom left, rgba(255, 255, 255, .8), rgba(255, 255, 255, .4));
+  background: linear-gradient(to bottom left, rgba(255, 255, 255, .7), rgba(255, 255, 255, .2));
   border-radius: 20px;
-  box-shadow: 2px 2px 2px grey;
+  box-shadow: 0px 1px 1px grey;
   padding: 1% 2.5% 1% 2.5%;
   max-width: 75%;
   min-width: 75%;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
 }
 .review-tile-header {
   display: flex;
@@ -123,7 +125,11 @@ Rating Breakdown Styles
 #rating-header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  padding: 0 2% 0 2%;
+}
+#rating-header-text {
+  font-size: 2.5em;
 }
 #percent-recommend {
   display: flex;
@@ -156,12 +162,15 @@ Rating Breakdown Styles
 .bar-count {
   text-align: end;
 }
+
 /* ---------------------
 Product Breakdown Styles
 --------------------- */
 #product-breakdown {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  padding-top: 10%;
 }
 
 /* Product Bar */
@@ -171,34 +180,36 @@ Product Breakdown Styles
 }
 .product-bar-title {
   font-size: .8rem;
+  padding-left: 1%;
+  padding-bottom: .5%;
 }
 .product-bar-background {
   width: 100%;
   height: 10px;
   background: lightgrey;
   border-color: black;
-  border-radius: 10px;
+  margin: 1%;
 }
 .product-bar-background {
   width: 100%;
   height: 10px;
   background: lightgrey;
   border-color: black;
-  border-radius: 10px;
 }
 .triangle {
   margin-left: -5px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 12px solid grey;
+  border-top: 12px solid;
   position: absolute;
+  margin: 1%;
 }
 .product-bar-labels {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   font-size: .75em;
-  padding-left: 1%;
-  padding-right: 1%;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
   padding-top: .25%;
 }
 
@@ -208,7 +219,8 @@ Rating Stars Styles
 .rating-stars-outer {
   position: relative;
   display: inline-flex;
-
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900;
 }
 .rating-stars-inner {
   white-space: nowrap;
@@ -217,6 +229,8 @@ Rating Stars Styles
   top: 0;
   left: 0;
   width: 0;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900;
 }
 .rating-stars-outer::before {
   content: "\f005 \f005 \f005 \f005 \f005";
