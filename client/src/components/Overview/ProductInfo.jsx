@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 
+// need to test out OUT OF STOCK
+// small bug: when user clicks a new DEFAULT THUMBNAIL, drop down list needs to go back to DEFAULT
+
 function ProductInfo(props) {
   const [size, setSize] = useState([]);
   const [quantityLimit] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
@@ -116,30 +119,10 @@ function ProductInfo(props) {
         <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} isDisabled={userQuantity[0] === 'OUT OF STOCK' || userQuantity[0] === '-' ? true : false } />
       </div>
       <div>
-        {outOfStock ? null : <button onClick={handleClickCartButton.bind(this)}>Add to Cart</button>}
+        {outOfStock ? null : <button className="cartBtn" onClick={handleClickCartButton.bind(this)}><i className="fas fa-cart-plus"></i>ADD TO CART</button>}
       </div>
     </div>
   )
 }
 
 export default ProductInfo
-
-{/* <select onChange={handleChange.bind(this)}>
-  <option>Select Size</option>
-  { size.length > 0 ? size[1].map(itemA => {
-    var sku = Object.keys(itemA)
-    var object = Object.values(itemA)
-    return ( object.map((item, index) => {
-      if (item.quantity > 0) {
-        return ( <option key={index} value={`${item.quantity},${sku[index]}`}>{item.size}</option> )
-      }
-    }))
-  }) : null}
-</select> */}
-
-{/* (inputVal) => setUserQuantity(inputVal.value) */}
-  {/* {quantity[quantity.length-1] > 15 ? quantityLimit.map((item, index) => {
-    return ( <option key={index}>{item}</option> )
-  }) : quantity[quantity.length-1] > 0 && quantity[quantity.length-1] <= 15 ? quantity.map((item, index) => {
-    return ( <option key={index}>{item}</option> )
-  }) : quantity[0] === 0 ? <option disabled>OUT OF STOCK</option> : <option>-</option>} */}

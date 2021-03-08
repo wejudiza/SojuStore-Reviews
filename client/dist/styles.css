@@ -102,7 +102,7 @@
   display: flex;
   flex-direction: column;
   float: right;
-  font-family: "Times New Roman", Georgia, 'Times New Roman', Times, serif;
+  font-family: 'Source Sans Pro', sans-serif;
   width: 50%;
   position: relative;
   flex-flow: row wrap;
@@ -117,11 +117,10 @@
 #Style-Select {
   display: flex;
   flex-direction: column;
-  float: right;
+  left: 50%;
   position: absolute;
-  margin-left: 50%;
-  text-align: left;
-  top: 22%;
+  width: 50%;
+  top: 23%;
 }
 
 .category-rating {
@@ -129,7 +128,6 @@
   font-family: monospace;
   letter-spacing: 1.5px;
   font-size: 13px;
-  margin-bottom: 1%;
 }
 
 #social-media {
@@ -159,6 +157,20 @@
 .product-detail h4 {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.cartBtn {
+  display: block;
+  padding: 0.5em 1em 0.5em 1em;
+  border-radius: 100px;
+  border: none;
+  font-size: 16px;
+  position: relative;
+  background: darkseagreen;
+  cursor: pointer;
+  height: auto;
+  width: auto;
+  overflow: hidden;
 }
 
 .defaultStyle-img {

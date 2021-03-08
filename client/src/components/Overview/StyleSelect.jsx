@@ -6,6 +6,8 @@ import GalleryImg from './GalleryImg.jsx';
 import Default_Expanded from './Def-Expanded.jsx';
 import { Checkmark } from 'react-checkmark';
 
+//test the bold for SALES PRICE
+
 function StyleSelect (props) {
   const [styles, setStyles] = useState([])
   const [thumbnail, setThumbnail] = useState([])
@@ -77,17 +79,17 @@ function StyleSelect (props) {
     <div id ="whole-Style">
       <Default_Expanded default={defaultPhoto} setDefault={setDefaultPhoto} style={defaultStyle} index={indexPhoto} setIndex={setIndexPhoto} />
       <div id="Style-Select">
-        <div className="category-rating">
+        <div className="category-rating" style={{margin: '1.5%', justifyContent: 'center', display: 'flex'}}>
          Color:&nbsp;<b>{defaultStyle.name}</b>
         </div>
       {thumbnailModel(thumbnail).map((itemA, index) => (
-        <div key={index}>
+        <div key={index} style={{justifyContent: 'center', display: 'flex'}}>
         {itemA.map((item, index) => (
           <img src={item.thumbnail_url} key={index} className="thumbnail-img" style={defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? {border: '3px solid red'} : null} onClick={() => clickThumbnail(item.index, item.url)}></img>
         ))}
         </div>
       ))}
-      {defaultStyle.sale_price === null ? <div> $ {defaultStyle.original_price} </div> : <div> <b style={{color:'red'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
+      {defaultStyle.sale_price === null ? <div style={{margin: '1.5%', fontSize: '19px'}}> $ {defaultStyle.original_price} </div> : <div style={{margin: '1.5%'}}> <b style={{color:'red', weight: '600'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
       <GalleryImg default={defaultStyle} setDefaultPhoto={setDefaultPhoto} setIndex={setIndexPhoto} index={indexPhoto} />
       <ProductInfo default={defaultStyle} />
     </div>

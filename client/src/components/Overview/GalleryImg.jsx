@@ -97,10 +97,10 @@ function GalleryImg(props) {
 
   return (
     <div id="default-thumbnails">
-      <i className='leftArrow' style={props.index > 0 ? {visibility: 'visible', position: 'absolute', margin: '-16%', left: '-110%'} : {visibility: 'hidden'} } onClick={() => changeBackwardLeft()}> </i>
-      <i className='rightArrow' style={props.index === maxThumbIndex - 1 ? {visibility: 'hidden'} : {visibility: 'visible', margin: '-16%', position: 'absolute'} } onClick={() => changeForwardRight()}> </i>
+      <i className={props.index > 0 ?'leftArrow' : 'leftArrow-hidden'} style={{visibility: 'visible', position: 'absolute', margin: '-16%', left: '-76.5%'}} onClick={() => changeBackwardLeft()}> </i>
+      <i className={props.index === maxThumbIndex - 1 ? 'rightArrow-hidden' : 'rightArrow'} style={{visibility: 'visible', margin: '-16%', right:'122.5%', position: 'absolute'} } onClick={() => changeForwardRight()}> </i>
       <div>
-      {Object.keys(props.default).length > 0 ? <div style={{display: 'flex', alignItems: 'center'}}>
+      {Object.keys(props.default).length > 0 ? <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <i className='leftArrow' style={thumbIndex > 0 ? {visibility: 'visible'} : {visibility: 'hidden'} }onClick={() => changeLeftThumb()}>  </i>
           {props.default.photos.map((item, index) => (
               <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} ></img>
