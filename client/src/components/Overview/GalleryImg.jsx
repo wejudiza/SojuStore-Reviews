@@ -4,10 +4,12 @@ import axios from 'axios';
 function GalleryImg(props) {
   const [maxThumbIndex, setMaxThumbIndex] = useState([]);
   const [thumbIndex, setThumbIndex] = useState(0);
+  const [maxThumb, setMaxThumb] = useState();
 
   useEffect(() => {
     if (Object.keys(props.default).length > 0) {
       setMaxThumbIndex(props.default.photos.length)
+      setMaxThumb(helperCheck(props.default.photos.length-1, 7))
     }
   }, [props.default])
 
@@ -62,11 +64,29 @@ function GalleryImg(props) {
     if (thumbIndex + 6 < props.default.photos.length) {
       return (between(ind, thumbIndex, thumbIndex + 6))
     } else {
-      var diff = Math.abs(thumbIndex + 7 - props.default.photos.length)
+      let diff = Math.abs(thumbIndex + 7 - props.default.photos.length)
       if (between(ind, thumbIndex - diff, props.default.photos.length)) {
         return true
       } else {
         return (between(ind, thumbIndex, props.default.photos.length))
+      }
+    }
+  }
+
+  const helperCheck = (num, variable) => {
+    let arr = [];
+    let count = 0;
+    for (let i = 1; i <= num; i++) {
+      arr.push(i)
+    }
+
+    for (let j = 0; j < arr.length; j++) {
+      let end = arr[j] + (variable - 1)
+      if (end === arr[arr.length - 1]) {
+        count++;
+        return count;
+      } else {
+        count++;
       }
     }
   }
@@ -76,14 +96,14 @@ function GalleryImg(props) {
       <i className={props.index > 0 ? 'leftArrow' : 'leftArrow-hidden'} onClick={() => changeBackwardLeft()}> </i>
       <i className={props.index === maxThumbIndex - 1 ? 'rightArrow-hidden' : 'rightArrow' } onClick={() => changeForwardRight()}> </i>
       <div>
-      {Object.keys(props.default).length > 0 ?
-          props.default.photos.map((item, index) => (
+      {Object.keys(props.default).length > 0 ? <div>
+          <i className={thumbIndex > 0 ? 'leftArrow' : 'leftArrow-hidden'} onClick={() => changeLeftThumb()}>  </i>
+          {props.default.photos.map((item, index) => (
               <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} ></img>
-        ))
+        ))}
+        <i className={thumbIndex >= maxThumb ? 'rightArrow-hidden' : 'rightArrow'} onClick={() => changeRightThumb()}> </i> </div>
       : null}
       </div>
-      <i className={thumbIndex > 0 ? 'leftArrow' : 'leftArrow-hidden'} onClick={() => changeLeftThumb()}>  </i>
-      <i className={thumbIndex === maxThumbIndex ? 'rightArrow-hidden' : 'rightArrow'} onClick={() => changeRightThumb()}> </i>
     </div>
   )
 }

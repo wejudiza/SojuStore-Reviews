@@ -4,6 +4,7 @@ import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import GalleryImg from './GalleryImg.jsx';
 import Default_Expanded from './Def-Expanded.jsx';
+import { Checkmark } from 'react-checkmark';
 
 function StyleSelect (props) {
   const [styles, setStyles] = useState([])
@@ -82,16 +83,19 @@ function StyleSelect (props) {
       {thumbnailModel(thumbnail).map((itemA, index) => (
         <div key={index}>
         {itemA.map((item, index) => (
-          <img src={item.thumbnail_url} key={index} className="thumbnail-img" onClick={() => clickThumbnail(item.index, item.url)}></img>
+          <img src={item.thumbnail_url} key={index} className={defaultPhoto === item.url ? "thumbnail-img-selected" : "thumbnail-img"} onClick={() => clickThumbnail(item.index, item.url)}></img>
         ))}
         </div>
       ))}
       {defaultStyle.sale_price === null ? <div> $ {defaultStyle.original_price} </div> : <div> <b style={{color:'red'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
-      <ProductInfo default={defaultStyle} />
       <GalleryImg default={defaultStyle} setDefaultPhoto={setDefaultPhoto} setIndex={setIndexPhoto} index={indexPhoto} />
+      <ProductInfo default={defaultStyle} />
     </div>
     </div>
   )
 }
 
 export default StyleSelect
+
+// checkmark icon -- learn css to place onto selected image
+{/* <i class="fa fa-check text-white"></i> */}

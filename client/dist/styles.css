@@ -180,6 +180,14 @@
   height: 60px;
 }
 
+.thumbnail-img-selected {
+  border-radius: 50%;
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  border: 2px solid red;
+}
+
 .thumbnail-img-main {
   border-radius: 50%;
   padding: 5px;
