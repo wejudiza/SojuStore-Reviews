@@ -26,7 +26,7 @@ export default function ReviewTileHelpful(props) {
       { voted ? null : (
         <div id="helpful-responses">
           <div id="yes" onClick={handleClick}>Yes</div>
-          |
+          <div>|</div>
           <div id="no" onClick={handleClick}>No</div>
         </div>
       ) }

@@ -72,10 +72,21 @@ export default class App extends Component {
           <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
           <h3>Your Outfit</h3>
           <OufitList mainProduct={this.state.data}/>
+<<<<<<< HEAD
 {/*
           --- Ratings & Reviews --- */}
+=======
+
+<<<<<<< HEAD
+          {/* --- Ratings & Reviews --- */}
+          <div id="ratings-reviews-container">
+            <RatingsReviews />
+=======
+          --- Ratings & Reviews ---
+>>>>>>> ecc7a994dd896fb71df5c0b8ae45a38ba947bf4d
           <div id="ratings-reviews">
              <RatingsReviews />
+>>>>>>> 49c0666b5dbf2a700b6cf81dbdfb16013a2de917
           </div>
 
           <div id="questions">
