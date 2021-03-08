@@ -6,16 +6,19 @@
   position: relative;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 250px;
-  max-height: 300px;
+  max-height: 285px;
   min-width: 250px;
-  min-height: 300px;
+  min-height: 285px;
   text-align: left;
   font-family: arial;
   margin-bottom: 10px;
   border: 1px solid black;
-  margin-right: 10px;
   overflow: auto;
 }
+
+/* [role="list"] {
+  width: 100%;
+} */
 
 .add-card {
   background: linear-gradient(to bottom right, #ffffff 23%, #d6d6d6 100%);
@@ -23,7 +26,13 @@
 
 .price {
   color: grey;
-  font-size: 15px;
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+.strike {
+  text-decoration: line-through;
+  text-decoration-color: red;
 }
 
 .category {
@@ -37,14 +46,15 @@
 .price,
 .stars {
   margin-left: 5px;
-  margin-bottom: 15px;
+  padding-top: 5px;
 }
 
 .table {
   width: 100%;
 }
 
-.related-card img {
+.related-card img,
+.outfit-card img {
   width: 100%;
 }
 .related-card img:hover {
@@ -67,8 +77,8 @@
 
 .outfit-card .btn {
   position: absolute;
-  left: 80%;
-  margin-top: 5%;
+  left: 88%;
+  margin-top: 4%;
   background-color: inherit;
   color: black;
   border: none;
@@ -83,7 +93,7 @@
 .add-card .btn {
   position: absolute;
   left: 40%;
-  margin-top: 52%;
+  margin-top: 48%;
   cursor: pointer;
 }
 
@@ -96,7 +106,35 @@
   left: 5%;
 }
 
-/* ********************** */
+.next,
+.prev {
+  margin-top: 120px;
+  cursor: pointer;
+  padding: 5px;
+  color: #ababab;
+}
+
+.next:hover,
+.prev:hover {
+  color: black;
+}
+
+.next:hover.hidden,
+.prev:hover.hidden {
+  color: white;
+  background-color: white;
+  cursor: default;
+}
+
+.prev {
+  padding-right: 30px
+}
+
+.hidden {
+  color: white;
+  background-color: white;
+}
+
 
 #defaultDescription {
   display: flex;

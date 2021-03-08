@@ -1,12 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import OutfitCard from './OutfitCard.jsx';
+import Whirligig from 'react-whirligig';
+
+/// Carousel buttons///
+let whirligig
+  const next = () => whirligig.next()
+  const prev = () => whirligig.prev()
 
 class OutfitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      outfitList: []
+      outfitList: [],
+      outfitStorage: []
     };
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
@@ -21,6 +28,12 @@ class OutfitList extends React.Component {
       this.setState({
         outfitList: this.state.outfitList.concat(this.props.mainProduct)
       })
+      if (localStorage.outfitList === undefined) {
+        localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList.concat(this.props.mainProduct)))
+      } else {
+        const outfits = JSON.parse(localStorage.outfitList)
+        localStorage.setItem('outfitList', JSON.stringify(outfits.concat(this.props.mainProduct)))
+      }
     }
   }
 
@@ -29,19 +42,33 @@ class OutfitList extends React.Component {
       outfitList: this.state.outfitList.filter((outfitItem) => (
         product.id !== outfitItem.id
       ))
-    }, () => console.log(this.state.outfitList))
+    })
+    const outfits = JSON.parse(localStorage.outfitList)
+    var filtered = outfits.filter((outfitItem) => (
+      product.id !== outfitItem.id
+    ))
+    localStorage.setItem('outfitList', JSON.stringify(filtered))
   }
 
 
   render() {
     return (
-      <div style={{display: 'flex', flexDirection: 'row'}}>
+      <div style={{display: 'flex', flexDirection: 'row'}} className="outfit-container">
+        <i className={localStorage.outfitList !== undefined && JSON.parse(localStorage.outfitList).length > 3 ?
+        "fas fa-arrow-circle-left fa-2x prev" : "fas fa-arrow-circle-left fa-2x prev hidden"
+        } onClick={prev}></i>
+        <Whirligig
+        ref={(_whirligigInstance) => { whirligig = _whirligigInstance}}
+        slideClass={"slide"}
+        slideBy={1 || 0}
+        gutter="6.4em"
+        preventScroll={true}>
         <div className="add-card">
           <h4 className="add">Add to Outfit</h4>
           <i className="fas fa-plus fa-3x btn" onClick={this.addToOutfit}></i>
           </div>
-          {this.state.outfitList.length > 0 ?
-            this.state.outfitList.map((outfitItem, index) => {
+          {localStorage.outfitList !== undefined ?
+            JSON.parse(localStorage.outfitList).map((outfitItem, index) => {
               return (
                 <div className="outfit-card" key={index}>
                   <OutfitCard outfitItem={outfitItem} mainProduct={this.props.mainProduct} removeProduct={this.removeProduct}/>
@@ -49,6 +76,10 @@ class OutfitList extends React.Component {
               )
             }): null
           }
+          </Whirligig>
+          <i className={localStorage.outfitList !== undefined && JSON.parse(localStorage.outfitList).length > 3 ?
+            "fas fa-arrow-circle-right fa-2x next" : "fas fa-arrow-circle-right fa-2x next hidden"
+            } onClick={next}></i>
       </div>
     );
   }

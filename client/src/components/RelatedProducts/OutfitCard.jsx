@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import ReactStars from 'react-stars';
+import RatingStars from '../RatingsReviews/RatingStars.jsx';
+
+//****Ratings helper function*****//
+const roundToFourth = (rating) => (Math.round(rating * 4) / 4).toFixed(2);
 
 
 class OutfitCard extends React.Component {
@@ -13,7 +16,8 @@ class OutfitCard extends React.Component {
       original_price: '',
       sale_price: '',
       thumbnail_url: '',
-      product: {}
+      product: {},
+      rating: 0
     }
     this.getInfo = this.getInfo.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -45,6 +49,20 @@ class OutfitCard extends React.Component {
           sale_price: response.data.results[0].sale_price
         })
       })
+      axios.get(`api/reviews/meta/${this.props.outfitItem.id}`)
+        .then((response) => {
+          var ratings = Object.values(response.data.ratings);
+          const ratingsArr = ratings.map((i) => Number(i));
+          var total = 0;
+          for (var i = 0; i < ratingsArr.length; i++) {
+            total += ratingsArr[i];
+            var avg = (total / ratingsArr.length) / 2;
+          }
+          var rounded = roundToFourth(avg)
+          this.setState({
+            rating: this.state.rating += rounded
+          })
+        })
   }
 
   handleClick() {
@@ -55,7 +73,7 @@ class OutfitCard extends React.Component {
   render() {
     return (
       <div>
-        <i className="far fa-times-circle fa-2x btn" onClick={this.handleClick}></i>
+        <i className="far fa-times-circle btn" onClick={this.handleClick} snapToSlide={false} visibleSlides={4}></i>
         <img src={this.state.thumbnail_url} name="test"></img>
         <div className="category">
             {this.state.category}
@@ -67,10 +85,7 @@ class OutfitCard extends React.Component {
             {'$ ' + this.state.original_price}
           </div>
           <div className="stars">
-          <ReactStars
-            count={5}
-            size={20}
-            color2={'#ffd700'} />
+          <RatingStars rating={this.state.rating} color="#f8ce0b" size="12px"/>
           </div>
       </div>
     )
