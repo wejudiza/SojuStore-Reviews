@@ -9,7 +9,7 @@ const header = {
 
 const products = {
   getProducts: (callback) => {
-    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products';
+    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/?pages=1&count=10';
 
     axios.get(url, header)
       .then((results) => { callback(null, results.data); })

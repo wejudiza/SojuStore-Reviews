@@ -102,34 +102,52 @@
   display: flex;
   flex-direction: column;
   float: right;
-  font-family: "Times New Roman", Georgia, 'Times New Roman', Times, serif;
-  margin-right: 50px;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 0.5px dotted;
+  font-family: 'Source Sans Pro', sans-serif;
+  width: 50%;
+  position: relative;
+  flex-flow: row wrap;
 }
 
 #whole-Style {
-  padding-bottom: 410px;
-  margin-bottom: 10px;
-  border-bottom: double;
+  margin-right: 50%;
+  display: flex;
 }
 
+/* top needs to be fixed, does not resize well */
 #Style-Select {
   display: flex;
   flex-direction: column;
-  float: right;
-  padding-bottom: 10px;
-  padding-right: 29.4%;
-  font-size: 17.5px;
+  left: 50%;
+  position: absolute;
+  width: 50%;
+  top: 23%;
 }
 
 .category-rating {
   text-transform: uppercase;
   font-family: monospace;
   letter-spacing: 1.5px;
-  font-size: 12.5px;
-  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+#social-media {
+  position: relative;
+  width: 50%;
+  display: inline-block;
+  font-family: monospace;
+  flex-direction: row;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 13.5px;
+  line-height: 2;
+  font-weight: bold;
+}
+
+.social {
+  width: 30px;
+  height: 30px;
+  border-radius: 5%;
+  vertical-align: middle;
 }
 
 .product-detail h2{
@@ -141,14 +159,30 @@
   margin-bottom: 10px;
 }
 
+.cartBtn {
+  display: block;
+  padding: 0.5em 1em 0.5em 1em;
+  border-radius: 100px;
+  border: none;
+  font-size: 16px;
+  position: relative;
+  background: darkseagreen;
+  cursor: pointer;
+  height: auto;
+  width: auto;
+  overflow: hidden;
+}
+
 .defaultStyle-img {
-  width: 550px;
-  height: 400px;
+  width: 90%;
+  align-items: baseline;
   float: left;
-  margin-left: 150px;
+  margin-right: 5%;
   text-align: center;
-  padding-bottom: 10px;
-  margin-bottom: 20px
+  position: relative;
+  cursor: zoom-in;
+  justify-content: center;
+  margin-left: 5%;
 }
 
 .thumbnail-img {
@@ -157,3 +191,106 @@
   width: 60px;
   height: 60px;
 }
+
+.thumbnail-img-selected {
+  border-radius: 50%;
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  border: 2px solid red;
+}
+
+.thumbnail-img-main {
+  border-radius: 50%;
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  border: 3px solid red;
+}
+
+.thumbnail-img-main-hidden {
+  width: 0px;
+  height: 0px;
+}
+
+.default-thumbnail {
+  width: 70px;
+  height: 70px;
+}
+
+.default-thumbnail-hidden {
+  width: 0px;
+  height: 0px;
+}
+
+.rightArrow {
+  border: solid darkseagreen;
+  border-width: 0 12.5px 12.5px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  opacity: 65%;
+}
+
+.leftArrow {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  border: solid darkseagreen;
+  border-width: 0 12.5px 12.5px 0;
+  display: inline-block;
+  padding: 3px;
+  opacity: 65%;
+}
+
+
+.test1 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15%;
+  width: 100%;
+}
+
+.img-container {
+  position: relative;
+}
+
+.test {
+  position: relative;
+  height: 84%;
+  width: 100%;
+  display: inline-block;
+}
+
+.test img {
+  position: relative;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  transition: .3s ease-in-out;
+}
+
+figure {
+  width: 100vw;
+  height: 100vw;
+  background-repeat: no-repeat;
+  background-size: 250%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  display: block;
+  margin: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
