@@ -39,6 +39,7 @@ class RelatedProducts extends React.Component {
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.getInfo = this.getInfo.bind(this);
+    this.getWA = this.getWA.bind(this);
   }
 
   componentDidMount() {
@@ -50,6 +51,14 @@ class RelatedProducts extends React.Component {
       this.resizeObserver.disconnect();
     }
   }
+
+  getWA(metadata) {
+    const { ratings } = metadata;
+    const waArray = Object.keys(ratings).map((key) => Number(key) * Number(ratings[key]));
+    const total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
+    const wa = waArray.reduce((sum, val) => sum + val) / total;
+    return wa;
+  };
 
 
   getInfo() {
@@ -78,17 +87,18 @@ class RelatedProducts extends React.Component {
       })
     axios.get(`api/reviews/meta/${this.props.productId}`)
       .then((response) => {
-        var ratings = Object.values(response.data.ratings);
-        const ratingsArr = ratings.map((i) => Number(i));
-        var total = 0;
-        for (var i = 0; i < ratingsArr.length; i++) {
-          total += ratingsArr[i];
-          var avg = (total / ratingsArr.length) / 2;
-        }
-        var rounded = roundToFourth(avg)
-        this.setState({
-          rating: this.state.rating += rounded
-        })
+        // var ratings = Object.values(response.data.ratings);
+        // const ratingsArr = ratings.map((i) => Number(i));
+        // var total = 0;
+        // for (var i = 0; i < ratingsArr.length; i++) {
+        //   total += ratingsArr[i];
+        //   var avg = (total / ratingsArr.length) / 2;
+        // }
+        // var rounded = roundToFourth(avg)
+        // this.setState({
+        //   rating: this.state.rating += rounded
+        // })
+        console.log(response)
       })
   }
 
