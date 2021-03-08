@@ -74,13 +74,14 @@ export default class App extends Component {
           <h3>Your Outfit</h3>
           <OufitList mainProduct={this.state.data}/>
 
-          {/* --- Ratings & Reviews --- */}
-          <div id="ratings-reviews-container">
-            <RatingsReviews />
-          </div>
           <div id="questions">
             <h3>Questions</h3>
             <QnA />
+          </div>
+
+          {/* --- Ratings & Reviews --- */}
+          <div id="ratings-reviews-container">
+            <RatingsReviews />
           </div>
         </UserContext.Provider>
       </div>
