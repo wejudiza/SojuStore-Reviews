@@ -26,7 +26,7 @@ export default function ReviewTile(props) {
           <RatingStars rating={review.rating} size="1rem" color="#f8ce0b" />
           <div>{review.reviewer_name}</div>
         </div>
-        <div className="review-date">{(review.date)}</div>
+        <div className="review-date">{convertDate(review.date)}</div>
       </div>
 
       { /* Review Summary + Body + Thumbnails */ }

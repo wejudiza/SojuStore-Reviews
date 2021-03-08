@@ -8,6 +8,7 @@ import axios from 'axios';
 import { UserContext } from '../UserContext.jsx';
 
 // Subcomponents
+import Search from './Search.jsx';
 import AddReview from './AddReview.jsx';
 import SortSelect from './SortSelect.jsx';
 import ReviewTile from './ReviewTile.jsx';
@@ -16,6 +17,7 @@ import ProductBreakdown from './ProductBreakdown.jsx';
 
 // Custom hooks + helper functions
 import useFilter from './useFilter.js';
+import useSearch from './useSearch.js';
 import sortReviews from './sortReviews.js';
 
 const productID = "16500";
@@ -27,6 +29,14 @@ const initialFilters = {
   2: true,
   1: true,
 };
+
+
+// const convertDate = (date) => {
+//   const pattern = /\d{4}-\d{2}-\d{2}/;
+//   const oldDate = date.match(pattern)[0];
+//   const newDate = dt(oldDate, "YYYY-MM-DD").format("MMMM DD, YYYY");
+//   return newDate;
+// };
 
 /* ------------------------
 Ratings & Reviews Component
@@ -41,6 +51,7 @@ export default function RatingsReviews() {
   const [numReviews, setNumReviews] = useState(0);
   const [reviewMetadata, setReviewMetadata] = useState(null);
   const [filters, setFilters] = useFilter(initialFilters);
+  const [search, setSearch] = useSearch({ text: '', count: 0 });
 
   // Get all reviews from Atellier API for specific product + assign to state once loaded
   useEffect(() => {
@@ -63,6 +74,15 @@ export default function RatingsReviews() {
   useEffect(() => {
     setNumReviews(allReviews.length);
   }, [allReviews]);
+
+  useEffect(() => {
+    if (search.count > 3) {
+      const searchResults = allReviews.filter((review) => review.body.match(`${search.text}`));
+      setAllReviews(searchResults);
+    } else {
+      setAllReviews(sortReviews(reviews, sort));
+    }
+  }, [search]);
 
   // On change event handler to set sortBy state (<SortSelect />)
   const handleSelect = (e) => {
@@ -94,6 +114,8 @@ export default function RatingsReviews() {
           { `${numReviews} reviews sorted by` }
           <SortSelect numReviews={numReviews} handleSelect={handleSelect} />
         </div>
+        <Search setSearch={setSearch} />
+
         {/* Individual Review Tiles */}
         <div id="review-list">
           { allReviews.slice(0, showCount).map((review) => (
