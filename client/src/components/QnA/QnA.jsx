@@ -30,6 +30,8 @@ export default function QnA(){
       .catch((err) => console.error(err));
   }, []);
 
+  console.log(search)
+
   const showMoreQuestions = () => {
     setQuestionsToShow(questions.length)
     setLoaded(true)
@@ -102,6 +104,8 @@ export default function QnA(){
     }
   )
 
+  console.log(filteredQuestion)
+
   if (loaded === false) {
     return (
       <div>
@@ -149,7 +153,7 @@ export default function QnA(){
         {filteredQuestion.slice(0, questionsToShow).map((question, index) => {
           return (
           <div key={index}>
-            <Question question={question} render={useEffect}/>
+            <Question question={question}/>
           </div>
           )}
         )}

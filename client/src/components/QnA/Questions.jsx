@@ -29,6 +29,8 @@ export default function Question({question}) {
     }
   )
 
+  console.log({question})
+
   useEffect(() => {
     axios.get(`/api/qa/questions/${question.question_id}/answers`)
     .then((results) => {
@@ -157,7 +159,6 @@ export default function Question({question}) {
       }
     )
   }
-  console.log("answer:", answer.photos)
 
   if (loaded === false) {
     return (
