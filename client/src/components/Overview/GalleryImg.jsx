@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // when scrolling on the thumbnails images, and i click another default thumbnail - the list doesn't go back to 1
+//changeBackward & forward has a bug - ONE STEP BEHIND, ONLY WORKS AFTER SECOND CLICK!!!!
+// leftArrow line 100 - needed to make it go to the left of the image, cheap coded the left alignment to make it fit into small monitor
 
 function GalleryImg(props) {
   const [maxThumbIndex, setMaxThumbIndex] = useState([]);
@@ -95,8 +97,8 @@ function GalleryImg(props) {
 
   return (
     <div id="default-thumbnails">
-      <i className={props.index > 0 ? 'leftArrow' : 'leftArrow-hidden'} onClick={() => changeBackwardLeft()}> </i>
-      <i className={props.index === maxThumbIndex - 1 ? 'rightArrow-hidden' : 'rightArrow' } onClick={() => changeForwardRight()}> </i>
+      <i className='leftArrow' style={props.index > 0 ? {visibility: 'visible', position: 'absolute', margin: '-16%', left: '-110%'} : {visibility: 'hidden'} } onClick={() => changeBackwardLeft()}> </i>
+      <i className='rightArrow' style={props.index === maxThumbIndex - 1 ? {visibility: 'hidden'} : {visibility: 'visible', margin: '-16%', position: 'absolute'} } onClick={() => changeForwardRight()}> </i>
       <div>
       {Object.keys(props.default).length > 0 ? <div style={{display: 'flex', alignItems: 'center'}}>
           <i className='leftArrow' style={thumbIndex > 0 ? {visibility: 'visible'} : {visibility: 'hidden'} }onClick={() => changeLeftThumb()}>  </i>

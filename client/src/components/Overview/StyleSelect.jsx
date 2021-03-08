@@ -14,7 +14,7 @@ function StyleSelect (props) {
   const [defaultPhoto, setDefaultPhoto] = useState('')
   // index is for photo index
   const [indexPhoto, setIndexPhoto] = useState(0);
-
+  console.log('default style: ', defaultStyle)
   useEffect(() => {
     if (props.data !== undefined) {
       axios.get(`/api/styles/${props.data}`)
@@ -83,7 +83,7 @@ function StyleSelect (props) {
       {thumbnailModel(thumbnail).map((itemA, index) => (
         <div key={index}>
         {itemA.map((item, index) => (
-          <img src={item.thumbnail_url} key={index} className={defaultPhoto === item.url ? "thumbnail-img-selected" : "thumbnail-img"} onClick={() => clickThumbnail(item.index, item.url)}></img>
+          <img src={item.thumbnail_url} key={index} className="thumbnail-img" style={defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? {border: '3px solid red'} : null} onClick={() => clickThumbnail(item.index, item.url)}></img>
         ))}
         </div>
       ))}

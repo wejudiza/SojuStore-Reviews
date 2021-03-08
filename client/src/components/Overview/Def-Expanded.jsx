@@ -106,7 +106,7 @@ function Default_Expanded (props) {
           </div>}
         {zoom ? <figure onMouseMove={(e) => handleMouseMove(e)} style={{backgroundImage: bgImage, backgroundPosition: bgPosition}} onClick={() => setZoom(!zoom)}>
           </figure> : <div className="test" >
-            <img src={expandThumb[props.index].url} onClick={() => setZoom(!zoom)} onLoad={() => setImage(`url(${expandThumb[props.index].url})`)}></img>
+            <img src={expandThumb[props.index].url} onClick={() => setZoom(!zoom)} onLoad={() => setImage(`url(${expandThumb[props.index].url})`)} style={{cursor: 'crosshair'}}></img>
         </div> }
       </Modal> : null }
     </div>

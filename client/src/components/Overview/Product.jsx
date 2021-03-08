@@ -4,6 +4,10 @@ import axios from 'axios';
 import { SocialIcon } from 'react-social-icons';
 
 import StyleSelect from './StyleSelect.jsx';
+import RatingStars from '../RatingsReviews/RatingStars.jsx';
+
+// need to link star component from Liam/Jordan
+// add a READ ALL REVIEWS LINK -> with Liam
 
 function Product() {
   const msg = useContext(UserContext)
