@@ -20,8 +20,6 @@ import useFilter from './useFilter.js';
 import useSearch from './useSearch.js';
 import sortReviews from './sortReviews.js';
 
-const productID = "16500";
-
 const initialFilters = {
   5: true,
   4: true,
@@ -29,6 +27,8 @@ const initialFilters = {
   2: true,
   1: true,
 };
+
+const productID = '16065';
 
 /* ------------------------
 Ratings & Reviews Component
