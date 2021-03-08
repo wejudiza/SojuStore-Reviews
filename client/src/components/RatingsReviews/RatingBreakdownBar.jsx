@@ -5,11 +5,11 @@ export default function RatingBreakdownBar(props) {
 
   return (
     <div className="bar-container" onClick={() => handleFilter(rating)}>
-      { `${rating} stars` }
+      <div className="bar-text">{ `${rating} stars` }</div>
       <div className="bar-background">
         <div className="bar-foreground" style={{width: `${dist}%`}}></div>
       </div>
-      <div>{count}</div>
+      <div className="bar-count">{count}</div>
     </div>
   );
 }

@@ -83,36 +83,38 @@ export default function RatingsReviews() {
 
   return (
     <div id="ratings-reviews">
+
       <div id="sidebar">
-        <h3 id="title">Ratings & Reviews</h3>
+        <div id="title">Ratings & Reviews</div>
         <RatingBreakdown reviewMetadata={reviewMetadata} handleFilter={handleFilter} />
         <ProductBreakdown />
       </div>
 
-      { /* Sorting dropdown */ }
-      <div id="sortby">
-        { `${numReviews} reviews sorted by` }
-        <SortSelect numReviews={numReviews} handleSelect={handleSelect} />
-      </div>
-      <br />
+      <div className="reviews-main">
+        { /* Sorting dropdown */ }
+        <div id="sortby">
+          { `${numReviews} reviews sorted by` }
+          <SortSelect numReviews={numReviews} handleSelect={handleSelect} />
+        </div>
+        <br />
 
-      {/* Individual Review Tiles */}
-      <div id="review-list">
-        { allReviews.slice(0, showCount).map((review) => (
-          <ReviewTile
-            review={review}
-            sort={sort}
-            setAllReviews={setAllReviews}
-            key={review.review_id}
-          />
-        )) }
-      </div>
-
-      <div id="footer-buttons">
-        { showCount === numReviews || showCount === numReviews + 1 ? null : (
-          <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>Show More</button>
-        ) }
-        <AddReview metadata={reviewMetadata} />
+        {/* Individual Review Tiles */}
+        <div id="review-list">
+          { allReviews.slice(0, showCount).map((review) => (
+            <ReviewTile
+              review={review}
+              sort={sort}
+              setAllReviews={setAllReviews}
+              key={review.review_id}
+            />
+          )) }
+          <div id="footer-buttons">
+            { showCount === numReviews || showCount === numReviews + 1 ? null : (
+              <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>Show More</button>
+            ) }
+            <AddReview metadata={reviewMetadata} />
+          </div>
+        </div>
       </div>
     </div>
   );
