@@ -23,6 +23,7 @@ export default function QnA(){
         setQuestions(results.data.results)})
       .then((axios.get(`/api/qa/questions/16392`)
         .then((results) => setNewQuestion({
+          ...newQuestion,
           product_id: results.data.product_id
         }))
         ))
@@ -50,8 +51,8 @@ export default function QnA(){
     setSearch(e.target.value)
   }
 
-  {console.log(newQuestion)}
   const submitQuestion = () => {
+    {console.log(newQuestion)}
     if (newQuestion.email.indexOf('@') === -1 || newQuestion.email.indexOf('.') === -1) {
       alert('Invalid Email')
     } else if (newQuestion.body === '' || newQuestion.name === '') {

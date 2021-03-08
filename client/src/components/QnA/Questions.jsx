@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Answer from './Answers.jsx';
 import Modal from 'react-modal';
 import axios from 'axios';
+import { storage} from "./Firebase/index.js"
 
 export default function Question({question}) {
 
@@ -19,6 +20,7 @@ export default function Question({question}) {
   const [clicked, setClicked] = useState(false);
   const [search, setSearch] = useState('');
   const [reported, setReported] = useState('Report');
+  const [image, setImage] = useState([]);
   answers.sort((a, b) => a.helpfulness > b.helpfulness ? -1 : 1 )
 
   let filteredAnswer = answers.filter(
@@ -127,6 +129,36 @@ export default function Question({question}) {
     .catch (err => console.error(err))
   }
 
+  const handleChange = e => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0])
+    }
+  }
+
+  const handleUpLoad = () => {
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      snapshot => {},
+      error => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url => {
+            setAnswer({
+              ...answer,
+              photos: answer.photos.concat(url)
+            })
+          }, () => console.log("temp:", tempArray))
+      }
+    )
+  }
+  console.log("answer:", answer.photos)
+
   if (loaded === false) {
     return (
       <div className="question">
@@ -156,6 +188,15 @@ export default function Question({question}) {
               </p>
               <button onClick={submitAnswer}>Submit</button>
             <button onClick={()=>setModal(false)}>Close</button>
+            <br></br>
+              <input type="file" onChange={handleChange}/>
+              <button onClick={handleUpLoad}>Upload Photo</button>
+              <br></br>
+              <input type="file" onChange={handleChange}/>
+              <button onClick={handleUpLoad}>Upload Photo</button>
+              <br></br>
+              <input type="file" onChange={handleChange}/>
+              <button onClick={handleUpLoad}>Upload Photo</button>
           </Modal>
           {filteredAnswer.slice(0,answersToShow).map((answer, index) =>
           <div key={index} >
@@ -194,7 +235,17 @@ export default function Question({question}) {
                 </textarea>
               </p>
               <button onClick={submitAnswer}>Submit</button>
+              <button>Upload Photo</button>
             <button onClick={()=>setModal(false)}>Close</button>
+            <br></br>
+              <input type="file" onChange={handleChange}/>
+              <button onClick={handleUpLoad}>Upload Photo</button>
+              <br></br>
+              <input type="file" onChange={handleChange}/>
+              <button onClick={handleUpLoad}>Upload Photo</button>
+              <br></br>
+              <input type="file" onChange={handleChange}/>
+              <button onClick={handleUpLoad}>Upload Photo</button>
           </Modal>
           {filteredAnswer.slice(0,answersToShow).map((answer, index) =>
           <div key={index} >
