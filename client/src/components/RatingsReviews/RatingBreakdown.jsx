@@ -9,16 +9,23 @@ import RatingBreakdownBar from './RatingBreakdownBar.jsx';
 const getWA = (metadata) => {
   const { ratings } = metadata;
   const waArray = Object.keys(ratings).map((key) => Number(key) * Number(ratings[key]));
-  const total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
-  const wa = waArray.reduce((sum, val) => sum + val) / total;
-  return wa;
+  if (Object.values(ratings).length > 1) {
+    let total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
+    total = total === 0 ? 1 : total;
+    let wa = waArray.reduce((sum, val) => sum + val) / total;
+    wa = wa ?? 0;
+    return wa;
+  }
 };
 
 const getDistribution = (metadata) => {
   const dist = {};
   const { ratings } = metadata;
-  const total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
-  Object.keys(ratings).map((key) => dist[key] = Number(ratings[key]) / total * 100);
+  if (Object.values(ratings).length > 1) {
+    let total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
+    total = total === 0 ? 1 : total;
+    Object.keys(ratings).map((key) => dist[key] = Number(ratings[key] ?? 0) / total * 100);
+  }
   return dist;
 };
 
@@ -26,7 +33,9 @@ const getRecommneded = (metadata) => {
   const { recommended } = metadata;
   const yes = Number(recommended.true);
   const no = Number(recommended.false);
-  return yes / (yes + no) * 100;
+  let percent = yes / (yes + no) * 100;
+  percent = !percent || percent == null ? 0 : percent;
+  return percent;
 };
 
 export default function RatingBreakdown(props) {
@@ -46,7 +55,7 @@ export default function RatingBreakdown(props) {
   return (
     <div id="rating-breakdown">
       <div id="rating-header">
-        <h1 id="rating-header-text">{ wa.toFixed(2) }</h1>
+        <h1 id="rating-header-text">{ !wa ? 0.00 : wa.toFixed(2) }</h1>
         <RatingStars rating={wa} size="1.75rem" color="#f8ce0b" />
       </div>
       <div id="percent-recommend">

@@ -72,6 +72,7 @@ export default class App extends Component {
           <h3>Your Outfit</h3>
           <OufitList mainProduct={this.state.data}/>
 
+<<<<<<< HEAD
 
           <div id="questions">
             <h3>Questions</h3>
@@ -81,6 +82,18 @@ export default class App extends Component {
           <div id="ratings-reviews-container">
             <RatingsReviews />
           </div>
+=======
+          <div id="questions">
+            <h3>Questions</h3>
+            <QnA />
+          </div>
+
+          {/* --- Ratings & Reviews --- */}
+          <div id="ratings-reviews-container">
+            <RatingsReviews />
+          </div>
+
+>>>>>>> 7b3bf05c7297368e88b174b7a97ebc7949fefeaf
         </UserContext.Provider>
       </div>
 

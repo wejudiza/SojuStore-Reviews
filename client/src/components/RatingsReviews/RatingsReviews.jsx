@@ -20,8 +20,6 @@ import useFilter from './useFilter.js';
 import useSearch from './useSearch.js';
 import sortReviews from './sortReviews.js';
 
-const productID = "16500";
-
 const initialFilters = {
   5: true,
   4: true,
@@ -34,7 +32,7 @@ const initialFilters = {
 Ratings & Reviews Component
 ------------------------ */
 export default function RatingsReviews() {
-  // const productID = useContext(UserContext).id;
+  const productID = useContext(UserContext).id;
   const [loaded, setLoaded] = useState(false);
   const [showCount, setShowCount] = useState(2);
   const [sort, setSort] = useState('relevant');
