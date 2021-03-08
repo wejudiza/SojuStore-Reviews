@@ -38,9 +38,9 @@
     "react-checkmark": "^1.4.0",
     "react-dom": "^16.13.0",
     "react-modal": "^3.12.1",
-    "react-whirligig": "^6.6.15",
     "react-select": "^4.1.0",
-    "react-stars": "^2.2.5"
+    "react-stars": "^2.2.5",
+    "react-whirligig": "^6.6.15"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
