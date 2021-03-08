@@ -7,6 +7,7 @@ import Default_Expanded from './Def-Expanded.jsx';
 import { Checkmark } from 'react-checkmark';
 
 //test the bold for SALES PRICE
+// change the icon for selective icon - need to research more
 
 function StyleSelect (props) {
   const [styles, setStyles] = useState([])
@@ -16,7 +17,7 @@ function StyleSelect (props) {
   const [defaultPhoto, setDefaultPhoto] = useState('')
   // index is for photo index
   const [indexPhoto, setIndexPhoto] = useState(0);
-  console.log('default style: ', defaultStyle)
+
   useEffect(() => {
     if (props.data !== undefined) {
       axios.get(`/api/styles/${props.data}`)
@@ -89,7 +90,7 @@ function StyleSelect (props) {
         ))}
         </div>
       ))}
-      {defaultStyle.sale_price === null ? <div style={{margin: '1.5%', fontSize: '19px'}}> $ {defaultStyle.original_price} </div> : <div style={{margin: '1.5%'}}> <b style={{color:'red', weight: '600'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
+      {defaultStyle.sale_price === null ? <div style={{margin: '1.5%', fontSize: '19px', justifyContent: 'center', display: 'flex'}}> $ {defaultStyle.original_price} </div> : <div style={{margin: '1.5%', fontSize:'19px', justifyContent: 'center', display: 'flex'}}> <b style={{color:'red', weight: '600'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
       <GalleryImg default={defaultStyle} setDefaultPhoto={setDefaultPhoto} setIndex={setIndexPhoto} index={indexPhoto} />
       <ProductInfo default={defaultStyle} />
     </div>

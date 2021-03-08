@@ -4,6 +4,7 @@ import axios from 'axios';
 // when scrolling on the thumbnails images, and i click another default thumbnail - the list doesn't go back to 1
 //changeBackward & forward has a bug - ONE STEP BEHIND, ONLY WORKS AFTER SECOND CLICK!!!!
 // leftArrow line 100 - needed to make it go to the left of the image, cheap coded the left alignment to make it fit into small monitor
+// change css for the selected thumbnail on display (thumbnails of 7) TRY TO HIGHLIGHT OVER THE IMAGE
 
 function GalleryImg(props) {
   const [maxThumbIndex, setMaxThumbIndex] = useState([]);
@@ -103,7 +104,7 @@ function GalleryImg(props) {
       {Object.keys(props.default).length > 0 ? <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <i className='leftArrow' style={thumbIndex > 0 ? {visibility: 'visible'} : {visibility: 'hidden'} }onClick={() => changeLeftThumb()}>  </i>
           {props.default.photos.map((item, index) => (
-              <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} ></img>
+              <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? {boxShadow: '0px 1px 20px 5px red', filter: 'contrast(1.5)'} : null} >{console.log(index === props.index)}</img>
         ))}
         <i className='rightArrow' style={thumbIndex >= maxThumb ? {visibility: 'hidden'} : {visibility: 'visible'} } onClick={() => changeRightThumb()}> </i> </div>
       : null}
