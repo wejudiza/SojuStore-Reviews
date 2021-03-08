@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
-import ReactStars from 'react-stars';
-import { Checkmark } from 'react-checkmark'
+import { Checkmark } from 'react-checkmark';
+import RatingStars from '../RatingsReviews/RatingStars.jsx';
 
 
 // Styles for Modal
@@ -16,6 +16,9 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 };
+
+//****Ratings helper function*****//
+const roundToFourth = (rating) => (Math.round(rating * 4) / 4).toFixed(2);
 
 
 class RelatedProducts extends React.Component {
@@ -31,7 +34,8 @@ class RelatedProducts extends React.Component {
       thumbnail_url: '',
       features: [],
       mainFeatures: [],
-      product: {}
+      product: {},
+      rating: 0
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.getInfo = this.getInfo.bind(this);
@@ -39,6 +43,12 @@ class RelatedProducts extends React.Component {
 
   componentDidMount() {
     this.getInfo();
+  }
+
+  componentWillUnmount() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   }
 
 
@@ -66,6 +76,20 @@ class RelatedProducts extends React.Component {
           mainFeatures: response.data.features
         })
       })
+    axios.get(`api/reviews/meta/${this.props.productId}`)
+      .then((response) => {
+        var ratings = Object.values(response.data.ratings);
+        const ratingsArr = ratings.map((i) => Number(i));
+        var total = 0;
+        for (var i = 0; i < ratingsArr.length; i++) {
+          total += ratingsArr[i];
+          var avg = (total / ratingsArr.length) / 2;
+        }
+        var rounded = roundToFourth(avg)
+        this.setState({
+          rating: this.state.rating += rounded
+        })
+      })
   }
 
   toggleModal() {
@@ -77,10 +101,34 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div className="related-card" >
-        <i className="far fa-star btn" onClick={this.toggleModal}></i>
-          <img src={this.state.thumbnail_url} onClick={() => this.props.updateCurrentProduct(this.state.product)}></img>
+          {/* *********RELATED PRODUCTS CARD********** */}
           <div>
-            {/* MODAL WITH TABLE */}
+            <i className="far fa-star btn" onClick={this.toggleModal}></i>
+            <img src={this.state.thumbnail_url} onClick={() => this.props.updateCurrentProduct(this.state.product)}></img>
+          </div>
+
+          <div className="category">
+            {this.state.category}
+          </div>
+
+          <div className="name">
+            {this.state.name}
+          </div>
+
+          <div className="price">
+            {this.state.sale_price === null ?
+            '$ ' + this.state.original_price
+            :
+            <>
+            <div className="strike">{'$ ' + this.state.original_price}</div>
+            {'$ ' + this.state.sale_price}
+            </>
+          }
+          </div>
+          <div className="stars">
+            <RatingStars rating={this.state.rating} color="#f8ce0b" size="12px"/>
+          </div>
+            {/* **********MODAL WITH TABLE********** */}
             <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.toggleModal} ariaHideApp={false} style={customStyles}>
               <h5>Comparing</h5>
               <table className="table">
@@ -93,69 +141,52 @@ class RelatedProducts extends React.Component {
                 </thead>
                 <tbody>
                 {this.state.features.map((feature, index) => {
-                      if (feature.value !== null) {
-                        return (
-                          <tr key={index}>
-                            <td></td>
-                            <td>{`${feature.value} ${feature.feature}`}</td>
-                            <td><Checkmark size="small"/></td>
-                          <br/>
-                          </tr>
-                        )
-                      } else {
-                        return (
-                          <tr key={index}>
-                            <td></td>
-                            <td>{feature.feature}</td>
-                            <td><Checkmark size="small"/></td>
-                            <br/>
-                          </tr>
-                        )
-                      }
-                    })}
-                {this.state.mainFeatures.map((feature, index) => {
-                  if (feature.value !== null) {
-                    return (
-                      <tr key={index}>
-                        <td><Checkmark size="small"/></td>
-                        <td>{`${feature.value} ${feature.feature}`}</td>
-                        <td></td>
-                      <br/>
-                      </tr>
-                    )
-                  } else {
-                    return (
-                      <tr key={index}>
-                        <td><Checkmark size="small"/></td>
-                        <td>{feature.feature}</td>
-                        <td></td>
+                    if (feature.value !== null) {
+                      return (
+                        <tr key={index}>
+                          <td></td>
+                          <td>{`${feature.value} ${feature.feature}`}</td>
+                          <td><Checkmark size="small"/></td>
                         <br/>
-                      </tr>
-                    )
-                  }
-                })}
-                </tbody>
-            </table>
-          </Modal>
-          {/* RELATED PRODUCTS CARD */}
-          </div>
-          <div className="category">
-            {this.state.category}
-          </div>
-          <div className="name">
-            {this.state.name}
-          </div>
-          <div className="price">
-            {'$ ' + this.state.original_price}
-          </div>
-          <div className="stars">
-          <ReactStars
-            count={5}
-            size={20}
-            color2={'#ffd700'} />
-          </div>
-        </div>
-    );
+                        </tr>
+                      )
+                    } else {
+                      return (
+                        <tr key={index}>
+                          <td></td>
+                          <td>{feature.feature}</td>
+                          <td><Checkmark size="small"/></td>
+                          <br/>
+                        </tr>
+                      )
+                    }
+                  })}
+              {this.state.mainFeatures.map((feature, index) => {
+                if (feature.value !== null) {
+                  return (
+                    <tr key={index}>
+                      <td><Checkmark size="small"/></td>
+                      <td>{`${feature.value} ${feature.feature}`}</td>
+                      <td></td>
+                    <br/>
+                    </tr>
+                  )
+                } else {
+                  return (
+                    <tr key={index}>
+                      <td><Checkmark size="small"/></td>
+                      <td>{feature.feature}</td>
+                      <td></td>
+                      <br/>
+                    </tr>
+                  )
+                }
+              })}
+              </tbody>
+          </table>
+        </Modal>
+      </div>
+      );
   }
 }
 
