@@ -20,23 +20,47 @@ const getLabels = (characteristic) => {
   return labels[characteristic];
 }
 
+const colorGradient = [
+  'F0FF00',
+  'E0FF00',
+  'D0FF00',
+  'C0FF00',
+  'B0FF00',
+  'A0FF00',
+  '90FF00',
+  '80FF00',
+  '70FF00',
+  '60FF00',
+  '50FF00',
+  '40FF00',
+  '30FF00',
+  '20FF00',
+  '10FF00'
+];
+
+// func(perc) -> convert to an index from 0-15
+// 0 === 0%
+// 15 === 100%
+
+
 /* --------------------------
 ProductBreakdownBar Component
 -------------------------- */
 // Dyanmic breakdown bar subcomponent that given a characteristic & value
 export default function ProductBreakdownBar({ characteristic, value }) {
-  const markerPosition = `${getTrianglePosition(value)}%`;
+  const markerPosition = getTrianglePosition(value);
   const labels = getLabels(characteristic);
+  const markerColor = `#${colorGradient[Math.floor(markerPosition * .15)]}`;
 
   return (
     <div className="product-breakdown">
-      <br />
       { /* Breakdown bar + traingle */ }
+      <div className="product-bar-title">{characteristic}</div>
       <div className="product-bar-container">
         <div className="product-bar-background" />
         <div className="product-bar-background" />
         <div className="product-bar-background" />
-        <div className="triangle" style={{ left: markerPosition }} />
+        <div className="triangle" style={{ left: `${markerPosition}%`, color: markerColor }} />
       </div>
       { /* Breakdown bar lalels */ }
       <div className="product-bar-labels">

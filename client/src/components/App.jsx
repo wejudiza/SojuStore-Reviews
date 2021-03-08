@@ -67,19 +67,22 @@ export default class App extends Component {
         <button onClick={this.signInClick}>Sign In</button>
         <button onClick={this.signOutClick}>Sign Out</button>
         <UserContext.Provider value={this.state.data}>
-<<<<<<< HEAD
           {/* <Product /> */}
-=======
           <Product />
->>>>>>> 4e452a2af887ef925be6f834c32126fba35cec16
           <h3>Related Products</h3>
           <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
           <h3>Your Outfit</h3>
           <OufitList mainProduct={this.state.data}/>
 
+<<<<<<< HEAD
+          {/* --- Ratings & Reviews --- */}
+          <div id="ratings-reviews-container">
+            <RatingsReviews />
+=======
           --- Ratings & Reviews ---
           <div id="ratings-reviews">
              <RatingsReviews />
+>>>>>>> 49c0666b5dbf2a700b6cf81dbdfb16013a2de917
           </div>
 
           <div id="questions">

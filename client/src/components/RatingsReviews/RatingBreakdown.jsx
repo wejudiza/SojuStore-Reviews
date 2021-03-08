@@ -29,7 +29,8 @@ const getRecommneded = (metadata) => {
   return yes / (yes + no) * 100;
 };
 
-export default function RatingBreakdown({ reviewMetadata }) {
+export default function RatingBreakdown(props) {
+  const { reviewMetadata, handleFilter } = props;
   const [wa, setWA] = useState(0);
   const [ratingDist, setRatingDist] = useState({});
   const [recommended, setRecommended] = useState(0);
@@ -43,16 +44,23 @@ export default function RatingBreakdown({ reviewMetadata }) {
   }, [reviewMetadata]);
 
   return (
-    <div id="rating-reakdown">
-      <div id="avg-rating">
-        <h1>{ wa.toFixed(1) }</h1>
-        <RatingStars rating={wa} size="25px" color="#f8ce0b" />
+    <div id="rating-breakdown">
+      <div id="rating-header">
+        <h1 id="rating-header-text">{ wa.toFixed(2) }</h1>
+        <RatingStars rating={wa} size="1.75rem" color="#f8ce0b" />
       </div>
       <div id="percent-recommend">
-        {`${recommended.toFixed(0)} % of reviews recommend this product` }
+        {`${recommended.toFixed(0)}% of reviews recommend this product` }
       </div>
+      <br />
       { Object.keys(ratingDist).reverse().map((key) => (
-        <RatingBreakdownBar key={key} rating={key} dist={ratingDist[key]} />
+        <RatingBreakdownBar
+          key={key}
+          rating={key}
+          dist={ratingDist[key]}
+          count={reviewMetadata.ratings[key]}
+          handleFilter={handleFilter}
+        />
       )) }
     </div>
   );
