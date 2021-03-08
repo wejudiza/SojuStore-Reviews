@@ -78,7 +78,7 @@ function StyleSelect (props) {
       <Default_Expanded default={defaultPhoto} setDefault={setDefaultPhoto} style={defaultStyle} index={indexPhoto} setIndex={setIndexPhoto} />
       <div id="Style-Select">
         <div className="category-rating">
-         Color:<em>{defaultStyle.name}</em>
+         Color:&nbsp;<b>{defaultStyle.name}</b>
         </div>
       {thumbnailModel(thumbnail).map((itemA, index) => (
         <div key={index}>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// when scrolling on the thumbnails images, and i click another default thumbnail - the list doesn't go back to 1
+
 function GalleryImg(props) {
   const [maxThumbIndex, setMaxThumbIndex] = useState([]);
   const [thumbIndex, setThumbIndex] = useState(0);
@@ -96,12 +98,12 @@ function GalleryImg(props) {
       <i className={props.index > 0 ? 'leftArrow' : 'leftArrow-hidden'} onClick={() => changeBackwardLeft()}> </i>
       <i className={props.index === maxThumbIndex - 1 ? 'rightArrow-hidden' : 'rightArrow' } onClick={() => changeForwardRight()}> </i>
       <div>
-      {Object.keys(props.default).length > 0 ? <div>
-          <i className={thumbIndex > 0 ? 'leftArrow' : 'leftArrow-hidden'} onClick={() => changeLeftThumb()}>  </i>
+      {Object.keys(props.default).length > 0 ? <div style={{display: 'flex', alignItems: 'center'}}>
+          <i className='leftArrow' style={thumbIndex > 0 ? {visibility: 'visible'} : {visibility: 'hidden'} }onClick={() => changeLeftThumb()}>  </i>
           {props.default.photos.map((item, index) => (
               <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} ></img>
         ))}
-        <i className={thumbIndex >= maxThumb ? 'rightArrow-hidden' : 'rightArrow'} onClick={() => changeRightThumb()}> </i> </div>
+        <i className='rightArrow' style={thumbIndex >= maxThumb ? {visibility: 'hidden'} : {visibility: 'visible'} } onClick={() => changeRightThumb()}> </i> </div>
       : null}
       </div>
     </div>
