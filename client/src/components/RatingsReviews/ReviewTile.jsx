@@ -41,7 +41,7 @@ export default function ReviewTile(props) {
         { review.response ? <div><h4>Response</h4>{review.response}</div> : null }
       </div>
 
-      { /* Helpful Subcomponent (ability to click yes/no + see count for vote) */ }
+      { /* Helpful Subcomponent w/ thumbnail pictures */ }
       <div className="review-tile-footer">
         <ReviewTileHelpful
           id={review.review_id}
@@ -49,11 +49,11 @@ export default function ReviewTile(props) {
           helpfulness={review.helpfulness}
           setAllReviews={setAllReviews}
         />
-      </div>
-      <div className="review-tile-footer-photos">
-        { review.photos.map((photo, key) => (
-          <ReviewTilePhoto photo={photo} key={key} />
-        )) }
+        <div className="review-tile-footer-photos">
+          { review.photos.map((photo, key) => (
+            <ReviewTilePhoto photo={photo} key={key} />
+          )) }
+        </div>
       </div>
     </div>
   );

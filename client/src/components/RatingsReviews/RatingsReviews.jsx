@@ -30,14 +30,6 @@ const initialFilters = {
   1: true,
 };
 
-
-// const convertDate = (date) => {
-//   const pattern = /\d{4}-\d{2}-\d{2}/;
-//   const oldDate = date.match(pattern)[0];
-//   const newDate = dt(oldDate, "YYYY-MM-DD").format("MMMM DD, YYYY");
-//   return newDate;
-// };
-
 /* ------------------------
 Ratings & Reviews Component
 ------------------------ */
@@ -53,7 +45,7 @@ export default function RatingsReviews() {
   const [filters, setFilters] = useFilter(initialFilters);
   const [search, setSearch] = useSearch({ text: '', count: 0 });
 
-  // Get all reviews from Atellier API for specific product + assign to state once loaded
+  // Gets all reviews + metadata from API for specific product, sets relevant intial states
   useEffect(() => {
     if (productID) {
       axios.get(`/api/reviews/${productID}`)
@@ -67,14 +59,12 @@ export default function RatingsReviews() {
     }
   }, [productID, loaded]);
 
-  useEffect(() => {
-    setReviews(sortReviews(reviews, sort));
-  }, [sort]);
+  // Copy of all reviews w/ current sort state that can be reloaded if filters are cleared
+  useEffect(() => setReviews(sortReviews(reviews, sort)), [sort]);
+  // Keeps track of rendered reviews count
+  useEffect(() => setNumReviews(allReviews.length), [allReviews]);
 
-  useEffect(() => {
-    setNumReviews(allReviews.length);
-  }, [allReviews]);
-
+  // Filters renders reviews based on user search
   useEffect(() => {
     if (search.count > 3) {
       const searchResults = allReviews.filter((review) => review.body.match(`${search.text}`));
@@ -84,12 +74,13 @@ export default function RatingsReviews() {
     }
   }, [search]);
 
-  // On change event handler to set sortBy state (<SortSelect />)
+  // Keeps tracks of current sort option
   const handleSelect = (e) => {
     setSort(e.target.value);
     setAllReviews(sortReviews(allReviews, e.target.value));
   };
 
+  // Filters rendered reviews based on rating breakdown click events
   const handleFilter = (rating) => {
     setFilters(rating);
     let appliedFilters = Object.keys(filters).filter((key) => filters[key]);
@@ -109,14 +100,14 @@ export default function RatingsReviews() {
         <ProductBreakdown />
       </div>
       <div className="reviews-main">
-        { /* Sorting dropdown */ }
+        { /* Sorting dropdown + Search bar */ }
         <div id="sortby">
           { `${numReviews} reviews sorted by` }
           <SortSelect numReviews={numReviews} handleSelect={handleSelect} />
         </div>
         <Search setSearch={setSearch} />
 
-        {/* Individual Review Tiles */}
+        {/* Review List - dynmically renders out individual tiles */}
         <div id="review-list">
           { allReviews.slice(0, showCount).map((review) => (
             <ReviewTile
@@ -127,6 +118,8 @@ export default function RatingsReviews() {
             />
           )) }
         </div>
+
+        { /* Footer Buttons - Add Review + Show More */ }
         <div id="footer-buttons">
           { showCount === numReviews || showCount === numReviews + 1 ? null : (
             <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>Show More</button>
