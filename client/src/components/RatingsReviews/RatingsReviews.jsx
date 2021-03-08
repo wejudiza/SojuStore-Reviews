@@ -1,53 +1,83 @@
-import React, { useState, useEffect } from 'react';
+/* -------------------------------
+Libraries, Contexts, Subcomponents
+------------------------------- */
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
-// Import components
+// Product Context
+import { UserContext } from '../UserContext.jsx';
+
+// Subcomponents
+import AddReview from './AddReview.jsx';
 import SortSelect from './SortSelect.jsx';
 import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 
-// Dummy product_id
-const product_id = 16500;
+// Helper functions
+import sortReviews from './sortReviews.js';
 
+/* ------------------------
+Ratings & Reviews Component
+------------------------ */
 export default function RatingsReviews() {
-  const [allReviews, setAllReviews] = useState([]);
+  const productID = useContext(UserContext).id;
   const [loaded, setLoaded] = useState(false);
+  const [showCount, setShowCount] = useState(2);
+  const [sort, setSort] = useState('relevant');
   const [numReviews, setNumReviews] = useState(0);
-  const [sortBy, setSort] = useState('relevant');
+  const [allReviews, setAllReviews] = useState([]);
+  const [reviewMetadata, setReviewMetadata] = useState(null);
 
-  // Get all reviews from Atellier API for specific product + set to intial state on mount
+  // Get all reviews from Atellier API for specific product + assign to state once loaded
   useEffect(() => {
-    axios.get(`/api/reviews/${product_id}`)
-      .then((resp) => setAllReviews(resp.data.results))
-      .then(() => setLoaded(true))
-      .then(() => setNumReviews(allReviews.length))
-      .catch((err) => console.log(err));
-  }, [loaded]);
+    if (productID) {
+      axios.get(`/api/reviews/${productID}`)
+        .then((resp) => setAllReviews(sortReviews(resp.data.results, 'relevant')))
+        .then(() => axios.get(`/api/reviews/meta/${productID}`)
+          .then((resp) => setReviewMetadata(resp.data)))
+        .then(() => setLoaded(true))
+        .then(() => setNumReviews(allReviews.length))
+        .catch((err) => console.log(err));
+    }
+  }, [productID, loaded]);
 
-  // On change event to set sortBy state
-  const handleSelect = (e) => setSort(e.target.value);
+  // On change event handler to set sortBy state (<SortSelect />)
+  const handleSelect = (e) => {
+    setSort(e.target.value);
+    setAllReviews(sortReviews(allReviews, e.target.value));
+  };
 
   return (
     <div className="ratings-reviews">
-      { /* Rating Breakdown */ }
       <h3>Ratings & Reviews</h3>
-      <RatingBreakdown allReviews={allReviews} numReviews={numReviews} />
-
+      { /* Rating Breakdown */ }
+      <RatingBreakdown reviewMetadata={reviewMetadata} />
       { /* Proudct Breakdown */ }
       <ProductBreakdown />
 
       { /* Sorting dropdown */ }
-      {/* <div id="sortby">
-        { `${numReviews} reviews sorted by ` }
+      <div id="sortby">
+        { `${numReviews} reviews sorted by` }
         <SortSelect handleSelect={handleSelect} />
-      </div> */}
+      </div>
+      <br />
 
       {/* Individual Review Tiles */}
-      {/* <div>
-        { allReviews.slice(0, 2).map((review) => <ReviewTile review={review} key={review.id} />) }
-        { allReviews.slice(0, 2).map((review) => console.log(review)) }
-      </div> */}
+      <div>
+        { allReviews.slice(0, showCount).map((review) => (
+        <ReviewTile review={review} sort={sort}setAllReviews={setAllReviews} />
+        )) }
+        {/* { allReviews.slice(0, showCount).map((review) => (
+        console.log(review)
+        )) } */}
+        <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>
+          { showCount === numReviews || showCount === numReviews + 1 ? null : 'Show More' }
+        </button>
+      </div>
+
+      { /* Add A Review + Modal */ }
+      <AddReview />
     </div>
   );
 }
