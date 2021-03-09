@@ -58,9 +58,14 @@ export default function RatingsReviews() {
   }, [productID, loaded]);
 
   // Copy of all reviews w/ current sort state that can be reloaded if filters are cleared
-  useEffect(() => setReviews(sortReviews(reviews, sort)), [sort, UserContext]);
+  useEffect(() => setReviews(sortReviews(reviews, sort)), [sort]);
+
   // Keeps track of rendered reviews count
-  useEffect(() => setNumReviews(allReviews.length), [allReviews, UserContext, loaded]);
+  useEffect(() => {
+    setNumReviews(allReviews.length);
+    console.log("ALL REVIEWS LENGTH", allReviews.length);
+  }, [allReviews]);
+  console.log("NUM REVIEWS", numReviews);
 
   // Filters renders reviews based on user search
   useEffect(() => {
@@ -118,7 +123,6 @@ export default function RatingsReviews() {
             />
           )) }
         </div>
-
         { /* Footer Buttons - Add Review + Show More */ }
         <div id="footer-buttons">
           <AddReview metadata={reviewMetadata} />
