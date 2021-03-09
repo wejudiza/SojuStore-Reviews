@@ -30,12 +30,15 @@ const getDistribution = (metadata) => {
 };
 
 const getRecommneded = (metadata) => {
-  const { recommended } = metadata;
-  const yes = Number(recommended.true);
-  const no = Number(recommended.false);
-  let percent = yes / (yes + no) * 100;
-  percent = !percent || percent == null ? 0 : percent;
-  return percent;
+  if (metadata.recommended) {
+    const { recommended } = metadata;
+    const yes = !recommended.true ? 0 : Number(recommended.true);
+    const no = !recommended.false ? 0 : Number(recommended.false);
+    let percent = yes / (yes + no) * 100;
+    percent = !percent || percent == null ? 0 : percent;
+    console.log("PERCENT", percent);
+    return percent;
+  }
 };
 
 export default function RatingBreakdown(props) {
@@ -59,10 +62,10 @@ export default function RatingBreakdown(props) {
         <RatingStars rating={wa} size="1.75rem" color="#f8ce0b" />
       </div>
       <div id="percent-recommend">
-        {`${recommended.toFixed(0)}% of reviews recommend this product` }
+        {`${recommended.toFixed(0)}% of reviews recommend this product`}
       </div>
       <br />
-      { Object.keys(ratingDist).reverse().map((key) => (
+      { !ratingDist || ratingDist === null ? null : Object.keys(ratingDist).reverse().map((key) => (
         <RatingBreakdownBar
           key={key}
           rating={key}
