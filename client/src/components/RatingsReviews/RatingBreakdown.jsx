@@ -36,7 +36,6 @@ const getRecommneded = (metadata) => {
     const no = !recommended.false ? 0 : Number(recommended.false);
     let percent = yes / (yes + no) * 100;
     percent = !percent || percent == null ? 0 : percent;
-    console.log("PERCENT", percent);
     return percent;
   }
 };

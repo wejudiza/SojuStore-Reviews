@@ -3,7 +3,6 @@ import axios from 'axios';
 import Select from 'react-select';
 
 // need to test out OUT OF STOCK
-// small bug: when user clicks a new DEFAULT THUMBNAIL, drop down list needs to go back to DEFAULT
 // edit react-select drop down list!!
 
 function ProductInfo(props) {
@@ -24,6 +23,13 @@ function ProductInfo(props) {
       setSize(storage);
     }
   }
+
+  useEffect(() => {
+    if (props.reset !== undefined && props.reset[0] === 'Select Size') {
+      setUserSize(['Select Size']);
+      setUserQuantity('-')
+    }
+  }, [props.reset])
 
   useEffect(() =>{
     setMain();
@@ -114,12 +120,14 @@ function ProductInfo(props) {
   }
 
   return (
-    <div>
+    <div className="dropDown-container">
       <div>
-        { size.length > 0 ? <Select value={[{ value: userSize[0], label: userSize[0] }]} options={sizeOptions()} onChange={handleChangeSize.bind(this)} blurInputOnSelect menuIsOpen={menu} onFocus={() => { if (!menu) setMenu(!menu)}}/> : null}
-        <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} isDisabled={userQuantity[0] === 'OUT OF STOCK' || userQuantity[0] === '-' ? true : false } />
+        { size.length > 0 ? <Select value={[{ value: userSize[0], label: userSize[0] }]} options={sizeOptions()} onChange={handleChangeSize.bind(this)} blurInputOnSelect menuIsOpen={menu} onFocus={() => { if (!menu) setMenu(!menu)}} styles={{container: styles => ({...styles, width: '33%', marginLeft: '12%', position: 'absolute'})}}/> : null}
       </div>
       <div>
+        <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} isDisabled={userQuantity[0] === 'OUT OF STOCK' || userQuantity[0] === '-' ? true : false } styles={{container: () => ({width: '15%', position: 'absolute', marginLeft: '46%'})}} />
+      </div>
+      <div style={{marginLeft: '63%'}}>
         {outOfStock ? null : <button className="cartBtn" onClick={handleClickCartButton.bind(this)}><i className="fas fa-cart-plus"></i>ADD TO CART</button>}
       </div>
     </div>

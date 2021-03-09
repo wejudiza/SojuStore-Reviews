@@ -162,7 +162,8 @@ export default function Question({question}) {
               photos: arr
             })
           })
-      })
+      }
+    )
   }
 
   if (loaded === false) {
