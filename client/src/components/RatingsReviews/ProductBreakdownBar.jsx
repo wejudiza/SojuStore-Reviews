@@ -18,25 +18,12 @@ const getLabels = (characteristic) => {
   };
 
   return labels[characteristic];
-}
+};
 
-const colorGradient = [
-  'F0FF00',
-  'E0FF00',
-  'D0FF00',
-  'C0FF00',
-  'B0FF00',
-  'A0FF00',
-  '90FF00',
-  '80FF00',
-  '70FF00',
-  '60FF00',
-  '50FF00',
-  '40FF00',
-  '30FF00',
-  '20FF00',
-  '10FF00'
-];
+const colorStyles = {
+  scale: [],
+  divergent: ['#f5005a', '#fff700', '#50ebb2', '#fff700', '#f5005a']
+};
 
 /* --------------------------
 ProductBreakdownBar Component
@@ -45,7 +32,7 @@ ProductBreakdownBar Component
 export default function ProductBreakdownBar({ characteristic, value }) {
   const markerPosition = getTrianglePosition(value);
   const labels = getLabels(characteristic);
-  const markerColor = `#${colorGradient[Math.floor(markerPosition * .15)]}`;
+  const markerColor = colorStyles.divergent[Math.floor(markerPosition * .05)];
 
   return (
     <div className="product-breakdown">
@@ -56,6 +43,7 @@ export default function ProductBreakdownBar({ characteristic, value }) {
         <div className="product-bar-background" />
         <div className="product-bar-background" />
         <div className="triangle" style={{ left: `${markerPosition}%`, color: markerColor }} />
+        <div className="triangle-behind" style={{ left: `${markerPosition}%` }} />
       </div>
       { /* Breakdown bar lalels */ }
       <div className="product-bar-labels">
