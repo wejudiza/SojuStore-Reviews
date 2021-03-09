@@ -14,6 +14,15 @@ import QnA from './QnA/QnA.jsx';
 // Import RatingsReviews Components
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
 
+import Slider from 'react-slick';
+
+const images = [
+  {src: "https://reactjs.org/logo-og.png"},
+  {src: "https://cdn.evilmartians.com/front/posts/optimizing-react-virtual-dom-explained/cover-a1d5b40.png"},
+  {src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"},
+  {src: "https://www.inovex.de/blog/wp-content/uploads/2022/01/one-year-of-react-native.png"}
+]
+
 // App component
 export default class App extends Component {
   constructor(props) {
@@ -63,40 +72,31 @@ export default class App extends Component {
   render() {
     return (
       <div>
+        <h1 style={{display: 'flex', justifyContent: 'center', fontFamily: 'Archivo Black, sans-serif', fontSize: '40px', marginBottom: '0'}}> SOJU STORE </h1>
+        <p style={{display: 'flex', justifyContent: 'center', marginTop: '0', fontFamily: 'Source Sans Pro, sans-serif', fontSize: '18px'}}>Cute Slogan</p>
+        <div style={{position: 'absolute', top: '0.5%'}}>
         <button onClick={this.signInClick}>Sign In</button>
         <button onClick={this.signOutClick}>Sign Out</button>
-        <UserContext.Provider value={this.state.data}>
-          <Product />
-          <h3>Related Products</h3>
-          <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
-          <h3>Your Outfit</h3>
-          <OufitList mainProduct={this.state.data}/>
+        </div>
+      <UserContext.Provider value={this.state.data}>
+        <Product />
+        <h3>Related Products</h3>
+        <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
+        <h3>Your Outfit</h3>
+        <OufitList mainProduct={this.state.data}/>
 
-<<<<<<< HEAD
+        <div id="questions">
+          <h3>Questions</h3>
+          <QnA />
+        </div>
 
-          <div id="questions">
-            <h3>Questions</h3>
-            <QnA />
-          </div>
-          {/* --- Ratings & Reviews --- */}
-          <div id="ratings-reviews-container">
-            <RatingsReviews />
-          </div>
-=======
-          <div id="questions">
-            <h3>Questions</h3>
-            <QnA />
-          </div>
+        {/* --- Ratings & Reviews --- */}
+        <div id="ratings-reviews-container">
+          <RatingsReviews />
+        </div>
 
-          {/* --- Ratings & Reviews --- */}
-          <div id="ratings-reviews-container">
-            <RatingsReviews />
-          </div>
-
->>>>>>> 7b3bf05c7297368e88b174b7a97ebc7949fefeaf
-        </UserContext.Provider>
+      </UserContext.Provider>
       </div>
-
     );
   }
 }

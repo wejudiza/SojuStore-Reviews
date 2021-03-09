@@ -104,15 +104,8 @@ function Default_Expanded (props) {
 
   return (
     <div>
-      {props.allStyle.length > 0 ?
-        <Slider {... settings}>
-          {props.allStyle.map(item => (
-            <img className="defaultStyle-img" src={item.url} ></img>
-          ))}
-        </Slider>
-      : null}
-      {/* {props.default !== undefined ? <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img>
-      : null } */}
+      {props.default !== undefined ? <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img>
+      : null }
 
       {expandThumb.length > 0 ? <Modal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)} preventScroll={true} >
         {zoom ? null : <div className="test1">

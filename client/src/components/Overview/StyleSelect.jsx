@@ -17,6 +17,7 @@ function StyleSelect (props) {
   const [defaultPhoto, setDefaultPhoto] = useState('')
   // index is for photo index
   const [indexPhoto, setIndexPhoto] = useState(0);
+  const [reset, setReset] = useState()
 
   useEffect(() => {
     if (props.data !== undefined) {
@@ -74,6 +75,7 @@ function StyleSelect (props) {
     var newStyle = styles[ind]
     setDefaultStyle(newStyle);
     setIndexPhoto(0)
+    setReset(['Select Size'])
   }
 
   return (
@@ -86,13 +88,13 @@ function StyleSelect (props) {
       {thumbnailModel(thumbnail).map((itemA, index) => (
         <div key={index} style={{justifyContent: 'center', display: 'flex'}}>
         {itemA.map((item, index) => (
-          <img src={item.thumbnail_url} key={index} className="thumbnail-img" style={defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? {border: '3px solid red'} : null} onClick={() => clickThumbnail(item.index, item.url)}></img>
+          <div key={index} style={{position: 'relative'}}> { defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? <i style={{position: 'absolute', top: '6%', color: 'whitesmoke', backgroundColor: 'darkred', borderRadius: '50% 50%'}} className="fa fa-check" aria-hidden="true"></i> : null} <img src={item.thumbnail_url} className="thumbnail-img" style={defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? {border: '2px solid darkred', boxShadow: '0px 0.5px 0.5px 1.5px darkred'} : null} onClick={() => clickThumbnail(item.index, item.url)}></img> </div>
         ))}
         </div>
       ))}
       {defaultStyle.sale_price === null ? <div style={{margin: '1.5%', fontSize: '19px', justifyContent: 'center', display: 'flex'}}> $ {defaultStyle.original_price} </div> : <div style={{margin: '1.5%', fontSize:'19px', justifyContent: 'center', display: 'flex'}}> <b style={{color:'red', weight: '600'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
       <GalleryImg default={defaultStyle} setDefaultPhoto={setDefaultPhoto} setIndex={setIndexPhoto} index={indexPhoto} />
-      <ProductInfo default={defaultStyle} />
+      <ProductInfo reset={reset} default={defaultStyle} />
     </div>
     </div>
   )

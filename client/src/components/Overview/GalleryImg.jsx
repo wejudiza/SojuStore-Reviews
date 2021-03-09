@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Animated } from 'react-animated-css';
 
-// when scrolling on the thumbnails images, and i click another default thumbnail - the list doesn't go back to 1
 //changeBackward & forward has a bug - ONE STEP BEHIND, ONLY WORKS AFTER SECOND CLICK!!!!
 // leftArrow line 100 - needed to make it go to the left of the image, cheap coded the left alignment to make it fit into small monitor
 // change css for the selected thumbnail on display (thumbnails of 7) TRY TO HIGHLIGHT OVER THE IMAGE
+// check the thumbnail change when you change default photo on the arrows..
 
 function GalleryImg(props) {
   const [maxThumbIndex, setMaxThumbIndex] = useState([]);
   // the first thumb index of the displayed thumbnail gallery images
   const [thumbIndex, setThumbIndex] = useState(0);
   const [maxThumb, setMaxThumb] = useState();
-  // const [firstThumbInd, setFirst] = useState();
-  const [lastThumbInd, setLast] = useState();
-
-  const [right, setRight] = useState(0);
 
   useEffect(() => {
     if (Object.keys(props.default).length > 0) {
@@ -32,10 +27,10 @@ function GalleryImg(props) {
   const changeForwardRight = () => {
     if (props.index === props.default.photos.length - 1) {
       props.setIndex(0);
-      props.setDefaultPhoto(props.default.photos[props.index].url)
+      props.setDefaultPhoto(props.default.photos[props.index + 1].url)
     } else {
       props.setIndex(props.index + 1)
-      props.setDefaultPhoto(props.default.photos[props.index].url)
+      props.setDefaultPhoto(props.default.photos[props.index + 1].url)
     }
   }
 
@@ -45,7 +40,7 @@ function GalleryImg(props) {
     } else {
       let newInd = props.index - 1
       props.setIndex(newInd)
-      props.setDefaultPhoto(props.default.photos[props.index].url)
+      props.setDefaultPhoto(props.default.photos[newInd].url)
     }
   }
 
@@ -114,7 +109,7 @@ function GalleryImg(props) {
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <i className='leftArrow' style={thumbIndex > 0 ? {visibility: 'visible'} : {visibility: 'hidden'} } onClick={() => changeLeftThumb()}>  </i>
           {props.default.photos.map((item, index) => (
-            <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? {boxShadow: '0px 1px 20px 5px red', filter: 'contrast(1.5)'} : null} >{console.log('test')}</img>
+             <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? {boxShadow: '0px 1px 20px 5px red', filter: 'contrast(1.5)'} : null} ></img>
           ))}
           <i className='rightArrow' style={thumbIndex >= maxThumb ? {visibility: 'hidden'} : {visibility: 'visible'} } onClick={() => changeRightThumb()}> </i>
         </div>
