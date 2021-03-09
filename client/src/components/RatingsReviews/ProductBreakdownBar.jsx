@@ -21,7 +21,7 @@ const getLabels = (characteristic) => {
 };
 
 const colorStyles = {
-  scale: [],
+  scale: ['#f5005a', '#ffc400', '#fff700', '#aaff00', '#50ebb2'],
   divergent: ['#f5005a', '#fff700', '#50ebb2', '#fff700', '#f5005a']
 };
 
@@ -32,7 +32,8 @@ ProductBreakdownBar Component
 export default function ProductBreakdownBar({ characteristic, value }) {
   const markerPosition = getTrianglePosition(value);
   const labels = getLabels(characteristic);
-  const markerColor = colorStyles.divergent[Math.floor(markerPosition * .05)];
+  console.log(characteristic);
+  const markerColor = ['Comfort', 'Quality'].includes(characteristic) ? colorStyles.scale[Math.floor(markerPosition * .05)] : colorStyles.divergent[Math.floor(markerPosition * .05)];
 
   return (
     <div className="product-breakdown">
