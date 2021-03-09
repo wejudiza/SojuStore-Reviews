@@ -29,8 +29,6 @@ export default function Question({question}) {
     }
   )
 
-  console.log({question})
-
   useEffect(() => {
     axios.get(`/api/qa/questions/${question.question_id}/answers`)
     .then((results) => {
@@ -39,7 +37,7 @@ export default function Question({question}) {
     .catch((err) => {
       console.error(err)
     })
-  }, []);
+  }, [question]);
 
   const showMoreAnswers = () => {
     setAnswersToShow(question.answers.length)
@@ -132,13 +130,20 @@ export default function Question({question}) {
   }
 
   const handleChange = e => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0])
+    if (e.target.files) {
+      setImage(e.target.files)
     }
   }
 
-  const handleUpLoad = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+  const upload = () => {
+    for (var i = 0; i < image.length; i++) {
+      handleUpLoad(image[i])
+    }
+  }
+
+  var arr = answer.photos
+  const handleUpLoad = (upload) => {
+    const uploadTask = storage.ref(`images/${upload.name}`).put(upload);
     uploadTask.on(
       "state_changed",
       snapshot => {},
@@ -148,16 +153,16 @@ export default function Question({question}) {
       () => {
         storage
           .ref("images")
-          .child(image.name)
+          .child(upload.name)
           .getDownloadURL()
           .then(url => {
+            arr.push(url)
             setAnswer({
               ...answer,
-              photos: answer.photos.concat(url)
+              photos: arr
             })
-          }, () => console.log("temp:", tempArray))
-      }
-    )
+          })
+      })
   }
 
   if (loaded === false) {
@@ -190,14 +195,8 @@ export default function Question({question}) {
               <button onClick={submitAnswer}>Submit</button>
             <button onClick={()=>setModal(false)}>Close</button>
             <br></br>
-              <input type="file" onChange={handleChange}/>
-              <button onClick={handleUpLoad}>Upload Photo</button>
-              <br></br>
-              <input type="file" onChange={handleChange}/>
-              <button onClick={handleUpLoad}>Upload Photo</button>
-              <br></br>
-              <input type="file" onChange={handleChange}/>
-              <button onClick={handleUpLoad}>Upload Photo</button>
+              <input type="file" multiple onChange={handleChange}/>
+              <button onClick={upload}>Upload Photo</button>
           </Modal>
           {filteredAnswer.slice(0,answersToShow).map((answer, index) =>
           <div key={index} >
@@ -236,17 +235,10 @@ export default function Question({question}) {
                 </textarea>
               </p>
               <button onClick={submitAnswer}>Submit</button>
-              <button>Upload Photo</button>
             <button onClick={()=>setModal(false)}>Close</button>
             <br></br>
-              <input type="file" onChange={handleChange}/>
-              <button onClick={handleUpLoad}>Upload Photo</button>
-              <br></br>
-              <input type="file" onChange={handleChange}/>
-              <button onClick={handleUpLoad}>Upload Photo</button>
-              <br></br>
-              <input type="file" onChange={handleChange}/>
-              <button onClick={handleUpLoad}>Upload Photo</button>
+              <input type="file" multiple onChange={handleChange}/>
+              <button onClick={upload}>Upload Photo</button>
           </Modal>
           {filteredAnswer.slice(0,answersToShow).map((answer, index) =>
           <div key={index} >

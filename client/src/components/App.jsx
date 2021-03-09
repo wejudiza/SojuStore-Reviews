@@ -68,11 +68,11 @@ export default class App extends Component {
         <button onClick={this.signOutClick}>Sign Out</button>
         <UserContext.Provider value={this.state.data}>
           {/* <Product /> */}
-          <Product />
+          {/* <Product />
           <h3>Related Products</h3>
           <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
           <h3>Your Outfit</h3>
-          <OufitList mainProduct={this.state.data}/>
+          <OufitList mainProduct={this.state.data}/> */}
 
           <div id="questions">
             <h3>Questions</h3>
@@ -80,9 +80,9 @@ export default class App extends Component {
           </div>
 
           {/* --- Ratings & Reviews --- */}
-          <div id="ratings-reviews-container">
-            <RatingsReviews />
-          </div>
+          {/* <div id="ratings-reviews-container"> */}
+            {/* <RatingsReviews /> */}
+          {/* </div> */}
         </UserContext.Provider>
       </div>
     );
