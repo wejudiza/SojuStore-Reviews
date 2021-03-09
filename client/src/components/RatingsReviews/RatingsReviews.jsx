@@ -97,13 +97,15 @@ export default function RatingsReviews() {
         <RatingBreakdown reviewMetadata={reviewMetadata} handleFilter={handleFilter} />
         <ProductBreakdown />
       </div>
-      <div className="reviews-main">
+      <div id="reviews-main">
         { /* Sorting dropdown + Search bar */ }
-        <div id="sortby">
-          { `${numReviews} reviews sorted by` }
-          <SortSelect numReviews={numReviews} handleSelect={handleSelect} />
+        <div id="reviews-main-header">
+          <div id="sortby">
+            { `${numReviews} reviews sorted by` }
+            <SortSelect numReviews={numReviews} handleSelect={handleSelect} />
+          </div>
+          <Search setSearch={setSearch} />
         </div>
-        <Search setSearch={setSearch} />
 
         {/* Review List - dynmically renders out individual tiles */}
         <div id="review-list">

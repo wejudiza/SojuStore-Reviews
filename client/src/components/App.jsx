@@ -80,9 +80,12 @@ export default class App extends Component {
           </div>
 
           {/* --- Ratings & Reviews --- */}
-          {/* <div id="ratings-reviews-container"> */}
-            {/* <RatingsReviews /> */}
-          {/* </div> */}
+          { !UserContext ? null : (
+            <div id="ratings-reviews-container">
+              <RatingsReviews />
+            </div>
+          ) }
+
         </UserContext.Provider>
       </div>
     );
