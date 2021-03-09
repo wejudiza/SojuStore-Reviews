@@ -3,7 +3,6 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import { Checkmark } from 'react-checkmark';
 import RatingStars from '../RatingsReviews/RatingStars.jsx';
-// import blank from '../../../dist/blank.jpg'
 
 
 // Styles for Modal
