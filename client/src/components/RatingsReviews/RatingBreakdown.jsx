@@ -25,8 +25,8 @@ const getDistribution = (metadata) => {
     let total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
     total = total === 0 ? 1 : total;
     Object.keys(ratings).map((key) => dist[key] = Number(ratings[key] ?? 0) / total * 100);
+    return dist;
   }
-  return dist;
 };
 
 const getRecommneded = (metadata) => {

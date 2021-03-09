@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 export default function QnA(){
   const [questions, setQuestions] = useState([]);
   const [questionsToShow, setQuestionsToShow] = useState(2);
+  const [filteredQuestion, setFilteredQuestion] = useState();
   const [loaded, setLoaded] = useState(false);
   const [modalState, setModal] = useState(false);
   const [newQuestion, setNewQuestion] = useState({
@@ -20,7 +21,9 @@ export default function QnA(){
   useEffect(() => {
     axios.get(`/api/qa/questions/16392`)
       .then((results) => {
-        setQuestions(results.data.results)})
+        setQuestions(results.data.results)
+        setFilteredQuestion(results.data.results)
+      })
       .then((axios.get(`/api/qa/questions/16392`)
         .then((results) => setNewQuestion({
           ...newQuestion,
@@ -51,6 +54,12 @@ export default function QnA(){
 
   const updateSearch = (e) => {
     setSearch(e.target.value)
+    let filter = questions.filter(
+      (question) => {
+        return question.question_body.toLowerCase().match(search);
+      }
+    )
+    setFilteredQuestion(filter)
   }
 
   const submitQuestion = () => {
@@ -98,14 +107,6 @@ export default function QnA(){
     }
   }
 
-  let filteredQuestion = questions.filter(
-    (question) => {
-      return question.question_body.toLowerCase().indexOf(search) !== -1;
-    }
-  )
-
-  console.log(filteredQuestion)
-
   if (loaded === false) {
     return (
       <div>
@@ -113,7 +114,7 @@ export default function QnA(){
           <input type="text" className="search-bar" placeholder="Search Questions" value={search} onChange={updateSearch}/>
         </div>
         <div>
-        {filteredQuestion.slice(0, questionsToShow).map((question, index) => {
+        {!filteredQuestion ? null : filteredQuestion.slice(0, questionsToShow).map((question, index) => {
           return (
           <div key={index}>
             <Question question={question}/>
@@ -147,7 +148,7 @@ export default function QnA(){
     return (
       <div>
         <div>
-        <input type="text" className="search-bar" placeholder="Search Questions" value={search} onChange={updateSearch}/>
+        <input type="text" className="search-bar" placeholder="Search Questions" value={search} onChange={()=>{updateSearch(search)}}/>
         </div>
         <div>
         {filteredQuestion.slice(0, questionsToShow).map((question, index) => {
