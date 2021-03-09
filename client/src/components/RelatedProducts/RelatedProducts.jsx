@@ -34,22 +34,36 @@ class RelatedProducts extends React.Component {
       thumbnail_url: '',
       features: [],
       mainFeatures: [],
+      allFeatures: [],
+      filtered: [],
       product: {},
       rating: 0
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.getInfo = this.getInfo.bind(this);
+    this.getWA = this.getWA.bind(this);
+    // this.getAllFeatures = this.getAllFeatures.bind(this);
   }
 
   componentDidMount() {
     this.getInfo();
+    // this.getAllFeatures();
   }
 
-  componentWillUnmount() {
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
+  componentDidUpdate(prevProps) {
+    if (prevProps.productId !== this.props.productId) {
+      this.getInfo();
     }
   }
+
+  // helper for ratings stars //
+  getWA(metadata) {
+    const { ratings } = metadata;
+    const waArray = Object.keys(ratings).map((key) => Number(key) * Number(ratings[key]));
+    const total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
+    const wa = waArray.reduce((sum, val) => sum + val) / total;
+    return wa;
+  };
 
 
   getInfo() {
@@ -63,6 +77,12 @@ class RelatedProducts extends React.Component {
           product: response.data
         })
       })
+      axios.get(`api/product_id/${this.props.mainProduct.id}`)
+      .then((response) => {
+        this.setState({
+          mainFeatures: response.data.features
+        })
+      })
     axios.get(`api/styles/${this.props.productId}`)
     .then((response) => {
       this.setState({
@@ -70,27 +90,39 @@ class RelatedProducts extends React.Component {
         sale_price: response.data.results[0].sale_price,
         thumbnail_url: response.data.results[0].photos[0].thumbnail_url
     })})
-    axios.get(`api/product_id/${this.props.mainProduct.id}`)
-      .then((response) => {
-        this.setState({
-          mainFeatures: response.data.features
-        })
-      })
     axios.get(`api/reviews/meta/${this.props.productId}`)
       .then((response) => {
-        var ratings = Object.values(response.data.ratings);
-        const ratingsArr = ratings.map((i) => Number(i));
-        var total = 0;
-        for (var i = 0; i < ratingsArr.length; i++) {
-          total += ratingsArr[i];
-          var avg = (total / ratingsArr.length) / 2;
+        var ratings = response.data;
+        if (ratings) {
+          let rating = this.getWA(ratings);
+          let rounded = roundToFourth(rating);
+          this.setState({
+              rating: this.state.rating += rounded
+            })
         }
-        var rounded = roundToFourth(avg)
-        this.setState({
-          rating: this.state.rating += rounded
-        })
+      })
+      this.setState({
+        allFeatures: this.state.features.concat(this.state.mainFeatures)
+      })
+      var all = this.state.allFeatures
+      var filtered = [...new Set(all.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
+      this.setState({
+        filtered: filtered
       })
   }
+
+  // getAllFeatures() {
+  //   this.setState({
+  //     allFeatures: this.state.features.concat(this.state.mainFeatures)
+  //   }, () => {
+  //     var all = this.state.allFeatures;
+  //     var filtered = [...new Set(all.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
+  //     this.setState({
+  //       filtered: filtered
+  //     })
+  //   })
+  // }
+
 
   toggleModal() {
     this.setState({
@@ -99,12 +131,13 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
+    // console.log('all', this.state.allFeatures, 'filtered', this.state.filtered)
     return (
       <div className="related-card" >
           {/* *********RELATED PRODUCTS CARD********** */}
           <div>
             <i className="far fa-star btn" onClick={this.toggleModal}></i>
-            <img src={this.state.thumbnail_url} onClick={() => this.props.updateCurrentProduct(this.state.product)}></img>
+            <img src={this.state.thumbnail_url || 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg'} onClick={() => this.props.updateCurrentProduct(this.state.product)}></img>
           </div>
 
           <div className="category">
@@ -145,7 +178,7 @@ class RelatedProducts extends React.Component {
                       return (
                         <tr key={index}>
                           <td></td>
-                          <td>{`${feature.value} ${feature.feature}`}</td>
+                          <td className="center">{`${feature.value} ${feature.feature}`}</td>
                           <td><Checkmark size="small"/></td>
                         <br/>
                         </tr>
@@ -154,7 +187,7 @@ class RelatedProducts extends React.Component {
                       return (
                         <tr key={index}>
                           <td></td>
-                          <td>{feature.feature}</td>
+                          <td className="center">{feature.feature}</td>
                           <td><Checkmark size="small"/></td>
                           <br/>
                         </tr>
@@ -166,7 +199,7 @@ class RelatedProducts extends React.Component {
                   return (
                     <tr key={index}>
                       <td><Checkmark size="small"/></td>
-                      <td>{`${feature.value} ${feature.feature}`}</td>
+                      <td className="center">{`${feature.value} ${feature.feature}`}</td>
                       <td></td>
                     <br/>
                     </tr>
@@ -175,7 +208,7 @@ class RelatedProducts extends React.Component {
                   return (
                     <tr key={index}>
                       <td><Checkmark size="small"/></td>
-                      <td>{feature.feature}</td>
+                      <td className="center">{feature.feature}</td>
                       <td></td>
                       <br/>
                     </tr>

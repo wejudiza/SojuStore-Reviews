@@ -29,11 +29,6 @@ export default function Question({question}) {
     }
   )
 
-<<<<<<< HEAD
-  // console.log({question})
-
-=======
->>>>>>> 92f75e1042d674c29170d13ce7195e902e854565
   useEffect(() => {
     axios.get(`/api/qa/questions/${question.question_id}/answers`)
     .then((results) => {
@@ -167,12 +162,7 @@ export default function Question({question}) {
               photos: arr
             })
           })
-<<<<<<< HEAD
-      }
-    )
-=======
       })
->>>>>>> 92f75e1042d674c29170d13ce7195e902e854565
   }
 
   if (loaded === false) {

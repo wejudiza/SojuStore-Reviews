@@ -19,17 +19,22 @@ class RelatedProductsList extends React.Component {
     this.getRelated = this.getRelated.bind(this);
   }
 
+
   componentDidUpdate(prevProps) {
     if (prevProps.mainProduct.id !== this.props.mainProduct.id) {
       this.getRelated()
     }
   }
 
+
+
   getRelated() {
     axios.get(`/api/${this.props.mainProduct.id}`)
       .then((results) => {
         this.setState({
-        products: results.data
+        products: results.data.filter(function(item, pos) {
+          return results.data.indexOf(item) == pos;
+      })
       })})
       .catch((err) => console.log(err));
   };
