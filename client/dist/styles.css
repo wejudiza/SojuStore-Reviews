@@ -21,6 +21,10 @@
   width: 100%;
 } */
 
+.center {
+  text-align: center;
+}
+
 .add-card {
   background: linear-gradient(to bottom right, #ffffff 23%, #d6d6d6 100%);
 }
@@ -28,7 +32,7 @@
 .price {
   color: grey;
   font-size: 12px;
-  padding-top: 5px;
+  padding-top: 3px;
 }
 
 .strike {
@@ -50,6 +54,10 @@
   padding-top: 5px;
 }
 
+.stars {
+  margin-bottom: 3px;
+}
+
 .table {
   width: 100%;
 }
@@ -64,8 +72,8 @@
 
 .related-card .btn {
   position: absolute;
-  left: 90%;
-  margin-top: 2%;
+  left: 88%;
+  margin-top: 4%;
   background-color: inherit;
   color: black;
   border: none;

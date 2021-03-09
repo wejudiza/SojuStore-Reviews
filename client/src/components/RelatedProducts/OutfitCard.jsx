@@ -81,7 +81,7 @@ class OutfitCard extends React.Component {
     return (
       <div>
         <i className="far fa-times-circle btn" onClick={this.handleClick} snapToSlide={false} visibleSlides={4}></i>
-        <img src={this.state.thumbnail_url} name="test"></img>
+        <img src={this.state.thumbnail_url || 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg'} name="test"></img>
         <div className="category">
             {this.state.category}
           </div>
@@ -89,7 +89,14 @@ class OutfitCard extends React.Component {
             {this.state.name}
           </div>
           <div className="price">
-            {'$ ' + this.state.original_price}
+            {this.state.sale_price === null ?
+            '$ ' + this.state.original_price
+            :
+            <>
+            <div className="strike">{'$ ' + this.state.original_price}</div>
+            {'$ ' + this.state.sale_price}
+            </>
+          }
           </div>
           <div className="stars">
           <RatingStars rating={this.state.rating} color="#f8ce0b" size="12px"/>
