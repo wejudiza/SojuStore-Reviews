@@ -31,6 +31,8 @@ export default class App extends Component {
       data: []
     };
     this.updateCurrentProduct = this.updateCurrentProduct.bind(this);
+    this.signInClick = this.signInClick.bind(this);
+    this.signOutClick = this.signOutClick.bind(this);
   }
 
   // results.data[0] - replace 16059
