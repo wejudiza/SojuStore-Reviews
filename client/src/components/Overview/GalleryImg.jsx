@@ -105,7 +105,7 @@ function GalleryImg(props) {
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <i className='leftArrow' style={thumbIndex > 0 ? {visibility: 'visible'} : {visibility: 'hidden'} }onClick={() => changeLeftThumb()}>  </i>
           {props.default.photos.map((item, index) => (
-            <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? {boxShadow: '0px 1px 20px 5px red', filter: 'contrast(1.5)'} : null} >{console.log(index === props.index)}</img>
+            <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? {boxShadow: '0px 1px 20px 5px red', filter: 'contrast(1.5)'} : null} ></img>
           ))}
           <i className='rightArrow' style={thumbIndex >= maxThumb ? {visibility: 'hidden'} : {visibility: 'visible'} } onClick={() => changeRightThumb()}> </i>
         </div>

@@ -139,6 +139,7 @@ export default function Question({question}) {
     for (var i = 0; i < image.length; i++) {
       handleUpLoad(image[i])
     }
+    alert('Images Uploaded')
   }
 
   var arr = answer.photos
