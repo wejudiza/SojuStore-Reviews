@@ -3,7 +3,7 @@ import dt from 'moment';
 
 export default function sortReviews(reviews, method) {
   const methods = {
-    'newest': (a, b) => (dt(a.date).isAfter(b.date) ? 1 : -1),
+    'newest': (a, b) => (dt(a.date).isBefore(b.date) ? 1 : -1),
     'helpful': (a, b) => (a.helpfulness < b.helpfulness ? 1 : -1),
     'relevant': (a, b) => {
       const aScore = Math.exp(a.helpfulness / 10) * (Math.exp(dt().diff(dt(a.date), 'days') * (1 / 1000)));

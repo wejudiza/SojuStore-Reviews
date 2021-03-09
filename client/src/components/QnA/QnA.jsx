@@ -112,11 +112,11 @@ export default function QnA(){
 
   if (loaded === false) {
     return (
-      <div>
-        <div>
-          <input type="text" className="search-bar" id="search-bar" placeholder="Search Questions" value={search} onChange={updateSearch}/>
+      <div id="questions-container">
+        <div id="search-bar-container">
+          <input type="text" id="search-bar" id="search-bar" placeholder="Search Questions" value={search} onChange={updateSearch}/>
         </div>
-        <div>
+        <div id="answers-container">
         {!filteredQuestion ? null : filteredQuestion.slice(0, questionsToShow).map((question, index) => {
           return (
           <div key={index}>
@@ -149,12 +149,12 @@ export default function QnA(){
     );
   } else {
     return (
-      <div>
-        <div>
-        <input type="text" className="search-bar" placeholder="Search Questions" value={search} onChange={()=>{updateSearch(search)}}/>
+      <div id="questions-container">
+        <div id="search-bar-container">
+        <input type="text" id="search-bar" placeholder="Search Questions" value={search} onChange={()=>{updateSearch(search)}}/>
         </div>
-        <div>
-        {filteredQuestion.slice(0, questionsToShow).map((question, index) => {
+        <div id="answers-container">
+        {!filteredQuestion ? null : filteredQuestion.slice(0, questionsToShow).map((question, index) => {
           return (
           <div key={index}>
             <Question question={question}/>

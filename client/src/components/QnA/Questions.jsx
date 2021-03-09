@@ -168,12 +168,12 @@ export default function Question({question}) {
 
   if (loaded === false) {
     return (
-      <div className="question">
+      <div id="question">
         <h4>
         Q: {question.question_body}
         </h4>
           <div>
-            <div className="question-helpfulness">
+            <div id="question-helpfulness">
             Helpful? <u onClick={helpful}>Yes</u> ({helpfulness}) | <u onClick={()=>{setModal(true)}}>
               Add Answer</u> | <u onClick={reportQuestion}>{reported}</u>
             </div>
@@ -210,12 +210,12 @@ export default function Question({question}) {
     )
   } else {
     return (
-      <div className="question">
+      <div id="question">
         <h4>
         Q: {question.question_body}
         </h4>
          <div>
-           <div className="question-helpfulness">
+           <div id="question-helpfulness">
            Helpful? <u onClick={helpful}>Yes</u> ({helpfulness}) | <u onClick={()=>{setModal(true)}}>
               Add Answer</u> | <u onClick={reportQuestion}>{reported}</u>
             </div>
