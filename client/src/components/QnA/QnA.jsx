@@ -33,8 +33,6 @@ export default function QnA(){
       .catch((err) => console.error(err));
   }, []);
 
-  console.log(search)
-
   const showMoreQuestions = () => {
     setQuestionsToShow(questions.length)
     setLoaded(true)
@@ -63,7 +61,7 @@ export default function QnA(){
   }
 
   const submitQuestion = () => {
-    {console.log(newQuestion)}
+    // {console.log(newQuestion)}
     if (newQuestion.email.indexOf('@') === -1 || newQuestion.email.indexOf('.') === -1) {
       alert('Invalid Email')
     } else if (newQuestion.body === '' || newQuestion.name === '') {
@@ -106,6 +104,12 @@ export default function QnA(){
       })
     }
   }
+
+  // let filteredQuestion = questions.filter(
+  //   (question) => {
+  //     return question.question_body.toLowerCase().indexOf(search) !== -1;
+  //   }
+  // )
 
   if (loaded === false) {
     return (
