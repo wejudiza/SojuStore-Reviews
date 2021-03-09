@@ -38,11 +38,6 @@ const colorGradient = [
   '10FF00'
 ];
 
-// func(perc) -> convert to an index from 0-15
-// 0 === 0%
-// 15 === 100%
-
-
 /* --------------------------
 ProductBreakdownBar Component
 -------------------------- */

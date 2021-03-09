@@ -121,10 +121,10 @@ export default function RatingsReviews() {
 
         { /* Footer Buttons - Add Review + Show More */ }
         <div id="footer-buttons">
-          { showCount === numReviews || showCount === numReviews + 1 ? null : (
-            <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>Show More</button>
-          ) }
           <AddReview metadata={reviewMetadata} />
+          { showCount === numReviews || showCount === numReviews + 1 ? null : (
+            <button id="show-more-btn" type="button" onClick={() => setShowCount((prev) => prev + 2)}>Show More</button>
+          ) }
         </div>
       </div>
     </div>
