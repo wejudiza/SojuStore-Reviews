@@ -10,7 +10,7 @@
   min-width: 250px;
   min-height: 285px;
   text-align: left;
-  font-family: arial;
+  font-family: 'Source Sans Pro', sans-serif;
   margin-bottom: 10px;
   border: 1px solid black;
   overflow: auto;
@@ -144,6 +144,7 @@
   background-color: white;
 }
 
+/* ----- PRODUCT OVER VIEW ----- */
 
 #defaultDescription {
   display: flex;
@@ -167,27 +168,27 @@
   left: 50%;
   position: absolute;
   width: 50%;
-  top: 23%;
+  top: 37%;
 }
 
 .category-rating {
   text-transform: uppercase;
-  font-family: monospace;
+  font-family: 'Fira Sans Condensed', sans-serif;
   letter-spacing: 1.5px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 #social-media {
   position: relative;
   width: 50%;
   display: inline-block;
-  font-family: monospace;
+  font-family: 'Fira Sans Condensed', sans-serif;
   flex-direction: row;
   text-align: center;
   text-transform: uppercase;
-  font-size: 13.5px;
-  line-height: 2;
-  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 800;
 }
 
 .social {
@@ -198,12 +199,13 @@
 }
 
 .product-detail h2{
-  margin-bottom: 10px;
+  margin: 1% 0%;
+  font-size: 28px;
 }
 
 .product-detail h4 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 0px;
+  font-size: 17.5px;
 }
 
 .cartBtn {
@@ -215,7 +217,7 @@
   position: relative;
   background: darkseagreen;
   cursor: pointer;
-  height: auto;
+  height: 38px;
   width: auto;
   overflow: hidden;
 }
@@ -244,7 +246,7 @@
   padding: 5px;
   width: 60px;
   height: 60px;
-  border: 2px solid red;
+  border: 2px solid darkred;
 }
 
 .thumbnail-img-main {
@@ -263,6 +265,8 @@
 .default-thumbnail {
   width: 70px;
   height: 70px;
+  border: 1px solid darkred;
+  margin: 0.3%;
 }
 
 .default-thumbnail-hidden {
@@ -341,3 +345,11 @@ figure {
   user-select: none; /* Standard */
 }
 
+.dropDown-container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.dropDown-container > div {
+  margin: 1%
+}

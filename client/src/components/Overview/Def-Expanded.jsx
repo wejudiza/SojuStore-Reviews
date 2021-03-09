@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import Slider from 'react-slick';
 
 // fix the thumbnails arrow!! need to add another arrow for the image change
 // if zoomed in and click out of modal, make sure the picture goes back to regular
@@ -14,6 +15,16 @@ function Default_Expanded (props) {
   const [zoom, setZoom] = useState(false)
   const [bgPosition, setBgPosition] = useState('50% 50%')
   const [bgImage, setImage] = useState('');
+
+  const [settings, setSettings] = useState({dots: true, slidesToScroll: 1})
+
+  useEffect(() => {
+    if (props.allStyle.length > 0) {
+      const images = [
+
+      ]
+    }
+  }, [props.allStyle])
 
   useEffect(() => {
     setCurrExpInd(props.index)
@@ -93,8 +104,7 @@ function Default_Expanded (props) {
 
   return (
     <div>
-      {props.default !== undefined ?
-      <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img>
+      {props.default !== undefined ? <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img>
       : null }
 
       {expandThumb.length > 0 ? <Modal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)} preventScroll={true} >
