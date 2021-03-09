@@ -58,9 +58,9 @@ export default function RatingsReviews() {
   }, [productID, loaded]);
 
   // Copy of all reviews w/ current sort state that can be reloaded if filters are cleared
-  useEffect(() => setReviews(sortReviews(reviews, sort)), [sort]);
+  useEffect(() => setReviews(sortReviews(reviews, sort)), [sort, UserContext]);
   // Keeps track of rendered reviews count
-  useEffect(() => setNumReviews(allReviews.length), [allReviews]);
+  useEffect(() => setNumReviews(allReviews.length), [allReviews, UserContext, loaded]);
 
   // Filters renders reviews based on user search
   useEffect(() => {

@@ -32,7 +32,6 @@ ProductBreakdownBar Component
 export default function ProductBreakdownBar({ characteristic, value }) {
   const markerPosition = getTrianglePosition(value);
   const labels = getLabels(characteristic);
-  console.log(characteristic);
   const markerColor = ['Comfort', 'Quality'].includes(characteristic) ? colorStyles.scale[Math.floor(markerPosition * .05)] : colorStyles.divergent[Math.floor(markerPosition * .05)];
 
   return (
