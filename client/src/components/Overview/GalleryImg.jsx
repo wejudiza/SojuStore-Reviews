@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-//changeBackward & forward has a bug - ONE STEP BEHIND, ONLY WORKS AFTER SECOND CLICK!!!!
 // leftArrow line 100 - needed to make it go to the left of the image, cheap coded the left alignment to make it fit into small monitor
 // change css for the selected thumbnail on display (thumbnails of 7) TRY TO HIGHLIGHT OVER THE IMAGE
 // check the thumbnail change when you change default photo on the arrows..

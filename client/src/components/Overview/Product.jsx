@@ -84,12 +84,14 @@ function Product() {
         <StyleSelect data={data.id} />
 
       <div id="social-media">
-        <center> Social Media </center>
+        {/* <center> Social Media </center> */}
+        <div>
         <SocialIcon url='https://twitter.com/cheongsophia' />
         <SocialIcon url='https://www.facebook.com/cheongsophia' />
         <SocialIcon url='https://www.pinterest.com/sophiacheong/_saved/' />
+        </div>
+        <Feature ft={feature}/>
       </div>
-      <Feature ft={feature}/>
     </div>
   )
 };

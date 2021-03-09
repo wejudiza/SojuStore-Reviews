@@ -156,10 +156,16 @@
 #Style-Select {
   display: flex;
   flex-direction: column;
-  left: 50%;
   position: absolute;
-  width: 50%;
+  width: 100%;
   top: 37%;
+}
+
+.container {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .category-rating {
@@ -167,6 +173,16 @@
   font-family: 'Fira Sans Condensed', sans-serif;
   letter-spacing: 1.5px;
   font-size: 14px;
+  float: right;
+  right: 0%;
+  width: 50%;
+  justify-content: center;
+}
+
+#default-thumbnails {
+  width: 50%;
+  margin-top: 3.5%;
+  margin-top: 5%;
 }
 
 #social-media {
@@ -337,8 +353,12 @@ figure {
 }
 
 .dropDown-container {
+  position: relative;
   display: flex;
+  justify-content: flex-end;
   flex-flow: row nowrap;
+  align-content: center;
+  bottom: 150px;
 }
 
 .dropDown-container > div {

@@ -121,13 +121,13 @@ function ProductInfo(props) {
 
   return (
     <div className="dropDown-container">
-      <div>
-        { size.length > 0 ? <Select value={[{ value: userSize[0], label: userSize[0] }]} options={sizeOptions()} onChange={handleChangeSize.bind(this)} blurInputOnSelect menuIsOpen={menu} onFocus={() => { if (!menu) setMenu(!menu)}} styles={{container: styles => ({...styles, width: '33%', marginLeft: '12%', position: 'absolute'})}}/> : null}
+      <div style={{order: '1', width: '20%'}}>
+        { size.length > 0 ? <Select value={[{ value: userSize[0], label: userSize[0] }]} options={sizeOptions()} onChange={handleChangeSize.bind(this)} blurInputOnSelect menuIsOpen={menu} onFocus={() => { if (!menu) setMenu(!menu)}} /> : null}
       </div>
-      <div>
-        <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} isDisabled={userQuantity[0] === 'OUT OF STOCK' || userQuantity[0] === '-' ? true : false } styles={{container: () => ({width: '15%', position: 'absolute', marginLeft: '46%'})}} />
+      <div style={{order: '2', width: '10%'}}>
+        <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} isDisabled={userQuantity[0] === 'OUT OF STOCK' || userQuantity[0] === '-' ? true : false } />
       </div>
-      <div style={{marginLeft: '63%'}}>
+      <div style={{order: '3', width: '15%', justifyContent: 'center', display: 'flex'}}>
         {outOfStock ? null : <button className="cartBtn" onClick={handleClickCartButton.bind(this)}><i className="fas fa-cart-plus"></i>ADD TO CART</button>}
       </div>
     </div>
