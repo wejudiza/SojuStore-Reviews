@@ -64,7 +64,6 @@ export default function QnA(){
   }
 
   const submitQuestion = () => {
-    // {console.log(newQuestion)}
     if (newQuestion.email.indexOf('@') === -1 || newQuestion.email.indexOf('.') === -1) {
       alert('Invalid Email')
     } else if (newQuestion.body === '' || newQuestion.name === '') {

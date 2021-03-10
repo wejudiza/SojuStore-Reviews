@@ -27,13 +27,14 @@ export default class App extends Component {
   }
 
   // results.data[0] - replace 16059
+  // change back to 9
   // need to test - OutOfStock -> change data
 
   componentDidMount() {
     axios.get('/api')
       .then((results) => {
         this.setState({
-          data: results.data[9]
+          data: results.data[0]
         })
       })
       .catch((err) => console.error(err))
@@ -68,12 +69,13 @@ export default class App extends Component {
         <div style={{position: 'absolute', top: '0.5%'}}/>
         <button onClick={this.signInClick}>Sign In</button>
         <button onClick={this.signOutClick}>Sign Out</button>
+        </div>
         <UserContext.Provider value={this.state.data}>
-          {/* <Product />
+          <Product />
           <h3>Related Products</h3>
           <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
           <h3>Your Outfit</h3>
-          <OufitList mainProduct={this.state.data}/> */}
+          <OufitList mainProduct={this.state.data}/>
 
           {/* --- QnA ---*/}
           <div id="qna">
@@ -84,11 +86,11 @@ export default class App extends Component {
           </div>
 
           {/* --- Ratings & Reviews --- */}
-          {/* <div id="ratings-reviews-container">
+          <div id="ratings-reviews-container">
             <RatingsReviews />
-          </div> */}
+          </div>
         </UserContext.Provider>
-      </div>
+        </div>
     );
   }
 }

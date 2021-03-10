@@ -5,8 +5,6 @@ import Modal from 'react-modal';
 // if zoomed in and click out of modal, make sure the picture goes back to regular
 // add another button to change MODAL IMAGE, render the thumbnail buttons to only CAROSUEL the thumbnail images
 
-Modal.setAppElement('#app')
-
 function Default_Expanded (props) {
   const [modalIsOpen, setIsOpen] = useState(false)
   const [expandThumb, setExpandThumb] = useState([])
@@ -14,16 +12,6 @@ function Default_Expanded (props) {
   const [zoom, setZoom] = useState(false)
   const [bgPosition, setBgPosition] = useState('50% 50%')
   const [bgImage, setImage] = useState('');
-
-  const [settings, setSettings] = useState({dots: true, slidesToScroll: 1})
-
-  useEffect(() => {
-    if (props.allStyle.length > 0) {
-      const images = [
-
-      ]
-    }
-  }, [props.allStyle])
 
   useEffect(() => {
     setCurrExpInd(props.index)
@@ -101,12 +89,28 @@ function Default_Expanded (props) {
     setBgPosition(`${x}% ${y}%`)
   }
 
+  const defaultImgStyle = (url) => {
+    if (url === null) {
+      url = 'https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-stock-vector-no-image-available-icon-flat-vector-illustration.jpg?ver=6'
+    }
+    return {
+    backgroundImage: `url(${url})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    backgroundPosition: 'center',
+    width: 'auto',
+    height: '100%',
+    cursor: 'pointer',
+  }}
+
   return (
-    <div>
-      {props.default !== undefined ? <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img>
+    <div id="default-wrapper">
+      {props.default !== undefined ?
+          <div style={defaultImgStyle(props.default)} onClick={() => setIsOpen(!modalIsOpen)}>
+        </div>
       : null }
 
-      {expandThumb.length > 0 ? <Modal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)} preventScroll={true} >
+      {expandThumb.length > 0 ? <Modal appElement={document.getElementById('app')} isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)} preventScroll={true} >
         {zoom ? null : <div className="test1">
           <i className="leftArrow" onClick={() => clickBackward()}></i>
           {expandThumb.map((item, index) => (
@@ -126,3 +130,4 @@ function Default_Expanded (props) {
 export default Default_Expanded
 
 
+{/* <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img>  */}

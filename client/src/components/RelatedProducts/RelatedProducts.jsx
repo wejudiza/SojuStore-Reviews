@@ -131,7 +131,6 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
-    // console.log('all', this.state.allFeatures, 'filtered', this.state.filtered)
     return (
       <div className="related-card" >
           {/* *********RELATED PRODUCTS CARD********** */}
