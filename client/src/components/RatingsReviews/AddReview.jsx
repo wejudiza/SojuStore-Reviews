@@ -37,12 +37,12 @@ export default function AddReview({ metadata, isOpen, setIsOpen }) {
   const [urls, setUrls] = useUpload([]);
   const [texts, setText] = useText(initialText);
   const [counts, setCount] = useCount(initialCount);
-  const [options, setOption] = useOption({ recommend: 0 });
+  const [options, setOption] = useOption({recommend: true, rating: 0});
   const [characteristics, setCharacteristics] = useState({});
 
   useEffect(() => {
     if (metadata) {
-      setCharacteristics({ ...metadata.characteristics });
+      setCharacteristics({ Recommend: true, Rating: 0, ...metadata.characteristics });
     }
   }, [metadata]);
 
@@ -113,7 +113,8 @@ export default function AddReview({ metadata, isOpen, setIsOpen }) {
             User Input Radio Forms
             ------------------- */ }
           <div id="radio-container">
-            <AddReviewRadio header="Recommend" name="recommend" setOption={setOption} />
+            {/* <AddReviewRadio header="Recommend" name="recommend" setOption={setOption} />
+            <AddReviewRadio header="Rating" name="rating" setOption={setOption} /> */}
             { Object.keys(characteristics).map((char) => (
               <AddReviewRadio
                 setOption={setOption}

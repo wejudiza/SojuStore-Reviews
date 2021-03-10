@@ -7,12 +7,15 @@ import { UserContext } from '../UserContext.jsx';
 export default function AddReviewSubmit(props) {
   const { texts, counts, options, urls } = props;
   const productID = useContext(UserContext).id;
+  const rating = options.rating;
+  console.log(options);
   const recommend = options.recommend === 1;
   delete options.recommend;
+  delete options.rating;
 
   const body = {
     product_id: productID,
-    rating: 5,
+    rating: rating,
     summary: texts.summary,
     body: texts.body,
     recommend,
@@ -25,6 +28,7 @@ export default function AddReviewSubmit(props) {
   return (
     <>
       <br />
+      {JSON.stringify(body)}
       <button id="submit-review-btn" type="button" onClick={() => axios.post('/api/reviews', body)}>Submit</button>
     </>
   );
