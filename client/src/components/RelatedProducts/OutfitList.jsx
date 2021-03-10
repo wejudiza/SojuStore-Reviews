@@ -13,7 +13,6 @@ class OutfitList extends React.Component {
     super(props);
     this.state = {
       outfitList: [],
-      outfitStorage: []
     };
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
@@ -29,7 +28,7 @@ class OutfitList extends React.Component {
         outfitList: this.state.outfitList.concat(this.props.mainProduct)
       })
       if (localStorage.outfitList === undefined) {
-        localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList.concat(this.props.mainProduct)))
+        localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList))
       } else {
         const outfits = JSON.parse(localStorage.outfitList)
         localStorage.setItem('outfitList', JSON.stringify(outfits.concat(this.props.mainProduct)))

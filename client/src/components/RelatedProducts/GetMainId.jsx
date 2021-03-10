@@ -3,7 +3,6 @@ import {UserContext} from './UserContext.jsx';
 import RelatedProductsList from './RelatedProductsList.jsx'
 
 const GetMainId = (props) => {
-  console.log(props)
   const mainId = useContext(UserContext)
   return (
     <div>
