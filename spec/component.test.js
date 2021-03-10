@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import Product from '../client/src/components/Overview/Product'
 import RelatedProductsList from '../client/src/components/RelatedProducts/RelatedProductsList';
 import App from '../client/src/components/App';
 
@@ -16,6 +17,17 @@ describe('App component', () => {
     const wrapper = shallow(<App />);
   });
 });
+
+describe('Overview', () => {
+  it ('Overview renders', () => {
+    const wrapper = shallow((
+      <App>
+        <Product />
+      </App>
+    ));
+    expect(wrapper.contains(<Product />)).toBe(true)
+  })
+})
 
 // eslint-disable-next-line no-undef
 describe('RelatedProducts', () => {

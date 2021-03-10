@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 
-// need to test out OUT OF STOCK -> not working
 // edit react-select drop down list!!
 
 function ProductInfo(props) {
@@ -43,6 +42,7 @@ function ProductInfo(props) {
       setStock(true)
       setQuantity(newStorage)
       setUserSize([inputVal.label, Number(value[1])])
+      setUserQuantity('OUT OF STOCK')
     } else if (Number(value[0] > 0)) {
       for (var i = 1; i <= Number(value[0]); i++) {
         newStorage.push(i)
@@ -93,7 +93,6 @@ function ProductInfo(props) {
     return options
   }
 
-  // THIS IS HAPPENING DURING ON CHANGE
   const qtyOptions = () => {
     const option = []
 
@@ -110,6 +109,8 @@ function ProductInfo(props) {
     } else {
       option.push({ value: '-', label: '-' })
     }
+    console.log(option)
+    console.log(userQuantity)
     return option
   }
 
@@ -123,7 +124,7 @@ function ProductInfo(props) {
         { size.length > 0 ? <Select value={[{ value: userSize[0], label: userSize[0] }]} options={sizeOptions()} onChange={handleChangeSize.bind(this)} blurInputOnSelect menuIsOpen={menu} onFocus={() => { if (!menu) setMenu(!menu)}} /> : null}
       </div>
       <div style={{order: '2', width: '10%'}}>
-        <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} isDisabled={userQuantity[0] === 'OUT OF STOCK' || userQuantity[0] === '-' ? true : false } />
+        <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} isDisabled={userQuantity === 'OUT OF STOCK' || userQuantity === '-' ? true : false } />
       </div>
       <div style={{order: '3', width: '15%', justifyContent: 'center', display: 'flex'}}>
         {outOfStock ? null : <button className="cartBtn" onClick={handleClickCartButton.bind(this)}><i className="fas fa-cart-plus"></i>ADD TO CART</button>}
