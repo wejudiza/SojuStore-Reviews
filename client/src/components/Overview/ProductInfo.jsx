@@ -13,7 +13,6 @@ function ProductInfo(props) {
   const [userSize, setUserSize] = useState(['Select Size']);
   const [userQuantity, setUserQuantity] = useState('-');
   const [menu, setMenu] = useState(false);
-  const [disable, setDisable] = useState(false);
 
   const setMain = () => {
     if (Object.keys(props.default).length > 0) {
@@ -86,7 +85,7 @@ function ProductInfo(props) {
       var sku = Object.keys(itemA)
       var object = Object.values(itemA)
       object.map((item, index) => {
-        if (item.quantity > 0) {
+        if (item.quantity > -1) {
           options.push({value: `${item.quantity},${sku[index]}`, label: item.size})
         }
       })
@@ -94,6 +93,7 @@ function ProductInfo(props) {
     return options
   }
 
+  // THIS IS HAPPENING DURING ON CHANGE
   const qtyOptions = () => {
     const option = []
 
@@ -107,11 +107,9 @@ function ProductInfo(props) {
       })
     } else if (quantity[0] === 0) {
       option.push({ value: 'OUT OF STOCK', label: 'OUT OF STOCK' })
-      setDisable(!disable)
     } else {
       option.push({ value: '-', label: '-' })
     }
-
     return option
   }
 
