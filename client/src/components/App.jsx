@@ -14,15 +14,6 @@ import QnA from './QnA/QnA.jsx';
 // Import RatingsReviews Components
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
 
-import Slider from 'react-slick';
-
-const images = [
-  {src: "https://reactjs.org/logo-og.png"},
-  {src: "https://cdn.evilmartians.com/front/posts/optimizing-react-virtual-dom-explained/cover-a1d5b40.png"},
-  {src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"},
-  {src: "https://www.inovex.de/blog/wp-content/uploads/2022/01/one-year-of-react-native.png"}
-]
-
 // App component
 export default class App extends Component {
   constructor(props) {

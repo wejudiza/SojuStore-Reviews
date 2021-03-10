@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import RelatedProducts from '../client/src/components/RelatedProducts';
+import RelatedProductsList from '../client/src/components/RelatedProducts/RelatedProductsList';
 import App from '../client/src/components/App';
 
 // describe('hello', () => {
@@ -22,8 +22,8 @@ describe('RelatedProducts', () => {
   it('Releated Products renders', () => {
     const wrapper = shallow((
       <App>
-        <RelatedProducts />
+        <RelatedProductsList />
       </App>));
-    expect(wrapper.contains(<RelatedProducts />)).toBe(true);
+    expect(wrapper.contains(<RelatedProductsList />)).toBe(true);
   });
 });

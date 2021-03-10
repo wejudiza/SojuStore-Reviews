@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import Slider from 'react-slick';
 
 // fix the thumbnails arrow!! need to add another arrow for the image change
 // if zoomed in and click out of modal, make sure the picture goes back to regular
