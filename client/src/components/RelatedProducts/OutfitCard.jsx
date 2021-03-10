@@ -21,6 +21,7 @@ class OutfitCard extends React.Component {
     }
     this.getInfo = this.getInfo.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.getWA = this.getWA.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +33,15 @@ class OutfitCard extends React.Component {
       this.getInfo();
     }
   }
+
+  // helper for reviews stars//
+  getWA(metadata) {
+    const { ratings } = metadata;
+    const waArray = Object.keys(ratings).map((key) => Number(key) * Number(ratings[key]));
+    const total = Object.values(ratings).reduce((sum, val) => Number(sum) + Number(val));
+    const wa = waArray.reduce((sum, val) => sum + val) / total;
+    return wa;
+  };
 
 
   getInfo() {
@@ -51,17 +61,14 @@ class OutfitCard extends React.Component {
       })
       axios.get(`api/reviews/meta/${this.props.outfitItem.id}`)
         .then((response) => {
-          var ratings = Object.values(response.data.ratings);
-          const ratingsArr = ratings.map((i) => Number(i));
-          var total = 0;
-          for (var i = 0; i < ratingsArr.length; i++) {
-            total += ratingsArr[i];
-            var avg = (total / ratingsArr.length) / 2;
+          var ratings = response.data;
+          if (ratings) {
+            let rating = this.getWA(ratings);
+            let rounded = roundToFourth(rating);
+            this.setState({
+                rating: this.state.rating += rounded
+              })
           }
-          var rounded = roundToFourth(avg)
-          this.setState({
-            rating: this.state.rating += rounded
-          })
         })
   }
 
@@ -74,7 +81,7 @@ class OutfitCard extends React.Component {
     return (
       <div>
         <i className="far fa-times-circle btn" onClick={this.handleClick} snapToSlide={false} visibleSlides={4}></i>
-        <img src={this.state.thumbnail_url} name="test"></img>
+        <img src={this.state.thumbnail_url || 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg'} name="test"></img>
         <div className="category">
             {this.state.category}
           </div>
@@ -82,7 +89,14 @@ class OutfitCard extends React.Component {
             {this.state.name}
           </div>
           <div className="price">
-            {'$ ' + this.state.original_price}
+            {this.state.sale_price === null ?
+            '$ ' + this.state.original_price
+            :
+            <>
+            <div className="strike">{'$ ' + this.state.original_price}</div>
+            {'$ ' + this.state.sale_price}
+            </>
+          }
           </div>
           <div className="stars">
           <RatingStars rating={this.state.rating} color="#f8ce0b" size="12px"/>
