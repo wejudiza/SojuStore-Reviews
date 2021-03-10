@@ -101,18 +101,14 @@ function GalleryImg(props) {
 
   return (
     <div id="default-thumbnails">
-      <i className={props.index > 0 ?'leftArrow' : 'leftArrow-hidden'} style={{visibility: 'visible', position: 'absolute', margin: '-16%', left: '-76.5%'}} onClick={() => changeBackwardLeft()}> </i>
-      <i className={props.index === maxThumbIndex - 1 ? 'rightArrow-hidden' : 'rightArrow'} style={{visibility: 'visible', margin: '-16%', right:'122.5%', position: 'absolute'} } onClick={() => changeForwardRight()}> </i>
+      <i className={props.index > 0 ? 'leftArrow' : 'leftArrow-hidden'} style={{visibility: 'visible', position: 'absolute', left: '1.3%', top: '20%'}} onClick={() => changeBackwardLeft()}> </i>
+      <i className={props.index === maxThumbIndex - 1 ? 'rightArrow-hidden' : 'rightArrow'} style={{visibility: 'visible', position: 'absolute', left: '47%', top: '20%'}} onClick={() => changeForwardRight()}> </i>
       <div>
       {Object.keys(props.default).length > 0 ?
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <i className='leftArrow' style={thumbIndex > 0 ? {visibility: 'visible'} : {visibility: 'hidden'} } onClick={() => changeLeftThumb()}>  </i>
           {props.default.photos.map((item, index) => (
-<<<<<<< HEAD
-            <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? {boxShadow: '0px 1px 20px 5px red', filter: 'contrast(1.5)'} : null} ></img>
-=======
              <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? {boxShadow: '0px 1px 20px 5px red', filter: 'contrast(1.5)'} : null} ></img>
->>>>>>> 6646322240189380d9909e64abeb61ae1a107c1a
           ))}
           <i className='rightArrow' style={thumbIndex >= maxThumb ? {visibility: 'hidden'} : {visibility: 'visible'} } onClick={() => changeRightThumb()}> </i>
         </div>

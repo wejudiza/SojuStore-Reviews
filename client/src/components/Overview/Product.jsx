@@ -82,10 +82,8 @@ function Product() {
         </div>
       </div>
         <StyleSelect data={data.id} />
-
-      <div id="social-media">
-        {/* <center> Social Media </center> */}
-        <div>
+        <div id="social-media-Container">
+        <div style={{order: '1', alignSelf: 'center', display: 'flex', justifyContent: 'center', width: '20%'}}>
         <SocialIcon url='https://twitter.com/cheongsophia' />
         <SocialIcon url='https://www.facebook.com/cheongsophia' />
         <SocialIcon url='https://www.pinterest.com/sophiacheong/_saved/' />

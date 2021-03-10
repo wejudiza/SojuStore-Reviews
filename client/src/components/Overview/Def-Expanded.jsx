@@ -13,16 +13,6 @@ function Default_Expanded (props) {
   const [bgPosition, setBgPosition] = useState('50% 50%')
   const [bgImage, setImage] = useState('');
 
-  const [settings, setSettings] = useState({dots: true, slidesToScroll: 1})
-
-  useEffect(() => {
-    if (props.allStyle.length > 0) {
-      const images = [
-
-      ]
-    }
-  }, [props.allStyle])
-
   useEffect(() => {
     setCurrExpInd(props.index)
   }, [props.index])
@@ -99,9 +89,21 @@ function Default_Expanded (props) {
     setBgPosition(`${x}% ${y}%`)
   }
 
+  const defaultImgStyle = (url) => ({
+    backgroundImage: `url(${url})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    backgroundPosition: 'center',
+    width: 'auto',
+    height: '100%',
+    cursor: 'pointer',
+  })
+
   return (
-    <div>
-      {props.default !== undefined ? <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img>
+    <div id="default-wrapper">
+      {props.default !== undefined ?
+          <div style={defaultImgStyle(props.default)} onClick={() => setIsOpen(!modalIsOpen)}>
+        </div>
       : null }
 
       {expandThumb.length > 0 ? <Modal appElement={document.getElementById('app')} isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)} preventScroll={true} >
@@ -124,3 +126,4 @@ function Default_Expanded (props) {
 export default Default_Expanded
 
 
+{/* <img className="defaultStyle-img" src={props.default} onClick={() => setIsOpen(!modalIsOpen)}></img>  */}
