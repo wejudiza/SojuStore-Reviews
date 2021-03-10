@@ -105,7 +105,7 @@ class RelatedProducts extends React.Component {
     const newFeatures = this.state.features.map((item) => (
       {...item, item: 0}
     ))
-    const newCurrFeatures = this.state.currentFeatures.map((item) => (
+    const newCurrFeatures = this.state.currentFeatures .map((item) => (
       {...item, item: 1}
     ))
 

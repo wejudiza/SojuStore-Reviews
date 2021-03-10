@@ -65,7 +65,7 @@ export default class App extends Component {
       <div>
         <h1 className="soju" style={{display: 'flex', justifyContent: 'center', fontFamily: 'Archivo Black, sans-serif', fontSize: '40px', marginBottom: '0'}}> SOJU STORE </h1>
         <p style={{display: 'flex', justifyContent: 'center', marginTop: '0', fontFamily: 'Source Sans Pro, sans-serif', fontSize: '18px'}}>Cute Slogan</p>
-        <div style={{position: 'absolute', top: '5.3%', right: '3%'}}>
+        <div style={{position: 'absolute', top: '5.4%', right: '3%'}}>
         <button onClick={this.signInClick} className="signin">Sign In</button>
         <button onClick={this.signOutClick} className="signout">Sign Out</button>
         </div>
