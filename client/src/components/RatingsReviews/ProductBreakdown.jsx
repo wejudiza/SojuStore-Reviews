@@ -9,7 +9,7 @@ import ProductBreakdownBar from './ProductBreakdownBar.jsx';
 export default function ProductBreakdown() {
   const productID = useContext(UserContext).id;
   const [characteristics, setCharacteristics] = useState(null);
-
+  const [allNull, setAllNull] = useState(false);
   // Get characteristics metadata
   useEffect(() => {
     if (productID) {
@@ -24,14 +24,15 @@ export default function ProductBreakdown() {
       { /* Renders all product metadata characteristics */ }
       { !characteristics ? null : (
         Object.keys(characteristics).map((key) => (
-          <ProductBreakdownBar
-            characteristic={key}
-            value={characteristics[key].value}
-            key={characteristics[key].id}
-          />
+          characteristics[key].value === null ? null : (
+            <ProductBreakdownBar
+              characteristic={key}
+              value={characteristics[key].value}
+              key={characteristics[key].id}
+            />
+          )
         ))
       ) }
-
     </div>
   );
 }

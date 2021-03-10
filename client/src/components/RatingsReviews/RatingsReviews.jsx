@@ -59,8 +59,13 @@ export default function RatingsReviews() {
 
   // Copy of all reviews w/ current sort state that can be reloaded if filters are cleared
   useEffect(() => setReviews(sortReviews(reviews, sort)), [sort]);
+
   // Keeps track of rendered reviews count
-  useEffect(() => setNumReviews(allReviews.length), [allReviews]);
+  useEffect(() => {
+    setNumReviews(allReviews.length);
+    console.log("ALL REVIEWS LENGTH", allReviews.length);
+  }, [allReviews]);
+  console.log("NUM REVIEWS", numReviews);
 
   // Filters renders reviews based on user search
   useEffect(() => {
@@ -118,13 +123,12 @@ export default function RatingsReviews() {
             />
           )) }
         </div>
-
         { /* Footer Buttons - Add Review + Show More */ }
         <div id="footer-buttons">
-          { showCount === numReviews || showCount === numReviews + 1 ? null : (
-            <button type="button" onClick={() => setShowCount((prev) => prev + 2)}>Show More</button>
-          ) }
           <AddReview metadata={reviewMetadata} />
+          { showCount === numReviews || showCount === numReviews + 1 ? null : (
+            <button id="show-more-btn" type="button" onClick={() => setShowCount((prev) => prev + 2)}>Show More</button>
+          ) }
         </div>
       </div>
     </div>
