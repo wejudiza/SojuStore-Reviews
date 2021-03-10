@@ -98,7 +98,7 @@ export default function RatingsReviews() {
       <div id="sidebar">
         <div id="title">Ratings & Reviews</div>
         <RatingBreakdown reviewMetadata={reviewMetadata} handleFilter={handleFilter} />
-        <ProductBreakdown isOpen={isOpen} />
+        <ProductBreakdown isOpen={isOpen}/>
       </div>
       <div id="reviews-main">
         { /* Sorting dropdown + Search bar */ }
