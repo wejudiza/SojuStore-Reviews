@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 
-// need to test out OUT OF STOCK
+// need to test out OUT OF STOCK -> not working
 // edit react-select drop down list!!
 
 function ProductInfo(props) {
@@ -13,7 +13,6 @@ function ProductInfo(props) {
   const [userSize, setUserSize] = useState(['Select Size']);
   const [userQuantity, setUserQuantity] = useState('-');
   const [menu, setMenu] = useState(false);
-  const [disable, setDisable] = useState(false);
 
   const setMain = () => {
     if (Object.keys(props.default).length > 0) {
@@ -86,7 +85,7 @@ function ProductInfo(props) {
       var sku = Object.keys(itemA)
       var object = Object.values(itemA)
       object.map((item, index) => {
-        if (item.quantity > 0) {
+        if (item.quantity > -1) {
           options.push({value: `${item.quantity},${sku[index]}`, label: item.size})
         }
       })
@@ -94,6 +93,7 @@ function ProductInfo(props) {
     return options
   }
 
+  // THIS IS HAPPENING DURING ON CHANGE
   const qtyOptions = () => {
     const option = []
 
@@ -107,11 +107,9 @@ function ProductInfo(props) {
       })
     } else if (quantity[0] === 0) {
       option.push({ value: 'OUT OF STOCK', label: 'OUT OF STOCK' })
-      setDisable(!disable)
     } else {
       option.push({ value: '-', label: '-' })
     }
-
     return option
   }
 
@@ -121,15 +119,19 @@ function ProductInfo(props) {
 
   return (
     <div className="dropDown-container">
-      <div>
-        { size.length > 0 ? <Select value={[{ value: userSize[0], label: userSize[0] }]} options={sizeOptions()} onChange={handleChangeSize.bind(this)} blurInputOnSelect menuIsOpen={menu} onFocus={() => { if (!menu) setMenu(!menu)}} styles={{container: styles => ({...styles, width: '33%', marginLeft: '12%', position: 'absolute'})}}/> : null}
+      <div style={{order: '1', width: '20%'}}>
+        { size.length > 0 ? <Select value={[{ value: userSize[0], label: userSize[0] }]} options={sizeOptions()} onChange={handleChangeSize.bind(this)} blurInputOnSelect menuIsOpen={menu} onFocus={() => { if (!menu) setMenu(!menu)}} /> : null}
       </div>
-      <div>
-        <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} isDisabled={userQuantity[0] === 'OUT OF STOCK' || userQuantity[0] === '-' ? true : false } styles={{container: () => ({width: '15%', position: 'absolute', marginLeft: '46%'})}} />
+      <div style={{order: '2', width: '10%'}}>
+        <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} isDisabled={userQuantity[0] === 'OUT OF STOCK' || userQuantity[0] === '-' ? true : false } />
       </div>
-      <div style={{marginLeft: '63%'}}>
+      <div style={{order: '3', width: '15%', justifyContent: 'center', display: 'flex'}}>
         {outOfStock ? null : <button className="cartBtn" onClick={handleClickCartButton.bind(this)}><i className="fas fa-cart-plus"></i>ADD TO CART</button>}
       </div>
+      <div className='sizeDescription'>
+        Come on work please lord
+      </div>
+
     </div>
   )
 }

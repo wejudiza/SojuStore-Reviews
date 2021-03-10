@@ -6,8 +6,6 @@ import GalleryImg from './GalleryImg.jsx';
 import Default_Expanded from './Def-Expanded.jsx';
 import { Checkmark } from 'react-checkmark';
 
-//test the bold for SALES PRICE
-// change the icon for selective icon - need to research more
 
 function StyleSelect (props) {
   const [styles, setStyles] = useState([])
@@ -54,6 +52,7 @@ function StyleSelect (props) {
 
     for (var i = 0; i < array.length; i++) {
       if (result.length === 4) {
+        array[i].index = i
         finalRes.push(result)
         result = [];
         result.push(array[i])
@@ -82,17 +81,26 @@ function StyleSelect (props) {
     <div id ="whole-Style">
       <Default_Expanded default={defaultPhoto} setDefault={setDefaultPhoto} style={defaultStyle} index={indexPhoto} setIndex={setIndexPhoto} allStyle={thumbnail} />
       <div id="Style-Select">
-        <div className="category-rating" style={{margin: '1.5%', justifyContent: 'center', display: 'flex'}}>
+        <div className="container">
+        <div className="category-rating" style={{margin: '1.5%', display: 'flex', order: '1', alignSelf: 'flex-end'}}>
          Color:&nbsp;<b>{defaultStyle.name}</b>
         </div>
       {thumbnailModel(thumbnail).map((itemA, index) => (
-        <div key={index} style={{justifyContent: 'center', display: 'flex'}}>
+        <div key={index} style={{justifyContent: 'center', display: 'flex', width: '50%', order: '2', alignSelf: 'flex-end'}}>
         {itemA.map((item, index) => (
-          <div key={index} style={{position: 'relative'}}> { defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? <i style={{position: 'absolute', top: '6%', color: 'whitesmoke', backgroundColor: 'darkred', borderRadius: '50% 50%'}} className="fa fa-check" aria-hidden="true"></i> : null} <img src={item.thumbnail_url} className="thumbnail-img" style={defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? {border: '2px solid darkred', boxShadow: '0px 0.5px 0.5px 1.5px darkred'} : null} onClick={() => clickThumbnail(item.index, item.url)}></img> </div>
+          <div key={index} style={{position: 'relative'}}> { defaultStyle.photos[0].thumbnail_url === null ? null : defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? <i style={{position: 'absolute', top: '6%', color: 'whitesmoke', backgroundColor: 'darkred', borderRadius: '50% 50%'}} className="fa fa-check" aria-hidden="true"></i> : null}
+          <img src={item.thumbnail_url === null ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png' : item.thumbnail_url} className="thumbnail-img" style={defaultStyle.photos[0].thumbnail_url === null ? null : defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? {border: '2px solid darkred', boxShadow: '0px 0.5px 0.5px 1.5px darkred'} : null} onClick={() => clickThumbnail(item.index, item.url)}></img>
+          </div>
         ))}
         </div>
       ))}
-      {defaultStyle.sale_price === null ? <div style={{margin: '1.5%', fontSize: '19px', justifyContent: 'center', display: 'flex'}}> $ {defaultStyle.original_price} </div> : <div style={{margin: '1.5%', fontSize:'19px', justifyContent: 'center', display: 'flex'}}> <b style={{color:'red', weight: '600'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike> </div> }
+      {defaultStyle.sale_price === null ?
+      <div style={{margin: '1.5%', fontSize: '19px', width: '50%', display: 'flex', order: '3', justifyContent: 'center', alignSelf: 'flex-end'}}> $ {defaultStyle.original_price}
+      </div> :
+      <div style={{order: '3', fontSize: '19px', width: '50%', display: 'flex', order: '3', justifyContent: 'center', alignSelf: 'flex-end'}}>
+      <b style={{color:'red', weight: '600'}}>${defaultStyle.sale_price}</b><strike> $ {defaultStyle.original_price} </strike>
+      </div> }
+      </div>
       <GalleryImg default={defaultStyle} setDefaultPhoto={setDefaultPhoto} setIndex={setIndexPhoto} index={indexPhoto} />
       <ProductInfo reset={reset} default={defaultStyle} />
     </div>
