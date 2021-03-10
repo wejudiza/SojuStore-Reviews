@@ -63,9 +63,7 @@ export default function RatingsReviews() {
   // Keeps track of rendered reviews count
   useEffect(() => {
     setNumReviews(allReviews.length);
-    console.log("ALL REVIEWS LENGTH", allReviews.length);
   }, [allReviews]);
-  console.log("NUM REVIEWS", numReviews);
 
   // Filters renders reviews based on user search
   useEffect(() => {
