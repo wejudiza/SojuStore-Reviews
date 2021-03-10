@@ -18,10 +18,12 @@ describe('RelatedProducts', () => {
 
 describe('Outfit List', () => {
   it('Outfit List renders', () => {
-    const wrapper = shallow((
+    const wrapper = shallow(
       <App>
         <OutfitList />
-      </App>));
+      </App>);
     expect(wrapper.containsMatchingElement(<OutfitList />)).toEqual(true);
   });
 });
+
+
