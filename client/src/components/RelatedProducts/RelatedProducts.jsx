@@ -168,9 +168,9 @@ class RelatedProducts extends React.Component {
               <table className="table">
                 <thead>
                   <tr>
-                    <th>{this.props.mainProduct.name}</th>
-                    <th></th>
                     <th>{this.state.name}</th>
+                    <th></th>
+                    <th>{this.props.mainProduct.name}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -210,52 +210,44 @@ class RelatedProducts extends React.Component {
                             </tr>
                           )
                         }
+                      } else {
+                        if (feature.item === 0) {
+                          return (
+                            <tr key={key}>
+                              <td><Checkmark size="small"/></td>
+                              <td className="center">{`${feature.feature}`}
+                                <br/>
+                              </td>
+                              <td></td>
+                            </tr>
+                          )
+                        } else if (feature.item === 1) {
+                          return (
+                            <tr key={key}>
+                              <td></td>
+                              <td className="center">
+                                {`${feature.feature}`}
+                                <br/>
+                              </td>
+                              <td><Checkmark size="small"/></td>
+                            </tr>
+                          )
+                        } else if (feature.item === 2) {
+                          return (
+                            <tr key={key}>
+                              <td><Checkmark size="small"/></td>
+                              <td className="center">
+                                {`${feature.feature}`}
+                                <br/>
+                              </td>
+                              <td><Checkmark size="small"/></td>
+                            </tr>
+                          )
+                        }
                       }
                     })
                     : null
                   }
-                {/* {this.state.features.map((feature, index) => {
-                    if (feature.value !== null) {
-                      return (
-                        <tr key={index}>
-                          <td></td>
-                          <td className="center">{`${feature.value} ${feature.feature}`}</td>
-                          <td><Checkmark size="small"/></td>
-                        <br/>
-                        </tr>
-                      )
-                    } else {
-                      return (
-                        <tr key={index}>
-                          <td></td>
-                          <td className="center">{feature.feature}</td>
-                          <td><Checkmark size="small"/></td>
-                          <br/>
-                        </tr>
-                      )
-                    }
-                  })} */}
-              {/* {this.state.mainFeatures.map((feature, index) => {
-                if (feature.value !== null) {
-                  return (
-                    <tr key={index}>
-                      <td><Checkmark size="small"/></td>
-                      <td className="center">{`${feature.value} ${feature.feature}`}</td>
-                      <td></td>
-                    <br/>
-                    </tr>
-                  )
-                } else {
-                  return (
-                    <tr key={index}>
-                      <td><Checkmark size="small"/></td>
-                      <td className="center">{feature.feature}</td>
-                      <td></td>
-                      <br/>
-                    </tr>
-                  )
-                }
-              })} */}
               </tbody>
           </table>
         </Modal>

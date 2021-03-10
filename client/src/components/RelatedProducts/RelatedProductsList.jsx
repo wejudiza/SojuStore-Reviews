@@ -55,7 +55,7 @@ class RelatedProductsList extends React.Component {
         preventScroll={true}>
         {this.state.products.map((id, index) => {
           return (
-            <RelatedProducts productId={id} key={index} mainProduct={this.props.mainProduct} updateCurrentProduct={this.props.updateCurrentProduct}/>
+            <RelatedProducts productId={id} key={index} mainId={this.props.mainId} mainProduct={this.props.mainProduct} updateCurrentProduct={this.props.updateCurrentProduct}/>
           )
         })}
         </Whirligig>

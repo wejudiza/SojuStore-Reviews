@@ -19,11 +19,13 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      darkMode: false
     };
     this.updateCurrentProduct = this.updateCurrentProduct.bind(this);
     this.signInClick = this.signInClick.bind(this);
     this.signOutClick = this.signOutClick.bind(this);
+    this.toggleDark = this.toggleDark.bind(this);
   }
 
   // results.data[0] - replace 16059
@@ -34,11 +36,12 @@ export default class App extends Component {
     axios.get('/api')
       .then((results) => {
         this.setState({
-          data: results.data[0]
+          data: results.data[9]
         })
       })
       .catch((err) => console.error(err))
   }
+
 
   // on click change state of data based on provided product
   updateCurrentProduct(product) {
@@ -61,12 +64,22 @@ export default class App extends Component {
     window.location.reload(false);
   }
 
+  toggleDark() {
+    console.log('clicked')
+    this.setState({
+      darkMode: !this.state.darkMode
+    })
+  }
+
   render() {
     return (
-      <div>
+      <div id={this.state.darkMode ?
+        "all-dark" : "all"
+      }>
         <h1 className="soju" style={{display: 'flex', justifyContent: 'center', fontFamily: 'Archivo Black, sans-serif', fontSize: '40px', marginBottom: '0'}}> SOJU STORE </h1>
         <p style={{display: 'flex', justifyContent: 'center', marginTop: '0', fontFamily: 'Source Sans Pro, sans-serif', fontSize: '18px'}}>Cute Slogan</p>
         <div style={{position: 'absolute', top: '5.4%', right: '3%'}}>
+        <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
         <button onClick={this.signInClick} className="signin">Sign In</button>
         <button onClick={this.signOutClick} className="signout">Sign Out</button>
         </div>

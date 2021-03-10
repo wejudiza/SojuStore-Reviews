@@ -1,14 +1,14 @@
-// import React, {useContext} from 'react';
-// import {UserContext} from './UserContext.jsx';
-// import RelatedProductsList from './RelatedProductsList.jsx'
+import React, {useContext} from 'react';
+import {UserContext} from './UserContext.jsx';
+import RelatedProductsList from './RelatedProductsList.jsx'
 
-// const GetMainId = (props) => {
-//   const mainId = useContext(UserContext)
-//   return (
-//     <div>
-//       <RelatedProductsList mainId={mainId.id}/>
-//     </div>
-//   )
-// }
+const GetMainId = (props) => {
+  const mainId = useContext(UserContext)
+  return (
+    <div>
+      <RelatedProductsList mainId={mainId.id}/>
+    </div>
+  )
+}
 
-// export default GetMainId;
+export default GetMainId;
