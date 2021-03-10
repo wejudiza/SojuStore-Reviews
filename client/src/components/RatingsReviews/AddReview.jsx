@@ -31,14 +31,13 @@ const initialText = {
   "body": '',
 };
 
-export default function AddReview({ metadata }) {
+export default function AddReview({ metadata, isOpen, setIsOpen }) {
   // Get product context + set inital state
   const product = useContext(UserContext);
   const [urls, setUrls] = useUpload([]);
-  const [isOpen, setIsOpen] = useState(false);
   const [texts, setText] = useText(initialText);
   const [counts, setCount] = useCount(initialCount);
-  const [options, setOption] = useOption({recommend: 0 });
+  const [options, setOption] = useOption({ recommend: 0 });
   const [characteristics, setCharacteristics] = useState({});
 
   useEffect(() => {
@@ -132,7 +131,6 @@ export default function AddReview({ metadata }) {
         <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>Close</button>
 
       </Modal>
-
     </div>
   );
 }
