@@ -19,12 +19,14 @@ Rating & Reviews Styles
   background: linear-gradient(to top right, rgba(255, 255, 255, .6), rgba(255, 255, 255, .3));
   border-radius: 15px;
   font-family: 'Poppins', sans-serif;
+  flex-shrink: inherit;
 }
 #reviews-main {
   display: grid;
   grid-template-rows: 10% 80% 10%;
   grid-template-columns: 30% 70%;
   padding-bottom: 5%;
+  flex-shrink: inherit;
 }
 #sidebar {
   display: flex;
@@ -35,7 +37,8 @@ Rating & Reviews Styles
   background: linear-gradient(to top right, rgba(255, 255, 255, .7), rgba(255, 255, 255, .3));
   min-width: 25%;
   border-radius: 15px;
-  gap: 2.5%
+  gap: 2.5%;
+  flex-shrink: inherit;
 }
 #title {
   display: flex;
@@ -135,8 +138,7 @@ Rating Tile Styles
   border-radius: 10px;
   box-shadow: 0px 1px 1px grey;
   padding: 1% 2.5% 1% 2.5%;
-  max-width: 75%;
-  min-width: 75%;
+  width: 75%;
   min-height: 0;
   max-height: 100;
   margin-top: 2.5%;
