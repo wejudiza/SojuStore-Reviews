@@ -27,13 +27,14 @@ export default class App extends Component {
   }
 
   // results.data[0] - replace 16059
+  // change back to 9
   // need to test - OutOfStock -> change data
 
   componentDidMount() {
     axios.get('/api')
       .then((results) => {
         this.setState({
-          data: results.data[9]
+          data: results.data[0]
         })
       })
       .catch((err) => console.error(err))

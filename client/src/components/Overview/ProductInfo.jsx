@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 
-// need to test out OUT OF STOCK
+// need to test out OUT OF STOCK -> not working
 // edit react-select drop down list!!
 
 function ProductInfo(props) {
@@ -130,6 +130,10 @@ function ProductInfo(props) {
       <div style={{order: '3', width: '15%', justifyContent: 'center', display: 'flex'}}>
         {outOfStock ? null : <button className="cartBtn" onClick={handleClickCartButton.bind(this)}><i className="fas fa-cart-plus"></i>ADD TO CART</button>}
       </div>
+      <div className='sizeDescription'>
+        Come on work please lord
+      </div>
+
     </div>
   )
 }

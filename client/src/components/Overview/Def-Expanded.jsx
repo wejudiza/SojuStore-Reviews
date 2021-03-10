@@ -89,7 +89,11 @@ function Default_Expanded (props) {
     setBgPosition(`${x}% ${y}%`)
   }
 
-  const defaultImgStyle = (url) => ({
+  const defaultImgStyle = (url) => {
+    if (url === null) {
+      url = 'https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-stock-vector-no-image-available-icon-flat-vector-illustration.jpg?ver=6'
+    }
+    return {
     backgroundImage: `url(${url})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
@@ -97,7 +101,7 @@ function Default_Expanded (props) {
     width: 'auto',
     height: '100%',
     cursor: 'pointer',
-  })
+  }}
 
   return (
     <div id="default-wrapper">

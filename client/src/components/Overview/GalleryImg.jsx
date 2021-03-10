@@ -4,6 +4,7 @@ import axios from 'axios';
 // leftArrow line 100 - needed to make it go to the left of the image, cheap coded the left alignment to make it fit into small monitor
 // change css for the selected thumbnail on display (thumbnails of 7) TRY TO HIGHLIGHT OVER THE IMAGE
 // check the thumbnail change when you change default photo on the arrows..
+// need to look into refractoring to be bale to fit the thumbnails into the default photos
 
 function GalleryImg(props) {
   const [maxThumbIndex, setMaxThumbIndex] = useState([]);
@@ -108,9 +109,9 @@ function GalleryImg(props) {
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <i className='leftArrow' style={thumbIndex > 0 ? {visibility: 'visible'} : {visibility: 'hidden'} } onClick={() => changeLeftThumb()}>  </i>
           {props.default.photos.map((item, index) => (
-             <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? {boxShadow: '0px 1px 20px 5px red', filter: 'contrast(1.5)'} : null} ></img>
+             <img className={checkThumbnailImg(index) ? "default-thumbnail" : "default-thumbnail-hidden" } src={item.thumbnail_url === null ? 'https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-stock-vector-no-image-available-icon-flat-vector-illustration.jpg?ver=6' : item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? {boxShadow: '0px 1px 20px 5px red', filter: 'contrast(1.5)'} : null} ></img>
           ))}
-          <i className='rightArrow' style={thumbIndex >= maxThumb ? {visibility: 'hidden'} : {visibility: 'visible'} } onClick={() => changeRightThumb()}> </i>
+          <i className='rightArrow' style={thumbIndex >= maxThumb === null ? {visibility: 'hidden'} : {visibility: 'visible'} } onClick={() => changeRightThumb()}> </i>
         </div>
       : null}
       </div>

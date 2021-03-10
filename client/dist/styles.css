@@ -159,6 +159,8 @@
 #whole-Style {
   width: 50%;
   height: 70vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* top needs to be fixed, does not resize well */
@@ -385,11 +387,20 @@ figure {
   position: relative;
   display: flex;
   justify-content: flex-end;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   align-content: center;
   bottom: 150px;
 }
 
 .dropDown-container > div {
   margin: 1%
+}
+
+.sizeDescription {
+  order: 4;
+  width: 100%;
+  justify-content: right;
+  align-items: flex-end;
+  text-align: center;
+  padding-left: 10%;
 }
