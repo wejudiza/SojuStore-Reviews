@@ -8,10 +8,15 @@ export default function AddReviewSubmit(props) {
   const { texts, counts, options, urls } = props;
   const productID = useContext(UserContext).id;
   const rating = options.rating;
-  console.log(options);
   const recommend = options.recommend === 1;
-  delete options.recommend;
-  delete options.rating;
+  const allowed = Object.keys(options).filter((key) => !['recommend', 'rating'].includes(key));
+
+  const filteredOptions = Object.keys(options)
+    .filter((key) => allowed.includes(key))
+    .reduce((obj, key) => {
+      obj[key] = options[key];
+      return obj;
+    }, {});
 
   const body = {
     product_id: productID,
@@ -22,7 +27,7 @@ export default function AddReviewSubmit(props) {
     name: texts.name,
     email: texts.email,
     photos: urls,
-    characteristics: options
+    characteristics: filteredOptions
   }
 
   return (
