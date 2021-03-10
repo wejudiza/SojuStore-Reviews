@@ -128,8 +128,8 @@ export default function QnA(){
           </div>
           )}
         )}
-          <button onClick={showMoreQuestions}>Load More Questions</button>
-          <button onClick={()=>{setModal(true)}}>Add A Question +</button>
+          <button id="show-more" onClick={showMoreQuestions}>Load More Questions</button>
+          <button id="add-a-question" onClick={()=>{setModal(true)}}>Add A Question +</button>
           <Modal isOpen={modalState} onRequestClose={()=>{setModal(false)}} appElement={document.getElementById('app')}>
             <h2>
               Question
@@ -165,8 +165,8 @@ export default function QnA(){
           </div>
           )}
         )}
-          <button onClick={showLess}>Collapse Questions</button>
-          <button onClick={()=>{setModal(true)}}>Add A Question +</button>
+          <button id="show-more" onClick={showLess}>Collapse Questions</button>
+          <button id="add-a-question" onClick={()=>{setModal(true)}}>Add A Question +</button>
           <Modal isOpen={modalState} onRequestClose={()=>{setModal(false)}} appElement={document.getElementById('app')}>
             <h2>
               Question

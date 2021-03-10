@@ -204,7 +204,9 @@ export default function Question({question}) {
               <Answer answer={answer}/>
           </div>
           )}
-            <button onClick={showMoreAnswers}>Load More Answers</button>
+          <br>
+          </br>
+            <button id="load-more-button" onClick={showMoreAnswers}>Load More Answers</button>
         </div>
       </div>
     )
@@ -246,7 +248,9 @@ export default function Question({question}) {
               <Answer answer={answer}/>
           </div>
           )}
-           <button onClick={showLess}>Collapse Answers</button>
+          <br>
+          </br>
+           <button id="load-more-button" onClick={showLess}>Collapse Answers</button>
         </div>
       </div>
     )
