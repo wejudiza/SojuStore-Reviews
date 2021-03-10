@@ -22,7 +22,7 @@ describe('RelatedProducts', () => {
   it('Releated Products renders', () => {
     const wrapper = shallow((
       <App>
-        <RelatedProducts />
+        <RelatedProductsList />
       </App>));
     expect(wrapper.contains(<RelatedProductsList />)).toBe(true);
   });

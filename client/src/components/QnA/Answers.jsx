@@ -42,11 +42,13 @@ export default function Answer({answer}) {
        <span>
          <strong>A: </strong> {answer.body}
        </span>
-        {answer.photos.map((photo, index) => {
-          return (
-            <Photos image={photo}/>
-          )}
-         )}
+       <div id="row">
+          {answer.photos.map((photo, index) => {
+            return (
+              <Photos key={index} photo={photo.url}/>
+            )}
+           )}
+         </div>
        <div style={{fontSize:'12px'}}>
          by: <b>Seller</b>, {newdate} | Helpful? <u onClick={helpful}>Yes</u> ({answer.helpfulness}) | <u name="report" onClick={report}>{reported}</u>
        </div>
@@ -58,11 +60,13 @@ export default function Answer({answer}) {
          <span>
            <strong>A: </strong> {answer.body}
          </span>
+         <div id="row">
           {answer.photos.map((photo, index) => {
             return (
               <Photos key={index} photo={photo.url}/>
             )}
            )}
+         </div>
          <div style={{fontSize:'12px'}}>
            by: {answer.answerer_name}, {newdate} | Helpful? <u onClick={helpful}>Yes</u> ({helpfulness}) | <u onClick={report}>{reported}</u>
          </div>
