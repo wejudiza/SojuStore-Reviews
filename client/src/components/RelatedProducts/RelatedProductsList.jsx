@@ -26,8 +26,6 @@ class RelatedProductsList extends React.Component {
     }
   }
 
-
-
   getRelated() {
     axios.get(`/api/${this.props.mainProduct.id}`)
       .then((results) => {

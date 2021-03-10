@@ -21,6 +21,22 @@
   width: 100%;
 } */
 
+/* .signin,
+.signout {
+
+} */
+
+.related-header,
+.outfit-header {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+}
+
+.related-header {
+  display: flex;
+  margin-top: 50px;
+}
+
 .center {
   text-align: center;
 }

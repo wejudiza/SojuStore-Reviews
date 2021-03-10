@@ -93,6 +93,7 @@ class RelatedProducts extends React.Component {
     axios.get(`api/reviews/meta/${this.props.productId}`)
       .then((response) => {
         var ratings = response.data;
+        console.log(ratings)
         if (ratings) {
           let rating = this.getWA(ratings);
           let rounded = roundToFourth(rating);
@@ -101,16 +102,16 @@ class RelatedProducts extends React.Component {
             })
         }
       })
-      this.setState({
-        allFeatures: this.state.features.concat(this.state.mainFeatures)
-      })
-      var all = this.state.allFeatures
-      var filtered = [...new Set(all.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
-      this.setState({
-        filtered: filtered
-      })
   }
 
+  // this.setState({
+  //   allFeatures: this.state.features.concat(this.state.mainFeatures)
+  // })
+  // var all = this.state.allFeatures
+  // var filtered = [...new Set(all.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
+  // this.setState({
+  //   filtered: filtered
+  // })
   // getAllFeatures() {
   //   this.setState({
   //     allFeatures: this.state.features.concat(this.state.mainFeatures)
