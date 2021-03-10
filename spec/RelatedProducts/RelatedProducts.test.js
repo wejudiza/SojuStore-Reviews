@@ -4,16 +4,17 @@ import RelatedProductsList from '../../client/src/components/RelatedProducts/Rel
 import App from '../../client/src/components/App';
 import OutfitList from '../../client/src/components/RelatedProducts/OutfitList';
 
-// eslint-disable-next-line no-undef
+
 describe('RelatedProducts', () => {
   it('Releated Products List renders', () => {
-    const wrapper = shallow((
+    const wrapper = shallow(
       <App>
         <RelatedProductsList />
-      </App>));
-    expect(wrapper.contains(<RelatedProductsList />)).toBe(true);
+      </App>);
+    expect(wrapper.containsMatchingElement(<RelatedProductsList />)).toEqual(true);
   });
 });
+
 
 describe('Outfit List', () => {
   it('Outfit List renders', () => {
@@ -21,6 +22,6 @@ describe('Outfit List', () => {
       <App>
         <OutfitList />
       </App>));
-    expect(wrapper.contains(<OutfitList />)).toBe(true);
+    expect(wrapper.containsMatchingElement(<OutfitList />)).toEqual(true);
   });
 });

@@ -14,7 +14,6 @@ import QnA from './QnA/QnA.jsx';
 // Import RatingsReviews Components
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
 
-
 // App component
 export default class App extends Component {
   constructor(props) {
@@ -67,29 +66,29 @@ export default class App extends Component {
         <h1 style={{display: 'flex', justifyContent: 'center', fontFamily: 'Archivo Black, sans-serif', fontSize: '40px', marginBottom: '0'}}> SOJU STORE </h1>
         <p style={{display: 'flex', justifyContent: 'center', marginTop: '0', fontFamily: 'Source Sans Pro, sans-serif', fontSize: '18px'}}>Cute Slogan</p>
         <div style={{position: 'absolute', top: '0.5%'}}>
-        <button onClick={this.signInClick} className="signin">Sign In</button>
-        <button onClick={this.signOutClick} className="signout">Sign Out</button>
+        <button onClick={this.signInClick}>Sign In</button>
+        <button onClick={this.signOutClick}>Sign Out</button>
         </div>
-      <UserContext.Provider value={this.state.data}>
-        <Product />
-        <h3 className="related-header">Related Products</h3>
-        <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
-        <h3 className="outfit-header">Your Outfit</h3>
-        <OufitList mainProduct={this.state.data}/>
+        <UserContext.Provider value={this.state.data}>
+          <Product />
+          <h3>Related Products</h3>
+          <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
+          <h3>Your Outfit</h3>
+          <OufitList mainProduct={this.state.data}/>
 
-        <div id="questions">
-          <h3>Questions</h3>
-          <QnA />
-        </div>
+          {/* --- QnA ---*/}
+          <div id="qna">
+            <h3 id="questions-logo">Questions & Answers</h3>
+            <div id="questions-and-answers">
+              <QnA />
+            </div>
+          </div>
 
-        {/* --- Ratings & Reviews --- */}
-        { !UserContext ? null : (
+          {/* --- Ratings & Reviews --- */}
           <div id="ratings-reviews-container">
             <RatingsReviews />
           </div>
-        ) }
-
-      </UserContext.Provider>
+        </UserContext.Provider>
       </div>
     );
   }
