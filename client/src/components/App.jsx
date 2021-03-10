@@ -68,27 +68,26 @@ export default class App extends Component {
         <div style={{position: 'absolute', top: '0.5%'}}>
         <button onClick={this.signInClick}>Sign In</button>
         <button onClick={this.signOutClick}>Sign Out</button>
-        </div>
-      <UserContext.Provider value={this.state.data}>
-        <Product />
-        <h3>Related Products</h3>
-        <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
-        <h3>Your Outfit</h3>
-        <OufitList mainProduct={this.state.data}/>
+        <UserContext.Provider value={this.state.data}>
+          {/* <Product />
+          <h3>Related Products</h3>
+          <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
+          <h3>Your Outfit</h3>
+          <OufitList mainProduct={this.state.data}/> */}
 
-        <div id="questions">
-          <h3>Questions</h3>
-          <QnA />
-        </div>
-
-        {/* --- Ratings & Reviews --- */}
-        { !UserContext ? null : (
-          <div id="ratings-reviews-container">
-            <RatingsReviews />
+          {/* --- QnA ---*/}
+          <div id="qna">
+            <h3 id="questions-logo">Questions & Answers</h3>
+            <div id="questions-and-answers">
+              <QnA />
+            </div>
           </div>
-        ) }
 
-      </UserContext.Provider>
+          {/* --- Ratings & Reviews --- */}
+          {/* <div id="ratings-reviews-container">
+            <RatingsReviews />
+          </div> */}
+        </UserContext.Provider>
       </div>
     );
   }
