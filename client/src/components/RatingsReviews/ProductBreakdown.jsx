@@ -6,10 +6,10 @@ import { UserContext } from '../UserContext.jsx';
 // Import components
 import ProductBreakdownBar from './ProductBreakdownBar.jsx';
 
-export default function ProductBreakdown() {
+export default function ProductBreakdown({ isOpen }) {
   const productID = useContext(UserContext).id;
   const [characteristics, setCharacteristics] = useState(null);
-  const [allNull, setAllNull] = useState(false);
+
   // Get characteristics metadata
   useEffect(() => {
     if (productID) {
@@ -29,6 +29,7 @@ export default function ProductBreakdown() {
               characteristic={key}
               value={characteristics[key].value}
               key={characteristics[key].id}
+              isOpen={isOpen}
             />
           )
         ))

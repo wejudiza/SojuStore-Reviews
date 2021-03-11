@@ -29,7 +29,7 @@ const colorStyles = {
 ProductBreakdownBar Component
 -------------------------- */
 // Dyanmic breakdown bar subcomponent that given a characteristic & value
-export default function ProductBreakdownBar({ characteristic, value }) {
+export default function ProductBreakdownBar({ characteristic, value, isOpen }) {
   const markerPosition = getTrianglePosition(value);
   const labels = getLabels(characteristic);
   const markerColor = ['Comfort', 'Quality'].includes(characteristic) ? colorStyles.scale[Math.floor(markerPosition * .05)] : colorStyles.divergent[Math.floor(markerPosition * .05)];
@@ -42,8 +42,8 @@ export default function ProductBreakdownBar({ characteristic, value }) {
         <div className="product-bar-background" />
         <div className="product-bar-background" />
         <div className="product-bar-background" />
-        <div className="triangle" style={{ left: `${markerPosition}%`, color: markerColor }} />
-        <div className="triangle-behind" style={{ left: `${markerPosition}%` }} />
+        { isOpen ? null : <div className="triangle" style={{ left: `${markerPosition}%`, color: markerColor }} /> }
+        { isOpen ? null : <div className="triangle-behind" style={{ left: `${markerPosition}%` }} /> }
       </div>
       { /* Breakdown bar lalels */ }
       <div className="product-bar-labels">

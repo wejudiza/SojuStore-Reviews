@@ -31,19 +31,18 @@ const initialText = {
   "body": '',
 };
 
-export default function AddReview({ metadata }) {
+export default function AddReview({ metadata, isOpen, setIsOpen }) {
   // Get product context + set inital state
   const product = useContext(UserContext);
   const [urls, setUrls] = useUpload([]);
-  const [isOpen, setIsOpen] = useState(false);
   const [texts, setText] = useText(initialText);
   const [counts, setCount] = useCount(initialCount);
-  const [options, setOption] = useOption({recommend: 0 });
+  const [options, setOption] = useOption({recommend: true, rating: 0});
   const [characteristics, setCharacteristics] = useState({});
 
   useEffect(() => {
     if (metadata) {
-      setCharacteristics({ ...metadata.characteristics });
+      setCharacteristics({ Recommend: true, Rating: 0, ...metadata.characteristics });
     }
   }, [metadata]);
 
@@ -51,88 +50,87 @@ export default function AddReview({ metadata }) {
     <div id="add-review">
       <button id="add-review-btn" type="button" onClick={() => setIsOpen(true)}>Add A Review +</button>
       <Modal id="add-review-modal" isOpen={isOpen} onRequestClose={() => setIsOpen(false)} ariaHideApp={false}>
-
         { /* Dynamic add review title */ }
         <div id="add-review-header">
           <h2>
             Write Your Review For
-            <br />
-            { product.name }
+            <div id="add-review-product">{ product.name }</div>
           </h2>
+          <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>x</button>
         </div>
 
-        { /* -------------------
-          User Input Text Fields
-          ------------------- */ }
-        {/* Text Input: Username */ }
-        <AddReviewText
-          name="name"
-          header="Username"
-          placeholder="Example: jackson11!"
-          min="0"
-          max="60"
-          setText={setText}
-          setCount={setCount}
-          charCount={counts.name}
-        />
-        <div className="add-review-privacy">For privacy reasons, do not use your full name or email address</div>
-        {/* Text Input: Email */ }
-        <AddReviewText
-          name="email"
-          header="Email"
-          placeholder="Example: jackson11@email.com!"
-          min="0"
-          max="60"
-          setText={setText}
-          setCount={setCount}
-          charCount={counts.email}
-        />
-        <div className="add-review-privacy">For authentication reasons, you will not be emailed</div>
-        {/* Text Input: Review Summary */ }
-        <AddReviewText
-          name="summary"
-          header="Review Summary"
-          placeholder="Example: Best purchase ever!"
-          min="0"
-          max="60"
-          setText={setText}
-          setCount={setCount}
-          charCount={counts.summary}
-        />
-        { /* Text Input: Full Review */ }
-        <AddReviewText
-          name="body"
-          header="Full Review"
-          placeholder="Why did you like the product or not?"
-          min="50"
-          max="1000"
-          setText={setText}
-          setCount={setCount}
-          charCount={counts.body}
-        />
+        <div id="add-review-container">
+          <div id="text-input-container">
+            {/* Text Input: Username */ }
+            <AddReviewText
+              name="name"
+              header="Username"
+              placeholder="Example: jackson11!"
+              min="0"
+              max="60"
+              setText={setText}
+              setCount={setCount}
+              charCount={counts.name}
+              privacy="For privacy reasons, do not use your full name or email address"
+            />
+            {/* Text Input: Email */ }
+            <AddReviewText
+              name="email"
+              header="Email"
+              placeholder="Example: jackson11@email.com!"
+              min="0"
+              max="60"
+              setText={setText}
+              setCount={setCount}
+              charCount={counts.email}
+              privacy="For authentication reasons, you will not be emailed"
+            />
+            {/* Text Input: Review Summary */ }
+            <AddReviewText
+              name="summary"
+              header="Review Summary"
+              placeholder="Example: Best purchase ever!"
+              min="0"
+              max="60"
+              setText={setText}
+              setCount={setCount}
+              charCount={counts.summary}
+            />
+            { /* Text Input: Full Review */ }
+            <AddReviewText
+              name="body"
+              header="Full Review"
+              placeholder="Why did you like the product or not?"
+              min="50"
+              max="1000"
+              setText={setText}
+              setCount={setCount}
+              charCount={counts.body}
+            />
+          </div>
 
-        { /* -------------------
-          User Input Radio Forms
-          ------------------- */ }
-        { /* Radio Buttons: Product Recommendation */ }
-        <AddReviewRadio header="Recommend" name="recommend" setOption={setOption} />
-        { Object.keys(characteristics).map((char) => (
-          <AddReviewRadio
-            setOption={setOption}
-            header={char}
-            name={characteristics[char].id}
-            key={characteristics[char].id}
-          />
-        )) }
+          { /* -------------------
+            User Input Radio Forms
+            ------------------- */ }
+          <div id="radio-container">
+            { Object.keys(characteristics).map((char) => (
+              <AddReviewRadio
+                setOption={setOption}
+                header={char}
+                name={characteristics[char].id}
+                key={characteristics[char].id}
+              />
+            )) }
+          </div>
+        </div>
 
-        { /* User Image Upload, Close Button, Submit Button */ }
-        <AddReviewImgUpload urls={urls} setUrls={setUrls} />
-        <br />
-        <AddReviewSubmit texts={texts} counts={counts} options={options} urls={urls} />
-        <button id="close-review-btn" type="button" onClick={() => setIsOpen(false)}>Close</button>
-
+        { /* User Image Upload & Submit Button */ }
+        <div id="add-review-button-container">
+          <AddReviewImgUpload urls={urls} setUrls={setUrls} />
+          <br />
+          <AddReviewSubmit texts={texts} counts={counts} options={options} urls={urls} />
+        </div>
       </Modal>
-
     </div>
   );
 }

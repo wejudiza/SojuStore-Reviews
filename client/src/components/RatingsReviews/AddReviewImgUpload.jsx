@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function ImgUpload({ urls, setUrls }) {
   return (
     <>
-      <div className="img-upload-preview">Upload up to 5 image(s) of the product</div>
-      { urls.map((url, i) => <img className="photo-thumbnail" src={url} alt={i} />) }
+      <div id="img-upload-container">
+        <h4>Upload up to 5 image(s) of the product</h4>
+        <input className="img-upload" type="file" accept="image/*" multiple="true" onChange={setUrls} />
+      </div>
       <br />
-      <input type="file" accept="image/*" multiple="true" onChange={setUrls} />
+      <div id="preview-container">
+        { urls.map((url, i) => <img className="photo-thumbnail" src={url} alt={i} />) }
+      </div>
     </>
   );
 }

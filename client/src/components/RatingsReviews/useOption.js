@@ -5,9 +5,12 @@ export default function useOption(initialValues) {
 
   return [
     values,
-    (e) => setValues({
-      ...values,
-      [e.target.name]: Number(e.target.value)
-    })
+    (e) => {
+      console.log(values);
+      setValues({
+        ...values,
+        [e.target.name]: Number(e.target.value)
+      })
+  }
   ]
 }

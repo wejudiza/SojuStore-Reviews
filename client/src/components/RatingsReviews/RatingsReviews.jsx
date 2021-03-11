@@ -42,6 +42,7 @@ export default function RatingsReviews() {
   const [reviewMetadata, setReviewMetadata] = useState(null);
   const [filters, setFilters] = useFilter(initialFilters);
   const [search, setSearch] = useSearch({ text: '', count: 0 });
+  const [isOpen, setIsOpen] = useState(false);
 
   // Gets all reviews + metadata from API for specific product, sets relevant intial states
   useEffect(() => {
@@ -52,7 +53,6 @@ export default function RatingsReviews() {
         .then(() => axios.get(`/api/reviews/meta/${productID}`)
           .then((resp) => setReviewMetadata(resp.data)))
         .then(() => setLoaded(true))
-        .then(() => setNumReviews(allReviews.length))
         .catch((err) => console.log(err));
     }
   }, [productID, loaded]);
@@ -98,7 +98,7 @@ export default function RatingsReviews() {
       <div id="sidebar">
         <div id="title">Ratings & Reviews</div>
         <RatingBreakdown reviewMetadata={reviewMetadata} handleFilter={handleFilter} />
-        <ProductBreakdown />
+        <ProductBreakdown isOpen={isOpen}/>
       </div>
       <div id="reviews-main">
         { /* Sorting dropdown + Search bar */ }
@@ -123,7 +123,7 @@ export default function RatingsReviews() {
         </div>
         { /* Footer Buttons - Add Review + Show More */ }
         <div id="footer-buttons">
-          <AddReview metadata={reviewMetadata} />
+          <AddReview metadata={reviewMetadata} isOpen={isOpen} setIsOpen={setIsOpen} />
           { showCount === numReviews || showCount === numReviews + 1 ? null : (
             <button id="show-more-btn" type="button" onClick={() => setShowCount((prev) => prev + 2)}>Show More</button>
           ) }

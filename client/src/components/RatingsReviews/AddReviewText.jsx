@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 
 export default function AddReviewText(props) {
-  const { name, header, placeholder, min, max, setText, setCount, charCount } = props;
+  const { name, header, placeholder, min, max, setText, setCount, charCount, privacy } = props;
 
   return (
     <div className="review-text">
-      <h4>{header}</h4>
-      { charCount >= min ? charCount : `Min: ${min}` } {` / ${max} characters `}
-      <br />
+      <div className="review-text-header">
+        <h4 className="review-text-title">{header}</h4>
+        <div className="review-text-count">
+          { charCount >= min ? `(${charCount}` : `(Min: ${min}` } {` / ${max} characters)`}
+        </div>
+      </div>
+      <div className="add-review-privacy">{!privacy ? null : privacy}</div>
 
       <textarea
         className={name}
@@ -19,6 +23,7 @@ export default function AddReviewText(props) {
           setCount(e);
         }}
       />
+
     </div>
   );
 }

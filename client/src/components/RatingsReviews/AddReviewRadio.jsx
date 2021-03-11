@@ -1,6 +1,13 @@
 import React from 'react';
 
 const options = {
+  Rating: [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
   Recommend: [
     'Yes',
     'No'
@@ -50,20 +57,22 @@ const options = {
 };
 
 export default function AddReviewRadio(props) {
-  const { header, name, setOption } = props;
+  const { header, setOption } = props;
+  let { name } = props;
+  name = !name ? header.toLowerCase() : name;
   return (
-    <>
+    <div className="review-radio">
       <h4>{header}</h4>
-      { !header || !name ? null : (
-        <form className="add-review-radio" onChange={setOption}>
+      { !header ? null : (
+        <form className="review-radio-form" onChange={setOption}>
           { options[header].map((val, index) => (
-            <>
+            <div className="radio-option">
               <input type="radio" name={name} value={index + 1} />
               <label htmlFor={val}>{val}</label>
-            </>
+            </div>
           )) }
-       </form>
+        </form>
       ) }
-    </>
+    </div>
   );
 }

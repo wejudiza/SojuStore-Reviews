@@ -4,10 +4,17 @@ import Product from '../client/src/components/Overview/Product'
 import RelatedProductsList from '../client/src/components/RelatedProducts/RelatedProductsList';
 import App from '../client/src/components/App';
 
-// describe('hello', () => {
-//   it ('hello', () => {
-//     var test = true;
-//     expect(test).toBe(true);
+// // describe('hello', () => {
+// //   it ('hello', () => {
+// //     var test = true;
+// //     expect(test).toBe(true);
+// //   });
+// // });
+
+// // eslint-disable-next-line no-undef
+// describe('App component', () => {
+//   it('App Component renders', () => {
+//     const wrapper = shallow(<App />);
 //   });
 // });
 
