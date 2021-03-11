@@ -113,8 +113,6 @@ export default function AddReview({ metadata, isOpen, setIsOpen }) {
             User Input Radio Forms
             ------------------- */ }
           <div id="radio-container">
-            {/* <AddReviewRadio header="Recommend" name="recommend" setOption={setOption} />
-            <AddReviewRadio header="Rating" name="rating" setOption={setOption} /> */}
             { Object.keys(characteristics).map((char) => (
               <AddReviewRadio
                 setOption={setOption}

@@ -21,7 +21,10 @@ export default function use(initialValues) {
           () => storage.ref('images')
             .child(img.name)
             .getDownloadURL()
-            .then((url) => setValues([...values, url]))
+            .then((url) => {
+              values.push(url);
+              setValues([...values])
+            })
         );
       });
     }

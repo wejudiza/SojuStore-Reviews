@@ -9,7 +9,6 @@ export default function ImgUpload({ urls, setUrls }) {
       </div>
       <br />
       <div id="preview-container">
-        { urls }
         { urls.map((url, i) => <img className="photo-thumbnail" src={url} alt={i} />) }
       </div>
     </>

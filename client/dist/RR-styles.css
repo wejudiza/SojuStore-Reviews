@@ -248,7 +248,6 @@ Product Breakdown Styles
 .product-bar-container {
   display: flex;
   position: relative;
-  opacity: 1;
 }
 .product-bar-title {
   font-size: .8rem;
