@@ -33,21 +33,18 @@ class RelatedProducts extends React.Component {
       sale_price: '',
       thumbnail_url: '',
       features: [],
-      mainFeatures: [],
-      allFeatures: [],
-      filtered: [],
+      currentFeatures: [],
+      filteredFeatures: [],
       product: {},
       rating: 0
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.getInfo = this.getInfo.bind(this);
     this.getWA = this.getWA.bind(this);
-    // this.getAllFeatures = this.getAllFeatures.bind(this);
   }
 
   componentDidMount() {
     this.getInfo();
-    // this.getAllFeatures();
   }
 
   componentDidUpdate(prevProps) {
@@ -80,7 +77,7 @@ class RelatedProducts extends React.Component {
       axios.get(`api/product_id/${this.props.mainProduct.id}`)
       .then((response) => {
         this.setState({
-          mainFeatures: response.data.features
+          currentFeatures: response.data.features
         })
       })
     axios.get(`api/styles/${this.props.productId}`)
@@ -101,32 +98,37 @@ class RelatedProducts extends React.Component {
             })
         }
       })
-      this.setState({
-        allFeatures: this.state.features.concat(this.state.mainFeatures)
-      })
-      var all = this.state.allFeatures
-      var filtered = [...new Set(all.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
-      this.setState({
-        filtered: filtered
-      })
   }
-
-  // getAllFeatures() {
-  //   this.setState({
-  //     allFeatures: this.state.features.concat(this.state.mainFeatures)
-  //   }, () => {
-  //     var all = this.state.allFeatures;
-  //     var filtered = [...new Set(all.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
-  //     this.setState({
-  //       filtered: filtered
-  //     })
-  //   })
-  // }
 
 
   toggleModal() {
+    const newFeatures = this.state.features.map((item) => (
+      {...item, item: 0}
+    ))
+    const newCurrFeatures = this.state.currentFeatures .map((item) => (
+      {...item, item: 1}
+    ))
+
     this.setState({
-      modalIsOpen: !this.state.modalIsOpen
+      modalIsOpen: !this.state.modalIsOpen,
+      features: newFeatures,
+      currentFeatures: newCurrFeatures
+    }, () => {
+      this.setState({
+        filteredFeatures: this.state.features.concat(this.state.currentFeatures).filter((feature, index, self) => {
+          let temp = self.findIndex((i) => (i.feature === feature.feature && i.value === feature.value && i.item !== feature.item && i.item !== 2))
+          if (temp > -1) {
+            feature.item = 2;
+            return true;
+          } else {
+            let temp2 = self.findIndex((i) => (i.feature === feature.feature && i.value === feature.value)) === index;
+            if (temp2) {
+              return true
+            }
+            return false;
+          }
+        })
+      })
     });
   }
 
@@ -166,54 +168,86 @@ class RelatedProducts extends React.Component {
               <table className="table">
                 <thead>
                   <tr>
-                    <th>{this.props.mainProduct.name}</th>
-                    <th></th>
                     <th>{this.state.name}</th>
+                    <th></th>
+                    <th>{this.props.mainProduct.name}</th>
                   </tr>
                 </thead>
                 <tbody>
-                {this.state.features.map((feature, index) => {
-                    if (feature.value !== null) {
-                      return (
-                        <tr key={index}>
-                          <td></td>
-                          <td className="center">{`${feature.value} ${feature.feature}`}</td>
-                          <td><Checkmark size="small"/></td>
-                        <br/>
-                        </tr>
-                      )
-                    } else {
-                      return (
-                        <tr key={index}>
-                          <td></td>
-                          <td className="center">{feature.feature}</td>
-                          <td><Checkmark size="small"/></td>
-                          <br/>
-                        </tr>
-                      )
-                    }
-                  })}
-              {this.state.mainFeatures.map((feature, index) => {
-                if (feature.value !== null) {
-                  return (
-                    <tr key={index}>
-                      <td><Checkmark size="small"/></td>
-                      <td className="center">{`${feature.value} ${feature.feature}`}</td>
-                      <td></td>
-                    <br/>
-                    </tr>
-                  )
-                } else {
-                  return (
-                    <tr key={index}>
-                      <td><Checkmark size="small"/></td>
-                      <td className="center">{feature.feature}</td>
-                      <td></td>
-                      <br/>
-                    </tr>
-                  )
-                }
-              })}
+                  {this.state.filteredFeatures ?
+                    this.state.filteredFeatures.map((feature, key) => {
+                      if (feature.value !== null) {
+                        if (feature.item === 0) {
+                          return (
+                            <tr key={key}>
+                              <td><Checkmark size="small"/></td>
+                              <td className="center">{`${feature.value} ${feature.feature}`}
+                                <br/>
+                              </td>
+                              <td></td>
+                            </tr>
+                          )
+                        } else if (feature.item === 1) {
+                          return (
+                            <tr key={key}>
+                              <td></td>
+                              <td className="center">
+                                {`${feature.value} ${feature.feature}`}
+                                <br/>
+                              </td>
+                              <td><Checkmark size="small"/></td>
+                            </tr>
+                          )
+                        } else if (feature.item === 2) {
+                          return (
+                            <tr key={key}>
+                              <td><Checkmark size="small"/></td>
+                              <td className="center">
+                                {`${feature.value} ${feature.feature}`}
+                                <br/>
+                              </td>
+                              <td><Checkmark size="small"/></td>
+                            </tr>
+                          )
+                        }
+                      } else {
+                        if (feature.item === 0) {
+                          return (
+                            <tr key={key}>
+                              <td><Checkmark size="small"/></td>
+                              <td className="center">{`${feature.feature}`}
+                                <br/>
+                              </td>
+                              <td></td>
+                            </tr>
+                          )
+                        } else if (feature.item === 1) {
+                          return (
+                            <tr key={key}>
+                              <td></td>
+                              <td className="center">
+                                {`${feature.feature}`}
+                                <br/>
+                              </td>
+                              <td><Checkmark size="small"/></td>
+                            </tr>
+                          )
+                        } else if (feature.item === 2) {
+                          return (
+                            <tr key={key}>
+                              <td><Checkmark size="small"/></td>
+                              <td className="center">
+                                {`${feature.feature}`}
+                                <br/>
+                              </td>
+                              <td><Checkmark size="small"/></td>
+                            </tr>
+                          )
+                        }
+                      }
+                    })
+                    : null
+                  }
               </tbody>
           </table>
         </Modal>

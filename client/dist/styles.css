@@ -1,14 +1,179 @@
 
-/**** RLEATED PRODUCTS SECTION ****/
+/* Header */
+
+.header {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(182,182,182,1) 50%, rgba(255,255,255,1) 100%);
+  /* background: rgb(63,94,251);
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); */
+  /* background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(252,70,107,1) 100%); */
+  /* border-bottom: 5px ridge rgba(158,158,158,1);
+  border-radius: 31px; */
+  border-bottom: 2px solid black;
+  margin-bottom: 2%;
+  height: 90px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.store-name {
+  position: absolute;
+  top: 4%;
+  font-family: 'Archivo Black', 'sans-serif';
+  font-size: 45px;
+  left: 39%;
+}
+
+.slogan {
+  position: absolute;
+  font-size: 17px;
+  top: 33%;
+  left: 41%;
+  letter-spacing: 2px;
+}
+
+.shipping {
+  position: absolute;
+  left: 45%;
+  top: 64%;
+  font-size: 12.5px;
+}
+
+.signin,
+.signout,
+.dark {
+  position: absolute;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: black !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  outline: none;
+}
+
+/* .signin-out {
+  display: inline-flex;
+} */
+
+.signin {
+  top: 8%;
+  right: 10%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.signout {
+  top: 8%;
+  right: 3%;
+}
+
+.search-container {
+  position: absolute;
+  right: 3%;
+  top: 60%;
+}
+
+#main-search {
+	background: none;
+	border-bottom: 1px solid black;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+  outline: none;
+}
+
+.search-btn {
+  margin-left: 5px;
+}
+
+
+.dark  {
+  position: absolute;
+  top: 25%;
+  left: 3%;
+}
+
+.signin:hover,
+.signout:hover {
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  background: none;
+  box-shadow: 0 0 50px black;
+  background: white;
+}
+
+
+.dark:hover {
+  font-weight: 700 !important;
+  letter-spacing: 2px;
+  background: none;
+  box-shadow: 0 0 50px black;
+}
+/* Dark Mode */
+#all {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: black;
+}
+
+#all-dark {
+  color: white;
+  background-color: #383838;
+}
+
+#all-dark .hidden {
+  background-color: #383838;
+  color: #383838
+}
+
+#all-dark .add-card {
+  background-color: black;
+}
+
+#all-dark .header  {
+  background: #383838;
+  color: white;
+  border-bottom: 2px solid black;
+}
+
+#all-dark .dark {
+  background: white;
+}
+
+#all-dark .dark:hover {
+  box-shadow: 0 0 50px white;
+}
+
+#all-dark .add-card {
+  background: rgb(68,68,68);
+  background: linear-gradient(90deg, rgba(68,68,68,1) 0%, rgba(34,34,34,1) 100%, rgba(92,0,0,1) 100%);
+}
+
+#all-dark .signin:hover,
+#all-dark .signout:hover  {
+  box-shadow: 0 0 50px white;
+}
+
+#all-dark #main-search {
+  border-bottom: 1px solid white;
+}
+
+/* RLEATED PRODUCTS SECTION */
 .related-card,
 .add-card,
 .outfit-card {
   position: relative;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 250px;
-  max-height: 285px;
-  min-width: 250px;
-  min-height: 285px;
+  width: 250px;
+  height: 285px;
   text-align: left;
   font-family: 'Source Sans Pro', sans-serif;
   margin-bottom: 10px;
@@ -17,9 +182,24 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-/* [role="list"] {
-  width: 100%;
+
+/* .related-card:hover,
+.outfit-card:hover {
+  box-shadow: 10px 5px 5px #FF0000;
 } */
+
+
+.related-header,
+.outfit-header {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  padding-left: 70px;
+}
+
+.related-header {
+  display: flex;
+  margin-top: 50px;
+}
 
 .center {
   text-align: center;
@@ -30,7 +210,6 @@
 }
 
 .price {
-  color: grey;
   font-size: 12px;
   padding-top: 3px;
 }
@@ -143,6 +322,7 @@
   color: white;
   background-color: white;
 }
+
 
 /* ----- PRODUCT OVER VIEW ----- */
 #overView {
