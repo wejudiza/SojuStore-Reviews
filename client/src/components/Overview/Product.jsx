@@ -53,18 +53,19 @@ function Product() {
   }, [data]);
 
   useEffect(() => {
-    var res = [];
-    {style.map((item, index) => {
+    const res = [];
+    // eslint-disable-next-line no-lone-blocks
+    { style.map((item) => {
       if (item['default?']) {
-        setDefault(item)
+        setDefault(item);
       }
       item.photos.map((item, index) => {
         if (index === 0) {
-          res.push(item)
-          setThumbnail(res)
+          res.push(item);
+          setThumbnail(res);
         }
-      })
-    })}
+      });
+    }); }
   }, [style]);
 
   useEffect(() => {
@@ -74,10 +75,10 @@ function Product() {
   }, [defaultStyle]);
 
   useEffect(() => {
-    var total = 0
+    let total = 0;
     if (rating !== undefined) {
       setWA(getWA(rating));
-      for (let review in rating.ratings) {
+      for (const review in rating.ratings) {
         total += Number(rating.ratings[review]);
       }
     }
