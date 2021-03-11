@@ -1,4 +1,123 @@
 
+/* Header */
+
+.header {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(182,182,182,1) 50%, rgba(255,255,255,1) 100%);
+  /* background: rgb(63,94,251);
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); */
+  /* background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(252,70,107,1) 100%); */
+  /* border-bottom: 5px ridge rgba(158,158,158,1);
+  border-radius: 31px; */
+  border-bottom: 2px solid black;
+  margin-bottom: 2%;
+  height: 90px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.store-name {
+  position: absolute;
+  top: 4%;
+  font-family: 'Archivo Black', 'sans-serif';
+  font-size: 45px;
+  left: 39%;
+}
+
+.slogan {
+  position: absolute;
+  font-size: 17px;
+  top: 33%;
+  left: 41%;
+  letter-spacing: 2px;
+}
+
+.shipping {
+  position: absolute;
+  left: 45%;
+  top: 64%;
+  font-size: 12.5px;
+}
+
+.signin,
+.signout,
+.dark {
+  position: absolute;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: black !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  outline: none;
+}
+
+/* .signin-out {
+  display: inline-flex;
+} */
+
+.signin {
+  top: 8%;
+  right: 10%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.signout {
+  top: 8%;
+  right: 3%;
+}
+
+.search-container {
+  position: absolute;
+  right: 3%;
+  top: 60%;
+}
+
+#main-search {
+	background: none;
+	border-bottom: 1px solid black;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+  outline: none;
+}
+
+.search-btn {
+  margin-left: 5px;
+}
+
+
+.dark  {
+  position: absolute;
+  top: 25%;
+  left: 3%;
+}
+
+.signin:hover,
+.signout:hover {
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  background: none;
+  box-shadow: 0 0 50px black;
+  background: white;
+}
+
+
+.dark:hover {
+  font-weight: 700 !important;
+  letter-spacing: 2px;
+  background: none;
+  box-shadow: 0 0 50px black;
+}
 /* Dark Mode */
 #all {
   font-family: 'Source Sans Pro', sans-serif;
@@ -6,24 +125,46 @@
 }
 
 #all-dark {
-  color: #adadad;
-  background-color: #636363;
-}
-
-#all-dark h1 {
-  background-color: red;
-  color: black;
+  color: white;
+  background-color: #383838;
 }
 
 #all-dark .hidden {
-  background-color: #636363;
-  color: #636363
+  background-color: #383838;
+  color: #383838
 }
 
 #all-dark .add-card {
   background-color: black;
 }
 
+#all-dark .header  {
+  background: #383838;
+  color: white;
+  border-bottom: 2px solid black;
+}
+
+#all-dark .dark {
+  background: white;
+}
+
+#all-dark .dark:hover {
+  box-shadow: 0 0 50px white;
+}
+
+#all-dark .add-card {
+  background: rgb(68,68,68);
+  background: linear-gradient(90deg, rgba(68,68,68,1) 0%, rgba(34,34,34,1) 100%, rgba(92,0,0,1) 100%);
+}
+
+#all-dark .signin:hover,
+#all-dark .signout:hover  {
+  box-shadow: 0 0 50px white;
+}
+
+#all-dark #main-search {
+  border-bottom: 1px solid white;
+}
 
 /* RLEATED PRODUCTS SECTION */
 .related-card,
@@ -41,13 +182,6 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-.soju {
-  background: rgb(255,255,255);
-  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(195,195,195,1) 100%, rgba(142,142,142,1) 100%);
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 5px;
-}
 
 /* .related-card:hover,
 .outfit-card:hover {
@@ -187,39 +321,6 @@
 .hidden {
   color: white;
   background-color: white;
-}
-
-.signin,
-.signout,
-.dark {
-  font-family: 'Source Sans Pro', sans-serif;
-  color: black !important;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 8px;
-  border-radius: 5px;
-  display: inline-block;
-  border: none;
-  transition: all 0.4s ease 0s;
-  margin-left: 15px;
-  cursor: pointer;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
-}
-
-.dark:hover {
-  font-weight: 700 !important;
-  letter-spacing: 3px;
-  background: none;
-  box-shadow: 0 0 50px black;
-}
-
-.signin:hover,
-.signout:hover {
-  font-weight: 700 !important;
-  letter-spacing: 3px;
-  background: none;
-  box-shadow: 0 0 50px #FF0000;
 }
 
 
