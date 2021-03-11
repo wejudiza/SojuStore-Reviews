@@ -1,3 +1,4 @@
+/* eslint-disable guard-for-in */
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../UserContext.jsx';
 import axios from 'axios';
@@ -78,6 +79,7 @@ function Product() {
     let total = 0;
     if (rating !== undefined) {
       setWA(getWA(rating));
+
       for (const review in rating.ratings) {
         total += Number(rating.ratings[review]);
       }
@@ -86,6 +88,7 @@ function Product() {
   }, [rating]);
 
   // helper function to get the WA
+  // eslint-disable-next-line consistent-return
   const getWA = (metadata) => {
     const { ratings } = metadata;
     const waArray = Object.keys(ratings).map((key) => Number(key) * Number(ratings[key]));
@@ -100,7 +103,6 @@ function Product() {
 
   return (
     <div>
-      {/* <div style={{display: 'flex', flexDirection: 'column'}}> */}
       <div id="productContainer">
         <div className="secondProd">
           <div className="mainPhoto">
@@ -133,31 +135,42 @@ function Product() {
                   ]
                   reviews
                 </u>
-        </Link>
-        <br />
-        {data.category}
-        </div>
-        <div className="product-detail">
-        <h2>{data.name}</h2>
-        <h4> <em>{data.slogan}</em> </h4>
-        <p style={{fontSize: '16.5px'}}>{data.description}</p>
-        </div>
-        </div>
-        <StyleSelect defaultStyle={defaultStyle} setPhoto={setPhoto} setDefault={setDefault} style={style} thumbnail={thumb} setIndex={setIndex} setReset={setReset}/>
-        <ProductInfo reset={reset} default={defaultStyle} />
-        <div id="social-media-Container">
-        <div className="socialItems">
-        <SocialIcon url='https://twitter.com/cheongsophia' />
-        <SocialIcon url='https://www.facebook.com/cheongsophia' />
-        <SocialIcon url='https://www.pinterest.com/sophiacheong/_saved/' />
-        </div>
-        <Feature ft={feature}/>
-        </div>
+              </Link>
+              <br />
+              {data.category}
+            </div>
+            <div className="product-detail">
+              <h2>{data.name}</h2>
+              <h4>
+                {' '}
+                <em>{data.slogan}</em>
+                {' '}
+              </h4>
+              <p style={{ fontSize: '16.5px' }}>{data.description}</p>
+            </div>
+          </div>
+          <StyleSelect
+            defaultStyle={defaultStyle}
+            setPhoto={setPhoto}
+            setDefault={setDefault}
+            style={style}
+            thumbnail={thumb}
+            setIndex={setIndex}
+            setReset={setReset}
+          />
+          <ProductInfo reset={reset} default={defaultStyle} />
+          <div id="social-media-Container">
+            <div className="socialItems">
+              <SocialIcon url="https://twitter.com/cheongsophia" />
+              <SocialIcon url="https://www.facebook.com/cheongsophia" />
+              <SocialIcon url="https://www.pinterest.com/sophiacheong/_saved/" />
+            </div>
+            <Feature ft={feature} />
+          </div>
         </div>
       </div>
-{/* </div> */}
     </div>
-  )
-};
+  );
+}
 
 export default Product;
