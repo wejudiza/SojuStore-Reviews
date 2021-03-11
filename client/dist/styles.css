@@ -244,7 +244,6 @@
 
 #features {
   order: 2;
-  align-self: flex-end;
   padding-left: 3%;
   border-left: 2px solid black;
   width: 65%;
@@ -252,6 +251,7 @@
   justify-content: space-around;
   align-items: center;
   display: flex;
+  flex-flow: row wrap;
 }
 
 .social {
@@ -414,6 +414,7 @@ figure {
   flex-flow: row wrap;
   align-content: center;
   order: 4;
+  width: 100%
 }
 
 .dropDown-container > div {
