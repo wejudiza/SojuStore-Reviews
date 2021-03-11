@@ -39,9 +39,9 @@ export default function Answer({answer}) {
   if (answer.answerer_name === 'Seller') {
     return (
     <div>
-       <span>
+       <div id="answer">
          <strong>A: </strong> {answer.body}
-       </span>
+       </div>
        <div id="row">
           {answer.photos.map((photo, index) => {
             return (
@@ -49,17 +49,21 @@ export default function Answer({answer}) {
             )}
            )}
          </div>
-       <div style={{fontSize:'12px'}}>
-         by: <b>Seller</b>, {newdate} | Helpful? <u onClick={helpful}>Yes</u> ({answer.helpfulness}) | <u name="report" onClick={report}>{reported}</u>
-       </div>
+         <div id="seller-info" style={{fontSize:'12px'}}>
+           <span id="seller"> by: {answer.answerer_name}, {newdate} | Helpful?
+           </span>
+           <u id="answer-helpful" onClick={helpful}>Yes</u>
+           <span id="helpfulness-score"> ({helpfulness}) | </span>
+           <u id="reported" onClick={report}>{reported}</u>
+         </div>
      </div>
     )
   } else {
     return (
       <div>
-         <span>
+         <div id="answer">
            <strong>A: </strong> {answer.body}
-         </span>
+         </div>
          <div id="row">
           {answer.photos.map((photo, index) => {
             return (
@@ -67,8 +71,12 @@ export default function Answer({answer}) {
             )}
            )}
          </div>
-         <div style={{fontSize:'12px'}}>
-           by: {answer.answerer_name}, {newdate} | Helpful? <u onClick={helpful}>Yes</u> ({helpfulness}) | <u onClick={report}>{reported}</u>
+         <div id="seller-info" style={{fontSize:'12px'}}>
+           <span id="seller"> by: {answer.answerer_name}, {newdate} | Helpful?
+           </span>
+           <u id="answer-helpful" onClick={helpful}>Yes</u>
+           <span id="helpfulness-score"> ({helpfulness}) | </span>
+           <u id="reported" onClick={report}>{reported}</u>
          </div>
        </div>
       )

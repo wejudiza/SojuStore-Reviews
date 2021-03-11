@@ -169,7 +169,7 @@ export default function Question({question}) {
   if (loaded === false) {
     return (
       <div id="question">
-        <h4>
+        <h4 id="actual-question">
         Q: {question.question_body}
         </h4>
           <div>
@@ -179,39 +179,46 @@ export default function Question({question}) {
             </div>
             <input type="text" className="search-bar" placeholder="Search Answers" value={search} onChange={updateSearch}></input>
             <Modal id="answer-modal" isOpen={modalState} onRequestClose={()=>{setModal(false)}} appElement={document.getElementById('app')}>
-              <h3>
-                Add Answer
-              </h3>
-              <h5>Username</h5>
-              <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
-              <br></br>
-              <h5>Email</h5>
-              <input id="email-input" placeholder="Example: jack@email.com" name="email" onChange={captureText}></input>
-              <br></br>
-              <h5>Your Answer</h5>
-              <p>
-                <textarea id="body-input" placeholder="Your Answer Here" name="body" onChange={captureText}>
-                </textarea>
-              </p>
-              <button onClick={submitAnswer}>Submit</button>
-            <button onClick={()=>setModal(false)}>Close</button>
-            <br></br>
-              <input type="file" multiple onChange={handleChange}/>
-              <button onClick={upload}>Upload Photo</button>
+              <div id="answer-modal">
+                <h3 id="add-answer-header">
+                  Add Answer
+                </h3>
+                <h5 id="username-header">Username</h5>
+                  <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
+                  <br></br>
+                <h5 id="email-header">Email</h5>
+                  <input id="email-input" placeholder="Example: jack@email.com" name="email" onChange={captureText}></input>
+                  <br></br>
+                <h5 id="your-answer-header">Your Answer</h5>
+                  <p>
+                    <textarea id="body-input" placeholder="Your Answer Here" name="body" onChange={captureText}>
+                    </textarea>
+                  </p>
+                  <button id="on-submit-button" onClick={submitAnswer}>Submit</button>
+                  <button id="close-button" onClick={()=>setModal(false)}>Close</button>
+                  <br></br>
+                  <div id="choose-file-button">
+                    Choose Files
+                  <input class="hide-file" type="file" multiple onChange={handleChange}/>
+                  </div>
+                  <button id="upload-button" onClick={upload}>Upload Photo</button>
+              </div>
           </Modal>
           {filteredAnswer.slice(0,answersToShow).map((answer, index) =>
           <div key={index} >
               <Answer answer={answer}/>
           </div>
           )}
-            <button onClick={showMoreAnswers}>Load More Answers</button>
+          <br>
+          </br>
+            <button id="load-more-button" onClick={showMoreAnswers}>Load More Answers</button>
         </div>
       </div>
     )
   } else {
     return (
       <div id="question">
-        <h4>
+        <h4 id="actual-question">
         Q: {question.question_body}
         </h4>
          <div>
@@ -221,32 +228,38 @@ export default function Question({question}) {
             </div>
             <input type="text" className="search-bar" placeholder="Search Answers" value={search} onChange={updateSearch}></input>
             <Modal id="answer-modal" isOpen={modalState} onRequestClose={()=>{setModal(false)}} appElement={document.getElementById('app')}>
-              <h3>
-                Add Answer
-              </h3>
-              <h5>Username</h5>
-              <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
-              <br></br>
-              <h5>Email</h5>
-              <input id="email-input" placeholder="Example: jack@email.com" name="email" onChange={captureText}></input>
-              <br></br>
-              <h5>Your Answer</h5>
-              <p>
-                <textarea id="body-input" placeholder="Your Answer Here" name="body" onChange={captureText}>
-                </textarea>
-              </p>
-              <button onClick={submitAnswer}>Submit</button>
-            <button onClick={()=>setModal(false)}>Close</button>
-            <br></br>
-              <input type="file" multiple onChange={handleChange}/>
-              <button onClick={upload}>Upload Photo</button>
+              <div id="answer-modal">
+                <h3 id="add-answer-header">
+                  Add Answer
+                </h3>
+                <h5 id="username-header">Username</h5>
+                  <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
+                  <br></br>
+                <h5 id="email-header">Email</h5>
+                  <input id="email-input" placeholder="Example: jack@email.com" name="email" onChange={captureText}></input>
+                  <br></br>
+                <h5 id="your-answer-header">Your Answer</h5>
+                  <p>
+                    <textarea id="body-input" placeholder="Your Answer Here" name="body" onChange={captureText}>
+                    </textarea>
+                  </p>
+                  <button id="on-submit-button" onClick={submitAnswer}>Submit</button>
+                  <button id="close-button" onClick={()=>setModal(false)}>Close</button>
+                  <br></br>
+                  <label id="choose-file-button">
+                  <input type="file" multiple onChange={handleChange}/>
+                  </label>
+                  <button id="upload-button" onClick={upload}>Upload Photo</button>
+              </div>
           </Modal>
           {filteredAnswer.slice(0,answersToShow).map((answer, index) =>
           <div key={index} >
               <Answer answer={answer}/>
           </div>
           )}
-           <button onClick={showLess}>Collapse Answers</button>
+          <br>
+          </br>
+           <button id="load-more-button" onClick={showLess}>Collapse Answers</button>
         </div>
       </div>
     )

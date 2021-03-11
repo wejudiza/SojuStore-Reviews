@@ -66,16 +66,16 @@ export default class App extends Component {
       <div>
         <h1 style={{display: 'flex', justifyContent: 'center', fontFamily: 'Archivo Black, sans-serif', fontSize: '40px', marginBottom: '0'}}> SOJU STORE </h1>
         <p style={{display: 'flex', justifyContent: 'center', marginTop: '0', fontFamily: 'Source Sans Pro, sans-serif', fontSize: '18px'}}>Cute Slogan</p>
-        <div style={{position: 'absolute', top: '0.5%'}}>
+        <div style={{position: 'absolute', top: '0.5%'}}/>
         <button onClick={this.signInClick}>Sign In</button>
         <button onClick={this.signOutClick}>Sign Out</button>
-        </div>
+
         <UserContext.Provider value={this.state.data}>
-          <Product />
+          {/* <Product />
           <h3>Related Products</h3>
           <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
           <h3>Your Outfit</h3>
-          <OufitList mainProduct={this.state.data}/>
+          <OufitList mainProduct={this.state.data}/> */}
 
           {/* --- QnA ---*/}
           <div id="qna">
@@ -86,9 +86,9 @@ export default class App extends Component {
           </div>
 
           {/* --- Ratings & Reviews --- */}
-          <div id="ratings-reviews-container">
+          {/* <div id="ratings-reviews-container">
             <RatingsReviews />
-          </div>
+          </div> */}
         </UserContext.Provider>
         </div>
     );
