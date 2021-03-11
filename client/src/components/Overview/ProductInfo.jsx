@@ -109,8 +109,6 @@ function ProductInfo(props) {
     } else {
       option.push({ value: '-', label: '-' })
     }
-    console.log(option)
-    console.log(userQuantity)
     return option
   }
 
@@ -120,19 +118,15 @@ function ProductInfo(props) {
 
   return (
     <div className="dropDown-container">
-      <div style={{order: '1', width: '20%'}}>
+      <div style={{order: '1', width: '25%'}}>
         { size.length > 0 ? <Select value={[{ value: userSize[0], label: userSize[0] }]} options={sizeOptions()} onChange={handleChangeSize.bind(this)} blurInputOnSelect menuIsOpen={menu} onFocus={() => { if (!menu) setMenu(!menu)}} /> : null}
       </div>
-      <div style={{order: '2', width: '10%'}}>
+      <div style={{order: '2', width: '25%'}}>
         <Select value={[{ value: userQuantity, label: userQuantity}]} options={qtyOptions()} onChange={changeQty.bind(this)} isDisabled={userQuantity === 'OUT OF STOCK' || userQuantity === '-' ? true : false } />
       </div>
-      <div style={{order: '3', width: '15%', justifyContent: 'center', display: 'flex'}}>
+      <div style={{order: '3', width: '25%', justifyContent: 'center', display: 'flex'}}>
         {outOfStock ? null : <button className="cartBtn" onClick={handleClickCartButton.bind(this)}><i className="fas fa-cart-plus"></i>ADD TO CART</button>}
       </div>
-      <div className='sizeDescription'>
-        Come on work please lord
-      </div>
-
     </div>
   )
 }
