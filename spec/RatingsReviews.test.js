@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-// Import App + SortSelect component for testing
-import SortSelect from '../../client/src/components/RatingsReviews/SortSelect';
-// import RatingsReviews from '../../client/src/components/RatingsReviews/RatingsReviews';
+// Import Components
+import App from '../client/src/components/App.jsx';
+import SortSelect from '../client/src/components/RatingsReviews/SortSelect';
+import RatingsReviews from '../client/src/components/RatingsReviews/RatingsReviews';
 
 describe('SortSelect', () => {
   it('SortSelect renders successfully', () => {
@@ -12,10 +13,9 @@ describe('SortSelect', () => {
   });
 });
 
-// All tests for SortSelect
-// describe('RatingsReviews', () => {
-//   it('RatingsReviews renders successfully', () => {
-//     const wrapper = shallow(<RatingsReviews />);
-//     expect(wrapper.exists()).toBe(true);
-//   });
-// });
+describe('RatingsReviews', () => {
+  it('RatingsReviews renders successfully', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.contains(<RatingsReviews />)).toBe(true);
+  });
+});
