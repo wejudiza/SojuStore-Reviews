@@ -108,9 +108,9 @@ export default class App extends Component {
           </div>
 
           {/* --- Ratings & Reviews --- */}
-          <div id="ratings-reviews-container">
+          {/* <div id="ratings-reviews-container">
             <RatingsReviews />
-          </div>
+          </div> */}
         </UserContext.Provider>
         </div>
     );
