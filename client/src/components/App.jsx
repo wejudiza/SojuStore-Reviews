@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ProductInfo from './Overview/ProductInfo.jsx';
 import Product from './Overview/Product.jsx';
 import { UserContext } from './UserContext.jsx';
 
-//Import from Related Products
+// Import from Related Products
 import RelatedProductsList from './RelatedProducts/RelatedProductsList.jsx';
 import OufitList from './RelatedProducts/OutfitList.jsx';
 
-//Import from QnA
+// Import from QnA
 import QnA from './QnA/QnA.jsx';
 
 // Import RatingsReviews Components
@@ -20,7 +19,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       data: [],
-      darkMode: false
+      darkMode: false,
     };
     this.updateCurrentProduct = this.updateCurrentProduct.bind(this);
     this.signInClick = this.signInClick.bind(this);
@@ -42,20 +41,19 @@ export default class App extends Component {
       .catch((err) => console.error(err));
   }
 
-
   // on click change state of data based on provided product
   updateCurrentProduct(product) {
     this.setState({
-      data: product
-    })
+      data: product,
+    });
   }
 
   signInClick() {
     if (localStorage.userName === undefined) {
-      const enteredName = prompt('Welcome to Soju Store! Please enter your name to get started.')
-      localStorage.setItem('userName', enteredName)
+      const enteredName = prompt('Welcome to Soju Store! Please enter your name to get started.');
+      localStorage.setItem('userName', enteredName);
     } else {
-      alert('Already Signed In!')
+      alert('Already Signed In!');
     }
   }
 
@@ -65,10 +63,9 @@ export default class App extends Component {
   }
 
   toggleDark() {
-    console.log('clicked')
     this.setState({
-      darkMode: !this.state.darkMode
-    })
+      darkMode: !this.state.darkMode,
+    });
   }
 
   render() {
@@ -82,8 +79,8 @@ export default class App extends Component {
           <p className="slogan">HUNDREDS OF NEW ARRIVALS</p>
           <p className="shipping">Free Shipping and Returns*</p>
           <div className="search-container">
-            <input type="text" value="" placeholder="Enter your search here..." id="main-search"></input>
-            <i className="fas fa-search search-btn"></i>
+            <input type="text" value="" placeholder="Enter your search here..." id="main-search" />
+            <i className="fas fa-search search-btn" />
           </div>
           <div className="signin-out">
             <button onClick={this.signInClick} className="signin">Sign In</button>
@@ -93,10 +90,10 @@ export default class App extends Component {
         <UserContext.Provider value={this.state.data}>
           <Product />
           <div className="all-related-container">
-          <h3 className="related-header">Related Products</h3>
-          <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
-          <h3 className="outfit-header">Your Outfit</h3>
-          <OufitList mainProduct={this.state.data}/>
+            <h3 className="related-header">Related Products</h3>
+            <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct} />
+            <h3 className="outfit-header">Your Outfit</h3>
+            <OufitList mainProduct={this.state.data} />
           </div>
 
           {/* --- QnA ---*/}
@@ -108,9 +105,9 @@ export default class App extends Component {
           </div>
 
           {/* --- Ratings & Reviews --- */}
-          {/* <div id="ratings-reviews-container">
+          <div id="ratings-reviews-container">
             <RatingsReviews />
-          </div> */}
+          </div>
         </UserContext.Provider>
         </div>
     );

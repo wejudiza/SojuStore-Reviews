@@ -1,9 +1,9 @@
 /* eslint-disable guard-for-in */
 import React, { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../UserContext.jsx';
 import axios from 'axios';
 import { SocialIcon } from 'react-social-icons';
-import { Scroll, Link } from 'react-scroll';
+import { Link } from 'react-scroll';
+import { UserContext } from '../UserContext.jsx';
 
 import StyleSelect from './StyleSelect.jsx';
 import RatingStars from '../RatingsReviews/RatingStars.jsx';
@@ -13,6 +13,7 @@ import GalleryImg from './GalleryImg.jsx';
 import ProductInfo from './ProductInfo.jsx';
 
 // fix the features tag.. displaying wise it's too crowded
+// fix react-scroll, go down to liam's component
 
 function Product() {
   const msg = useContext(UserContext);
@@ -41,7 +42,7 @@ function Product() {
       axios.all([
         axios.get(`api/reviews/meta/${data.id}`),
         axios.get(`api/product_id/${data.id}`),
-        axios.get(`api/styles/${data.id}`)
+        axios.get(`api/styles/${data.id}`),
       ])
         .then(axios.spread((reviews, ft, styles) => {
           setRate(reviews.data);

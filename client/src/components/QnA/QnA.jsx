@@ -4,7 +4,7 @@ import Question from './Questions.jsx';
 import Modal from 'react-modal';
 import {UserContext} from '../UserContext.jsx';
 
-export default function QnA(){
+export default function QnA() {
   const product_Id = useContext(UserContext).id;
   const [questions, setQuestions] = useState([]);
   const [questionsToShow, setQuestionsToShow] = useState(2);
@@ -21,19 +21,20 @@ export default function QnA(){
   questions.sort((a, b) => a.helpfulness > b.helpfulness ? -1 : 1)
 
   useEffect(() => {
-    if (product_Id)
-    axios.get(`/api/qa/questions/${product_Id}`)
-      .then((results) => {
-        setQuestions(results.data.results)
-        setFilteredQuestion(results.data.results)
-      })
-      .then((axios.get(`/api/qa/questions/${product_Id}`)
-        .then((results) => setNewQuestion({
-          ...newQuestion,
-          product_id: results.data.product_id
-        }))
-        ))
-      .catch((err) => console.error(err));
+    if (product_Id) {
+      axios.get(`/api/qa/questions/${product_Id}`)
+        .then((results) => {
+          setQuestions(results.data.results)
+          setFilteredQuestion(results.data.results)
+        })
+        .then((axios.get(`/api/qa/questions/${product_Id}`)
+          .then((results) => setNewQuestion({
+            ...newQuestion,
+            product_id: results.data.product_id,
+          }))
+          ))
+        .catch((err) => console.error(err));
+    }
   }, [product_Id]);
 
   const showMoreQuestions = () => {
