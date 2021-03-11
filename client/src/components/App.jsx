@@ -34,10 +34,10 @@ export default class App extends Component {
     axios.get('/api')
       .then((results) => {
         this.setState({
-          data: results.data[0]
-        })
+          data: results.data[9],
+        });
       })
-      .catch((err) => console.error(err))
+      .catch((err) => console.error(err));
   }
 
   // on click change state of data based on provided product

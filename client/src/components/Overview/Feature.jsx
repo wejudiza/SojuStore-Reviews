@@ -5,8 +5,8 @@ function Feature(props) {
   return (
     <div id="features">
       {props.ft !== undefined ? props.ft.map((item, index) => (
-        <div style={{display: 'flex'}}>
-        <div key={index}> <Checkmark style={{position: 'absolute'}} size='small'/></div>
+        <div key={index} style={{display: 'flex'}}>
+        <div> <Checkmark style={{position: 'absolute'}} size='small'/></div>
           <div>
            {item.feature} <i className="fa fa-long-arrow-right" aria-hidden="true"></i> {item.value}</div>
            </div>
