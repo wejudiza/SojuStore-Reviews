@@ -213,7 +213,7 @@
   display: flex;
   justify-content: center;
   padding: 1.5px;
-  border: 1px solid black;
+  background: rgba(139, 0, 0, 0.75);
   margin: 1.5px;
   width: 80%;
   align-self: center;
