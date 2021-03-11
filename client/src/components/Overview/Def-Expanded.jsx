@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
-// fix the thumbnails arrow!! need to add another arrow for the image change
-// if zoomed in and click out of modal, make sure the picture goes back to regular
-// add another button to change MODAL IMAGE, render the thumbnail buttons to only CAROSUEL the thumbnail images
-
 function Default_Expanded (props) {
   const [modalIsOpen, setIsOpen] = useState(false)
   const [expandThumb, setExpandThumb] = useState([])
@@ -101,6 +97,7 @@ function Default_Expanded (props) {
     width: 'auto',
     height: '100%',
     cursor: 'pointer',
+    zIndex: '1'
   }}
 
   return (
@@ -110,7 +107,7 @@ function Default_Expanded (props) {
         </div>
       : null }
 
-      {expandThumb.length > 0 ? <Modal appElement={document.getElementById('app')} isOpen={modalIsOpen} onRequestClose={() => setIsOpen(!modalIsOpen)} preventScroll={true} >
+      {expandThumb.length > 0 ? <Modal appElement={document.getElementById('app')} isOpen={modalIsOpen} onRequestClose={() => {setIsOpen(!modalIsOpen); setZoom(false)}} preventScroll={true} >
         {zoom ? null : <div className="test1">
           <i className="leftArrow" onClick={() => clickBackward()}></i>
           {expandThumb.map((item, index) => (
