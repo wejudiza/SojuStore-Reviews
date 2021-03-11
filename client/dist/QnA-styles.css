@@ -36,6 +36,7 @@
 }
 
 .search-bar{
+  position: relative;
   border: 3px solid #00B4CC;
   border-radius: 5px 5px 5px 5px;
   padding: 5px;
@@ -46,19 +47,21 @@
 }
 
 #search-bar{
+  position: relative;
+  width: 300%;
   margin: 5px;
-  width: 500px;
   border: 3px solid #00B4CC;
   border-radius: 5px 5px 5px 5px;
   padding: 5px;
   height: 20px;
   color: #9DBFAF;
+  left: 3%;
 }
 
 #questions-container {
   position: relative;
   display: flex;
-  width: 1300px;
+  left: 30%;
 }
 
 #questions-and-answers {
@@ -68,7 +71,7 @@
   background-color: teal;
   max-height: 80vh;
   height: 80vh;
-  width: 70vw;
+  width: 90vw;
   display: grid;
   grid-template-rows: 0% 100% 0%;
   grid-template-columns: 100% 0%;
@@ -95,6 +98,12 @@
   -ms-overflow-style: none;
   max-height: 80vh;
   height: 75vh;
+}
+
+#actual-question{
+  position: relative;
+  left: 5px;
+  width: 70%;
 }
 
 #question-helpfulness {
@@ -125,4 +134,60 @@
 }
 #answer-helpful, #seller, #reported{
   margin: 5px;
+}
+
+#answer-modal {
+  border: 3px solid #00B4CC;
+  border-radius: 5px 5px 5px 5px;
+  position: relative;
+  height: 566px;
+}
+
+#add-answer-header, #username-header, #email-header, #your-answer-header{
+  margin: 10px;
+}
+
+#name-input, #email-input, #body-input {
+  border: 3px solid #00B4CC;
+  border-radius: 5px 5px 5px 5px;
+  position: relative;
+  margin: 10px;
+}
+#name-input, #email-input{
+width: 200px;
+}
+
+#body-input{
+  width: 613px;
+  height: 180px;
+}
+
+#on-submit-button, #close-button, #upload-button {
+  margin: 10px;
+  position: relative;
+  width: 300px;
+  height: 30px;
+  border: solid #00B4CC;
+  border-radius: 3px;
+  background-color: white;
+}
+#choose-file-button {
+  margin: 10px;
+  font: 400 13.3333px Arial;
+  padding-top: 3px;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  width: 295px;
+  height: 20px;
+  border: solid #00B4CC;
+  border-radius: 3px;
+  background-color: white;
+}
+.hide-file {
+  position: absolute;
+  opacity: 0;
+  width: 300px;
+  left: 5px;
+  height: 27px;
 }

@@ -107,12 +107,6 @@ export default function QnA(){
     }
   }
 
-  // let filteredQuestion = questions.filter(
-  //   (question) => {
-  //     return question.question_body.toLowerCase().indexOf(search) !== -1;
-  //   }
-  // )
-
   if (loaded === false) {
     return (
       <div id="questions-container">
@@ -130,22 +124,22 @@ export default function QnA(){
           <button id="show-more" onClick={showMoreQuestions}>Load More Questions</button>
           <button id="add-a-question" onClick={()=>{setModal(true)}}>Add A Question +</button>
           <Modal isOpen={modalState} onRequestClose={()=>{setModal(false)}} appElement={document.getElementById('app')}>
-            <h2>
+            <h2 id="add-question-header">
               Question
             </h2>
-            <h5>Username</h5>
+              <h5 id="username-header">Username</h5>
               <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
               <br></br>
-              <h5>Email</h5>
+              <h5 id="email-header">Email</h5>
               <input id="email-input" placeholder="Email" name="email" onChange={captureText}></input>
               <br></br>
-              <h5>Your Question</h5>
+              <h5 id="your-answer-header">Your Question</h5>
               <p>
                 <textarea id="body-input" placeholder="Your Question Here" name="body" onChange={captureText}>
                 </textarea>
               </p>
-            <button onClick={submitQuestion}>Submit</button>
-            <button onClick={()=>setModal(false)}>Close</button>
+            <button id="on-submit-button" onClick={submitQuestion}>Submit</button>
+            <button id="close-button" onClick={()=>setModal(false)}>Close</button>
           </Modal>
         </div>
       </div>
@@ -167,22 +161,22 @@ export default function QnA(){
           <button id="show-more" onClick={showLess}>Collapse Questions</button>
           <button id="add-a-question" onClick={()=>{setModal(true)}}>Add A Question +</button>
           <Modal isOpen={modalState} onRequestClose={()=>{setModal(false)}} appElement={document.getElementById('app')}>
-            <h2>
+            <h2 id="add-question-header">
               Question
             </h2>
-            <h5>Username</h5>
+              <h5 id="username-header">Username</h5>
               <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
               <br></br>
-              <h5>Email</h5>
+              <h5 id="email-header">Email</h5>
               <input id="email-input" placeholder="Email" name="email" onChange={captureText}></input>
               <br></br>
-              <h5>Your Question</h5>
+              <h5 id="your-answer-header">Your Question</h5>
               <p>
                 <textarea id="body-input" placeholder="Your Question Here" name="body" onChange={captureText}>
                 </textarea>
               </p>
-            <button onClick={submitQuestion}>Submit</button>
-            <button onClick={()=>setModal(false)}>Close</button>
+            <button id="on-submit-button" onClick={submitQuestion}>Submit</button>
+            <button id="close-button" onClick={()=>setModal(false)}>Close</button>
           </Modal>
         </div>
       </div>
