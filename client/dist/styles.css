@@ -5,8 +5,7 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  background: rgb(162,108,78);
-background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49%, rgba(162,108,78,1) 100%);
+  background: lightsteelblue;
   border-bottom: 2px solid black;
   margin-bottom: 2%;
   height: 90px;
@@ -19,6 +18,8 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
   font-family: 'Archivo Black', 'sans-serif';
   font-size: 45px;
   left: 39%;
+  -webkit-text-stroke: 1.5px;
+  -webkit-text-stroke-color: antiquewhite;
 }
 
 .slogan {
@@ -185,14 +186,16 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
 
 .related-header,
 .outfit-header {
+  text-transform: uppercase;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 600;
   padding-left: 70px;
+  font-size: 25px;
+  text-decoration: underline;
 }
 
 .related-header {
   display: flex;
-  margin-top: 50px;
 }
 
 .center {
@@ -348,17 +351,28 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
   display: flex;
   flex-flow: column wrap;
   width: 50%;
+  padding: 0.3%;
+  box-shadow: 1px 1px 2.5px 2px #ccc;
+  background: whitesmoke;
 }
 
 .mainPhoto {
   display: flex;
   height: 83%;
+  width: 100%;
 }
 
 #Style-Select {
   display: flex;
   width: 50%;
   order: 2;
+}
+
+#modalContainer {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 
 .container {
@@ -376,9 +390,7 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
   text-transform: uppercase;
   font-family: 'Fira Sans Condensed', sans-serif;
   letter-spacing: 1.5px;
-  font-size: 14px;
-  float: right;
-  right: 0%;
+  font-size: 17px;
   width: 100%;
   justify-content: center;
 }
@@ -386,10 +398,9 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
 #default-thumbnails {
   display: flex;
   justify-content: center;
-  padding: 1.5px;
-  background: rgba(139, 0, 0, 0.75);
-  margin: 1.5px;
-  width: 80%;
+  padding: 4.5px 0px;
+  background: rgba(86, 92, 97, 0.53);
+  width: 100%;
   align-self: center;
 }
 
@@ -437,12 +448,12 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
 
 .product-detail h2{
   margin: 1% 0%;
-  font-size: 28px;
+  font-size: 30px;
 }
 
 .product-detail h4 {
   margin: 10px 0px;
-  font-size: 17.5px;
+  font-size: 18px;
 }
 
 .cartBtn {
@@ -476,6 +487,7 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
   padding: 5px;
   width: 60px;
   height: 60px;
+  margin: 1%
 }
 
 .thumbnail-img-selected {
@@ -483,7 +495,8 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
   padding: 5px;
   width: 60px;
   height: 60px;
-  border: 2px solid darkred;
+  margin: 1%;
+  box-shadow: 0.5px 0.5px 2px 2px #ccc;
 }
 
 .thumbnail-img-main {
@@ -491,7 +504,8 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
   padding: 5px;
   width: 60px;
   height: 60px;
-  border: 3px solid red;
+  border: 2.5px solid antiquewhite;
+  box-shadow: 0px 2px 1.5px 1.5px darksalmon;
 }
 
 .thumbnail-img-main-hidden {
@@ -502,7 +516,7 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
 .default-thumbnail {
   width: 70px;
   height: 70px;
-  border: 1px solid darkred;
+  border: 1.5px solid floralwhite;
   margin: 0.3%;
 }
 
@@ -512,7 +526,7 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
 }
 
 .rightArrow {
-  border: solid darkseagreen;
+  border: solid lightsteelblue;
   border-width: 0 12.5px 12.5px 0;
   display: inline-block;
   padding: 3px;
@@ -524,7 +538,7 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
 .leftArrow {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
-  border: solid darkseagreen;
+  border: solid lightsteelblue;
   border-width: 0 12.5px 12.5px 0;
   display: inline-block;
   padding: 3px;
@@ -533,12 +547,13 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
 
 
 .test1 {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15%;
+  top: 0%;
   width: 100%;
+  z-index: 1;
 }
 
 .img-container {
@@ -546,10 +561,7 @@ background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49
 }
 
 .test {
-  position: relative;
-  height: 84%;
   width: 100%;
-  display: inline-block;
 }
 
 .test img {
@@ -580,6 +592,22 @@ figure {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
+}
+
+figure:hover {
+  /* cursor: pointer; */
+  /* pointer-events: none; */
+  cursor: url(icon.svg), auto
+}
+
+.modalThumbnail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4%;
+  margin: 0.1%;
+  background: rgba(0, 0, 0, 0.38);
+  width: 100%;
 }
 
 .dropDown-container {
@@ -706,6 +734,7 @@ figure {
   -ms-overflow-style: none;
   max-height: 80vh;
   height: 75vh;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 #actual-question{
@@ -810,7 +839,8 @@ Rating & Reviews Styles
   background: linear-gradient(to top right, #b0c4de, #7599c9);
   font-size: .7em;
   flex-shrink: inherit;
-}
+}
+
 #ratings-reviews {
   display: flex;
   width: 70vw;

@@ -59,7 +59,7 @@ const interaction = {
     };
 
     axios.post(url, data, header)
-      .then((results) => { callback(null, results); })
+      .then((results) => { callback(null, results.data); })
       .catch((err) => { console.log(err); callback(err); });
   },
 };
