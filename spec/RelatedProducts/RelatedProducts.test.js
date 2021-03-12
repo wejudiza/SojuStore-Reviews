@@ -5,25 +5,17 @@ import App from '../../client/src/components/App';
 import OutfitList from '../../client/src/components/RelatedProducts/OutfitList';
 
 
-describe('RelatedProducts', () => {
-  it('Releated Products List renders', () => {
-    const wrapper = shallow(
-      <App>
-        <RelatedProductsList />
-      </App>);
-    expect(wrapper.containsMatchingElement(<RelatedProductsList />)).toEqual(true);
+
+describe('Related Products', () => {
+  it('RelatedProducts renders successfully', () => {
+    const wrapper = shallow(<RelatedProductsList />);
+    expect(wrapper.exists()).toBe(true)
   });
 });
-
 
 describe('Outfit List', () => {
   it('Outfit List renders', () => {
-    const wrapper = shallow(
-      <App>
-        <OutfitList />
-      </App>);
-    expect(wrapper.containsMatchingElement(<OutfitList />)).toEqual(true);
+    const wrapper = shallow(<OutfitList />);
+    expect(wrapper.exists()).toBe(true)
   });
 });
-
-

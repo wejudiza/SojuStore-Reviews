@@ -20,15 +20,21 @@ class OutfitList extends React.Component {
 
 
   addToOutfit() {
-    const isFound = this.state.outfitList.find((outfit) => (
-      outfit.id === this.props.mainProduct.id
-    ))
+    if (localStorage.outfitList) {
+      var isFound = JSON.parse(localStorage.outfitList).find((outfit) => (
+        outfit.id === this.props.mainProduct.id
+      ))
+    } else {
+      var isFound = this.state.outfitList.find((outfit) => (
+        outfit.id === this.props.mainProduct.id
+      ))
+    }
     if (isFound === undefined) {
       this.setState({
         outfitList: this.state.outfitList.concat(this.props.mainProduct)
       })
       if (localStorage.outfitList === undefined) {
-        localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList))
+        localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList.concat(this.props.mainProduct)))
       } else {
         const outfits = JSON.parse(localStorage.outfitList)
         localStorage.setItem('outfitList', JSON.stringify(outfits.concat(this.props.mainProduct)))

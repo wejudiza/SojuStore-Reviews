@@ -4,81 +4,45 @@ import getRelated from '../../client/src/components/RelatedProducts/RelatedProdu
 import App from '../../client/src/components/App';
 import OutfitList from '../../client/src/components/RelatedProducts/OutfitList';
 import axios from 'axios';
+import { rest } from 'msw';
 
-jest.mock('axios');
+import { server } from '../mocks/server.js'
+// Establish API mocking before all tests.
+beforeAll(() => server.listen())
+// Reset any request handlers that we may add during the tests,
+// so they don't affect other tests.
+afterEach(() => server.resetHandlers())
+// Clean up after the tests are finished.
+afterAll(() => server.close())
+// import MockAdapter from 'axios-mock-adapter';
+test('testing get', async () => {
+  // Render components, perform requests, receive mocked responses.
+  const result = await axios.get('/api/test')
+    .then((data) => {return data})
+  console.log(result)
+})
 
-
-describe('fetchData', () => {
-  it('fetches successfully data from an API', async () => {
-    const data = {test:test};
-
-    axios.get.mockImplementationOnce(() => Promise.resolve(data));
-
-    await expect(getRelated('react')).resolves.toEqual(data);
-  });
-
-  it('fetches erroneously data from an API', async () => {
-    const errorMessage = 'Network Error';
-
-    axios.get.mockImplementationOnce(() =>
-      Promise.reject(new Error(errorMessage)),
-    );
-
-    await expect(fetchData('react')).rejects.toThrow(errorMessage);
-  });
-});
+// jest.mock('axios');
 
 // test("good response", () => {
-//   getRelated.mockImplementation(() => Promise.resolve({ data: {test:test} }));
+//   axios.get.mockImplementation(() => Promise.resolve({ data: {test:test} }));
 // });
 
 // test("bad response", () => {
 //   axios.get.mockImplementation(() => Promise.reject({test:test}));
 // });
+// var mock = new MockAdapter(axios);
 
-// describe('test', () => {
-//   it('returns the title of the first album', async () => {
-//     axios.get.mockResolvedValue({
-//       data: [
-//         {
-//           userId: 1,
-//           id: 1,
-//           title: 'My First Album'
-//         },
-//         {
-//           userId: 1,
-//           id: 2,
-//           title: 'Album: The Sequel'
-//         }
-//       ]
-//     });
-
-//     const title = await getRelated();
-//     expect(title).toEqual('My First Album');
+// describe('api call', () => {
+//   it('Should make api call', () => {
+//     mock.onGet('/api')
 //   });
-// })
-
-// jest.mock('axios', () => {
-//   return {
-//     __esModule: true,
-//     default: jest.fn()
-//   }
 // });
 
-// describe('Should make api request', ()=>{
-//   it('should get data', (done) => {
-//     const axios = require('axios');
-//     jest.spyOn(axios, 'default').mockResolvedValue({
-//       name: 'abc'
-//     })
-//     const wrapper = shallow(<RelatedProductsList/>, {
-//       disableLifecycleMethods: true
-//     });
-//     wrapper.instance().getRelated();
-//     process.nextTick(()=>{
-//       expect(wrapper.state('error')).toBeFalsy();
-//       expect(wrapper.state().name).toEqual('abc');
-//       done();
-//     })
-//   })
-// })
+// mock.onGet('/api').reply(200);
+
+// axios.get('/api').then(function (response) {
+//   console.log(response.data);
+// });
+
+
