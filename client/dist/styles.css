@@ -194,14 +194,15 @@
 
 .related-header,
 .outfit-header {
+  text-transform: uppercase;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 600;
   padding-left: 70px;
+  font-size: 25px;
 }
 
 .related-header {
   display: flex;
-  margin-top: 50px;
 }
 
 .center {
@@ -604,7 +605,8 @@ figure {
 
 figure:hover {
   /* cursor: pointer; */
-  cursor: url(/client/dist/icondash.svg), auto
+  /* pointer-events: none; */
+  cursor: url(icon.svg), auto
 }
 
 .modalThumbnail {

@@ -2,6 +2,9 @@
 #questions-logo {
   display: flex;
   right: 150px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
 }
 
 #row {
@@ -13,6 +16,7 @@
   flex: 33.33%;
   padding: 5px;
 }
+
 #answers-container {
   border: 3px solid #00B4CC;
   border-radius: 5px 5px 5px 5px;

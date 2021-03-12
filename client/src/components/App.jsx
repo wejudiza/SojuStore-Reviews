@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/extensions */
 /* eslint-disable no-use-before-define */
 /* eslint-disable max-len */
@@ -88,7 +89,7 @@ export default class App extends Component {
           <p className="slogan">HUNDREDS OF NEW ARRIVALS</p>
           <p className="shipping">Free Shipping and Returns*</p>
           <div className="search-container">
-            <input type="text" value="" placeholder="Enter your search here..." id="main-search" />
+            <input type="text" defaultValue="" placeholder="Enter your search here..." id="main-search" />
             <i className="fas fa-search search-btn" />
           </div>
           <div className="signin-out">

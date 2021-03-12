@@ -128,7 +128,7 @@ function GalleryImg(props) {
                 {props.default.photos.map((item, index) => (
                   <img className={checkThumbnailImg(index) ? 'default-thumbnail' : 'default-thumbnail-hidden'} src={item.thumbnail_url === null ? 'https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-stock-vector-no-image-available-icon-flat-vector-illustration.jpg?ver=6' : item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? { boxShadow: '0px 1px 20px 10px lightsteelblue' } : null} />
                 ))}
-                <i className="rightArrow" style={thumbIndex >= maxThumb ? { visibility: 'hidden' } : { visibility: 'visible' }} onClick={() => changeRightThumb()}> </i>
+                <i className="rightArrow" style={thumbIndex >= maxThumb || maxThumb === undefined ? { visibility: 'hidden' } : { visibility: 'visible' }} onClick={() => changeRightThumb()}> </i>
               </div>
             )
             : null}

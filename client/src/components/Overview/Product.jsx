@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 /* eslint-disable func-names */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -63,18 +64,37 @@ function Product() {
 
   useEffect(() => {
     const res = [];
+    let count = 0;
     // eslint-disable-next-line no-lone-blocks
-    { style.map((item) => {
-      if (item['default?']) {
+    if (style.length === 1) {
+      style.map((item) => {
         setDefault(item);
-      }
-      item.photos.map((item, index) => {
-        if (index === 0) {
-          res.push(item);
-          setThumbnail(res);
+        item.photos.map((item, index) => {
+          if (index === 0) {
+            res.push(item);
+            setThumbnail(res);
+          }
+        })
+      })
+    } else {
+      { style.map((item) => {
+        if (item['default?']) {
+          count--;
+          setDefault(item);
         }
-      });
-    }); }
+        count++;
+        item.photos.map((item, index) => {
+          if (index === 0) {
+            res.push(item);
+            setThumbnail(res);
+          }
+        });
+      }); }
+    }
+
+    if (count === style.length && count !== 0) {
+      setDefault(style[0])
+    }
   }, [style]);
 
   useEffect(() => {
