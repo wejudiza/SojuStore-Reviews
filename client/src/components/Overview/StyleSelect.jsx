@@ -52,7 +52,6 @@ function StyleSelect(props) {
   //     setDefaultPhoto(defaultStyle.photos[0].url)
   //   }
   // }, [defaultStyle])
-
   const thumbnailModel = (array) => {
     let result = [];
     const finalRes = [];
