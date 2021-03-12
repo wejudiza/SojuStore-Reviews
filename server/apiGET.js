@@ -57,7 +57,6 @@ const cart = {
 //       widget: `${req.body.widget}`,
 //       time: `${req.body.time}`,
 //     };
-
 //     axios.post(url, data, header)
 //       .then((results) => { callback(null, results); })
 //       .catch((err) => { console.log(err); callback(err); });

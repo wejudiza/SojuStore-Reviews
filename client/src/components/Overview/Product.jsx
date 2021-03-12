@@ -1,8 +1,17 @@
+/* eslint-disable no-lone-blocks */
+/* eslint-disable func-names */
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-shadow */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 import React, { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../UserContext.jsx';
 import axios from 'axios';
 import { SocialIcon } from 'react-social-icons';
-import { Scroll, Link } from 'react-scroll';
+import { Link } from 'react-scroll';
+import { UserContext } from '../UserContext.jsx';
 
 import StyleSelect from './StyleSelect.jsx';
 import RatingStars from '../RatingsReviews/RatingStars.jsx';
@@ -12,6 +21,7 @@ import GalleryImg from './GalleryImg.jsx';
 import ProductInfo from './ProductInfo.jsx';
 
 // fix the features tag.. displaying wise it's too crowded
+// fix react-scroll, go down to liam's component
 
 function Product() {
   const msg = useContext(UserContext);
@@ -40,7 +50,7 @@ function Product() {
       axios.all([
         axios.get(`api/reviews/meta/${data.id}`),
         axios.get(`api/product_id/${data.id}`),
-        axios.get(`api/styles/${data.id}`)
+        axios.get(`api/styles/${data.id}`),
       ])
         .then(axios.spread((reviews, ft, styles) => {
           setRate(reviews.data);
@@ -54,22 +64,41 @@ function Product() {
 
   useEffect(() => {
     const res = [];
+    let count = 0;
     // eslint-disable-next-line no-lone-blocks
-    { style.map((item) => {
-      if (item['default?']) {
+    if (style.length === 1) {
+      style.map((item) => {
         setDefault(item);
-      }
-      item.photos.map((item, index) => {
-        if (index === 0) {
-          res.push(item);
-          setThumbnail(res);
+        item.photos.map((item, index) => {
+          if (index === 0) {
+            res.push(item);
+            setThumbnail(res);
+          }
+        })
+      })
+    } else {
+      { style.map((item) => {
+        if (item['default?']) {
+          count--;
+          setDefault(item);
         }
-      });
-    }); }
+        count++;
+        item.photos.map((item, index) => {
+          if (index === 0) {
+            res.push(item);
+            setThumbnail(res);
+          }
+        });
+      }); }
+    }
+
+    if (count === style.length && count !== 0) {
+      setDefault(style[0])
+    }
   }, [style]);
 
   useEffect(() => {
-    if (Object.keys(defaultStyle).length> 0) {
+    if (Object.keys(defaultStyle).length > 0) {
       setPhoto(defaultStyle.photos[0].url);
     }
   }, [defaultStyle]);
@@ -78,6 +107,7 @@ function Product() {
     let total = 0;
     if (rating !== undefined) {
       setWA(getWA(rating));
+
       for (const review in rating.ratings) {
         total += Number(rating.ratings[review]);
       }
@@ -86,6 +116,7 @@ function Product() {
   }, [rating]);
 
   // helper function to get the WA
+  // eslint-disable-next-line consistent-return
   const getWA = (metadata) => {
     const { ratings } = metadata;
     const waArray = Object.keys(ratings).map((key) => Number(key) * Number(ratings[key]));
@@ -100,13 +131,12 @@ function Product() {
 
   return (
     <div>
-      {/* <div style={{display: 'flex', flexDirection: 'column'}}> */}
       <div id="productContainer">
         <div className="secondProd">
           <div className="mainPhoto">
             <Default
               default={photo}
-              setDefault={setDefault}
+              setDefault={setPhoto}
               style={defaultStyle}
               index={indexPhoto}
               setIndex={setIndex}
@@ -133,31 +163,42 @@ function Product() {
                   ]
                   reviews
                 </u>
-        </Link>
-        <br />
-        {data.category}
-        </div>
-        <div className="product-detail">
-        <h2>{data.name}</h2>
-        <h4> <em>{data.slogan}</em> </h4>
-        <p style={{fontSize: '16.5px'}}>{data.description}</p>
-        </div>
-        </div>
-        <StyleSelect defaultStyle={defaultStyle} setPhoto={setPhoto} setDefault={setDefault} style={style} thumbnail={thumb} setIndex={setIndex} setReset={setReset}/>
-        <ProductInfo reset={reset} default={defaultStyle} />
-        <div id="social-media-Container">
-        <div className="socialItems">
-        <SocialIcon url='https://twitter.com/cheongsophia' />
-        <SocialIcon url='https://www.facebook.com/cheongsophia' />
-        <SocialIcon url='https://www.pinterest.com/sophiacheong/_saved/' />
-        </div>
-        <Feature ft={feature}/>
-        </div>
+              </Link>
+              <br />
+              {data.category}
+            </div>
+            <div className="product-detail">
+              <h2>{data.name}</h2>
+              <h4>
+                {' '}
+                <em>{data.slogan}</em>
+                {' '}
+              </h4>
+              <p style={{ fontSize: '19px' }}>{data.description}</p>
+            </div>
+          </div>
+          <StyleSelect
+            defaultStyle={defaultStyle}
+            setPhoto={setPhoto}
+            setDefault={setDefault}
+            style={style}
+            thumbnail={thumb}
+            setIndex={setIndex}
+            setReset={setReset}
+          />
+          <ProductInfo reset={reset} default={defaultStyle} />
+          <div id="social-media-Container">
+            <div className="socialItems">
+              <SocialIcon url="https://twitter.com/cheongsophia" />
+              <SocialIcon url="https://www.facebook.com/cheongsophia" />
+              <SocialIcon url="https://www.pinterest.com/sophiacheong/_saved/" />
+            </div>
+            <Feature ft={feature} />
+          </div>
         </div>
       </div>
-{/* </div> */}
     </div>
-  )
-};
+  );
+}
 
 export default Product;
