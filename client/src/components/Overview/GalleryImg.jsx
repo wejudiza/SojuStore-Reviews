@@ -20,6 +20,7 @@ function GalleryImg(props) {
   // the first thumb index of the displayed thumbnail gallery images
   const [thumbIndex, setThumbIndex] = useState(0);
   const [maxThumb, setMaxThumb] = useState();
+  const [last, setLast] = useState();
 
   useEffect(() => {
     // eslint-disable-next-line react/prop-types
@@ -67,9 +68,10 @@ function GalleryImg(props) {
       return;
     }
     const newInd = thumbIndex + 1;
-    // const last = newInd + 6;
+    const last = newInd + 6;
     setThumbIndex(newInd);
-    // setLast(last)
+    setLast(last);
+    console.log(last)
     // setRight(right + 1)
   };
 
