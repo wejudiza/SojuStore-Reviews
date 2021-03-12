@@ -102,18 +102,22 @@ export default function RatingsReviews({ widget }) {
       { /* Sidebar */ }
       <div id="sidebar">
         <div id="title">Ratings & Reviews</div>
-        <RatingBreakdown
-          reviewMetadata={reviewMetadata}
-          barColors={barColors}
-          handleFilter={handleFilter}
-          onClick={(e) => sendClickInfo(e, widget)}
-        />
-        <ProductBreakdown isOpen={isOpen} onClick={(e) => sendClickInfo(e, widget)} />
+        <div id="rating-breakdown" onClick={(e) => sendClickInfo(e, widget)}>
+          <RatingBreakdown
+            reviewMetadata={reviewMetadata}
+            barColors={barColors}
+            handleFilter={handleFilter}
+            onClick={(e) => sendClickInfo(e, widget)}
+          />
+        </div>
+        <div id="product-breakdown" onClick={(e) => sendClickInfo(e, widget)}>
+          <ProductBreakdown isOpen={isOpen} />
+        </div>
       </div>
       { /* Main Review Section */ }
       <div id="reviews-main">
         <div id="reviews-main-header">
-          <div id="sortby">
+          <div id="reviews-sortby" onClick={(e) => sendClickInfo(e, widget)}>
             { `${numReviews} reviews sorted by` }
             <SortSelect numReviews={numReviews} handleSelect={handleSelect} />
           </div>
