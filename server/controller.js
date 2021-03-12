@@ -42,12 +42,12 @@ const controller = {
     });
   },
   // post interactions
-  postInteraction: (req, res) => {
-    getProd.interaction.postInter(req, (err, results) => {
-      if (err) res.status(404).send(err);
-      else res.status(201).send(results);
-    });
-  },
+  // postInteraction: (req, res) => {
+  //   getProd.interaction.postInter(req, (err, results) => {
+  //     if (err) res.status(404).send(err);
+  //     else res.status(201).send(results);
+  //   });
+  // },
 /****************QnA methods ***************************/
 
    //retrieve questions from productId
