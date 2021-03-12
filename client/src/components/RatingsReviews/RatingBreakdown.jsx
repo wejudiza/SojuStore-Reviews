@@ -41,7 +41,7 @@ const getRecommneded = (metadata) => {
 };
 
 export default function RatingBreakdown(props) {
-  const { reviewMetadata, handleFilter } = props;
+  const { reviewMetadata, barColors, handleFilter } = props;
   const [wa, setWA] = useState(0);
   const [ratingDist, setRatingDist] = useState({});
   const [recommended, setRecommended] = useState(0);
@@ -70,6 +70,7 @@ export default function RatingBreakdown(props) {
           rating={key}
           dist={ratingDist[key]}
           count={reviewMetadata.ratings[key]}
+          barColors={barColors}
           handleFilter={handleFilter}
         />
       )) }

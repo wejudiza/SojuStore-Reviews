@@ -1,7 +1,7 @@
 /* -------------------------------
 Libraries, Contexts, Subcomponents
 ------------------------------- */
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import axios from 'axios';
 
 // Product Context
@@ -43,27 +43,28 @@ export default function RatingsReviews() {
   const [filters, setFilters] = useFilter(initialFilters);
   const [search, setSearch] = useSearch({ text: '', count: 0 });
   const [isOpen, setIsOpen] = useState(false);
+  const [barColors, setBarColors] = useState(false);
 
   // Gets all reviews + metadata from API for specific product, sets relevant intial states
-  useEffect(() => {
+  useMemo(() => {
     if (productID) {
+      console.log("I CHANGED");
       axios.get(`/api/reviews/${productID}`)
-        .then((resp) => setAllReviews(sortReviews(resp.data.results, sort)))
-        .then(() => setReviews(allReviews))
+        .then((resp) => {
+          setAllReviews(sortReviews(resp.data.results, sort));
+          setReviews(sortReviews(resp.data.results, sort));
+        })
         .then(() => axios.get(`/api/reviews/meta/${productID}`)
           .then((resp) => setReviewMetadata(resp.data)))
-        .then(() => setLoaded(true))
         .catch((err) => console.log(err));
     }
-  }, [productID, loaded]);
+  }, [productID]);
 
   // Copy of all reviews w/ current sort state that can be reloaded if filters are cleared
   useEffect(() => setReviews(sortReviews(reviews, sort)), [sort]);
 
   // Keeps track of rendered reviews count
-  useEffect(() => {
-    setNumReviews(allReviews.length);
-  }, [allReviews]);
+  useEffect(() => setNumReviews(allReviews.length), [allReviews]);
 
   // Filters renders reviews based on user search
   useEffect(() => {
@@ -84,9 +85,11 @@ export default function RatingsReviews() {
   // Filters rendered reviews based on rating breakdown click events
   const handleFilter = (rating) => {
     setFilters(rating);
-    let appliedFilters = Object.keys(filters).filter((key) => filters[key]);
+    const appliedFilters = Object.keys(filters).filter((key) => filters[key]);
+    console.log(appliedFilters);
     if (appliedFilters.length === 0) {
       setAllReviews(reviews);
+      setBarColors(!barColors);
     } else {
       const filteredReviews = reviews.filter((review) => appliedFilters.includes(review.rating.toString()));
       setAllReviews(filteredReviews);
@@ -95,13 +98,18 @@ export default function RatingsReviews() {
 
   return (
     <div id="ratings-reviews">
+      { /* Sidebar */ }
       <div id="sidebar">
         <div id="title">Ratings & Reviews</div>
-        <RatingBreakdown reviewMetadata={reviewMetadata} handleFilter={handleFilter} />
-        <ProductBreakdown isOpen={isOpen}/>
+        <RatingBreakdown
+          reviewMetadata={reviewMetadata}
+          barColors={barColors}
+          handleFilter={handleFilter}
+        />
+        <ProductBreakdown isOpen={isOpen} />
       </div>
+      { /* Main Review Section */ }
       <div id="reviews-main">
-        { /* Sorting dropdown + Search bar */ }
         <div id="reviews-main-header">
           <div id="sortby">
             { `${numReviews} reviews sorted by` }
@@ -109,7 +117,6 @@ export default function RatingsReviews() {
           </div>
           <Search setSearch={setSearch} />
         </div>
-
         {/* Review List - dynmically renders out individual tiles */}
         <div id="review-list">
           { allReviews.slice(0, showCount).map((review) => (
