@@ -246,9 +246,10 @@ export default function Question({question}) {
                   <button id="on-submit-button" onClick={submitAnswer}>Submit</button>
                   <button id="close-button" onClick={()=>setModal(false)}>Close</button>
                   <br></br>
-                  <label id="choose-file-button">
-                  <input type="file" multiple onChange={handleChange}/>
-                  </label>
+                  <div id="choose-file-button">
+                    Choose Files
+                  <input class="hide-file" type="file" multiple onChange={handleChange}/>
+                  </div>
                   <button id="upload-button" onClick={upload}>Upload Photo</button>
               </div>
           </Modal>

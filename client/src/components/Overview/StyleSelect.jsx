@@ -5,46 +5,7 @@ import { Checkmark } from 'react-checkmark';
 
 
 function StyleSelect (props) {
-  // const [styles, setStyles] = useState([])
-  // const [thumbnail, setThumbnail] = useState([])
-  // const [defaultStyle, setDefaultStyle] = useState({})
   const [thumbClick, setThumbClick] = useState(false)
-  // const [defaultPhoto, setDefaultPhoto] = useState('')
-  // index is for photo index
-  // const [indexPhoto, setIndexPhoto] = useState(0);
-  // const [reset, setReset] = useState()
-
-  // useEffect(() => {
-  //   if (props.data !== undefined) {
-  //     axios.get(`/api/styles/${props.data}`)
-  //       .then((results) => setStyles(results.data.results))
-  //       .catch((err) => console.error(err))
-  //   }
-  // }, [props.data])
-
-  // useEffect(() => {
-  //   var res = [];
-  //   if (props.style !== undefined) {
-  //     {props.style.map((item, index) => {
-  //       if (item['default?']) {
-  //         setDefaultStyle(item)
-  //       }
-  //       item.photos.map((item, index) => {
-  //         if (index === 0) {
-  //           res.push(item)
-  //           setThumbnail(res)
-  //         }
-  //       })
-  //     })}
-  //   }
-  // }, [props.style])
-
-  // useEffect(() => {
-  //   if (Object.keys(defaultStyle).length > 0) {
-  //     setDefaultPhoto(defaultStyle.photos[0].url)
-  //   }
-  // }, [defaultStyle])
-
   const thumbnailModel = (array) => {
     var result = [];
     var finalRes = [];
@@ -78,8 +39,6 @@ function StyleSelect (props) {
 
   return (
     <div id ="whole-Style">
-      {/* <Default_Expanded default={defaultPhoto} setDefault={setDefaultPhoto} style={defaultStyle} index={indexPhoto} setIndex={setIndexPhoto} allStyle={thumbnail} /> */}
-      {/* <div id="Style-Select"> */}
         <div className="container">
         <div className="category-rating" style={{margin: '1.5%', display: 'flex', order: '1', alignSelf: 'flex-end'}}>
          Color:&nbsp;<b>{props.defaultStyle.name}</b>
@@ -99,9 +58,6 @@ function StyleSelect (props) {
       <div style={{margin: '1.5%', fontSize: '19px', width: '100%', display: 'flex', order: '3', justifyContent: 'center', alignSelf: 'flex-end'}}>
       <b style={{color:'red', weight: '600'}}>${props.defaultStyle.sale_price}</b><strike> $ {props.defaultStyle.original_price} </strike>
       </div> }
-      {/* </div> */}
-      {/* <GalleryImg default={props.defaultStyle} setDefaultPhoto={setDefaultPhoto} setIndex={setIndexPhoto} index={indexPhoto} />
-      <ProductInfo reset={reset} default={props.defaultStyle} /> */}
       </div>
     </div>
   )
