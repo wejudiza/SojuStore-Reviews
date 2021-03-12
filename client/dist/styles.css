@@ -602,6 +602,11 @@ figure {
   user-select: none; /* Standard */
 }
 
+figure:hover {
+  /* cursor: pointer; */
+  cursor: url(/client/dist/icondash.svg), auto
+}
+
 .modalThumbnail {
   display: flex;
   justify-content: center;
