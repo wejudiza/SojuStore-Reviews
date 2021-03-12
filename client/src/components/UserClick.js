@@ -11,7 +11,7 @@ export default function sendClickInfo(widget, element) {
     time: dt().format()
   };
 
-  axios.post('api/interactions', body)
+  axios.post('/api/interactions', body)
     .then(() => console.log('Interaction logged'))
     .catch((err) => console.log(err));
 }

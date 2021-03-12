@@ -8,8 +8,11 @@ router
   .route('/')
   // to retrieve the list of products
   .get(controller.get)
-  // post interactions
+
+router
+  .route('/interactions')
   .post(controller.postInteraction);
+
 
 router
   .route('/cart')
