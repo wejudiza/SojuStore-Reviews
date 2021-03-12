@@ -3,7 +3,7 @@ import React, { Component, Suspense } from 'react';
 import axios from 'axios';
 
 // Import Contexts
-import UserClick from './UserClick.js';
+import sendClickInfo from './UserClick.js';
 import { UserContext } from './UserContext.jsx';
 
 // Product Details
@@ -86,7 +86,6 @@ export default class App extends Component {
       <div id={this.state.darkMode ?
         "all-dark" : "all"
       }>
-        {UserClick()}
         <div className="header">
           <div className="store-name">SOJU STORE</div>
           <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
@@ -121,7 +120,7 @@ export default class App extends Component {
 
           {/* --- Ratings & Reviews --- */}
           <div id="ratings-reviews-container">
-            <RatingsReviews />
+            <RatingsReviews name="RatingsReviews" onClick={sendClickInfo("element", "widget")} />
           </div>
         </UserContext.Provider>
         </Suspense>
