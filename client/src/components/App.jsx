@@ -78,19 +78,19 @@ export default class App extends Component {
           <OufitList mainProduct={this.state.data}/> */}
 
           {/* --- QnA ---*/}
-          <div id="qna">
+          {/* <div id="qna">
             <h3 id="questions-logo">Questions & Answers</h3>
             <div id="questions-and-answers">
               <QnA />
             </div>
-          </div>
+          </div> */}
 
           {/* --- Ratings & Reviews --- */}
-          {/* <div id="ratings-reviews-container">
+          <div id="ratings-reviews-container">
             <RatingsReviews />
-          </div> */}
+          </div>
         </UserContext.Provider>
-        </div>
+      </div>
     );
   }
 }
