@@ -37,12 +37,12 @@ describe('Overview', () => {
 })
 
 // eslint-disable-next-line no-undef
-describe('RelatedProducts', () => {
-  it('Releated Products renders', () => {
-    const wrapper = shallow((
-      <App>
-        <RelatedProductsList />
-      </App>));
-    expect(wrapper.contains(<RelatedProductsList />)).toBe(true);
-  });
-});
+// describe('RelatedProducts', () => {
+//   it('Releated Products renders', () => {
+//     const wrapper = shallow((
+//       <App>
+//         <RelatedProductsList />
+//       </App>));
+//     expect(wrapper.contains(<RelatedProductsList />)).toBe(true);
+//   });
+// });

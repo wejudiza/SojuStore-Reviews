@@ -60,8 +60,12 @@ export default class App extends Component {
   }
 
   signOutClick() {
-    localStorage.clear();
-    window.location.reload(false);
+    if (localStorage.userName === undefined) {
+      alert('Not Signed In!')
+    } else {
+      localStorage.clear();
+      window.location.reload(false);
+    }
   }
 
   toggleDark() {
