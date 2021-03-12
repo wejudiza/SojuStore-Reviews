@@ -893,7 +893,7 @@ Rating & Reviews Styles
   border-radius: 10px;
   width: 15rem;
 }
-#sortby {
+#reviews-sortby {
   display: flex;
   align-items: center;
   justify-content: center;

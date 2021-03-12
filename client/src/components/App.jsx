@@ -1,35 +1,40 @@
-/* eslint-disable no-console */
-/* eslint-disable import/extensions */
-/* eslint-disable no-use-before-define */
-/* eslint-disable max-len */
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/no-access-state-in-setstate */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-alert */
+/* ------------------------------------
+Import depdencies, contexts, components
+------------------------------------ */
 import React, { Component, Suspense } from 'react';
 import axios from 'axios';
+import dt from 'moment';
+import { UserClick } from './UserClick.js';
 import { UserContext } from './UserContext.jsx';
 
+// Components
 const Product = React.lazy(() => import('./Overview/Product.jsx'));
-
-// Import from Related Products
+const ProductInfo = React.lazy(() => import('./Overview/ProductInfo.jsx'));
 const RelatedProductsList = React.lazy(() => import('./RelatedProducts/RelatedProductsList.jsx'));
 const OufitList = React.lazy(() => import('./RelatedProducts/OutfitList.jsx'));
-
-// Import from QnA
 const QnA = React.lazy(() => import('./QnA/QnA.jsx'));
-
-// Import RatingsReviews Components
 const RatingsReviews = React.lazy(() => import('./RatingsReviews/RatingsReviews.jsx'));
 
-// App component
+/* ----------
+App Component
+---------- */
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
       darkMode: false,
+      sendClickInfo: (e, widget) => {
+        const element = e.target.id.length === 0 ? e.target.className : e.target.id;
+        const body = {
+          element,
+          widget,
+          time: dt().format()
+        };
+        axios.post('/api/interactions', body)
+          .then(() => console.log(`Posted interaction for ${element} in widget ${widget}`))
+          .catch((err) => console.log(err));
+      }
     };
     this.updateCurrentProduct = this.updateCurrentProduct.bind(this);
     this.signInClick = this.signInClick.bind(this);
@@ -40,7 +45,6 @@ export default class App extends Component {
   // results.data[0] - replace 16059
   // change back to 9
   // need to test - OutOfStock -> change data
-
   componentDidMount() {
     axios.get('/api')
       .then((results) => {
@@ -101,14 +105,15 @@ export default class App extends Component {
             <button onClick={this.signOutClick} className="signout">Sign Out</button>
           </div>
         </div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <UserContext.Provider value={this.state.data}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <UserContext.Provider value={this.state.data}>
+          <UserClick.Provider value={this.state.sendClickInfo}>
             <Product />
             <div className="all-related-container">
-              <h3 className="related-header">Related Products</h3>
-              <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct} />
-              <h3 className="outfit-header">Your Outfit</h3>
-              <OufitList mainProduct={this.state.data} />
+            <h3 className="related-header">Related Products</h3>
+            <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
+            <h3 className="outfit-header">Your Outfit</h3>
+            <OufitList mainProduct={this.state.data}/>
             </div>
 
             {/* --- QnA ---*/}
@@ -121,10 +126,11 @@ export default class App extends Component {
 
             {/* --- Ratings & Reviews --- */}
             <div id="ratings-reviews-container">
-              <RatingsReviews />
+              <RatingsReviews widget="RatingsReviews" />
             </div>
-          </UserContext.Provider>
-        </Suspense>
+          </UserClick.Provider>
+        </UserContext.Provider>
+      </Suspense>
       </div>
     );
   }
