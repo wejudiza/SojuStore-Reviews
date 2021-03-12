@@ -69,7 +69,7 @@ class RelatedProducts extends React.Component {
         this.setState({
           id: response.data.id,
           name: response.data.name,
-          category:response.data.category,
+          category: response.data.category,
           features: response.data.features,
           product: response.data
         })

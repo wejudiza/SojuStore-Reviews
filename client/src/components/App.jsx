@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import axios from 'axios';
-import ProductInfo from './Overview/ProductInfo.jsx';
-import Product from './Overview/Product.jsx';
+const ProductInfo = React.lazy(() => import('./Overview/ProductInfo.jsx')) ;
+const Product = React.lazy(() => import('./Overview/Product.jsx')) ;
 import { UserContext } from './UserContext.jsx';
 
 //Import from Related Products
-import RelatedProductsList from './RelatedProducts/RelatedProductsList.jsx';
-import OufitList from './RelatedProducts/OutfitList.jsx';
+const RelatedProductsList = React.lazy(() => import('./RelatedProducts/RelatedProductsList.jsx')) ;
+const OufitList = React.lazy(() => import('./RelatedProducts/OutfitList.jsx')) ;
 
 //Import from QnA
-import QnA from './QnA/QnA.jsx';
+const QnA = React.lazy(() => import('./QnA/QnA.jsx')) ;
 
 // Import RatingsReviews Components
-import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
+const RatingsReviews = React.lazy(() => import('./RatingsReviews/RatingsReviews.jsx')) ;
 
 // App component
 export default class App extends Component {
@@ -90,6 +90,7 @@ export default class App extends Component {
             <button onClick={this.signOutClick} className="signout">Sign Out</button>
           </div>
         </div>
+      <Suspense fallback={<div>Loading...</div>}>
         <UserContext.Provider value={this.state.data}>
           <Product />
           <div className="all-related-container">
@@ -108,10 +109,11 @@ export default class App extends Component {
           </div>
 
           {/* --- Ratings & Reviews --- */}
-          {/* <div id="ratings-reviews-container">
+          <div id="ratings-reviews-container">
             <RatingsReviews />
-          </div> */}
+          </div>
         </UserContext.Provider>
+        </Suspense>
         </div>
     );
   }
