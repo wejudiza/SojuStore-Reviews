@@ -25,7 +25,8 @@ export default class App extends Component {
       data: [],
       darkMode: false,
       sendClickInfo: (e, widget) => {
-        const element = e.target.id || e.target.className;
+        console.log(e.target.id);
+        const element = e.target.id.length === 0 ? e.target.className : e.target.id;
         const body = {
           element,
           widget,
