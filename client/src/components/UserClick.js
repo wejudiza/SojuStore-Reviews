@@ -1,17 +1,6 @@
 // function to track which element was clicked
 // function to track which widget the click happened in
 // function to track what time
-import dt from 'moment';
-import axios from 'axios';
+import { createContext } from 'react';
 
-export default function sendClickInfo(widget, element) {
-  const body = {
-    element,
-    widget,
-    time: '11:59'
-  };
-  console.log(body);
-  axios.post('/api/interactions', body)
-    .then(() => console.log('Interaction logged'))
-    .catch((err) => console.log(err));
-}
+export const UserClick = createContext();

@@ -6,6 +6,7 @@ import axios from 'axios';
 
 // Product Context
 import { UserContext } from '../UserContext.jsx';
+import { UserClick } from '../UserClick.js';
 
 // Subcomponents
 import Search from './Search.jsx';
@@ -31,8 +32,9 @@ const initialFilters = {
 /* ------------------------
 Ratings & Reviews Component
 ------------------------ */
-export default function RatingsReviews() {
+export default function RatingsReviews({ widget }) {
   const productID = useContext(UserContext).id;
+  const sendClickInfo = useContext(UserClick);
   const [loaded, setLoaded] = useState(false);
   const [showCount, setShowCount] = useState(2);
   const [sort, setSort] = useState('relevant');
@@ -48,7 +50,6 @@ export default function RatingsReviews() {
   // Gets all reviews + metadata from API for specific product, sets relevant intial states
   useMemo(() => {
     if (productID) {
-      console.log("I CHANGED");
       axios.get(`/api/reviews/${productID}`)
         .then((resp) => {
           setAllReviews(sortReviews(resp.data.results, sort));
@@ -105,8 +106,9 @@ export default function RatingsReviews() {
           reviewMetadata={reviewMetadata}
           barColors={barColors}
           handleFilter={handleFilter}
+          onClick={(e) => sendClickInfo(e, widget)}
         />
-        <ProductBreakdown isOpen={isOpen} />
+        <ProductBreakdown isOpen={isOpen} onClick={(e) => sendClickInfo(e, widget)} />
       </div>
       { /* Main Review Section */ }
       <div id="reviews-main">
@@ -118,7 +120,7 @@ export default function RatingsReviews() {
           <Search setSearch={setSearch} />
         </div>
         {/* Review List - dynmically renders out individual tiles */}
-        <div id="review-list">
+        <div id="review-list" onClick={(e) => sendClickInfo(e, widget)}>
           { allReviews.slice(0, showCount).map((review) => (
             <ReviewTile
               review={review}

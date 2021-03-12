@@ -1,9 +1,10 @@
 // Import dependencies
 import React, { Component, Suspense } from 'react';
 import axios from 'axios';
+import dt from 'moment';
 
 // Import Contexts
-import sendClickInfo from './UserClick.js';
+import { UserClick } from './UserClick.js';
 import { UserContext } from './UserContext.jsx';
 
 // Product Details
@@ -26,7 +27,18 @@ export default class App extends Component {
     super(props);
     this.state = {
       data: [],
-      darkMode: false
+      darkMode: false,
+      sendClickInfo: (e, widget) => {
+        const element = e.target.id || e.target.className;
+        const body = {
+          element,
+          widget,
+          time: dt().format()
+        };
+        axios.post('/api/interactions', body)
+          .then(() => console.log(`Posted interaction for ${element} in widget ${widget}`))
+          .catch((err) => console.log(err));
+      }
     };
     this.updateCurrentProduct = this.updateCurrentProduct.bind(this);
     this.signInClick = this.signInClick.bind(this);
@@ -37,7 +49,6 @@ export default class App extends Component {
   // results.data[0] - replace 16059
   // change back to 9
   // need to test - OutOfStock -> change data
-
   componentDidMount() {
     axios.get('/api')
       .then((results) => {
@@ -102,28 +113,30 @@ export default class App extends Component {
         </div>
       <Suspense fallback={<div>Loading...</div>}>
         <UserContext.Provider value={this.state.data}>
-          <Product />
-          <div className="all-related-container">
-          <h3 className="related-header">Related Products</h3>
-          <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
-          <h3 className="outfit-header">Your Outfit</h3>
-          <OufitList mainProduct={this.state.data}/>
-          </div>
-
-          {/* --- QnA ---*/}
-          <div id="qna">
-            <h3 id="questions-logo">Questions & Answers</h3>
-            <div id="questions-and-answers">
-              <QnA />
+          <UserClick.Provider value={this.state.sendClickInfo}>
+            <Product />
+            <div className="all-related-container">
+            <h3 className="related-header">Related Products</h3>
+            <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
+            <h3 className="outfit-header">Your Outfit</h3>
+            <OufitList mainProduct={this.state.data}/>
             </div>
-          </div>
 
-          {/* --- Ratings & Reviews --- */}
-          <div id="ratings-reviews-container" onClick={() => sendClickInfo("element", "widget")}>
-            <RatingsReviews name="RatingsReviews" />
-          </div>
+            {/* --- QnA ---*/}
+            <div id="qna">
+              <h3 id="questions-logo">Questions & Answers</h3>
+              <div id="questions-and-answers">
+                <QnA />
+              </div>
+            </div>
+
+            {/* --- Ratings & Reviews --- */}
+            <div id="ratings-reviews-container">
+              <RatingsReviews widget="RatingsReviews" />
+            </div>
+          </UserClick.Provider>
         </UserContext.Provider>
-        </Suspense>
+      </Suspense>
       </div>
     );
   }
