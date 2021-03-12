@@ -15,34 +15,28 @@ afterEach(() => server.resetHandlers())
 // Clean up after the tests are finished.
 afterAll(() => server.close())
 // import MockAdapter from 'axios-mock-adapter';
-test('testing get', async () => {
+
+
+test('gets all products', async () => {
   // Render components, perform requests, receive mocked responses.
-  const result = await axios.get('/api/test')
+  await axios.get('/api')
     .then((data) => {return data})
-  console.log(result)
 })
 
-// jest.mock('axios');
+test('gets related products', async () => {
+  // Render components, perform requests, receive mocked responses.
+  await axios.get(`/api/12345`)
+    .then((data) => {return data})
+})
 
-// test("good response", () => {
-//   axios.get.mockImplementation(() => Promise.resolve({ data: {test:test} }));
-// });
+test('gets product info', async () => {
+  // Render components, perform requests, receive mocked responses.
+  await axios.get(`/api/products/12345`)
+    .then((data) => {return data})
+})
 
-// test("bad response", () => {
-//   axios.get.mockImplementation(() => Promise.reject({test:test}));
-// });
-// var mock = new MockAdapter(axios);
-
-// describe('api call', () => {
-//   it('Should make api call', () => {
-//     mock.onGet('/api')
-//   });
-// });
-
-// mock.onGet('/api').reply(200);
-
-// axios.get('/api').then(function (response) {
-//   console.log(response.data);
-// });
-
-
+test('gets product styles', async () => {
+  // Render components, perform requests, receive mocked responses.
+  await axios.get(`/api/styles/12345`)
+    .then((data) => {return data})
+})
