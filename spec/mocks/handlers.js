@@ -10,4 +10,7 @@ export const handlers = [
       // }),
     )
   }),
+  rest.get('/api/test', (req, res, ctx) => {
+    return res(ctx.json({ firstName: 'John' }))
+  })
 ]
