@@ -5,14 +5,8 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  background: rgb(255,255,255);
-  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(182,182,182,1) 50%, rgba(255,255,255,1) 100%);
-  /* background: rgb(63,94,251);
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); */
-  /* background: rgb(255,255,255);
-  background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(252,70,107,1) 100%); */
-  /* border-bottom: 5px ridge rgba(158,158,158,1);
-  border-radius: 31px; */
+  background: rgb(162,108,78);
+background: linear-gradient(90deg, rgba(162,108,78,1) 0%, rgba(199,151,117,1) 49%, rgba(162,108,78,1) 100%);
   border-bottom: 2px solid black;
   margin-bottom: 2%;
   height: 90px;
