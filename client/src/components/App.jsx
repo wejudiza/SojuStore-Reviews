@@ -1,18 +1,24 @@
+// Import dependencies
 import React, { Component, Suspense } from 'react';
 import axios from 'axios';
-const ProductInfo = React.lazy(() => import('./Overview/ProductInfo.jsx')) ;
-const Product = React.lazy(() => import('./Overview/Product.jsx')) ;
+
+// Import Contexts
+import UserClick from './UserClick.js';
 import { UserContext } from './UserContext.jsx';
 
-//Import from Related Products
-const RelatedProductsList = React.lazy(() => import('./RelatedProducts/RelatedProductsList.jsx')) ;
-const OufitList = React.lazy(() => import('./RelatedProducts/OutfitList.jsx')) ;
+// Product Details
+const Product = React.lazy(() => import('./Overview/Product.jsx'));
+const ProductInfo = React.lazy(() => import('./Overview/ProductInfo.jsx'));
 
-//Import from QnA
-const QnA = React.lazy(() => import('./QnA/QnA.jsx')) ;
+// Related Products
+const RelatedProductsList = React.lazy(() => import('./RelatedProducts/RelatedProductsList.jsx'));
+const OufitList = React.lazy(() => import('./RelatedProducts/OutfitList.jsx'));
 
-// Import RatingsReviews Components
-const RatingsReviews = React.lazy(() => import('./RatingsReviews/RatingsReviews.jsx')) ;
+// QnA
+const QnA = React.lazy(() => import('./QnA/QnA.jsx'));
+
+// RatingsReviews
+const RatingsReviews = React.lazy(() => import('./RatingsReviews/RatingsReviews.jsx'));
 
 // App component
 export default class App extends Component {
@@ -80,6 +86,7 @@ export default class App extends Component {
       <div id={this.state.darkMode ?
         "all-dark" : "all"
       }>
+        {UserClick()}
         <div className="header">
           <div className="store-name">SOJU STORE</div>
           <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
