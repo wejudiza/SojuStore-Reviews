@@ -1,7 +1,7 @@
 /* -------------------------------
 Libraries, Contexts, Subcomponents
 ------------------------------- */
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import axios from 'axios';
 
 // Product Context
@@ -46,7 +46,7 @@ export default function RatingsReviews() {
   const [barColors, setBarColors] = useState(false);
 
   // Gets all reviews + metadata from API for specific product, sets relevant intial states
-  useEffect(() => {
+  useMemo(() => {
     if (productID) {
       console.log("I CHANGED");
       axios.get(`/api/reviews/${productID}`)
@@ -86,6 +86,7 @@ export default function RatingsReviews() {
   const handleFilter = (rating) => {
     setFilters(rating);
     const appliedFilters = Object.keys(filters).filter((key) => filters[key]);
+    console.log(appliedFilters);
     if (appliedFilters.length === 0) {
       setAllReviews(reviews);
       setBarColors(!barColors);

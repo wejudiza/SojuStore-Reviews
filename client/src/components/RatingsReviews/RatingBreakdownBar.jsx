@@ -4,11 +4,7 @@ export default function RatingBreakdownBar(props) {
   const { rating, dist, count, barColors, handleFilter } = props;
   const [color, setColor] = useState('#ffffc7');
 
-  useEffect(() => {
-    if (barColors) {
-      setColor('#ffffc7');
-    }
-  }, [barColors]);
+  useEffect(() => setColor('#ffffc7'), [barColors]);
 
   return (
     <div className="bar-container" onClick={() => {
