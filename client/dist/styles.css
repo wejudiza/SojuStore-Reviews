@@ -199,6 +199,7 @@
   font-weight: 600;
   padding-left: 70px;
   font-size: 25px;
+  text-decoration: underline;
 }
 
 .related-header {
@@ -366,6 +367,7 @@
 .mainPhoto {
   display: flex;
   height: 83%;
+  width: 100%;
 }
 
 #Style-Select {
@@ -396,9 +398,7 @@
   text-transform: uppercase;
   font-family: 'Fira Sans Condensed', sans-serif;
   letter-spacing: 1.5px;
-  font-size: 14px;
-  float: right;
-  right: 0%;
+  font-size: 17px;
   width: 100%;
   justify-content: center;
 }
@@ -406,10 +406,9 @@
 #default-thumbnails {
   display: flex;
   justify-content: center;
-  padding: 3px;
+  padding: 4.5px 0px;
   background: rgba(86, 92, 97, 0.53);
-  margin: 1.5px;
-  width: 80%;
+  width: 100%;
   align-self: center;
 }
 
@@ -457,12 +456,12 @@
 
 .product-detail h2{
   margin: 1% 0%;
-  font-size: 28px;
+  font-size: 30px;
 }
 
 .product-detail h4 {
   margin: 10px 0px;
-  font-size: 17.5px;
+  font-size: 18px;
 }
 
 .cartBtn {

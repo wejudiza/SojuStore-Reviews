@@ -124,7 +124,7 @@ function StyleSelect(props) {
         ))}
         {props.defaultStyle.sale_price === null ? (
           <div style={{
-            margin: '1.5%', fontSize: '19px', width: '100%', display: 'flex', order: '3', justifyContent: 'center', alignSelf: 'flex-end',
+            margin: '1.5%', fontSize: '34px', width: '100%', display: 'flex', order: '3', justifyContent: 'center', alignSelf: 'flex-end',
           }}
           >
             {' '}
@@ -134,7 +134,7 @@ function StyleSelect(props) {
           </div>
         ) : (
           <div style={{
-            margin: '1.5%', fontSize: '19px', width: '100%', display: 'flex', order: '3', justifyContent: 'center', alignSelf: 'flex-end',
+            margin: '1.5%', fontSize: '34px', width: '100%', display: 'flex', order: '3', justifyContent: 'center', alignSelf: 'flex-end',
           }}
           >
             <b style={{ color: 'red', weight: '600' }}>

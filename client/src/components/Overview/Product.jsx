@@ -174,7 +174,7 @@ function Product() {
                 <em>{data.slogan}</em>
                 {' '}
               </h4>
-              <p style={{ fontSize: '16.5px' }}>{data.description}</p>
+              <p style={{ fontSize: '19px' }}>{data.description}</p>
             </div>
           </div>
           <StyleSelect
