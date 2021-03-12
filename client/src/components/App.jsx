@@ -118,7 +118,7 @@ export default class App extends Component {
           </div>
         </UserContext.Provider>
         </Suspense>
-        </div>
+      </div>
     );
   }
 }
