@@ -119,8 +119,8 @@ export default class App extends Component {
           </div>
 
           {/* --- Ratings & Reviews --- */}
-          <div id="ratings-reviews-container">
-            <RatingsReviews name="RatingsReviews" onClick={sendClickInfo("element", "widget")} />
+          <div id="ratings-reviews-container" onClick={() => sendClickInfo("element", "widget")}>
+            <RatingsReviews name="RatingsReviews" />
           </div>
         </UserContext.Provider>
         </Suspense>

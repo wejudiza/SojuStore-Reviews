@@ -11,8 +11,7 @@ router
 
 router
   .route('/interactions')
-  .post(controller.postInteraction);
-
+  .post(controllersRR.postInteraction);
 
 router
   .route('/cart')

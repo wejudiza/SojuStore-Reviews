@@ -49,23 +49,23 @@ const cart = {
 };
 
 // not working, come back later and fix it
-const interaction = {
-  postInter: (req, callback) => {
-    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/interactions';
-    const data = {
-      element: `${req.body.element}`,
-      widget: `${req.body.widget}`,
-      time: `${req.body.time}`,
-    };
+// const interaction = {
+//   postInter: (req, callback) => {
+//     const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/interactions';
+//     const data = {
+//       element: `${req.body.element}`,
+//       widget: `${req.body.widget}`,
+//       time: `${req.body.time}`,
+//     };
 
-    axios.post(url, data, header)
-      .then((results) => { callback(null, results); })
-      .catch((err) => { console.log(err); callback(err); });
-  },
-};
+//     axios.post(url, data, header)
+//       .then((results) => { callback(null, results); })
+//       .catch((err) => { console.log(err); callback(err); });
+//   },
+// };
 
 module.exports = {
   products,
   cart,
-  interaction,
+  // interaction,
 };

@@ -8,9 +8,9 @@ export default function sendClickInfo(widget, element) {
   const body = {
     element,
     widget,
-    time: dt().format()
+    time: '11:59'
   };
-
+  console.log(body);
   axios.post('/api/interactions', body)
     .then(() => console.log('Interaction logged'))
     .catch((err) => console.log(err));

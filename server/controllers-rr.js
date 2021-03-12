@@ -38,7 +38,14 @@ const controllersRR = {
     axios.put(`${config.url}/${req.params.review_id}/helpful`, null, config.headers)
       .then(() => res.status(204).send('You marked this review as helpful'))
       .catch((err) => res.status(400).send(`Could not mark this review as helpful. Error: ${err}`));
-  }
+  },
+
+  postInteraction: (req, res) => {
+    console.log(req.body);
+    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/interactions', req.body, config.headers)
+      .then(() => res.status(200).send(`Posted interaction for ${req.body.widget}`))
+      .catch((err) => res.status(400).send(`Failed to post review for ${req.body.widget}. Error: ${err}`));
+  },
 
 };
 
