@@ -20,7 +20,6 @@ function GalleryImg(props) {
   // the first thumb index of the displayed thumbnail gallery images
   const [thumbIndex, setThumbIndex] = useState(0);
   const [maxThumb, setMaxThumb] = useState();
-  const [last, setLast] = useState();
 
   useEffect(() => {
     // eslint-disable-next-line react/prop-types
@@ -67,12 +66,11 @@ function GalleryImg(props) {
     if (thumbIndex === props.default.photos.length - 1) {
       return;
     }
-    const newInd = thumbIndex + 1;
-    const last = newInd + 6;
-    setThumbIndex(newInd);
-    setLast(last);
-    console.log(last)
-    // setRight(right + 1)
+    // const newInd = thumbIndex + 1;
+    // eslint-disable-next-line no-const-assign
+    // const lastInd = newInd + 6;
+    setThumbIndex(thumbIndex + 1);
+    // setLast(lastInd);
   };
 
   const between = (target, min, max) => target >= min && target <= max;
@@ -111,14 +109,14 @@ function GalleryImg(props) {
         <i
           className={props.index > 0 ? 'leftArrow' : 'leftArrow-hidden'}
           style={{
-            visibility: 'visible', position: 'absolute', left: '1.3%', top: '50%',
+            visibility: 'visible', position: 'absolute', left: '1.3%', top: '50%', padding: '0.5%',
           }}
           onClick={() => changeBackwardLeft()}
         />
         <i
           className={props.index === maxThumbIndex - 1 ? 'rightArrow-hidden' : 'rightArrow'}
           style={{
-            visibility: 'visible', position: 'absolute', left: '47%', top: '50%',
+            visibility: 'visible', position: 'absolute', left: '47%', top: '50%', padding: '0.5%',
           }}
           onClick={() => changeForwardRight()}
         />
@@ -128,9 +126,9 @@ function GalleryImg(props) {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <i className="leftArrow" style={thumbIndex > 0 ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={() => changeLeftThumb()}>  </i>
                 {props.default.photos.map((item, index) => (
-                  <img className={checkThumbnailImg(index) ? 'default-thumbnail' : 'default-thumbnail-hidden'} src={item.thumbnail_url === null ? 'https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-stock-vector-no-image-available-icon-flat-vector-illustration.jpg?ver=6' : item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? { boxShadow: '0px 1px 20px 5px red', filter: 'contrast(1.5)' } : null} />
+                  <img className={checkThumbnailImg(index) ? 'default-thumbnail' : 'default-thumbnail-hidden'} src={item.thumbnail_url === null ? 'https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-stock-vector-no-image-available-icon-flat-vector-illustration.jpg?ver=6' : item.thumbnail_url} key={index} onClick={() => handleClickImg(item.url, index)} style={props.index === index ? { boxShadow: '0px 1px 20px 10px lightsteelblue' } : null} />
                 ))}
-                <i className="rightArrow" style={thumbIndex >= maxThumb === null ? { visibility: 'hidden' } : { visibility: 'visible' }} onClick={() => changeRightThumb()}> </i>
+                <i className="rightArrow" style={thumbIndex >= maxThumb ? { visibility: 'hidden' } : { visibility: 'visible' }} onClick={() => changeRightThumb()}> </i>
               </div>
             )
             : null}

@@ -111,13 +111,13 @@ function StyleSelect(props) {
                 { props.defaultStyle.photos[0].thumbnail_url === null ? null : props.defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? (
                   <i
                     style={{
-                      position: 'absolute', top: '6%', color: 'whitesmoke', backgroundColor: 'darkred', borderRadius: '50% 50%',
+                      position: 'absolute', top: '6%', color: 'whitesmoke', backgroundColor: 'midnightblue', borderRadius: '50% 50%',
                     }}
                     className="fa fa-check"
                     aria-hidden="true"
                   />
                 ) : null}
-                <img src={item.thumbnail_url === null ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png' : item.thumbnail_url} className="thumbnail-img" style={props.defaultStyle.photos[0].thumbnail_url === null ? null : props.defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? { border: '2px solid darkred', boxShadow: '0px 0.5px 0.5px 1.5px darkred' } : null} onClick={() => clickThumbnail(item.index, item.url)} />
+                <img src={item.thumbnail_url === null ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png' : item.thumbnail_url} className="thumbnail-img" style={props.defaultStyle.photos[0].thumbnail_url === null ? null : props.defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? { border: '1.5px solid lightsteelblue', boxShadow: '1.5px 1px 2px 0.5px lightsteelblue' } : null} onClick={() => clickThumbnail(item.index, item.url)} />
               </div>
             ))}
           </div>

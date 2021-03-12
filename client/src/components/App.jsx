@@ -1,30 +1,26 @@
+/* eslint-disable import/extensions */
+/* eslint-disable no-use-before-define */
+/* eslint-disable max-len */
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-alert */
 import React, { Component, Suspense } from 'react';
 import axios from 'axios';
-<<<<<<< HEAD
-import Product from './Overview/Product.jsx';
 import { UserContext } from './UserContext.jsx';
+
+const Product = React.lazy(() => import('./Overview/Product.jsx'));
 
 // Import from Related Products
-import RelatedProductsList from './RelatedProducts/RelatedProductsList.jsx';
-import OufitList from './RelatedProducts/OutfitList.jsx';
+const RelatedProductsList = React.lazy(() => import('./RelatedProducts/RelatedProductsList.jsx'));
+const OufitList = React.lazy(() => import('./RelatedProducts/OutfitList.jsx'));
 
 // Import from QnA
-import QnA from './QnA/QnA.jsx';
-=======
-const ProductInfo = React.lazy(() => import('./Overview/ProductInfo.jsx')) ;
-const Product = React.lazy(() => import('./Overview/Product.jsx')) ;
-import { UserContext } from './UserContext.jsx';
-
-//Import from Related Products
-const RelatedProductsList = React.lazy(() => import('./RelatedProducts/RelatedProductsList.jsx')) ;
-const OufitList = React.lazy(() => import('./RelatedProducts/OutfitList.jsx')) ;
-
-//Import from QnA
-const QnA = React.lazy(() => import('./QnA/QnA.jsx')) ;
->>>>>>> ea0afd18e9e325edc4e5e94328ff19ba5ef6b903
+const QnA = React.lazy(() => import('./QnA/QnA.jsx'));
 
 // Import RatingsReviews Components
-const RatingsReviews = React.lazy(() => import('./RatingsReviews/RatingsReviews.jsx')) ;
+const RatingsReviews = React.lazy(() => import('./RatingsReviews/RatingsReviews.jsx'));
 
 // App component
 export default class App extends Component {
@@ -83,9 +79,9 @@ export default class App extends Component {
 
   render() {
     return (
-      <div id={this.state.darkMode ?
-        "all-dark" : "all"
-      }>
+      <div id={this.state.darkMode
+        ? 'all-dark' : 'all'}
+      >
         <div className="header">
           <div className="store-name">SOJU STORE</div>
           <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
@@ -100,31 +96,31 @@ export default class App extends Component {
             <button onClick={this.signOutClick} className="signout">Sign Out</button>
           </div>
         </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <UserContext.Provider value={this.state.data}>
-          <Product />
-          <div className="all-related-container">
-            <h3 className="related-header">Related Products</h3>
-            <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct} />
-            <h3 className="outfit-header">Your Outfit</h3>
-            <OufitList mainProduct={this.state.data} />
-          </div>
-
-          {/* --- QnA ---*/}
-          <div id="qna">
-            <h3 id="questions-logo">Questions & Answers</h3>
-            <div id="questions-and-answers">
-              <QnA />
+        <Suspense fallback={<div>Loading...</div>}>
+          <UserContext.Provider value={this.state.data}>
+            <Product />
+            <div className="all-related-container">
+              <h3 className="related-header">Related Products</h3>
+              <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct} />
+              <h3 className="outfit-header">Your Outfit</h3>
+              <OufitList mainProduct={this.state.data} />
             </div>
-          </div>
 
-          {/* --- Ratings & Reviews --- */}
-          <div id="ratings-reviews-container">
-            <RatingsReviews />
-          </div>
-        </UserContext.Provider>
+            {/* --- QnA ---*/}
+            <div id="qna">
+              <h3 id="questions-logo">Questions & Answers</h3>
+              <div id="questions-and-answers">
+                <QnA />
+              </div>
+            </div>
+
+            {/* --- Ratings & Reviews --- */}
+            <div id="ratings-reviews-container">
+              <RatingsReviews />
+            </div>
+          </UserContext.Provider>
         </Suspense>
-        </div>
+      </div>
     );
   }
 }

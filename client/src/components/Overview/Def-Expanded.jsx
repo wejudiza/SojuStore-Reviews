@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-lone-blocks */
@@ -14,6 +15,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+
+// fix thumbnails button
 
 function Default_Expanded(props) {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -76,7 +79,7 @@ function Default_Expanded(props) {
       if (index === currExpInd) {
         return 'thumbnail-img-main';
       }
-      return 'thumbnail-img';
+      return 'thumbnail-img-selected';
     }
     return 'thumbnail-img-main-hidden';
   };
@@ -112,6 +115,12 @@ function Default_Expanded(props) {
     };
   };
 
+  const customStyles = {
+    content: {
+      padding: '5px',
+    },
+  };
+
   return (
     <div id="default-wrapper">
       {props.default !== undefined
@@ -119,23 +128,27 @@ function Default_Expanded(props) {
         : null }
 
       {expandThumb.length > 0 ? (
-        <Modal appElement={document.getElementById('app')} isOpen={modalIsOpen} onRequestClose={() => { setIsOpen(!modalIsOpen); setZoom(false); }} preventScroll>
-          {zoom ? null : (
-            <div className="test1">
-              <i className="leftArrow" onClick={() => clickBackward()} />
-              {expandThumb.map((item, index) => (
-                <img key={index} className={arrangeThumb(index)} src={item.thumbnail_url} onClick={() => clickThumbnail(index, item.url)} />
-              ))}
-              <i className="rightArrow" onClick={() => clickForward()} />
-            </div>
-          )}
-          {zoom ? (
-            <figure onMouseMove={(e) => handleMouseMove(e)} style={{ backgroundImage: bgImage, backgroundPosition: bgPosition }} onClick={() => setZoom(!zoom)} />
-          ) : (
-            <div className="test">
-              <img src={expandThumb[props.index].url} onClick={() => setZoom(!zoom)} onLoad={() => setImage(`url(${expandThumb[props.index].url})`)} style={{ cursor: 'crosshair' }} />
-            </div>
-          ) }
+        <Modal appElement={document.getElementById('app')} isOpen={modalIsOpen} onRequestClose={() => { setIsOpen(!modalIsOpen); setZoom(false); }} style={customStyles} preventScroll>
+          <div id="modalContainer">
+            {zoom ? null : (
+              <div className="test1">
+                <div className="modalThumbnail">
+                  <i className="leftArrow" onClick={() => clickBackward()} />
+                  {expandThumb.map((item, index) => (
+                    <img key={index} className={arrangeThumb(index)} src={item.thumbnail_url} onClick={() => clickThumbnail(index, item.url)} />
+                  ))}
+                  <i className="rightArrow" onClick={() => clickForward()} />
+                </div>
+              </div>
+            )}
+            {zoom ? (
+              <figure onMouseMove={(e) => handleMouseMove(e)} style={{ backgroundImage: bgImage, backgroundPosition: bgPosition }} onClick={() => setZoom(!zoom)} />
+            ) : (
+              <div className="test">
+                <img src={expandThumb[props.index].url} onClick={() => setZoom(!zoom)} onLoad={() => setImage(`url(${expandThumb[props.index].url})`)} style={{ cursor: 'crosshair' }} />
+              </div>
+            ) }
+          </div>
         </Modal>
       ) : null }
     </div>

@@ -1,3 +1,10 @@
+/* eslint-disable func-names */
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-shadow */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
@@ -71,7 +78,7 @@ function Product() {
   }, [style]);
 
   useEffect(() => {
-    if (Object.keys(defaultStyle).length> 0) {
+    if (Object.keys(defaultStyle).length > 0) {
       setPhoto(defaultStyle.photos[0].url);
     }
   }, [defaultStyle]);
@@ -109,7 +116,7 @@ function Product() {
           <div className="mainPhoto">
             <Default
               default={photo}
-              setDefault={setDefault}
+              setDefault={setPhoto}
               style={defaultStyle}
               index={indexPhoto}
               setIndex={setIndex}
