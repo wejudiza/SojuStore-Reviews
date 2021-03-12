@@ -846,7 +846,7 @@ width: 200px;
     background: linear-gradient(to top right, #c588f7, #992cf2);
     font-size: .7em;
     flex-shrink: inherit;
-  }
+  }
 
   #ratings-reviews {
     display: flex;

@@ -13,45 +13,6 @@
 import React from 'react';
 
 function StyleSelect(props) {
-  // const [styles, setStyles] = useState([])
-  // const [thumbnail, setThumbnail] = useState([])
-  // const [defaultStyle, setDefaultStyle] = useState({})
-  // const [thumbClick, setThumbClick] = useState(false)
-  // const [defaultPhoto, setDefaultPhoto] = useState('')
-  // index is for photo index
-  // const [indexPhoto, setIndexPhoto] = useState(0);
-  // const [reset, setReset] = useState()
-
-  // useEffect(() => {
-  //   if (props.data !== undefined) {
-  //     axios.get(`/api/styles/${props.data}`)
-  //       .then((results) => setStyles(results.data.results))
-  //       .catch((err) => console.error(err))
-  //   }
-  // }, [props.data])
-
-  // useEffect(() => {
-  //   var res = [];
-  //   if (props.style !== undefined) {
-  //     {props.style.map((item, index) => {
-  //       if (item['default?']) {
-  //         setDefaultStyle(item)
-  //       }
-  //       item.photos.map((item, index) => {
-  //         if (index === 0) {
-  //           res.push(item)
-  //           setThumbnail(res)
-  //         }
-  //       })
-  //     })}
-  //   }
-  // }, [props.style])
-
-  // useEffect(() => {
-  //   if (Object.keys(defaultStyle).length > 0) {
-  //     setDefaultPhoto(defaultStyle.photos[0].url)
-  //   }
-  // }, [defaultStyle])
   const thumbnailModel = (array) => {
     let result = [];
     const finalRes = [];
@@ -85,8 +46,6 @@ function StyleSelect(props) {
 
   return (
     <div id="whole-Style">
-      {/* <Default_Expanded default={defaultPhoto} setDefault={setDefaultPhoto} style={defaultStyle} index={indexPhoto} setIndex={setIndexPhoto} allStyle={thumbnail} /> */}
-      {/* <div id="Style-Select"> */}
       <div className="container">
         <div
           className="category-rating"
@@ -149,9 +108,6 @@ function StyleSelect(props) {
             </strike>
           </div>
         )}
-        {/* </div> */}
-        {/* <GalleryImg default={props.defaultStyle} setDefaultPhoto={setDefaultPhoto} setIndex={setIndexPhoto} index={indexPhoto} />
-      <ProductInfo reset={reset} default={props.defaultStyle} /> */}
       </div>
     </div>
   );
