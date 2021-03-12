@@ -1,29 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import axios from 'axios';
-import ProductInfo from './Overview/ProductInfo.jsx';
-import Product from './Overview/Product.jsx';
+const ProductInfo = React.lazy(() => import('./Overview/ProductInfo.jsx')) ;
+const Product = React.lazy(() => import('./Overview/Product.jsx')) ;
 import { UserContext } from './UserContext.jsx';
 
 //Import from Related Products
-import RelatedProductsList from './RelatedProducts/RelatedProductsList.jsx';
-import OufitList from './RelatedProducts/OutfitList.jsx';
+const RelatedProductsList = React.lazy(() => import('./RelatedProducts/RelatedProductsList.jsx')) ;
+const OufitList = React.lazy(() => import('./RelatedProducts/OutfitList.jsx')) ;
 
 //Import from QnA
-import QnA from './QnA/QnA.jsx';
+const QnA = React.lazy(() => import('./QnA/QnA.jsx')) ;
 
 // Import RatingsReviews Components
-import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
+const RatingsReviews = React.lazy(() => import('./RatingsReviews/RatingsReviews.jsx')) ;
 
 // App component
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      darkMode: false
     };
     this.updateCurrentProduct = this.updateCurrentProduct.bind(this);
     this.signInClick = this.signInClick.bind(this);
     this.signOutClick = this.signOutClick.bind(this);
+    this.toggleDark = this.toggleDark.bind(this);
   }
 
   // results.data[0] - replace 16059
@@ -39,6 +41,7 @@ export default class App extends Component {
       })
       .catch((err) => console.error(err));
   }
+
 
   // on click change state of data based on provided product
   updateCurrentProduct(product) {
@@ -61,21 +64,41 @@ export default class App extends Component {
     window.location.reload(false);
   }
 
+  toggleDark() {
+    console.log('clicked')
+    this.setState({
+      darkMode: !this.state.darkMode
+    })
+  }
+
   render() {
     return (
-      <div>
-        <h1 style={{display: 'flex', justifyContent: 'center', fontFamily: 'Archivo Black, sans-serif', fontSize: '40px', marginBottom: '0'}}> SOJU STORE </h1>
-        <p style={{display: 'flex', justifyContent: 'center', marginTop: '0', fontFamily: 'Source Sans Pro, sans-serif', fontSize: '18px'}}>Cute Slogan</p>
-        <div style={{position: 'absolute', top: '0.5%'}}/>
-        <button onClick={this.signInClick}>Sign In</button>
-        <button onClick={this.signOutClick}>Sign Out</button>
-
+      <div id={this.state.darkMode ?
+        "all-dark" : "all"
+      }>
+        <div className="header">
+          <div className="store-name">SOJU STORE</div>
+          <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
+          <p className="slogan">HUNDREDS OF NEW ARRIVALS</p>
+          <p className="shipping">Free Shipping and Returns*</p>
+          <div className="search-container">
+            <input type="text" value="" placeholder="Enter your search here..." id="main-search"></input>
+            <i className="fas fa-search search-btn"></i>
+          </div>
+          <div className="signin-out">
+            <button onClick={this.signInClick} className="signin">Sign In</button>
+            <button onClick={this.signOutClick} className="signout">Sign Out</button>
+          </div>
+        </div>
+      <Suspense fallback={<div>Loading...</div>}>
         <UserContext.Provider value={this.state.data}>
           <Product />
-          <h3>Related Products</h3>
+          <div className="all-related-container">
+          <h3 className="related-header">Related Products</h3>
           <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
-          <h3>Your Outfit</h3>
+          <h3 className="outfit-header">Your Outfit</h3>
           <OufitList mainProduct={this.state.data}/>
+          </div>
 
           {/* --- QnA ---*/}
           <div id="qna">
@@ -90,6 +113,7 @@ export default class App extends Component {
             <RatingsReviews />
           </div>
         </UserContext.Provider>
+        </Suspense>
       </div>
     );
   }

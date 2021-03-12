@@ -26,8 +26,6 @@ class RelatedProductsList extends React.Component {
     }
   }
 
-
-
   getRelated() {
     axios.get(`/api/${this.props.mainProduct.id}`)
       .then((results) => {
@@ -48,15 +46,16 @@ class RelatedProductsList extends React.Component {
         } onClick={prev}></i>
         <Whirligig
         ref={(_whirligigInstance) => { whirligig = _whirligigInstance}}
-        visibleSlides={this.state.products.length < 4 ?
-          this.state.products.length : 4
-        }
-        slideBy={1}
+        // visibleSlides={this.state.products.length < 4 ?
+        //   this.state.products.length : 4
+        // }
+        slideBy={1 || 0}
+        slideClass={"slide"}
         gutter="6.4em"
         preventScroll={true}>
         {this.state.products.map((id, index) => {
           return (
-            <RelatedProducts productId={id} key={index} mainProduct={this.props.mainProduct} updateCurrentProduct={this.props.updateCurrentProduct}/>
+            <RelatedProducts productId={id} key={index} mainId={this.props.mainId} mainProduct={this.props.mainProduct} updateCurrentProduct={this.props.updateCurrentProduct}/>
           )
         })}
         </Whirligig>

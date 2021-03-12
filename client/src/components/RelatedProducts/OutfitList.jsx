@@ -85,5 +85,3 @@ class OutfitList extends React.Component {
 }
 
 export default OutfitList;
-
-{/* <i class="far fa-times-circle btn"></i> */}
