@@ -50,7 +50,7 @@ export default function Answer({answer}) {
            )}
          </div>
          <div id="seller-info" style={{fontSize:'12px'}}>
-           <span id="seller"> by: {answer.answerer_name}, {newdate} | Helpful?
+           <span id="seller"> by: <b>{answer.answerer_name}</b>, {newdate} | Helpful?
            </span>
            <u id="answer-helpful" onClick={helpful}>Yes</u>
            <span id="helpfulness-score"> ({helpfulness}) | </span>
