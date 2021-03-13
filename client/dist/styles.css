@@ -218,6 +218,10 @@
   color: black;
 }
 
+#all-dark .all-related-container {
+  background: #383838;
+}
+
 /* RLEATED PRODUCTS SECTION */
 
 .all-related-container {
@@ -265,7 +269,8 @@
 }
 
 .add-card {
-  background: linear-gradient(to bottom right, #ffffff 23%, #d6d6d6 100%);
+  background: rgb(222,227,232);
+background: linear-gradient(90deg, rgba(222,227,232,1) 0%, rgba(176,196,222,1) 100%, rgba(176,196,222,1) 100%);
 }
 
 .price {
