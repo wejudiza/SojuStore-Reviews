@@ -214,6 +214,11 @@
 }
 
 /* RLEATED PRODUCTS SECTION */
+
+.all-related-container {
+  background: linear-gradient(white, aliceblue, aliceblue);
+}
+
 .related-card,
 .add-card,
 .outfit-card {
