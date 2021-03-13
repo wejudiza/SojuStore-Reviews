@@ -89,13 +89,10 @@ export default class App extends Component {
         ? 'all-dark' : 'all'}
       >
         <div className="header">
-          <div className="container1">
-            <div id="headerImg">
-            </div>
-            <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
-          </div>
+          <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
           <div className="headerContainer">
           <div className="textContainer">
+            <div id="headerImg"></div>
             <div className="store-name">SOJU STORE</div>
             <p className="slogan">HUNDREDS OF NEW ARRIVALS</p>
             <p className="shipping">Free Shipping and Returns*</p>
@@ -115,7 +112,7 @@ export default class App extends Component {
       <Suspense fallback={<div>Loading...</div>}>
         <UserContext.Provider value={this.state.data}>
           <UserClick.Provider value={this.state.sendClickInfo}>
-            <Product />
+            <Product widget="ProductOverview" />
             <div className="all-related-container">
             <h3 className="related-header">Related Products</h3>
             <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct} click={this.state.sendClickInfo} widget="RelatedProducts"/>
