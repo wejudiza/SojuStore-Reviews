@@ -49,7 +49,6 @@ test('gets all answers for a product', async () => {
     .then((data) => {return data})
 })
 
-
 /////////// POST REQUESTS //////////////
 
 test('posts to cart', async () => {
