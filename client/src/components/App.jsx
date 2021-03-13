@@ -120,7 +120,7 @@ export default class App extends Component {
             <div id="qna">
               <h3 id="questions-logo">Questions & Answers</h3>
               <div id="questions-and-answers">
-                <QnA />
+                <QnA widget="QuestionsAndAnswers" />
               </div>
             </div>
 
