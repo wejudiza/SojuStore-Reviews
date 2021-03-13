@@ -12,6 +12,7 @@ import axios from 'axios';
 import { SocialIcon } from 'react-social-icons';
 import { Link } from 'react-scroll';
 import { UserContext } from '../UserContext.jsx';
+import { UserClick } from '../UserClick';
 
 import StyleSelect from './StyleSelect.jsx';
 import RatingStars from '../RatingsReviews/RatingStars.jsx';
@@ -23,7 +24,7 @@ import ProductInfo from './ProductInfo.jsx';
 // fix the features tag.. displaying wise it's too crowded
 // fix react-scroll, go down to liam's component
 
-function Product() {
+function Product(props) {
   const msg = useContext(UserContext);
   const [data, setData] = useState([]);
   const [rating, setRate] = useState();
@@ -36,6 +37,7 @@ function Product() {
   const [photo, setPhoto] = useState('');
   const [indexPhoto, setIndex] = useState(0);
   const [reset, setReset] = useState();
+  const click = useContext(UserClick);
 
   window.onbeforeunload = function () {
     window.scrollTo(0, 0);
@@ -56,6 +58,7 @@ function Product() {
           setRate(reviews.data);
           setFeature(ft.data.features);
           setStyle(styles.data.results);
+          setIndex(0)
         }))
         // eslint-disable-next-line no-console
         .catch((err) => console.error(err));
@@ -131,8 +134,8 @@ function Product() {
 
   return (
     <div>
-      <div id="productContainer">
-        <div className="secondProd">
+      <div id="productContainer" onClick={(e) => click(e, props.widget)}>
+        <div className="secondProd" onClick={(e) => click(e, props.widget)}>
           <div className="mainPhoto">
             <Default
               default={photo}
@@ -150,13 +153,13 @@ function Product() {
             index={indexPhoto}
           />
         </div>
-        <div id="overView">
-          <div id="defaultDescription">
-            <div className="category-rating">
+        <div id="overView" onClick={(e) => click(e, props.widget)}>
+          <div id="defaultDescription" onClick={(e) => click(e, props.widget)}>
+            <div className="category-rating" onClick={(e) => click(e, props.widget)}>
               <RatingStars rating={WA} size="15px" color="#F5DEB3" />
               <Link to="ratings-reviews" smooth spy duration={500} isDynamic>
-        &nbsp;
-                <u style={{ cursor: 'pointer' }}>
+                &nbsp;
+                <u style={{ cursor: 'pointer' }} >
                   Read all
                   [
                   {totalReview}

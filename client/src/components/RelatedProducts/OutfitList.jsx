@@ -82,9 +82,11 @@ class OutfitList extends React.Component {
             }): null
           }
           </Whirligig>
+          <div>
           <i className={localStorage.outfitList !== undefined && JSON.parse(localStorage.outfitList).length > 3 ?
             "fas fa-arrow-circle-right fa-2x next" : "fas fa-arrow-circle-right fa-2x next hidden"
             } onClick={next}></i>
+            </div>
       </div>
     );
   }
