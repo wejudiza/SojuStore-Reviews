@@ -936,7 +936,7 @@ Rating & Reviews Styles
 #reviews-main {
   display: grid;
   grid-template-rows: 10% 80% 10%;
-  grid-template-columns: 28% 72%;
+  grid-template-columns: 30% 70%;
   padding-bottom: 2rem;
   flex-shrink: inherit;
 }
@@ -1152,7 +1152,7 @@ Product Breakdown Styles
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-top: 10%;
+  margin-top: 5%;
   flex-shrink: inherit;
 }
 
