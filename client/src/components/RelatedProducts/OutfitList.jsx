@@ -58,7 +58,7 @@ class OutfitList extends React.Component {
 
   render() {
     return (
-      <div style={{display: 'flex', flexDirection: 'row'}} className="outfit-container">
+      <div style={{display: 'flex', flexDirection: 'row'}} className="outfit-container" onClick={(e) => this.props.click(e, this.props.widget)}>
         <i className={localStorage.outfitList !== undefined && JSON.parse(localStorage.outfitList).length > 3 ?
         "fas fa-arrow-circle-left fa-2x prev" : "fas fa-arrow-circle-left fa-2x prev hidden"
         } onClick={prev}></i>

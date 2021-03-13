@@ -111,9 +111,9 @@ export default class App extends Component {
             <Product />
             <div className="all-related-container">
             <h3 className="related-header">Related Products</h3>
-            <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
+            <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct} click={this.state.sendClickInfo} widget="RelatedProducts"/>
             <h3 className="outfit-header">Your Outfit</h3>
-            <OufitList mainProduct={this.state.data}/>
+            <OufitList mainProduct={this.state.data} click={this.state.sendClickInfo} widget="OutfitList"/>
             </div>
 
             {/* --- QnA ---*/}

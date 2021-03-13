@@ -58,7 +58,7 @@ export const handlers = [
       ],
   }))
   }),
-  rest.get(`api/styles/:id`, (req, res, ctx) => {
+  rest.get(`/api/styles/:id`, (req, res, ctx) => {
     return res(ctx.json({
       "product_id": "1",
       "results": [
@@ -121,5 +121,186 @@ export const handlers = [
                   }
       }],
   }))
+  }),
+  rest.get('/api/reviews/:id', (req, res, ctx) => {
+    return res(ctx.json({
+      "product": "2",
+      "page": 0,
+      "count": 5,
+      "results": [
+        {
+          "review_id": 5,
+          "rating": 3,
+          "summary": "I'm enjoying wearing these shades",
+          "recommend": false,
+          "response": null,
+          "body": "Comfortable and practical.",
+          "date": "2019-04-14T00:00:00.000Z",
+          "reviewer_name": "shortandsweeet",
+          "helpfulness": 5,
+          "photos": [{
+              "id": 1,
+              "url": "urlplaceholder/review_5_photo_number_1.jpg"
+            },
+            {
+              "id": 2,
+              "url": "urlplaceholder/review_5_photo_number_2.jpg"
+            },
+            // ...
+          ]
+        },
+        {
+          "review_id": 3,
+          "rating": 4,
+          "summary": "I am liking these glasses",
+          "recommend": false,
+          "response": "Glad you're enjoying the product!",
+          "body": "They are very dark. But that's good because I'm in very sunny spots",
+          "date": "2019-06-23T00:00:00.000Z",
+          "reviewer_name": "bigbrotherbenjamin",
+          "helpfulness": 5,
+          "photos": [],
+        },
+        // ...
+      ]
+    }))
+  }),
+  rest.get('/api/reviews/meta/:id', (req, res, ctx) => {
+    return res(ctx.json({
+      "product_id": "2",
+      "ratings": {
+        2: 1,
+        3: 1,
+        4: 2,
+        // ...
+      },
+      "recommended": {
+        0: 5
+        // ...
+      },
+      "characteristics": {
+        "Size": {
+          "id": 14,
+          "value": "4.0000"
+        },
+        "Width": {
+          "id": 15,
+          "value": "3.5000"
+        },
+        "Comfort": {
+          "id": 16,
+          "value": "4.0000"
+        }
+      }
+    }))
+  }),
+  rest.get('/api/cart', (req, res, ctx) => {
+    return res(ctx.json([
+      {
+          "sku_id": 1,
+          "count": 2
+      },
+      {
+          "sku_id": 3,
+          "count": 1
+      },
+      {
+          "sku_id": 5,
+          "count": 33
+      },
+      //...
+    ]))
+  }),
+  rest.get('/api/qa/questions/:product_id', (req, res, ctx) => {
+    return res(ctx.json({
+      "product_id": "5",
+      "results": [{
+            "question_id": 37,
+            "question_body": "Why is this product cheaper here than other sites?",
+            "question_date": "2018-10-18T00:00:00.000Z",
+            "asker_name": "williamsmith",
+            "question_helpfulness": 4,
+            "reported": false,
+            "answers": {
+              68: {
+                "id": 68,
+                "body": "We are selling it here without any markup from the middleman!",
+                "date": "2018-08-18T00:00:00.000Z",
+                "answerer_name": "Seller",
+                "helpfulness": 4,
+                "photos": []
+                // ...
+              }
+            }
+          },
+          {
+            "question_id": 38,
+            "question_body": "How long does it last?",
+            "question_date": "2019-06-28T00:00:00.000Z",
+            "asker_name": "funnygirl",
+            "question_helpfulness": 2,
+            "reported": false,
+            "answers": {
+              70: {
+                "id": 70,
+                "body": "Some of the seams started splitting the first time I wore it!",
+                "date": "2019-11-28T00:00:00.000Z",
+                "answerer_name": "sillyguy",
+                "helpfulness": 6,
+                "photos": [],
+              },
+              78: {
+                "id": 78,
+                "body": "9 lives",
+                "date": "2019-11-12T00:00:00.000Z",
+                "answerer_name": "iluvdogz",
+                "helpfulness": 31,
+                "photos": [],
+              }
+            }
+          },
+          // ...
+      ]
+    }))
+  }),
+  rest.get('/api/qa/questions/:question_id/answers', (req, res, ctx) => {
+    return res(ctx.json({
+      "question": "1",
+      "page": 0,
+      "count": 5,
+      "results": [
+        {
+          "answer_id": 8,
+          "body": "What a great question!",
+          "date": "2018-01-04T00:00:00.000Z",
+          "answerer_name": "metslover",
+          "helpfulness": 8,
+          "photos": [],
+        },
+        {
+          "answer_id": 5,
+          "body": "Something pretty durable but I can't be sure",
+          "date": "2018-01-04T00:00:00.000Z",
+          "answerer_name": "metslover",
+          "helpfulness": 5,
+          "photos": [{
+              "id": 1,
+              "url": "urlplaceholder/answer_5_photo_number_1.jpg"
+            },
+            {
+              "id": 2,
+              "url": "urlplaceholder/answer_5_photo_number_2.jpg"
+            },
+            // ...
+          ]
+        },
+        // ...
+      ]
+    }))
+  }),
+  rest.post('/api/cart', (req, res, ctx) => {
+    return res(ctx.status(201))
   })
 ]
+
+
