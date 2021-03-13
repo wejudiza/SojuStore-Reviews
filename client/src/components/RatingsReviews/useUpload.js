@@ -13,7 +13,7 @@ export default function use(initialValues) {
       }
 
       Object.values(e.target.files).map((img) => {
-        const firebaseUpload = storage.ref(`images/${img.name}`).put(img);
+        const Upload = storage.ref(`images/${img.name}`).put(img);
         firebaseUpload.on(
           'state_changed',
           snapshot => {},

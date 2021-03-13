@@ -81,7 +81,7 @@ class OutfitCard extends React.Component {
     return (
       <div>
         <i className="far fa-times-circle btn" onClick={this.handleClick} snapToSlide={false} visibleSlides={4}></i>
-        <img src={this.state.thumbnail_url || 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg'} className="oufitcardpicture"></img>
+        <img src={this.state.thumbnail_url || 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg'} className="oufitcardpicture" alt="oufitcardpicture"></img>
         <div className="category">
             {this.state.category}
           </div>
