@@ -58,6 +58,7 @@ function Product(props) {
           setRate(reviews.data);
           setFeature(ft.data.features);
           setStyle(styles.data.results);
+          setIndex(0)
         }))
         // eslint-disable-next-line no-console
         .catch((err) => console.error(err));
