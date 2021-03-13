@@ -854,7 +854,7 @@ Rating & Reviews Styles
 #reviews-main {
   display: grid;
   grid-template-rows: 10% 80% 10%;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 28% 72%;
   padding-bottom: 2rem;
   flex-shrink: inherit;
 }
