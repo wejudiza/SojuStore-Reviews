@@ -3,6 +3,7 @@ import axios from 'axios';
 import RelatedProducts from './RelatedProducts.jsx';
 import OutfitList from './OutfitList.jsx';
 import Whirligig from 'react-whirligig';
+import getClick from './getClick.jsx'
 
 /// Carousel buttons///
 let whirligig
@@ -40,22 +41,19 @@ class RelatedProductsList extends React.Component {
 
   render() {
     return (
-      <div style={{display: 'flex', flexDirection: 'row'}} className="related-container">
+      <div style={{display: 'flex', flexDirection: 'row'}} className="related-container" onClick={(e) => this.props.click(e, this.props.widget) }>
         <i className={this.state.products.length > 4 ?
         "fas fa-arrow-circle-left fa-2x prev" : " fas fa-arrow-circle-left fa-2x prev hidden"
         } onClick={prev}></i>
         <Whirligig
         ref={(_whirligigInstance) => { whirligig = _whirligigInstance}}
-        // visibleSlides={this.state.products.length < 4 ?
-        //   this.state.products.length : 4
-        // }
         slideBy={1 || 0}
         slideClass={"slide"}
         gutter="6.4em"
         preventScroll={true}>
         {this.state.products.map((id, index) => {
           return (
-            <RelatedProducts productId={id} key={index} mainId={this.props.mainId} mainProduct={this.props.mainProduct} updateCurrentProduct={this.props.updateCurrentProduct}/>
+            <RelatedProducts className="relatedproduct" productId={id} key={index} mainId={this.props.mainId} mainProduct={this.props.mainProduct} updateCurrentProduct={this.props.updateCurrentProduct}/>
           )
         })}
         </Whirligig>
