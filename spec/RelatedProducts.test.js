@@ -1,8 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import RelatedProductsList from '../../client/src/components/RelatedProducts/RelatedProductsList';
-import App from '../../client/src/components/App';
-import OutfitList from '../../client/src/components/RelatedProducts/OutfitList';
+import RelatedProductsList from '../client/src/components/RelatedProducts/RelatedProductsList';
+import OutfitList from '../client/src/components/RelatedProducts/OutfitList';
 
 
 

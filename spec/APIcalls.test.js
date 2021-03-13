@@ -56,3 +56,50 @@ test('posts to cart', async () => {
   await axios.post('/api/cart')
     .then((data) => {return data})
 })
+
+test('posts to reviews', async () => {
+  await axios.post('/api/reviews')
+    .then((data) => {return data})
+})
+
+test('posts to questions', async () => {
+  await axios.post('/api/qa/questions/12345')
+    .then((data) => {return data})
+})
+
+test('posts to answers', async () => {
+  await axios.post('/api/qa/questions/12345/answers')
+    .then((data) => {return data})
+})
+
+/////////// PUT REQUESTS //////////////
+
+test('puts record in reivews that the review was helpful', async () => {
+  await axios.put('/api/reviews/12345/helpful')
+    .then((data) => {return data})
+})
+
+test('reports an answer', async () => {
+  await axios.put('/api/qa/answers/12345/report')
+    .then((data) => {return data})
+})
+
+test('votes answer helpful', async () => {
+  await axios.put('/api/qa/answers/12345/helpful')
+    .then((data) => {return data})
+})
+
+test('votes question helpful', async () => {
+  await axios.put('/api/qa/answers/12345/report')
+    .then((data) => {return data})
+})
+
+test('reports an answer', async () => {
+  await axios.put('/api/qa/answers/12345/report')
+    .then((data) => {return data})
+})
+
+test('reports a question', async () => {
+  await axios.put('/api/qa/questions/12345/report')
+    .then((data) => {return data})
+})

@@ -300,7 +300,34 @@ export const handlers = [
   }),
   rest.post('/api/cart', (req, res, ctx) => {
     return res(ctx.status(201))
-  })
+  }),
+  rest.post('/api/reviews', (req, res, ctx) => {
+    return res(ctx.status(201))
+  }),
+  rest.post('/api/qa/questions/:id', (req, res, ctx) => {
+    return res(ctx.status(201))
+  }),
+  rest.post('/api/qa/questions/:id/answers', (req, res, ctx) => {
+    return res(ctx.status(201))
+  }),
+  rest.put('/api/reviews/:id/helpful', (req, res, ctx) => {
+    return res(ctx.status(204))
+  }),
+  rest.put('/api/qa/answers/:id/report', (req, res, ctx) => {
+    return res(ctx.status(204))
+  }),
+  rest.put('/api/qa/answers/:id/helpful', (req, res, ctx) => {
+    return res(ctx.status(204))
+  }),
+  rest.put('/api/qa/answers/:id/report', (req, res, ctx) => {
+    return res(ctx.status(204))
+  }),
+  rest.put('/api/qa/answers/:id/report', (req, res, ctx) => {
+    return res(ctx.status(204))
+  }),
+  rest.put('/api/qa/questions/:id/report', (req, res, ctx) => {
+    return res(ctx.status(204))
+  }),
 ]
 
 
