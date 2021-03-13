@@ -89,13 +89,10 @@ export default class App extends Component {
         ? 'all-dark' : 'all'}
       >
         <div className="header">
-          <div className="container1">
-            <div id="headerImg">
-            </div>
-            <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
-          </div>
+          <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
           <div className="headerContainer">
           <div className="textContainer">
+            <div id="headerImg"></div>
             <div className="store-name">SOJU STORE</div>
             <p className="slogan">HUNDREDS OF NEW ARRIVALS</p>
             <p className="shipping">Free Shipping and Returns*</p>
