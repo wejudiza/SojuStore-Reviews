@@ -127,11 +127,9 @@ export default function RatingsReviews({ widget }) {
         <div id="review-list" onClick={(e) => sendClickInfo(e, widget)}>
           { allReviews.slice(0, showCount).map((review) => (
             <ReviewTile
-              widget={widget}
               review={review}
               sort={sort}
               setAllReviews={setAllReviews}
-              sendClickInfo={sendClickInfo}
               key={review.review_id}
             />
           )) }
