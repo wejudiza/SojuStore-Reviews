@@ -12,29 +12,61 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-.store-name {
+.headerContainer {
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+#headerImg {
+  background-image: url(iconfinder_wine-bottle_358213.png);
+  display: flex;
   position: absolute;
-  top: 4%;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+.textContainer {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-color: lightsteelblue;
+  z-index: 1;
+  height: 90px;
+}
+
+.store-name {
+  display: flex;
+  order: 1;
   font-family: 'Archivo Black', 'sans-serif';
-  font-size: 45px;
-  left: 39%;
+  font-size: 40px;
+  margin: 0;
   -webkit-text-stroke: 1.5px;
   -webkit-text-stroke-color: antiquewhite;
 }
 
 .slogan {
-  position: absolute;
+  display: flex;
   font-size: 17px;
-  top: 33%;
-  left: 41%;
+  order: 2;
+  background-color: rgba(255, 250, 240, 0.6);
   letter-spacing: 2px;
+  margin: 0;
+  padding: 3px;
 }
 
 .shipping {
-  position: absolute;
-  left: 45%;
-  top: 64%;
-  font-size: 12.5px;
+  display: flex;
+  order: 3;
+  font-size: 13.5px;
+  margin: 0;
 }
 
 .signin,
@@ -42,7 +74,7 @@
 .dark {
   position: absolute;
   font-family: 'Source Sans Pro', sans-serif;
-  color: black !important;
+  color: black;
   text-transform: uppercase;
   text-decoration: none;
   padding: 8px;
@@ -91,10 +123,14 @@
 }
 
 
-.dark  {
-  position: absolute;
-  top: 25%;
-  left: 3%;
+.dark {
+  display: flex;
+  order: 4;
+  margin: 0.3%;
+  background-color: #232020;
+  left: 0;
+  top: 0;
+  color: #ffffff;
 }
 
 .signin:hover,
@@ -316,8 +352,8 @@
 }
 
 .hidden {
-  color: white;
-  background-color: white;
+  color: aliceblue;
+  background-color: aliceblue;
 }
 
 
@@ -634,10 +670,20 @@ figure:hover {
 
 /* QnA Styld */
 
+#header-border {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 1.7px solid black;
+  border-bottom: 1.7px solid black;
+  margin: 1%;
+  background: rgba(134, 155, 171, 0.25);
+}
 
 #questions-logo {
-  display: flex;
-  right: 150px;
+  font-size: 29px;
+  text-transform: uppercase;
+  margin: 1%;
 }
 
 #row {
@@ -649,15 +695,16 @@ figure:hover {
   flex: 33.33%;
   padding: 5px;
 }
+
 #answers-container {
-  border: 3px solid #00B4CC;
+  border: 2px solid black;
   border-radius: 5px 5px 5px 5px;
   position: relative;
   top: 50px;
   right: 35.5%;
   width: 100vw;
-  max-height: 50vh;
-  height: 50vh;
+  max-height: 70vh;
+  height: 70vh;
   overflow: hidden;
   overflow-y: scroll;
 }
@@ -673,7 +720,7 @@ figure:hover {
 
 .search-bar{
   position: relative;
-  border: 3px solid #00B4CC;
+  border: 1.5px solid black;
   border-radius: 5px 5px 5px 5px;
   padding: 5px;
   top: 5px;
@@ -686,11 +733,11 @@ figure:hover {
   position: relative;
   width: 300%;
   margin: 5px;
-  border: 3px solid #00B4CC;
+  border: 1.5px solid black;
   border-radius: 5px 5px 5px 5px;
   padding: 5px;
   height: 20px;
-  color: #9DBFAF;
+  color: black;
   left: 3%;
 }
 
@@ -702,15 +749,16 @@ figure:hover {
 
 #questions-and-answers {
   position: relative;
-  border: 3px solid #00B4CC;
+  background-color: white;
   border-radius: 5px 5px 5px 5px;
-  background-color: teal;
-  max-height: 60vh;
-  height: 60vh;
-  width: 90vw;
+  background: linear-gradient(to top right, rgba(255, 255, 255, .4), rgba(255, 255, 255, .3));
+  max-height: 100vh;
+  height: 80vh;
+  width: 80vw;
   display: grid;
   grid-template-rows: 0% 100% 0%;
   grid-template-columns: 100% 0%;
+  padding: 0.5%;
 }
 
 #answer {
@@ -732,9 +780,8 @@ figure:hover {
   grid-column-start: 2;
   grid-column-end: 5;
   -ms-overflow-style: none;
-  max-height: 80vh;
-  height: 75vh;
   font-family: 'Source Sans Pro', sans-serif;
+  background: linear-gradient(aliceblue, aliceblue, lightsteelblue);
 }
 
 #actual-question{
@@ -755,7 +802,7 @@ figure:hover {
   margin: 7px;
   width: 300px;
   height: 30px;
-  border: solid #00B4CC;
+  border: 2px solid black;
   border-radius: 3px;
   background-color: white;
 }
@@ -834,20 +881,19 @@ Rating & Reviews Styles
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(to top right, #b0c4de, #7599c9);
+  background: #b0c4de;
   font-size: .7em;
   flex-shrink: inherit;
 }
 
 #ratings-reviews {
   display: flex;
-  width: 70vw;
+  width: 80vw;
   height: 85vh;
   background-color: white;
   background: linear-gradient(to top right, rgba(255, 255, 255, .6), rgba(255, 255, 255, .3));
-  border-radius: 15px;
+  border-radius: 5px 5px 5px 5px;
   font-family: 'Poppins', sans-serif;
   flex-shrink: inherit;
 }
