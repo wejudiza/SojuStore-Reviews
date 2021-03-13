@@ -89,23 +89,27 @@ export default class App extends Component {
         ? 'all-dark' : 'all'}
       >
         <div className="header">
+          <div className="container1">
             <div id="headerImg">
             </div>
+            <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
+          </div>
           <div className="headerContainer">
-          <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
           <div className="textContainer">
             <div className="store-name">SOJU STORE</div>
             <p className="slogan">HUNDREDS OF NEW ARRIVALS</p>
             <p className="shipping">Free Shipping and Returns*</p>
           </div>
           </div>
-          <div className="search-container">
-            <input type="text" defaultValue="" placeholder="Enter your search here..." id="main-search" />
-            <i className="fas fa-search search-btn" />
-          </div>
-          <div className="signin-out">
-            <button onClick={this.signInClick} className="signin">Sign In</button>
-            <button onClick={this.signOutClick} className="signout">Sign Out</button>
+          <div className="container2">
+            <div className="search-container">
+              <input type="text" defaultValue="" placeholder="Enter your search here..." id="main-search" />
+              <i className="fas fa-search search-btn" />
+            </div>
+            <div className="signin-out">
+              <button onClick={this.signInClick} className="signin">Sign In</button>
+              <button onClick={this.signOutClick} className="signout">Sign Out</button>
+            </div>
           </div>
         </div>
       <Suspense fallback={<div>Loading...</div>}>
