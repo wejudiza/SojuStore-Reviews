@@ -176,6 +176,7 @@
 
 #all-dark .dark {
   background: white;
+  color: black;
 }
 
 #all-dark .dark:hover {
@@ -194,6 +195,22 @@
 
 #all-dark #main-search {
   border-bottom: 1px solid white;
+}
+
+#all-dark #default-wrapper {
+  background: #383838;
+}
+
+#all-dark .secondProd {
+  background: #383838;
+}
+
+#all-dark #qna {
+  background: #383838;
+}
+
+#all-dark #ratings-reviews-container {
+  background: #383838;
 }
 
 /* RLEATED PRODUCTS SECTION */
@@ -899,7 +916,7 @@ Rating & Reviews Styles
 #reviews-main {
   display: grid;
   grid-template-rows: 10% 80% 10%;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 28% 72%;
   padding-bottom: 2rem;
   flex-shrink: inherit;
 }
