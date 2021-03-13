@@ -42,9 +42,6 @@ export default class App extends Component {
     this.toggleDark = this.toggleDark.bind(this);
   }
 
-  // results.data[0] - replace 16059
-  // change back to 9
-  // need to test - OutOfStock -> change data
   componentDidMount() {
     axios.get('/api')
       .then((results) => {
@@ -92,33 +89,42 @@ export default class App extends Component {
         ? 'all-dark' : 'all'}
       >
         <div className="header">
-          <div className="store-name">SOJU STORE</div>
           <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
-          <p className="slogan">HUNDREDS OF NEW ARRIVALS</p>
-          <p className="shipping">Free Shipping and Returns*</p>
-          <div className="search-container">
-            <input type="text" defaultValue="" placeholder="Enter your search here..." id="main-search" />
-            <i className="fas fa-search search-btn" />
+          <div className="headerContainer">
+          <div className="textContainer">
+            <div id="headerImg"></div>
+            <div className="store-name">SOJU STORE</div>
+            <p className="slogan">HUNDREDS OF NEW ARRIVALS</p>
+            <p className="shipping">Free Shipping and Returns*</p>
           </div>
-          <div className="signin-out">
-            <button onClick={this.signInClick} className="signin">Sign In</button>
-            <button onClick={this.signOutClick} className="signout">Sign Out</button>
+          </div>
+          <div className="container2">
+            <div className="search-container">
+              <input type="text" defaultValue="" placeholder="Enter your search here..." id="main-search" />
+              <i className="fas fa-search search-btn" />
+            </div>
+            <div className="signin-out">
+              <button onClick={this.signInClick} className="signin">Sign In</button>
+              <button onClick={this.signOutClick} className="signout">Sign Out</button>
+            </div>
           </div>
         </div>
       <Suspense fallback={<div>Loading...</div>}>
         <UserContext.Provider value={this.state.data}>
           <UserClick.Provider value={this.state.sendClickInfo}>
-            <Product />
+            <Product widget="ProductOverview" />
             <div className="all-related-container">
             <h3 className="related-header">Related Products</h3>
-            <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct}/>
+            <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct} click={this.state.sendClickInfo} widget="RelatedProducts"/>
             <h3 className="outfit-header">Your Outfit</h3>
-            <OufitList mainProduct={this.state.data}/>
+            <OufitList mainProduct={this.state.data} click={this.state.sendClickInfo} widget="OutfitList"/>
             </div>
 
             {/* --- QnA ---*/}
             <div id="qna">
+              <div id="header-border">
               <h3 id="questions-logo">Questions & Answers</h3>
+              </div>
               <div id="questions-and-answers">
                 <QnA widget="QuestionsAndAnswers" />
               </div>

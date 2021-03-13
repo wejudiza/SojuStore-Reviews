@@ -138,7 +138,7 @@ class RelatedProducts extends React.Component {
           {/* *********RELATED PRODUCTS CARD********** */}
           <div>
             <i className="far fa-star btn" onClick={this.toggleModal}></i>
-            <img src={this.state.thumbnail_url || 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg'} onClick={() => this.props.updateCurrentProduct(this.state.product)}></img>
+            <img src={this.state.thumbnail_url || 'https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg'} onClick={() => this.props.updateCurrentProduct(this.state.product)} className="relatedimage"></img>
           </div>
 
           <div className="category">
