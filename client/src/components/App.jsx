@@ -42,9 +42,6 @@ export default class App extends Component {
     this.toggleDark = this.toggleDark.bind(this);
   }
 
-  // results.data[0] - replace 16059
-  // change back to 9
-  // need to test - OutOfStock -> change data
   componentDidMount() {
     axios.get('/api')
       .then((results) => {
@@ -92,10 +89,7 @@ export default class App extends Component {
         ? 'all-dark' : 'all'}
       >
         <div className="header">
-          <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-          <img src="2276858.png" />
-          </div>
-          <div style={{display: 'flex'}}>
+          <div className="headerContainer">
           <div className="store-name">SOJU STORE</div>
           <button className="dark" onClick={this.toggleDark}>Toggle dark Mode</button>
           <p className="slogan">HUNDREDS OF NEW ARRIVALS</p>
@@ -113,7 +107,7 @@ export default class App extends Component {
       <Suspense fallback={<div>Loading...</div>}>
         <UserContext.Provider value={this.state.data}>
           <UserClick.Provider value={this.state.sendClickInfo}>
-            <Product />
+            <Product widget="ProductOverview" />
             <div style={{background: 'linear-gradient(white, #f8fcff, #f0f8ff)'}} className="all-related-container">
               <h3 className="related-header">Related Products</h3>
               <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct} />
