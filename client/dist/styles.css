@@ -855,7 +855,11 @@ figure:hover {
   border: 3px solid #00B4CC;
   border-radius: 5px 5px 5px 5px;
   position: relative;
-  height: 566px;
+  height: 620px;
+}
+
+#body-count {
+  margin: 10px;
 }
 
 #add-answer-header, #username-header, #email-header, #your-answer-header{
@@ -867,6 +871,7 @@ figure:hover {
   border-radius: 5px 5px 5px 5px;
   position: relative;
   margin: 10px;
+  margin-bottom: 0px;
 }
 #name-input, #email-input{
 width: 200px;

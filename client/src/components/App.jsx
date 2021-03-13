@@ -126,7 +126,7 @@ export default class App extends Component {
               <h3 id="questions-logo">Questions & Answers</h3>
               </div>
               <div id="questions-and-answers">
-                <QnA />
+                <QnA widget="QuestionsAndAnswers" />
               </div>
             </div>
 

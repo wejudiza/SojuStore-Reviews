@@ -16,6 +16,11 @@ export default function Question({question}) {
     email: '',
     photos: []
   });
+  const [charCount, setCharCount] = useState({
+    body: 0,
+    name: 0,
+    email: 0
+  })
   const [helpfulness, setHelpfulness] = useState(question.question_helpfulness)
   const [clicked, setClicked] = useState(false);
   const [search, setSearch] = useState('');
@@ -67,6 +72,12 @@ export default function Question({question}) {
     setAnswer({
       ...answer,
       [e.target.name]: e.target.value
+    });
+    setCharCount({
+      ...charCount,
+      [e.target.name]: e.target.value.length,
+      [e.target.name]: e.target.value.length,
+      [e.target.name]: e.target.value.length
     })
   }
 
@@ -173,8 +184,8 @@ export default function Question({question}) {
         Q: {question.question_body}
         </h4>
           <div>
-            <div id="question-helpfulness">
-            Helpful? <u onClick={helpful}>Yes</u> ({helpfulness}) | <u onClick={()=>{setModal(true)}}>
+          <div id="question-helpfulness">
+           Helpful? <u id="answer-helpfulness" onClick={helpful}>Yes</u> ({helpfulness}) | <u id="add-answer" onClick={()=>{setModal(true)}}>
               Add Answer</u> | <u onClick={reportQuestion}>{reported}</u>
             </div>
             <input type="text" className="search-bar" placeholder="Search Answers" value={search} onChange={updateSearch}></input>
@@ -184,22 +195,31 @@ export default function Question({question}) {
                   Add Answer
                 </h3>
                 <h5 id="username-header">Username</h5>
-                  <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
+                  <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText} maxLength={60}></input>
                   <br></br>
+                  <div id="body-count">
+                  ({charCount.name}/60 Max Characters)
+                  </div>
                 <h5 id="email-header">Email</h5>
-                  <input id="email-input" placeholder="Example: jack@email.com" name="email" onChange={captureText}></input>
+                  <input id="email-input" placeholder="Example: jack@email.com" name="email" onChange={captureText} maxLength={60}></input>
                   <br></br>
+                  <div id="body-count">
+                  ({charCount.email}/60 Max Characters)
+                  </div>
                 <h5 id="your-answer-header">Your Answer</h5>
                   <p>
-                    <textarea id="body-input" placeholder="Your Answer Here" name="body" onChange={captureText}>
+                    <textarea id="body-input" placeholder="Your Answer Here" name="body" onChange={captureText} maxLength={500}>
                     </textarea>
                   </p>
+                  <div id="body-count">
+                  ({charCount.body}/500 Max Characters)
+                  </div>
                   <button id="on-submit-button" onClick={submitAnswer}>Submit</button>
                   <button id="close-button" onClick={()=>setModal(false)}>Close</button>
                   <br></br>
                   <div id="choose-file-button">
                     Choose Files
-                  <input class="hide-file" type="file" multiple onChange={handleChange}/>
+                  <input className="hide-file" type="file" multiple onChange={handleChange}/>
                   </div>
                   <button id="upload-button" onClick={upload}>Upload Photo</button>
               </div>
@@ -223,8 +243,8 @@ export default function Question({question}) {
         </h4>
          <div>
            <div id="question-helpfulness">
-           Helpful? <u onClick={helpful}>Yes</u> ({helpfulness}) | <u onClick={()=>{setModal(true)}}>
-              Add Answer</u> | <u onClick={reportQuestion}>{reported}</u>
+           Helpful? <u id="answer-helpfulness" onClick={helpful}>Yes</u> ({helpfulness}) | <u id="add-answer" onClick={()=>{setModal(true)}}>
+              Add Answer</u> | <u id="report" onClick={reportQuestion}>{reported}</u>
             </div>
             <input type="text" className="search-bar" placeholder="Search Answers" value={search} onChange={updateSearch}></input>
             <Modal id="answer-modal" isOpen={modalState} onRequestClose={()=>{setModal(false)}} appElement={document.getElementById('app')}>
@@ -233,22 +253,31 @@ export default function Question({question}) {
                   Add Answer
                 </h3>
                 <h5 id="username-header">Username</h5>
-                  <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText}></input>
+                  <input id="name-input" placeholder="Example: jackson11!" name="name" onChange={captureText} maxLength={60}></input>
                   <br></br>
+                  <div id="body-count">
+                  ({charCount.name}/60 Max Characters)
+                  </div>
                 <h5 id="email-header">Email</h5>
-                  <input id="email-input" placeholder="Example: jack@email.com" name="email" onChange={captureText}></input>
+                  <input id="email-input" placeholder="Example: jack@email.com" name="email" onChange={captureText} maxLength={60}></input>
                   <br></br>
+                  <div id="body-count">
+                  ({charCount.email}/60 Max Characters)
+                  </div>
                 <h5 id="your-answer-header">Your Answer</h5>
                   <p>
-                    <textarea id="body-input" placeholder="Your Answer Here" name="body" onChange={captureText}>
+                    <textarea id="body-input" placeholder="Your Answer Here" name="body" onChange={captureText} maxLength={500}>
                     </textarea>
                   </p>
+                  <div id="body-count">
+                  ({charCount.body}/500 Max Characters)
+                  </div>
                   <button id="on-submit-button" onClick={submitAnswer}>Submit</button>
                   <button id="close-button" onClick={()=>setModal(false)}>Close</button>
                   <br></br>
                   <div id="choose-file-button">
                     Choose Files
-                  <input class="hide-file" type="file" multiple onChange={handleChange}/>
+                  <input className="hide-file" type="file" multiple onChange={handleChange}/>
                   </div>
                   <button id="upload-button" onClick={upload}>Upload Photo</button>
               </div>
