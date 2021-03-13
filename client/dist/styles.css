@@ -373,8 +373,8 @@ background: linear-gradient(90deg, rgba(222,227,232,1) 0%, rgba(176,196,222,1) 1
 
 .next:hover.hidden,
 .prev:hover.hidden {
-  color: white;
-  background-color: white;
+  color: aliceblue;
+  background-color: aliceblue;
   cursor: default;
 }
 
@@ -757,7 +757,7 @@ figure:hover {
   top: 5px;
   margin:5px;
   height: 10px;
-  color: #9DBFAF;
+  color: black;
 }
 
 #search-bar{

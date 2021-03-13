@@ -3,7 +3,6 @@ import axios from 'axios';
 import RelatedProducts from './RelatedProducts.jsx';
 import OutfitList from './OutfitList.jsx';
 import Whirligig from 'react-whirligig';
-import getClick from './getClick.jsx'
 
 /// Carousel buttons///
 let whirligig
