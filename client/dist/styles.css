@@ -212,6 +212,11 @@
 
 #all-dark #ratings-reviews-container {
   background: #383838;
+  color: black;
+}
+
+#all-dark .css-yt9ioa-option {
+  color: black;
 }
 
 /* RLEATED PRODUCTS SECTION */
