@@ -110,7 +110,7 @@ function Default_Expanded(props) {
       backgroundPosition: 'center',
       width: 'auto',
       height: '100%',
-      cursor: 'pointer',
+      cursor: 'zoom-in',
       zIndex: '1',
     };
   };
