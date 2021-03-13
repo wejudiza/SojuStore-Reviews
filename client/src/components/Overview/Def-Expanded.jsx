@@ -135,7 +135,7 @@ function Default_Expanded(props) {
                 <div className="modalThumbnail">
                   <i className="leftArrow" onClick={() => clickBackward()} />
                   {expandThumb.map((item, index) => (
-                    <img key={index} className={arrangeThumb(index)} src={item.thumbnail_url} onClick={() => clickThumbnail(index, item.url)} />
+                    <img key={index} className={arrangeThumb(index)} src={item.thumbnail_url} onClick={() => clickThumbnail(index, item.url)} alt="expandthumb"/>
                   ))}
                   <i className="rightArrow" onClick={() => clickForward()} />
                 </div>
@@ -145,7 +145,7 @@ function Default_Expanded(props) {
               <figure onMouseMove={(e) => handleMouseMove(e)} style={{ backgroundImage: bgImage, backgroundPosition: bgPosition }} onClick={() => setZoom(!zoom)} />
             ) : (
               <div className="test">
-                <img src={expandThumb[props.index].url} onClick={() => setZoom(!zoom)} onLoad={() => setImage(`url(${expandThumb[props.index].url})`)} style={{ cursor: 'crosshair' }} />
+                <img src={expandThumb[props.index].url} onClick={() => setZoom(!zoom)} onLoad={() => setImage(`url(${expandThumb[props.index].url})`)} style={{ cursor: 'crosshair' }} alt="expandthumb"/>
               </div>
             ) }
           </div>

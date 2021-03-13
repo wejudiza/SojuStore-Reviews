@@ -75,7 +75,7 @@ function StyleSelect(props) {
                     aria-hidden="true"
                   />
                 ) : null}
-                <img src={item.thumbnail_url === null ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png' : item.thumbnail_url} className="thumbnail-img" style={props.defaultStyle.photos[0].thumbnail_url === null ? null : props.defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? { border: '1.5px solid lightsteelblue', boxShadow: '1.5px 1px 2px 0.5px lightsteelblue' } : null} onClick={() => clickThumbnail(item.index, item.url)} />
+                <img src={item.thumbnail_url === null ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png' : item.thumbnail_url} className="thumbnail-img" style={props.defaultStyle.photos[0].thumbnail_url === null ? null : props.defaultStyle.photos[0].thumbnail_url === item.thumbnail_url ? { border: '1.5px solid lightsteelblue', boxShadow: '1.5px 1px 2px 0.5px lightsteelblue' } : null} onClick={() => clickThumbnail(item.index, item.url)} alt="thumbnail"/>
               </div>
             ))}
           </div>
