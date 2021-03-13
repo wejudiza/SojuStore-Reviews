@@ -177,6 +177,7 @@
 
 #all-dark .dark {
   background: white;
+  color: black;
 }
 
 #all-dark .dark:hover {
@@ -195,6 +196,10 @@
 
 #all-dark #main-search {
   border-bottom: 1px solid white;
+}
+
+#all-dark #default-wrapper {
+  background: #383838;
 }
 
 /* RLEATED PRODUCTS SECTION */
