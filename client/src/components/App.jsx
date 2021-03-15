@@ -113,27 +113,27 @@ export default class App extends Component {
         <UserContext.Provider value={this.state.data}>
           <UserClick.Provider value={this.state.sendClickInfo}>
             <Product widget="ProductOverview" />
-            {/* <div className="all-related-container">
+            <div className="all-related-container">
             <h3 className="related-header">Related Products</h3>
             <RelatedProductsList mainProduct={this.state.data} updateCurrentProduct={this.updateCurrentProduct} click={this.state.sendClickInfo} widget="RelatedProducts"/>
             <h3 className="outfit-header">Your Outfit</h3>
             <OufitList mainProduct={this.state.data} click={this.state.sendClickInfo} widget="OutfitList"/>
-            </div> */}
+            </div>
 
             {/* --- QnA ---*/}
-            {/* <div id="qna">
+            <div id="qna">
               <div id="header-border">
               <h3 id="questions-logo">Questions & Answers</h3>
               </div>
               <div id="questions-and-answers">
                 <QnA widget="QuestionsAndAnswers" />
               </div>
-            </div> */}
+            </div>
 
             {/* --- Ratings & Reviews --- */}
-            {/* <div id="ratings-reviews-container">
+            <div id="ratings-reviews-container">
               <RatingsReviews widget="RatingsReviews" />
-            </div> */}
+            </div>
           </UserClick.Provider>
         </UserContext.Provider>
       </Suspense>
